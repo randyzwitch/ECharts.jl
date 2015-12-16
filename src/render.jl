@@ -1,3 +1,6 @@
+import Base.print
+print(x::EChart) = print(JSON.json(tojs(x)))
+
 # Open a URL in a browser
 function openurl(url::AbstractString)
     @osx_only     run(`open $url`)
