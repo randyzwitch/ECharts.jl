@@ -15,6 +15,7 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(v))
+    theme = v.theme
 
         display("text/html", """
 
@@ -32,7 +33,7 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
 
                         // Load data into the ECharts instance
-                        myChart.setOption($option);
+                        myChart.setOption($option).setTheme(\"$theme\");
                     </script>
                 </body>
 
