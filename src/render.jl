@@ -64,7 +64,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
 
                         // Load data into the ECharts instance
-                        myChart.setOption($option);
+                        myChart.setOption($option).setTheme(\"$theme\");
                     </script>
                 </body>
                 "

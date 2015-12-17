@@ -5,7 +5,7 @@ module ECharts
 	export print
 
 	export EChart
-	export Tooltip, Legend, Toolbox, Axis, Series, Title, Grid, DataZoom
+	export Tooltip, Legend, Toolbox, Axis, Series, Title, Grid, DataZoom, Timeline, DataRange, RoamController
 
 	#Import helper code
 	include("jstypes.jl")
@@ -19,6 +19,9 @@ module ECharts
 	include("primitives/title.jl")
 	include("primitives/grid.jl")
 	include("primitives/datazoom.jl")
+	include("primitives/timeline.jl")
+	include("primitives/datarange.jl")
+	include("primitives/roamcontroller.jl")
 
 	include("primitives/echart.jl")
 
