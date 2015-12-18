@@ -76,6 +76,10 @@ function makehash(fieldname::Symbol)
         return Expr(:(=),
                     Expr(:ref, :res, "end"),
                     Expr(:call, :tojs, Expr(:., :x, Expr(:quote, fieldname))))
+    elseif fieldname == :_symbol
+        return Expr(:(=),
+                    Expr(:ref, :res, "symbol"),
+                    Expr(:call, :tojs, Expr(:., :x, Expr(:quote, fieldname))))
     else
         return Expr(:(=),
                     Expr(:ref, :res, string(fieldname)),
