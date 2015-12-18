@@ -16,7 +16,7 @@ toolbox_spec =
     (:disableColor, AbstractString, "#ddd"),
     (:effectiveColor, AbstractString, "red"),
     (:showTitle, Bool, true),
-    (:textStyle, Dict{Any, Any}, nothing),
+    (:textStyle, TextStyle, nothing),
     (:feature, Dict{Any, Any}, nothing)
 ]
 

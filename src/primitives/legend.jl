@@ -13,7 +13,7 @@ legend_spec =
     (:itemGap, Number, 10),
     (:itemWidth, Number, 20),
     (:itemHeight, Number, 14),
-    (:textStyle, Dict{Any, Any}, nothing),
+    (:textStyle, TextStyle, nothing),
     (:formatter, AbstractString, nothing),
     (:selectedMode, Union{Bool, AbstractString}, nothing),
     (:selected, Dict{Any, Any}, nothing),

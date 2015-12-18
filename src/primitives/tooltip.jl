@@ -18,7 +18,7 @@ tooltip_spec =
     (:borderWidth, Number, 0),
     (:padding, Union{Number, AbstractVector}, 5),
     (:axisPointer, Dict{Any, Any}, nothing),
-    (:textStyle, Dict{Any, Any}, nothing)
+    (:textStyle, TextStyle, nothing)
 
 ]
 

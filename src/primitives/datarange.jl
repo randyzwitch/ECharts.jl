@@ -26,7 +26,7 @@ datarange_spec =
 	(:color, AbstractVector, ["#1e90ff","#f0ffff"]),
 	(:formatter, AbstractString, nothing),
 	(:text, AbstractVector, nothing),
-	(:textStyle, Dict{Any, Any}, nothing)
+	(:textStyle, TextStyle, nothing)
 ]
 
 primitivefactory(:DataRange, datarange_spec)

@@ -17,8 +17,9 @@ title_spec =
     (:borderWidth, Number, 0),
     (:padding, Union{Number, AbstractVector}, 5),
     (:itemGap, Int, 5),
-    (:textStyle, Dict{Any, Any}, nothing),
-    (:subtextStyle, Dict{Any, Any}, nothing)
+    (:textStyle, TextStyle, nothing),
+    (:subtextStyle, TextStyle, nothing),
+    (:offsetCenter, AbstractVector, nothing)
 
 ]
 
