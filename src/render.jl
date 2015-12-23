@@ -9,6 +9,12 @@ function openurl(url::AbstractString)
 end
 
 #Jupyter Notebook display
+if displayable("text/html")
+
+    display("text/html", "<script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all.js")))</script>")
+
+end
+
 import Base.writemime
 
 function writemime(io::IO, ::MIME"text/html", v::EChart)
@@ -19,10 +25,6 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
 
         display("text/html", """
 
-                <!DOCTYPE html>
-                <head>
-                    <meta charset=\"utf-8\">
-                </head>
                 <body>
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
                     <div id=\"$divid\" style=\"height:400px\"></div>
@@ -46,6 +48,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(v))
+    theme = v.theme
 
     println(io,
                 "

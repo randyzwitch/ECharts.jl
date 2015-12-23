@@ -1,6 +1,6 @@
 splitline_spec =
 [
-	(:show, Bool, true),
+	(:show, Bool, false),
 	(:onGap, Bool, nothing),
 	(:lineStyle, LineStyle, nothing),
 	(:length, Number, nothing),

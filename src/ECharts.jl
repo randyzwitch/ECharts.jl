@@ -8,6 +8,7 @@ module ECharts
 	export Tooltip, Legend, Toolbox, Axis, Series, Title, Grid, DataZoom, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
+	export lineplot, barplot
 
 	#Import helper code
 	include("jstypes.jl")
@@ -43,6 +44,10 @@ module ECharts
 	include("primitives/series.jl") #uses itemstyle.jl, markpoint/line.jl, tooltip.jl
 	include("primitives/echart.jl") #uses all primitives in some way
 	include("render.jl") #uses echart.jl
+
+	#Plots
+	include("plots/xy_plot.jl")
+
 
 
 

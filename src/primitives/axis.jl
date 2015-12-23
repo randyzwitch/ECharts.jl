@@ -15,10 +15,10 @@ axis_spec =
     (:splitNumber, Int, nothing),
     (:logPositive, Bool, nothing),
     (:logLabelBase, Int, nothing),
-    (:axisLine, AxisLine, nothing),
+    (:axisLine, AxisLine, AxisLine()),
     (:axisTick, AxisTick, nothing),
     (:axisLabel, AxisLabel, nothing),
-    (:splitLine, SplitLine, nothing),
+    (:splitLine, SplitLine, SplitLine()),
     (:splitArea, SplitArea, nothing),
     (:data, AbstractVector, nothing)
 

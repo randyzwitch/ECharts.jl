@@ -33,7 +33,7 @@ echart_spec =
     (:EFFECT_ZLEVEL, Int, 10),
     (:valueConnector, AbstractString, ": "),
     (:nameConnector,AbstractString, " & "),
-    (:symbolList, AbstractVector, ["circle", "rectangle", "triangle", "diamond", "emptyCircle", "emptyRectangle", "emptyTriangle", "emptyDiamond"])
+    (:symbolList, AbstractVector, nothing)
 ]
 
 primitivefactory(:EChart, echart_spec)

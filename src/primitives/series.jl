@@ -20,7 +20,7 @@ series_spec =
     (:barMinHeight, Number, nothing),
     (:barWidth, Number, nothing),
     (:barMaxWidth, Number, nothing),
-    (:_symbol, AbstractString, nothing),
+    (:_symbol, AbstractString, "none"),
     (:symbolSize, Union{Number, AbstractVector}, nothing),
     (:symbolRotate, Number, nothing),
     (:showAllSymbol, Bool, nothing),

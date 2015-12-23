@@ -1,8 +1,8 @@
 line_spec =
 [
-	(:color, AbstractString, nothing),
+	(:color, AbstractString, "black"),
 	(:_type, AbstractString, "solid"),
-	(:width, Number, nothing),
+	(:width, Number, 1),
 	(:shadowColor, AbstractString, "rgba(0,0,0,0)"),
 	(:shadowBlur, Number, 5),
 	(:shadowOffsetX, Number, 3),
