@@ -14,7 +14,7 @@ echart_spec =
     (:animationEasing, AbstractString, "ExponentialOut"),
     (:addDataAnimation, Bool, true),
     (:timeline, Timeline, nothing),
-    (:title, Title, nothing),
+    (:title, Title, Title()),
     (:toolbox, Toolbox, nothing),
     (:tooltip, Tooltip, nothing),
     (:legend, Legend, nothing),

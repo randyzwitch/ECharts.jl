@@ -1,6 +1,6 @@
 module ECharts
 
-	using JSON
+	using JSON, Parameters
 
 	export print
 
@@ -9,6 +9,7 @@ module ECharts
 	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export lineplot, barplot
+	export title!
 
 	#Import helper code
 	include("jstypes.jl")
@@ -44,6 +45,9 @@ module ECharts
 	include("primitives/series.jl") #uses itemstyle.jl, markpoint/line.jl, tooltip.jl
 	include("primitives/echart.jl") #uses all primitives in some way
 	include("render.jl") #uses echart.jl
+
+	#Visualization mutating functions
+	include("chartopts/title.jl") 
 
 	#Plots
 	include("plots/xy_plot.jl")
