@@ -9,7 +9,7 @@ module ECharts
 	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export lineplot, barplot
-	export title!
+	export title!, legend!, tooltip!
 
 	#Import helper code
 	include("jstypes.jl")
@@ -47,7 +47,7 @@ module ECharts
 	include("render.jl") #uses echart.jl
 
 	#Visualization mutating functions
-	include("chartopts/title.jl") 
+	include("chartopts/modifiers.jl") 
 
 	#Plots
 	include("plots/xy_plot.jl")

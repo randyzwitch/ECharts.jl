@@ -1,6 +1,6 @@
 tooltip_spec =
 [
-    (:show, Bool, true),
+    (:show, Bool, false),
     (:zlevel, Int, 1),
     (:z, Int, 8),
     (:showContent, Bool, true),
