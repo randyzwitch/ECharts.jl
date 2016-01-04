@@ -1,10 +1,17 @@
-function xy_plot(;x::AbstractVector = [], y::AbstractVector = [], mark::AbstractString = "line", pointSymbol::AbstractString = "none")
+function xy_plot(;	x::AbstractVector = [], 
+					y::AbstractVector = [], 
+					mark::AbstractString = "line", 
+					pointSymbol::AbstractString = "circle",
+					smooth::Bool = false,
+					itemStyle::ItemStyle = ItemStyle(),
+					boundaryGapX::Bool = true)
 
 
     ec = deepcopy(
-    			EChart(	xAxis = [Axis(_type = "category", data = x)],
+
+    			EChart(	xAxis = [Axis(_type = "category", data = x, boundaryGap = boundaryGapX)],
                 		yAxis = [Axis(_type = "value")],
-                		series = [Series(_type = mark, data = y, name = "y", _symbol = pointSymbol)],
+                		series = [Series(_type = mark, data = y, name = "y", _symbol = pointSymbol, smooth = smooth, itemStyle = itemStyle)],
                 		grid = Grid(borderWidth = 0)
                 	)
     			)
@@ -12,5 +19,6 @@ function xy_plot(;x::AbstractVector = [], y::AbstractVector = [], mark::Abstract
 end
 
 
-lineplot(; x::AbstractVector = [], y::AbstractVector = [], pointSymbol = "circle") = xy_plot(x = x, y = y, mark = "line", pointSymbol = pointSymbol)
+lineplot(; x::AbstractVector = [], y::AbstractVector = [], pointSymbol::AbstractString = "circle", smooth::Bool = false) = xy_plot(x = x, y = y, pointSymbol = pointSymbol, smooth = smooth)
 barplot(; x::AbstractVector = [], y::AbstractVector = []) = xy_plot(x = x, y = y, mark = "bar")
+areaplot(; x::AbstractVector = [], y::AbstractVector = [], pointSymbol::AbstractString = "none", smooth::Bool = true) = xy_plot(x = x, y = y, pointSymbol = pointSymbol, smooth = smooth, itemStyle = ItemStyle(normal = ItemStyleOpts(areaStyle = AreaStyle(_type = "normal"))), boundaryGapX = false)

@@ -6,9 +6,9 @@ module ECharts
 
 	export EChart
 	export Tooltip, Legend, Toolbox, Axis, Series, Title, Grid, DataZoom, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
-	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, TextStyle
+	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export lineplot, barplot
+	export lineplot, barplot, areaplot
 	export title!, legend!, tooltip!
 
 	#Import helper code
@@ -28,6 +28,7 @@ module ECharts
 	include("primitives/axistick.jl") #uses linestyle.jl
 	include("primitives/labelline.jl") #uses linestyle.jl
 	include("primitives/label.jl") #uses textstyle.jl
+	include("primitives/itemstyleopts.jl") #uses line/area/chord/node/linkstyle.jl, label/labelline.jl
 	include("primitives/itemstyle.jl") #uses line/area/chord/node/linkstyle.jl, label/labelline.jl
 	include("primitives/tooltip.jl") #uses textstyle.jl
 	include("primitives/legend.jl") #uses textstyle.jl

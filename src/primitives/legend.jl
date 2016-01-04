@@ -5,7 +5,7 @@ legend_spec =
     (:z, Int, 4),
     (:orient, AbstractString, "horizontal"),
     (:x, Union{AbstractString, Number}, "center"),
-    (:y, Union{AbstractString, Number}, "top"),
+    (:y, Union{AbstractString, Number}, "bottom"),
     (:backgroundColor, AbstractString, "rgba(0,0,0,0)"),
     (:borderColor, AbstractString, "#ccc"),
     (:borderWidth, Number, 0),
