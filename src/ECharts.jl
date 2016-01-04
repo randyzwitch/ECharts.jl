@@ -1,3 +1,5 @@
+VERSION >= v"0.4" && __precompile__()
+
 module ECharts
 
 	using JSON, Parameters
@@ -48,7 +50,7 @@ module ECharts
 	include("render.jl") #uses echart.jl
 
 	#Visualization mutating functions
-	include("chartopts/modifiers.jl") 
+	include("chartopts/modifiers.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
