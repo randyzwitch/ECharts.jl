@@ -11,7 +11,7 @@ end
 #Jupyter Notebook display
 if displayable("text/html")
 
-    display("text/html", "<script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all.js")))</script>")
+    display("text/html", "<script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>")
 
 end
 
@@ -29,7 +29,7 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
                     <div id=\"$divid\" style=\"height:400px\"></div>
                     <!-- ECharts import -->
-                    <script src=\"http://echarts.baidu.com/build/dist/echarts-all.js\"></script>
+                    <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
                     <script type=\"text/javascript\">
                         // Initialize after dom ready
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
@@ -61,7 +61,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
                     <div id=\"$divid\" style=\"height:400px\"></div>
                     <!-- ECharts import -->
-                    <script src=\"http://echarts.baidu.com/build/dist/echarts-all.js\"></script>
+                    <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
                     <script type=\"text/javascript\">
                         // Initialize after dom ready
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
