@@ -1,6 +1,6 @@
 echart_spec =
 [
-    (:theme, Any, nothing),
+    (:theme, Any, "default"),
     (:backgroundColor, AbstractString, "rgba(0,0,0,0)"),
     (:color, AbstractVector, nothing),
     (:renderAsImage, Bool, false),
@@ -13,15 +13,15 @@ echart_spec =
     (:animationDurationUpdate, Int, 500),
     (:animationEasing, AbstractString, "ExponentialOut"),
     (:addDataAnimation, Bool, true),
-    (:timeline, Timeline, nothing),
-    (:title, Title, Title()),
-    (:toolbox, Toolbox, nothing),
-    (:tooltip, Tooltip, Tooltip()),
-    (:legend, Legend, Legend()),
-    (:dataRange, DataRange, nothing),
-    (:dataZoom, DataZoom, nothing),
-    (:roamController, RoamController, nothing),
-    (:grid, Grid, nothing),
+    (:timeline, Timeline, nothing), #Causes error in default state
+    (:title, Title, deepcopy(Title())),
+    (:toolbox, Toolbox, deepcopy(Toolbox())),
+    (:tooltip, Tooltip, deepcopy(Tooltip())),
+    (:legend, Legend, deepcopy(Legend())),
+    (:dataRange, DataRange, nothing), #Can't have empty DataRange() here without definining min/max
+    (:dataZoom, DataZoom, deepcopy(DataZoom())),
+    (:roamController, RoamController, deepcopy(RoamController())),
+    (:grid, Grid, deepcopy(Grid())),
     (:xAxis, Vector{Axis}, nothing),
     (:yAxis, Vector{Axis}, nothing),
     (:series, Vector{Series}, nothing),
@@ -37,4 +37,3 @@ echart_spec =
 ]
 
 primitivefactory(:EChart, echart_spec)
-

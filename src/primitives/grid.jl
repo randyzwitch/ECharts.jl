@@ -8,7 +8,7 @@ grid_spec =
     (:y2, Union{AbstractString, Number}, 60),
     (:width, Union{AbstractString, Number}, nothing),
     (:height, Union{AbstractString, Number}, nothing),
-    (:backgroundColor, AbstractString, nothing),
+    (:backgroundColor, AbstractString, "rgba(0,0,0,0)"),
     (:borderWidth, Number, 1),
     (:borderColor, AbstractString, "#ccc")
 

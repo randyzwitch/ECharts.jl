@@ -40,3 +40,7 @@ function theme!(ec::EChart; theme::AbstractString = "default")
  	return ec
 
 end
+
+#function grid!(ec::EChart; showXaxis::Bool = false, showYaxis:: Bool = true)
+#
+#	showXaxis? ec.xAxis.

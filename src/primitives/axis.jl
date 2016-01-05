@@ -15,13 +15,12 @@ axis_spec =
     (:splitNumber, Int, nothing),
     (:logPositive, Bool, nothing),
     (:logLabelBase, Int, nothing),
-    (:axisLine, AxisLine, AxisLine()),
+    (:axisLine, AxisLine, deepcopy(AxisLine())),
     (:axisTick, AxisTick, nothing),
     (:axisLabel, AxisLabel, nothing),
-    (:splitLine, SplitLine, SplitLine()),
+    (:splitLine, SplitLine, deepcopy(SplitLine())),
     (:splitArea, SplitArea, nothing),
     (:data, AbstractVector, nothing)
-
 ]
 
 primitivefactory(:Axis, axis_spec)

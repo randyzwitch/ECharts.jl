@@ -27,7 +27,7 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
 
                 <body>
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
-                    <div id=\"$divid\" style=\"height:400px\"></div>
+                    <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
                     <!-- ECharts import -->
                     <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
                     <script type=\"text/javascript\">
@@ -59,7 +59,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                 </head>
                 <body>
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
-                    <div id=\"$divid\" style=\"height:400px\"></div>
+                    <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
                     <!-- ECharts import -->
                     <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
                     <script type=\"text/javascript\">

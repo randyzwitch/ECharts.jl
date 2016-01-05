@@ -13,7 +13,7 @@ legend_spec =
     (:itemGap, Number, 10),
     (:itemWidth, Number, 20),
     (:itemHeight, Number, 14),
-    (:textStyle, TextStyle, TextStyle(color = "#333")),
+    (:textStyle, TextStyle, deepcopy(TextStyle(color = "#333"))),
     (:formatter, AbstractString, nothing),
     (:selectedMode, Union{Bool, AbstractString}, true),
     (:selected, Dict{Any, Any}, nothing),

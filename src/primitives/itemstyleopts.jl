@@ -11,7 +11,7 @@ itemopts_spec =
 	(:barBorderColor, AbstractString, "#fff"),
 	(:barBorderRadius, Number, 0),
 	(:label, Label, nothing),
-	(:labelLine, LabelLine, LabelLine(show = true))
+	(:labelLine, LabelLine, deepcopy(LabelLine(show = true)))
 ]
 
 primitivefactory(:ItemStyleOpts, itemopts_spec)
