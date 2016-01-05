@@ -11,7 +11,7 @@ module ECharts
 	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export lineplot, barplot, areaplot
-	export title!, legend!, tooltip!
+	export title!, legend!, tooltip!, theme!
 
 	#Import helper code
 	include("jstypes.jl")
