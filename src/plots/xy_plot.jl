@@ -6,16 +6,28 @@ function xy_plot(;	x::AbstractVector = [],
 					itemStyle::ItemStyle = ItemStyle(),
 					boundaryGapX::Bool = true)
 
+	#Validate arrays are same length
 	if length(x) != length(y)
 		error("Arrays X and Y need to have the same length.")
 	end
 
+	#General visualization defaults
 	ec = deepcopy(EChart())
-
 	ec.xAxis = deepcopy([Axis(_type = "category", data = x, boundaryGap = boundaryGapX)])
 	ec.yAxis = deepcopy([Axis(_type = "value")])
 	ec.series = [Series(_type = mark, data = y, name = "y", _symbol = pointSymbol, smooth = smooth, itemStyle = itemStyle)]
 	ec.grid.borderWidth = 0 #Turn off outer graph border to leave top and right "open"
+
+
+	#If element type is numeric, but small length, then probably a categorical; large numeric arrays should be "value" types
+	#Test for Date/Time, else default back to category
+	if eltype(x) <: Number && length(x) > 10 
+		ec.xAxis[1]._type = "value"
+	elseif eltype(x) <: Dates.TimeType
+		ec.xAxis[1]._type = "time"
+	else
+		ec.xAxis[1]._type = "category"
+	end
 
 	return ec
 
@@ -62,10 +74,9 @@ function scatterplot(; x::AbstractVector = [], y::AbstractVector = [])
     ec = xy_plot(x = x, y = scatterdata, mark = "scatter")
 
     #Switch axis type, since scatterplot are both
-    ec.xAxis[1]._type = "value"
     ec.xAxis[1].data = nothing
 
-    #Set X boundaries and 
+    #Set X boundaries
     ec.xAxis[1].min = floor(minimum(x))
 	ec.xAxis[1].max = ceil(maximum(x))
 
