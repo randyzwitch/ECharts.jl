@@ -10,8 +10,8 @@ module ECharts
 	export Tooltip, Legend, Toolbox, Axis, Series, Title, Grid, DataZoom, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export lineplot, barplot, areaplot
-	export title!, legend!, tooltip!, theme!
+	export lineplot, barplot, areaplot, scatterplot
+	export title!, legend!, tooltip!, theme!, grid!
 
 	#Import helper code
 	include("jstypes.jl")

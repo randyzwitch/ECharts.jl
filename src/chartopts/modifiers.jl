@@ -41,6 +41,10 @@ function theme!(ec::EChart; theme::AbstractString = "default")
 
 end
 
-#function grid!(ec::EChart; showXaxis::Bool = false, showYaxis:: Bool = true)
-#
-#	showXaxis? ec.xAxis.
+function grid!(ec::EChart; showXaxis::Bool = false, showYaxis:: Bool = true)
+
+	showXaxis ? ec.xAxis[1].splitLine.show = true : nothing
+	showYaxis ? ec.yAxis[1].splitLine.show = true : nothing
+
+	return ec
+end
