@@ -9,36 +9,38 @@ function openurl(url::AbstractString)
 end
 
 #Jupyter Notebook display
-if displayable("text/html")
-
-    display("text/html", "<script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>")
-
-end
-
-import Base.writemime
-
 function writemime(io::IO, ::MIME"text/html", v::EChart)
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(v))
-    theme = v.theme
 
         display("text/html", """
 
-                <body>
-                    <!-- Prepare a Dom with size (width and height) for ECharts -->
-                    <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
-                    <!-- ECharts import -->
-                    <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
-                    <script type=\"text/javascript\">
+              <body>
+                <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
+              </body>
+
+                <script type=\"text/javascript\">
+
+                    require.config({
+                      paths: {
+                        echarts: \"http://echarts.baidu.com/dist/echarts\",
+                      }
+                    });
+
+                    require(["echarts"], function(echarts){
+
+                        window.echarts = echarts
+
                         // Initialize after dom ready
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
 
                         // Load data into the ECharts instance
-                        myChart.setOption($option).setTheme(\"$theme\");
-                    </script>
-                </body>
+                        myChart.setOption($option);
 
+                    }); //echarts require end
+
+                </script>
 
               """)
 end
@@ -48,7 +50,6 @@ function writehtml(io::IO, v::EChart; title="ECharts")
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(v))
-    theme = v.theme
 
     println(io,
                 "
@@ -61,13 +62,13 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
                     <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
                     <!-- ECharts import -->
-                    <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts-all-20160105.js")))</script>
+                    <script>$(readall(Pkg.dir("ECharts", "javascript", "echarts.js")))</script>
                     <script type=\"text/javascript\">
                         // Initialize after dom ready
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
 
                         // Load data into the ECharts instance
-                        myChart.setOption($option).setTheme(\"$theme\");
+                        myChart.setOption($option);
                     </script>
                 </body>
                 "
