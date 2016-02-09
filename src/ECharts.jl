@@ -8,8 +8,8 @@ module ECharts
 	export print
 
 	export EChart
-	export Title, Axis, Series, Toolbox
-	# export Tooltip, Legend, DataZoom, Grid, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
+	export Title, Axis, Series, Toolbox, DataZoom
+	# export Tooltip, Legend, Grid, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	# export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	# export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export lineplot, barplot, areaplot, scatterplot
@@ -40,7 +40,7 @@ module ECharts
 	include("primitives/axis.jl")
 	include("primitives/title.jl")
 	#include("primitives/grid.jl")
-	# include("primitives/datazoom.jl")
+	include("primitives/datazoom.jl")
 	# include("primitives/timeline.jl") #uses text/linestyle.jl
 	# include("primitives/datarange.jl") #uses textstyle.jl
 	# include("primitives/roamcontroller.jl")

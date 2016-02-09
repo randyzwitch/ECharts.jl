@@ -1,6 +1,7 @@
 title_spec =
 [
 	(:text, AbstractString, nothing),
+	(:subtext, AbstractString, nothing),
 	(:x, Any, nothing),
 	(:y, Any, nothing)
 ]
