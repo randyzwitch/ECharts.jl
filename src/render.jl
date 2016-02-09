@@ -24,7 +24,7 @@ function writemime(io::IO, ::MIME"text/html", v::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"http://echarts.baidu.com/dist/echarts\",
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/javascripts/echarts.min\",
                       }
                     });
 
