@@ -1,4 +1,4 @@
-#VERSION >= v"0.4" && __precompile__()
+VERSION >= v"0.4" && __precompile__()
 
 module ECharts
 
@@ -8,12 +8,12 @@ module ECharts
 	export print
 
 	export EChart
-	export Title, Axis, Series
-	# export Tooltip, Legend, Toolbox, Grid, DataZoom, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
+	export Title, Axis, Series, Toolbox
+	# export Tooltip, Legend, DataZoom, Grid, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	# export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	# export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	# export lineplot, barplot, areaplot, scatterplot
-	# export title!, legend!, tooltip!, theme!, grid!
+	export lineplot, barplot, areaplot, scatterplot
+	export title!, yAxis!, xAxis!, toolbox! #, legend!, tooltip!, theme!, grid!
 
 	#Import helper code
 	include("jstypes.jl")
@@ -36,10 +36,10 @@ module ECharts
 	# include("primitives/itemstyle.jl") #uses line/area/chord/node/linkstyle.jl, label/labelline.jl
 	# include("primitives/tooltip.jl") #uses textstyle.jl
 	# include("primitives/legend.jl") #uses textstyle.jl
-	# include("primitives/toolbox.jl") #uses textstyle.jl
-	include("primitives/axis.jl") #uses axis/line/tick/label.jl, split/line/area.jl
-	include("primitives/title.jl") #uses textstyle.jl
-	# include("primitives/grid.jl")
+	include("primitives/toolbox.jl")
+	include("primitives/axis.jl")
+	include("primitives/title.jl")
+	#include("primitives/grid.jl")
 	# include("primitives/datazoom.jl")
 	# include("primitives/timeline.jl") #uses text/linestyle.jl
 	# include("primitives/datarange.jl") #uses textstyle.jl
@@ -52,10 +52,10 @@ module ECharts
 	include("render.jl") #uses echart.jl
 
 	#Visualization mutating functions
-	# include("chartopts/modifiers.jl")
+	include("chartopts/modifiers.jl")
 
 	#Plots
-	# include("plots/xy_plot.jl")
+	include("plots/xy_plot.jl")
 
 
 

@@ -8,43 +8,65 @@ function title!(ec::EChart; kwargs...)
 
 end
 
-#Default to showing legend in the type definition; consider changing to only show with multiple series
-function legend!(ec::EChart; kwargs...)
+function yAxis!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.legend.(k) = v
+	   ec.yAxis[1].(k) = v
 	end
 
 	return ec
 
 end
 
-#Type definition of tooltip hides tooltip; if someone calling tooltip!, assumption is
-function tooltip!(ec::EChart; show::Bool = true, kwargs...)
-
-	ec.tooltip.show = show
+function xAxis!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.tooltip.(k) = v
+	   ec.xAxis[1].(k) = v
 	end
 
 	return ec
 
 end
 
-#Should theme! be made into a combined function with height and length?
-function theme!(ec::EChart; theme::AbstractString = "default")
+# Assumes Toolbox already exists in EChart, which is true by composite type definition
+function toolbox!(ec::EChart; 	show::Bool = true,
+								#mark::Bool = true,
+								restore::Bool = true,
+								dataView::Bool = true,
+								saveAsImage::Bool = true,
+								chartTypes::AbstractVector = []
+								)
 
- 	ec.theme = theme
+	chartlookup = Dict(	"line" => "Line",
+						"bar" => "Bar",
+						"stack" => "Stack",
+						"tiled" => "Tiled",
+						"force" => "Force",
+						"chord" => "Chord",
+						"pie" => "Pie",
+						"funnel" => "Funnel"
+						)
 
- 	return ec
+	# marklookup = Dict(
+	# 		          "mark" => "Mark",
+	# 		          "markUndo" => "Mark Undo",
+	# 		          "markClear" => "Mark Clear"
+	# 		        )
+	#
+	# linelookup = Dict(
+	# 	          "width" => 1,
+	# 	          "color" => "#1e90ff",
+	# 	          "type" => "dashed"
+	# 	         )
+	#mark? ec.toolbox.feature["mark"] = Dict("show" => true, "title" => marklookup, "lineStyle" => linelookup) : ec.toolbox.feature["mark"] = Dict("show" => false)
 
-end
+	ec.toolbox.show = show
 
-function grid!(ec::EChart; showXaxis::Bool = false, showYaxis:: Bool = true)
-
-	showXaxis ? ec.xAxis[1].splitLine.show = true : nothing
-	showYaxis ? ec.yAxis[1].splitLine.show = true : nothing
+	restore? ec.toolbox.feature["restore"] = Dict("show" => true, "title" => "Restore") : ec.toolbox.feature["restore"] = Dict("show" => false)
+	dataView? ec.toolbox.feature["dataView"] = Dict("show" => true, "title" => "Data View", "lang" => ["Data View", "Cancel", "Refresh"]) : ec.toolbox.feature["dataView"] = Dict("show" => false)
+	saveAsImage? ec.toolbox.feature["saveAsImage"] = Dict("show" => true, "title" => "Save As PNG") : ec.toolbox.feature["saveAsImage"] = Dict("show" => false)
+	chartTypes != [] ? ec.toolbox.feature["magicType"] = Dict("show" => true, "type" => chartTypes, "title" => chartlookup) : nothing
 
 	return ec
+
 end

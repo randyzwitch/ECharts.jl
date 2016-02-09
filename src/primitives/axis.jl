@@ -1,17 +1,17 @@
 axis_spec =
 [
     (:_type, AbstractString, nothing),
-    (:data, AbstractVector, nothing)
-    # (:show, Bool, true),
+    (:data, AbstractVector, nothing),
+    (:boundaryGap, Bool, nothing),
+    (:min, Number, nothing),
+    (:max, Number, nothing),
+    (:show, Bool, true),
     # (:zlevel, Int, 0),
     # (:z, Int, 0),
     # (:position, AbstractString, nothing),
     # (:name, AbstractString, nothing),
     # (:nameLocation, AbstractString, "end"),
     # (:nameTextStyle, Dict{Any, Any}, nothing),
-    # (:boundaryGap, Bool, nothing),
-    # (:min, Number, nothing),
-    # (:max, Number, nothing),
     # (:scale, Bool, false),
     # (:splitNumber, Int, nothing),
     # (:logPositive, Bool, nothing),
