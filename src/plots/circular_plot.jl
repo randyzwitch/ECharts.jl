@@ -24,3 +24,5 @@ piechart(;values::AbstractVector = [], names::AbstractVector = [], selected::Abs
 
 donutchart(;values::AbstractVector = [], names::AbstractVector = [], selected::AbstractVector = [], radius::Union{AbstractVector, AbstractString} = ["50%", "90%"], roseType::Union{AbstractString, Void} = nothing) =
     circular_plot(values = values, names = names, selected = selected, radius = radius, center = nothing, roseType = roseType)
+
+gauge(; x::Number = 50) = EChart(series = [Series(_type = "gauge", data = [Dict("value" => x)])])
