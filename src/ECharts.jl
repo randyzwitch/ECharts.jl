@@ -12,8 +12,8 @@ module ECharts
 	# export Tooltip, Legend, Grid, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	# export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	# export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export lineplot, barplot, areaplot, scatterplot
-	export title!, yAxis!, xAxis!, toolbox! #, legend!, tooltip!, theme!, grid!
+	export lineplot, barplot, areaplot, scatterplot, piechart, donutchart
+	export dataformat, title!, yAxis!, xAxis!, toolbox! #, legend!, tooltip!, theme!, grid!
 
 	#Import helper code
 	include("jstypes.jl")
@@ -52,10 +52,12 @@ module ECharts
 	include("render.jl") #uses echart.jl
 
 	#Visualization mutating functions
+	include("chartopts/utilities.jl")
 	include("chartopts/modifiers.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
+	include("plots/circular_plot.jl")
 
 
 
