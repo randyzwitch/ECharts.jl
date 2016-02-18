@@ -12,7 +12,7 @@ module ECharts
 	# export Tooltip, Legend, Grid, Timeline, DataRange, RoamController, Polar, MarkPoint, MarkLine
 	# export LineStyle, AreaStyle, ChordStyle, NodeStyle, LinkStyle, Label, LabelLine, ItemStyle, ItemStyleOpts, TextStyle
 	# export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export lineplot, barplot, areaplot, scatterplot, piechart, donutchart
+	export lineplot, barplot, areaplot, scatterplot, piechart, donutchart, gauge
 	export dataformat, title!, yAxis!, xAxis!, toolbox! #, legend!, tooltip!, theme!, grid!
 
 	#Import helper code
