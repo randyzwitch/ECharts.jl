@@ -19,7 +19,19 @@ end
 
 lineplot(; x::AbstractVector = [], y::AbstractVector = []) = xy_plot(x = x, y = y, mark = "line")
 barplot(; x::AbstractVector = [], y::AbstractVector = []) = xy_plot(x = x, y = y, mark = "bar")
-scatterplot(; x::AbstractVector = [], y::AbstractVector = []) = xy_plot(x = x, y = y, mark = "scatter")
+
+function scatterplot(; x::AbstractVector = [], y::AbstractVector = [])
+
+	#need to sort x array for some reason, echarts doesn't seem to do floats right
+	d = sortrows(hcat(x,y))
+	_x = d[:,1]
+	_y = d[:,2]
+
+	ec = xy_plot(x = _x, y = _y, mark = "scatter")
+
+	return ec
+
+end
 
 function areaplot(; x::AbstractVector = [], y::AbstractVector = [])
 
