@@ -16,8 +16,8 @@ datazoom_spec =
 	# (:xAxisIndex, Union{Number, AbstractVector}, nothing),
 	# (:yAxisIndex, Union{Number, AbstractVector}, nothing),
     (:_type, AbstractString, nothing),
-    (:start, Number, 60),
-    (:_end, Number, 80),
+    #(:start, Number, 60),
+    #(:_end, Number, 80),
     # (:showDetail, Bool, true),
     # (:realtime, Bool, false),
     # (:zoomLock, Bool, false)
@@ -25,3 +25,7 @@ datazoom_spec =
 ]
 
 primitivefactory(:DataZoom, datazoom_spec)
+
+# dataZoom
+# (u'type', u"'inside'")
+# (u'type', u"'slider'")
