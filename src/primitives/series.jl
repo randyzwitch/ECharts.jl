@@ -1,3 +1,4 @@
+#Needs a full update
 series_spec =
 [
     (:name, AbstractString, nothing),
