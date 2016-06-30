@@ -24,7 +24,7 @@ module ECharts
 	# include("primitives/chordstyle.jl")
 	# include("primitives/nodestyle.jl")
 	# include("primitives/linkstyle.jl")
-	# include("primitives/textstyle.jl")
+	include("primitives/textstyle.jl")
 	# include("primitives/splitarea.jl") #uses areastyle.jl
 	# include("primitives/splitline.jl") #uses linestyle.jl
 	# include("primitives/axislabel.jl") #uses textstyle.jl
