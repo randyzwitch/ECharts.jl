@@ -34,17 +34,24 @@ module ECharts
 	# include("primitives/label.jl") #uses textstyle.jl
 	# include("primitives/itemstyleopts.jl") #uses line/area/chord/node/linkstyle.jl, label/labelline.jl
 	# include("primitives/itemstyle.jl") #uses line/area/chord/node/linkstyle.jl, label/labelline.jl
-	# include("primitives/tooltip.jl") #uses textstyle.jl
-	# include("primitives/legend.jl") #uses textstyle.jl
+	include("primitives/tooltip.jl") #uses textstyle.jl
+	include("primitives/legend.jl") #uses textstyle.jl
 	include("primitives/toolbox.jl")
 	include("primitives/axis.jl")
 	include("primitives/title.jl")
-	#include("primitives/grid.jl")
+	include("primitives/grid.jl")
 	include("primitives/datazoom.jl")
-	# include("primitives/timeline.jl") #uses text/linestyle.jl
+	include("primitives/timeline.jl") #uses text/linestyle.jl
 	# include("primitives/datarange.jl") #uses textstyle.jl
 	# include("primitives/roamcontroller.jl")
-	# include("primitives/polar.jl") #uses line/areastyle.jl
+	include("primitives/polar.jl") #uses line/areastyle.jl
+	include("primitives/radiusaxis.jl")
+	include("primitives/angleaxis.jl")
+	include("primitives/radar.jl")
+	include("primitives/visualmap.jl")
+	include("primitives/geo.jl")
+	include("primitives/parallel.jl")
+	include("primitives/parallelaxis.jl")
 	# include("primitives/markpoint.jl") #uses itemstyle.jl
 	# include("primitives/markline.jl") #uses itemstyle.jl
 	include("primitives/series.jl") #uses itemstyle.jl, markpoint/line.jl, tooltip.jl

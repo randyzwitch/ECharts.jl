@@ -1,0 +1,35 @@
+timeline_spec =
+
+[
+(:show, Bool, true),
+(:_type, AbstractString, "slider"),
+(:axisType, AbstractString, "time"),
+(:currentIndex, Int, 0),
+(:autoPlay, Bool, false),
+(:rewind, Bool, false),
+(:loop, Bool, true),
+(:playInterval, Int, 2000),
+(:realtime, Bool, true),
+(:controlPosition, AbstractString, "left"),
+(:zlevel, Int, 0),
+(:z, Int, 2),
+(:left, Union{AbstractString, Int}, "auto"),
+(:top, Union{AbstractString, Int}, "auto"),
+(:right, Union{AbstractString, Int}, "auto"),
+(:bottom, Union{AbstractString, Int}, "auto"),
+(:padding, Union{Int, Vector{Int}}, 5),
+(:orient, AbstractString, "horizontal"),
+(:inverse, Bool, false),
+(:symbol, AbstractString, "emptyCircle"),
+(:symbolSize, Union{Int, Vector{Int}}, 10),
+(:symbolRotate, Int, nothing),
+(:symbolOffset, Vector{Int}, [0, 0]),
+#(:lineStyle, lineStyle nothing),
+(:label, Dict, nothing),
+#(:itemStyle', ItemStyle, nothing),
+(:checkpointStyle, Dict, nothing),
+(:controlStyle, Dict, nothing),
+(:data, Vector{Any}, nothing),
+]
+
+primitivefactory(:Timeline, timeline_spec)

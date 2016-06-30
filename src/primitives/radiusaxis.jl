@@ -1,15 +1,14 @@
-axis_spec =
+radiusaxis_spec =
 
 [
-(:gridIndex, Int, 0),
-(:position, AbstractString, nothing),
-(:_type, AbstractString, nothing),
+(:polarIndex, Int, 0),
+(:_type, AbstractString, "value"),
 (:name, AbstractString, nothing),
 (:nameLocation, AbstractString, "start"),
-(:nameTextStyle, TextStyle, nothing),
+(:nameTextStyle, TextStyle, nothing), #fillin
 (:nameGap, Int, 15),
 (:inverse, Bool, false),
-(:boundaryGap, Union{Bool, AbstractVector}, nothing),
+(:boundaryGap, Union{Bool, Vector{AbstractString}}, nothing),
 (:min, Union{Int, AbstractString}, "auto"),
 (:max, Union{Int, AbstractString}, "auto"),
 (:scale, Bool, false),
@@ -22,7 +21,7 @@ axis_spec =
 #(:axisLabel, AxisLabel, nothing), #fill in
 #(:splitLine, SplitLine, nothing), #fill in
 #(:splitArea, SplitArea, nothing), #fill in
-(:data, AbstractVector, nothing) #fill in
+(:data, Vector{Any}, nothing) #fill in
 ]
 
-primitivefactory(:Axis, axis_spec)
+primitivefactory(:RadiusAxis, radiusaxis_spec)
