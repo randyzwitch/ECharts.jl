@@ -1,23 +1,20 @@
 toolbox_spec =
 [
-    (:show, Bool, false),
-    # (:zlevel, Int, 0),
-    # (:z, Int, 6),
-    (:orient, AbstractString, "vertical"),
-    (:x, Union{AbstractString, Number}, "right"),
-    (:y, Union{AbstractString, Number}, "center"),
-    # (:backgroundColor, AbstractString, nothing),
-    # (:borderColor, AbstractString, "#ccc"),
-    # (:borderWidth, Number, 0),
-    # (:padding, Union{Number, AbstractVector}, 5),
-    (:itemGap, Number, 15),
-    # (:itemSize, Number, 16),
-    # (:color, AbstractVector, nothing),
-    # (:disableColor, AbstractString, "#ddd"),
-    # (:effectiveColor, AbstractString, "red"),
-    # (:showTitle, Bool, true),
-    # (:textStyle, TextStyle, nothing),
-    (:feature, Dict{Any, Any}, Dict{Any, Any}())
+    (:show, Bool, true),
+    (:orient, AbstractString, "horizontal"),
+    (:itemSize, Number, 15),
+    (:itemGap, Number, 10),
+    (:showTitle, Bool, true),
+    # (:feature, Feature, nothing)
+    # (:iconStyle, IconStyle, nothing)
+    (:zlevel, Int, 0),
+    (:z, Int, 2),
+    (:left, Union{Int, AbstractString}, "auto"),
+    (:top, Union{Int, AbstractString}, "auto"),
+    (:right, Union{Int, AbstractString}, "auto"),
+    (:bottom, Union{Int, AbstractString}, "auto"),
+    (:width, Union{Int, AbstractString}, "auto"),
+    (:height, Union{Int, AbstractString}, "auto"),
 ]
 
 primitivefactory(:Toolbox, toolbox_spec)
