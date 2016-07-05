@@ -20,7 +20,7 @@ legend_spec =
 (:selectedMode, Union{AbstractString, Bool}, true),
 (:selected, Dict{AbstractString, Bool}, nothing),
 (:textStyle, TextStyle, nothing),
-(:data, Vector{Any}, nothing), #Needs stricter type
+(:data, AbstractVector, nothing), #Needs stricter type
 (:backgroundColor, AbstractString, "transparent"),
 (:borderColor, AbstractString, "#ccc"),
 (:borderWidth, Int, 1),

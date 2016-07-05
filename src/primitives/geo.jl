@@ -1,3 +1,12 @@
+scalelimit_spec =
+
+[
+(:min, Int, nothing),
+(:max, Int, nothing)
+]
+
+primitivefactory(:ScaleLimit, scalelimit_spec)
+
 geo_spec =
 
 [
@@ -6,11 +15,11 @@ geo_spec =
 (:roam, Bool, false),
 (:center, Vector{Number}, nothing),
 (:zoom, Int, 1),
-#(:scaleLimit, ScaleLimit, nothing), #fillin
+(:scaleLimit, ScaleLimit, nothing),
 (:nameMap, Dict, nothing),
 (:selectedMode, Bool, false),
-#(:label, Label, nothing), #fillin
-#(:itemStyle, ItemStyle, u'adaptive'),
+(:label, Label, nothing),
+(:itemStyle, ItemStyle, nothing),
 (:zlevel, Int, 0),
 (:z, Int, 2),
 (:left, Union{AbstractString, Int}, "auto"),

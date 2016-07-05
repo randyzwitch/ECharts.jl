@@ -10,18 +10,18 @@ axis_spec =
 (:nameGap, Int, 15),
 (:inverse, Bool, false),
 (:boundaryGap, Union{Bool, AbstractVector}, nothing),
-(:min, Union{Int, AbstractString}, "auto"),
-(:max, Union{Int, AbstractString}, "auto"),
+(:min, Union{Int, AbstractString}, nothing),
+(:max, Union{Int, AbstractString}, nothing),
 (:scale, Bool, false),
 (:splitNumber, Int, 5),
 (:minInterval, Int, 0),
 (:interval, Int, nothing),
 (:silent, Bool, true),
-#(:axisLine, AxisLine, nothing), #fill in
-#(:axisTick, AxisTick, nothing), #fill in
-#(:axisLabel, AxisLabel, nothing), #fill in
-#(:splitLine, SplitLine, nothing), #fill in
-#(:splitArea, SplitArea, nothing), #fill in
+(:axisLine, AxisLine, nothing),
+(:axisTick, AxisTick, nothing),
+(:axisLabel, AxisLabel, nothing),
+(:splitLine, SplitLine, nothing),
+(:splitArea, SplitArea, nothing),
 (:data, AbstractVector, nothing) #fill in
 ]
 

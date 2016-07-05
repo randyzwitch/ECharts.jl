@@ -18,8 +18,7 @@ tooltip_spec =
 (:padding, Int, 5),
 (:textStyle, TextStyle, "#fff"),
 (:extraCssText, AbstractString, nothing),
-#(:axisPointer, AxisPointer, nothing),
+(:axisPointer, AxisPointer, nothing),
 ]
 
 primitivefactory(:Tooltip, tooltip_spec)
-

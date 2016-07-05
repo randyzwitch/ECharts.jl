@@ -9,11 +9,11 @@ radar_spec =
 (:name, Dict{Any, Any}, true),
 (:nameGap, Int, 15),
 (:silent, Bool, true),
-#(:axisLine, AxisLine, nothing), #fill in
-#(:axisTick, AxisTick, nothing), #fill in
-#(:axisLabel, AxisLabel, nothing), #fill in
-#(:splitLine, SplitLine, nothing), #fill in
-#(:splitArea, SplitArea, nothing), #fill in
+(:axisLine, AxisLine, nothing),
+(:axisTick, AxisTick, nothing),
+(:axisLabel, AxisLabel, nothing),
+(:splitLine, SplitLine, nothing),
+(:splitArea, SplitArea, nothing),
 (:indicator, Vector{Any}, nothing),
 ]
 
