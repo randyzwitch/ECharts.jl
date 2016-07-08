@@ -25,7 +25,7 @@ timeline_spec =
 (:symbolRotate, Int, nothing),
 (:symbolOffset, Vector{Int}, [0, 0]),
 (:lineStyle, LineStyle, nothing),
-(:label, Dict, nothing),
+(:label, Label, nothing),
 (:itemStyle, ItemStyle, nothing),
 (:checkpointStyle, Dict, nothing),
 (:controlStyle, Dict, nothing),

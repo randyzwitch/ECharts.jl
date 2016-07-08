@@ -19,16 +19,16 @@ echart_spec =
 (:parallelAxis, ParallelAxis, nothing),
 (:timeline, Timeline, nothing),
 (:series, Vector{Series}, nothing),
-(:color, AbstractVector, ["#c23531","#2f4554", "#61a0a8", "#d48265", "#91c7ae","#749f83",  "#ca8622", "#bda29a","#6e7074", "#546570", "#c4ccd3"]),
-(:backgroundColor, AbstractString, "rgba(0,0,0,0)"),
+(:color, AbstractVector, nothing),
+(:backgroundColor, AbstractString, nothing),
 (:textStyle, TextStyle, nothing),
-(:animation, Bool, true),
-(:animationDuration, Int, 1000),
-(:animationEasing, AbstractString, "cubicOut"),
-(:animationDelay, Int, 0),
-(:animationDurationUpdate, Int, 300),
-(:animationEasingUpdate, AbstractString, "cubicOut"),
-(:animationDelayUpdate, Int, 0)
+(:animation, Bool, nothing),
+(:animationDuration, Int, nothing),
+(:animationEasing, AbstractString, nothing),
+(:animationDelay, Int, nothing),
+(:animationDurationUpdate, Int, nothing),
+(:animationEasingUpdate, AbstractString, nothing),
+(:animationDelayUpdate, Int, nothing)
 ]
 
 primitivefactory(:EChart, echart_spec)

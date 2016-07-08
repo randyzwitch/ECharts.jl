@@ -14,6 +14,7 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 
 	export lineplot, barplot, areaplot, scatterplot, piechart, donutchart, gauge
+	export funnel
 	export title!, yAxis!, xAxis!, toolbox!
 
 	#Import helper code
@@ -60,5 +61,6 @@ module ECharts
 	#Plots
 	include("plots/xy_plot.jl")
 	include("plots/circular_plot.jl")
+	include("plots/funnel.jl")
 
 end # module
