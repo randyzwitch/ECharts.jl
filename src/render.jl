@@ -2,10 +2,10 @@ import Base.print
 print(x::EChart) = print(JSON.json(tojs(x)))
 
 # Open a URL in a browser
-function openurl(url::AbstractString)
-    @osx_only     run(`open $url`)
-    @windows_only run(`cmd /c start $url`)
-    @linux_only   run(`xdg-open $url`)
+function openurl(url::String)
+    @static if is_apple() run(`open $url`) end
+    @static if is_windows() run(`cmd /c start $url`) end
+    @static if is_linux() run(`xdg-open $url`) end
 end
 
 #Jupyter Notebook display

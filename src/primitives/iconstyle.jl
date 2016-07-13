@@ -1,12 +1,12 @@
 iconstyleopts_spec =
 
 [
-(:color, AbstractString, "adaptive"),
-(:borderColor, AbstractString, "#666"),
+(:color, String, "adaptive"),
+(:borderColor, String, "#666"),
 (:borderWidth, Int, 1),
 (:borderType, Int, 1),
 (:shadowBlur, Int, nothing),
-(:shadowColor, AbstractString, nothing),
+(:shadowColor, String, nothing),
 (:shadowOffsetX, Int, 0),
 (:shadowOffsetY, Int, 0),
 (:opacity, Int, nothing),

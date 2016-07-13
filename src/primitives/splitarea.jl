@@ -1,7 +1,7 @@
 splitarea_spec =
 
 [
-(:interval, Union{Int, AbstractString}, "auto"),
+(:interval, Union{Int, String}, "auto"),
 (:show, Bool, true),
 (:areaStyle, AreaStyle, nothing),
 ]

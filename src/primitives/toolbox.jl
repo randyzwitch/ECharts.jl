@@ -1,7 +1,7 @@
 toolbox_spec =
 [
     (:show, Bool, false),
-    (:orient, AbstractString, "vertical"),
+    (:orient, String, "vertical"),
     (:itemGap, Number, 10),
     (:itemSize, Number, 15),
     (:feature, Dict{Any, Any}, Dict{Any, Any}()),
@@ -9,12 +9,12 @@ toolbox_spec =
     (:zlevel, Int, 0),
     (:z, Int, 2),
     (:iconStyle, IconStyle, nothing),
-    (:left, Union{AbstractString, Number}, nothing),
-    (:top, Union{AbstractString, Number}, "center"),
-    (:right, Union{AbstractString, Number}, "auto"),
-    (:bottom, Union{AbstractString, Number}, nothing),
-    (:width, Union{AbstractString, Number}, "auto"),
-    (:height, Union{AbstractString, Number}, "auto"),
+    (:left, Union{String, Number}, nothing),
+    (:top, Union{String, Number}, "center"),
+    (:right, Union{String, Number}, "auto"),
+    (:bottom, Union{String, Number}, nothing),
+    (:width, Union{String, Number}, "auto"),
+    (:height, Union{String, Number}, "auto"),
 ]
 
 primitivefactory(:Toolbox, toolbox_spec)

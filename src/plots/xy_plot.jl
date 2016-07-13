@@ -1,6 +1,6 @@
 function xy_plot(;	x::AbstractVector = [],
 					y::AbstractVector = [],
-					mark::AbstractString = "bar")
+					mark::String = "bar")
 
 	#Validate arrays are same length
 	if length(x) != length(y)

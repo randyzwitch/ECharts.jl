@@ -1,11 +1,11 @@
 itemstyleopts_spec =
 
 [
-(:color, AbstractString, "adaptive"),
-(:borderColor, AbstractString, "#000"),
+(:color, String, "adaptive"),
+(:borderColor, String, "#000"),
 (:borderWidth, Int, 0),
 (:shadowBlur, Int, nothing),
-(:shadowColor, AbstractString, nothing),
+(:shadowColor, String, nothing),
 (:shadowOffsetX, Int, 0),
 (:shadowOffsetY, Int, 0),
 (:opacity, Int, nothing),

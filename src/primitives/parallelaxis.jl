@@ -1,8 +1,8 @@
 areass_spec = [
 (:width, Int, 20),
 (:borderWidth, Int, 1),
-(:borderColor, AbstractString, "rgba(160,197,232)"),
-(:color, AbstractString, "rgba(160,197,232)"),
+(:borderColor, String, "rgba(160,197,232)"),
+(:color, String, "rgba(160,197,232)"),
 (:opacity, Number, 0.3)
 ]
 
@@ -14,15 +14,15 @@ parallelaxis_spec =
 (:dim, Int, nothing),
 (:parallelIndex, Int, 0),
 (:areaSelectStyle, AreaSelectStyle, nothing),
-(:_type, AbstractString, "value"),
-(:name, AbstractString, nothing),
-(:nameLocation, AbstractString, "start"),
+(:_type, String, "value"),
+(:name, String, nothing),
+(:nameLocation, String, "start"),
 (:nameTextStyle, TextStyle, "#fff"),
 (:nameGap, Int, 15),
 (:inverse, Bool, false),
 (:boundaryGap, Union{Bool, AbstractVector}, nothing),
-(:min, Union{AbstractString, Int}, "auto"),
-(:max, Union{AbstractString, Int}, "auto"),
+(:min, Union{String, Int}, "auto"),
+(:max, Union{String, Int}, "auto"),
 (:scale, Bool, false),
 (:splitNumber, Int, 5),
 (:minInterval, Int, 0),

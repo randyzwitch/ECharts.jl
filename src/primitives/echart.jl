@@ -20,14 +20,14 @@ echart_spec =
 (:timeline, Timeline, nothing),
 (:series, Vector{Series}, nothing),
 (:color, AbstractVector, nothing),
-(:backgroundColor, AbstractString, nothing),
+(:backgroundColor, String, nothing),
 (:textStyle, TextStyle, nothing),
 (:animation, Bool, nothing),
 (:animationDuration, Int, nothing),
-(:animationEasing, AbstractString, nothing),
+(:animationEasing, String, nothing),
 (:animationDelay, Int, nothing),
 (:animationDurationUpdate, Int, nothing),
-(:animationEasingUpdate, AbstractString, nothing),
+(:animationEasingUpdate, String, nothing),
 (:animationDelayUpdate, Int, nothing)
 ]
 

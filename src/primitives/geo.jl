@@ -11,7 +11,7 @@ geo_spec =
 
 [
 (:show, Bool, true),
-(:map, AbstractString, nothing),
+(:map, String, nothing),
 (:roam, Bool, false),
 (:center, Vector{Number}, nothing),
 (:zoom, Int, 1),
@@ -22,10 +22,10 @@ geo_spec =
 (:itemStyle, ItemStyle, nothing),
 (:zlevel, Int, 0),
 (:z, Int, 2),
-(:left, Union{AbstractString, Int}, "auto"),
-(:top, Union{AbstractString, Int}, "auto"),
-(:right, Union{AbstractString, Int}, "auto"),
-(:bottom, Union{AbstractString, Int}, "auto"),
+(:left, Union{String, Int}, "auto"),
+(:top, Union{String, Int}, "auto"),
+(:right, Union{String, Int}, "auto"),
+(:bottom, Union{String, Int}, "auto"),
 (:regions, Vector{Any}, nothing),
 (:silent, Bool, false),
 ]

@@ -1,10 +1,10 @@
 textstyle_spec =
 
 [
-(:color, AbstractString, "#000")
-(:fontStyle, AbstractString, "normal")
-(:fontWeight, AbstractString, "normal")
-(:fontFamily, AbstractString, "sans-serif")
+(:color, String, "#000")
+(:fontStyle, String, "normal")
+(:fontWeight, String, "normal")
+(:fontFamily, String, "sans-serif")
 (:fontSize, Int, 12)
 ]
 

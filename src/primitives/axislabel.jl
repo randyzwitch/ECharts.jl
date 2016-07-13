@@ -2,11 +2,11 @@ axislabel_spec =
 
 [
 (:show, Bool, true),
-(:interval, Union{AbstractString, Int}, "auto"),
+(:interval, Union{String, Int}, "auto"),
 (:inside, Bool, false),
 (:rotate, Int, 0),
 (:margin, Int, 8),
-(:formatter, AbstractString, nothing),
+(:formatter, String, nothing),
 (:textStyle, TextStyle, nothing),
 ]
 

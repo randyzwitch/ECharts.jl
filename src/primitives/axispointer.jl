@@ -1,11 +1,11 @@
 crossstyle_spec =
 
 [
-(:color, AbstractString, "#555"),
+(:color, String, "#555"),
 (:width, Int, 1),
-(:_type, AbstractString, "dashed"),
+(:_type, String, "dashed"),
 (:shadowBlur, Int, nothing),
-(:shadowColor, AbstractString, nothing),
+(:shadowColor, String, nothing),
 (:shadowOffsetX, Int, 0),
 (:shadowOffsetY, Int, 0),
 (:opacity, Number, 0),
@@ -17,9 +17,9 @@ primitivefactory(:CrossStyle, crossstyle_spec)
 shadowstyle_spec =
 
 [
-(:color, AbstractString, "rgba(150,150,150,0.5)"),
+(:color, String, "rgba(150,150,150,0.5)"),
 (:shadowBlur, Int, nothing),
-(:shadowColor, AbstractString, nothing),
+(:shadowColor, String, nothing),
 (:shadowOffsetX, Int, 0),
 (:shadowOffsetY, Int, 0),
 (:opacity, Number, 0),
@@ -30,14 +30,14 @@ primitivefactory(:ShadowStyle, shadowstyle_spec)
 axispointer_spec =
 
 [
-(:_type, AbstractString, "line"),
-(:axis, AbstractString, "auto"),
+(:_type, String, "line"),
+(:axis, String, "auto"),
 (:animation, Bool, "auto"),
 (:animationThreshold, Int, 2000),
 (:animationDuration, Int, 1000),
 (:animationDelay, Int, 1000),
 (:animationDurationUpdate, Int, 300),
-(:animationEasingUpdate, AbstractString, "cubicOut"),
+(:animationEasingUpdate, String, "cubicOut"),
 (:animationDelayUpdate, Int, 0),
 (:lineStyle, LineStyle, nothing),
 (:crossStyle, CrossStyle, nothing),

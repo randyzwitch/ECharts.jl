@@ -2,7 +2,7 @@ splitline_spec =
 
 [
 (:show, Bool, true),
-(:interval, Union{Int, AbstractString}, "auto"),
+(:interval, Union{Int, String}, "auto"),
 (:lineStyle, LineStyle, nothing)
 
 ]
