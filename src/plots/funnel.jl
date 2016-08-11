@@ -5,8 +5,8 @@ function funnel(; values::AbstractVector = [], names::AbstractVector = [])
     end
 
     ec = deepcopy(EChart())
-    ec.series = [ECharts.Series(_type = "funnel",
-                                data =  ECharts.dataformat(values = values, names = names)
+    ec.series = [Series(_type = "funnel",
+                                data =  dataformat(value = values, name = names)
                                 )
                 ]
     ec

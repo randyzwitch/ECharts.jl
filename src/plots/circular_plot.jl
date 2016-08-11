@@ -7,11 +7,10 @@ function circular_plot(; values::AbstractVector = [],
                         roseType::Union{String, Void} = nothing # roseType = {"angle", "radius"}
                         )
 
-    if length(values) != length(names)
-    	error("Arrays values and names need to have the same length.")
-    end
+    # Set default to false if not passed by user
+    selected == [] ? selected = [false for x in 1:length(values)] : selected = selected 
 
-    data_fmt = dataformat(values = values, names = names, selected = selected)
+    data_fmt = dataformat(value = values, name = names, selected = selected)
     ec = deepcopy(EChart())
     ec.series = [Series(_type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 
