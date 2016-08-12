@@ -14,7 +14,7 @@ radar_spec =
 (:axisLabel, AxisLabel, nothing),
 (:splitLine, SplitLine, nothing),
 (:splitArea, SplitArea, nothing),
-(:indicator, Vector{Any}, nothing),
+(:indicator, AbstractVector, nothing),
 ]
 
 primitivefactory(:Radar, radar_spec)

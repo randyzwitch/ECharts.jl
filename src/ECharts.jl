@@ -2,7 +2,7 @@ VERSION >= v"0.4" && __precompile__()
 
 module ECharts
 
-	using JSON
+	using JSON, Parameters
 	import Base.writemime
 
 	export print
@@ -13,8 +13,9 @@ module ECharts
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 
-	export lineplot, barplot, areaplot, scatterplot, piechart, donutchart, gauge
-	export funnel
+	export lineplot, barplot, areaplot, scatterplot 
+	export piechart, donutchart, radarchart
+	export funnel, gauge
 	export title!, yAxis!, xAxis!, toolbox!
 
 	#Import helper code
@@ -61,6 +62,7 @@ module ECharts
 	#Plots
 	include("plots/xy_plot.jl")
 	include("plots/circular_plot.jl")
-	include("plots/funnel.jl")
+	include("plots/funnel_plot.jl")
+	include("plots/radar_plot.jl")
 
 end # module
