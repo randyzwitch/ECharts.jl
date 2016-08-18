@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "areaplot.html">Area Plot</a></li>
+            <li><a href = "barplot.html">Bar Plot</a></li>
+            <li><a href = "funnel.html">Funnel</a></li>
+            <li><a href = "gauge.html">Gauge</a></li>
+            <li><a href = "lineplot.html">Line Plot</a></li>
+            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
+            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="xaxisyaxis">xAxis!/yAxis!</h2>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="p">::</span><span class="n">EChart</span>
+<span class="n">_type</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">data</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractVector</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">boundaryGap</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">min</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Number</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">max</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Number</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">show</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span></code></pre></div>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

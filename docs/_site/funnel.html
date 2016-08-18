@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "areaplot.html">Area Plot</a></li>
+            <li><a href = "barplot.html">Bar Plot</a></li>
+            <li><a href = "funnel.html">Funnel</a></li>
+            <li><a href = "gauge.html">Gauge</a></li>
+            <li><a href = "lineplot.html">Line Plot</a></li>
+            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
+            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="funnel">Funnel</h2>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span></code></pre></div>
+
+<h3 id="code">Code</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">]</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span></code></pre></div>
+
+<div id="funnelp" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("funnelp"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"backgroundColor":"transparent","shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"data":[{"name":"A","selected":false,"value":100},{"name":"B","selected":false,"value":60},{"name":"C","selected":false,"value":80},{"name":"D","selected":false,"value":70},{"name":"E","selected":false,"value":50}],"smooth":false,"minSize":"0%","type":"funnel","maxSize":"100%"}]});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

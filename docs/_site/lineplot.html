@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "areaplot.html">Area Plot</a></li>
+            <li><a href = "barplot.html">Bar Plot</a></li>
+            <li><a href = "funnel.html">Funnel</a></li>
+            <li><a href = "gauge.html">Gauge</a></li>
+            <li><a href = "lineplot.html">Line Plot</a></li>
+            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
+            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="line-plot">Line Plot</h2>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span></code></pre></div>
+
+<h3 id="code">Code</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">lineplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
+
+<div id="lineplot" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("lineplot"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"show":true,"data":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"type":"category"}],"yAxis":[{"show":true,"type":"value"}],"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[11,11,15,13,12,13,10],"smooth":false,"type":"line"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
