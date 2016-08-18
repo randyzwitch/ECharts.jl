@@ -10,7 +10,7 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 ### Function Keywords
 {% highlight julia %}
 x::AbstractVector = [ ]
-y::AbstractVector = [ ]
+y::AbstractArray = [ ]
 {% endhighlight %}
 
 ## Single Series
