@@ -9,11 +9,11 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-values::AbstractVector = []
-names::AbstractVector = []
+values::AbstractVector = [ ]
+names::AbstractVector = [ ]
 {% endhighlight %}
 
-### Code
+## Single Series
 {% highlight julia %}
 using ECharts
 v = [100,60,80,70,50]

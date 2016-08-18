@@ -16,7 +16,7 @@ x::Int
 y::Int
 {% endhighlight %}
 
-### Code
+### Examples
 {% highlight julia %}
 using ECharts
 x = 1:20

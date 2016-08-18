@@ -9,15 +9,15 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-names::AbstractVector = []
-values::AbstractVector = []
-selected::AbstractVector = []
+names::AbstractVector = [ ]
+values::AbstractVector = [ ]
+selected::AbstractVector = [ ]
 radius::Union{AbstractVector, AbstractString, Void} = "90%",
 center::Union{AbstractVector, AbstractString, Void} = ["50%", "50%"]
 roseType::Union{AbstractString, Void} = nothing
 {% endhighlight %}
 
-### Code
+## Pie Chart
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -36,7 +36,6 @@ piechart(values = y, names = x)
 
 ## Pie Chart - Exploded
 
-### Code
 {% highlight julia %}
 using ECharts
 values = [335, 310, 234, 135, 1548]
@@ -56,7 +55,6 @@ piechart(values = values, names = names, selected = explode)
 
 ## Donut Chart
 
-### Code
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -75,7 +73,6 @@ donutchart(values = y, names = x)
 
 ## Rose Chart - Angle
 
-### Code
 {% highlight julia %}
 using ECharts
 values = [335, 310, 234, 135, 1548]
@@ -94,7 +91,6 @@ piechart(values = values, names = names, roseType = "angle")
 
 ## Rose Chart - Radius
 
-### Code
 {% highlight julia %}
 using ECharts
 values = [335, 310, 234, 135, 1548]

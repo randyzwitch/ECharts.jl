@@ -12,7 +12,7 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 x::Number = 50
 {% endhighlight %}
 
-### Code
+## Single Series
 {% highlight julia %}
 using ECharts
 gauge(x = 27.64)

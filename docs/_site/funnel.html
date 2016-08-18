@@ -18,7 +18,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header"><a href="/">ECharts.jl</a></h1>
+        <h1 class="header"><a href="http://randyzwitch.github.io/ECharts.jl/">ECharts.jl</a></h1>
 
         <h3>Charts</h3>
         <ul>
@@ -28,6 +28,7 @@
             <li><a href = "gauge.html">Gauge</a></li>
             <li><a href = "lineplot.html">Line Plot</a></li>
             <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
+            <li><a href = "radar.html">Radar Chart</a></li>
             <li><a href = "scatterplot.html">Scatter Plot</a></li>
         </ul>
         <h3>Functions</h3>
@@ -44,10 +45,10 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+<span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span></code></pre></div>
 
-<h3 id="code">Code</h3>
+<h2 id="single-series">Single Series</h2>
 
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
