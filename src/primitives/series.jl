@@ -8,6 +8,8 @@ series_spec =
     (:radius, Union{AbstractVector, String}, nothing),
     (:center, Union{AbstractVector, String}, nothing),
     (:roseType, String, nothing),
+    (:stack, Union{String, Int}, nothing),
+
 
     # Validate type signature
     (:left, String, nothing),

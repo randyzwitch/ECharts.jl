@@ -1,4 +1,4 @@
-VERSION >= v"0.4" && __precompile__()
+__precompile__()
 
 module ECharts
 
@@ -13,7 +13,7 @@ module ECharts
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 
-	export lineplot, barplot, areaplot, scatterplot 
+	export lineplot, barplot, areaplot, scatterplot
 	export piechart, donutchart, radarchart
 	export funnel, gauge
 	export title!, yAxis!, xAxis!, toolbox!
