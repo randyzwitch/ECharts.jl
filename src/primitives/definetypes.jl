@@ -1,0 +1,488 @@
+abstract AbstractEChartType
+
+type LineStyle <: AbstractEChartType
+    color::Union{AbstractVector,String,Void}
+    width::Union{Int64,Void}
+    _type::Union{String,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Int64,Void}
+end
+type AreaStyle <: AbstractEChartType
+    color::Union{AbstractVector,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Number,Void}
+end
+type TextStyle <: AbstractEChartType
+    color::Union{String,Void}
+    fontStyle::Union{String,Void}
+    fontWeight::Union{String,Void}
+    fontFamily::Union{String,Void}
+    fontSize::Union{Int64,Void}
+end
+type SplitArea <: AbstractEChartType
+    interval::Union{Int64,String,Void}
+    show::Union{Bool,Void}
+    areaStyle::Union{AreaStyle,Void}
+end
+type SplitLine <: AbstractEChartType
+    show::Union{Bool,Void}
+    interval::Union{Int64,String,Void}
+    lineStyle::Union{LineStyle,Void}
+end
+type AxisLabel <: AbstractEChartType
+    show::Union{Bool,Void}
+    interval::Union{Int64,String,Void}
+    inside::Union{Bool,Void}
+    rotate::Union{Int64,Void}
+    margin::Union{Int64,Void}
+    formatter::Union{String,Void}
+    textStyle::Union{TextStyle,Void}
+end
+type AxisLine <: AbstractEChartType
+    show::Union{Bool,Void}
+    onZero::Union{Bool,Void}
+    lineStyle::Union{LineStyle,Void}
+end
+type AxisTick <: AbstractEChartType
+    show::Union{Bool,Void}
+    interval::Union{Int64,String,Void}
+    inside::Union{Bool,Void}
+    length::Union{Int64,Void}
+    lineStyle::Union{LineStyle,Void}
+end
+type LabelOpts <: AbstractEChartType
+    show::Union{Bool,Void}
+    textStyle::Union{TextStyle,Void}
+end
+type Label <: AbstractEChartType
+    normal::Union{LabelOpts,Void}
+    emphasis::Union{LabelOpts,Void}
+end
+type ItemStyleOpts <: AbstractEChartType
+    color::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Int64,Void}
+end
+type ItemStyle <: AbstractEChartType
+    normal::Union{ItemStyleOpts,Void}
+    emphasis::Union{ItemStyleOpts,Void}
+end
+type IconStyleOpts <: AbstractEChartType
+    color::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    borderType::Union{Int64,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Int64,Void}
+end
+type IconStyle <: AbstractEChartType
+    normal::Union{ItemStyleOpts,Void}
+    emphasis::Union{ItemStyleOpts,Void}
+end
+type CrossStyle <: AbstractEChartType
+    color::Union{String,Void}
+    width::Union{Int64,Void}
+    _type::Union{String,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Number,Void}
+    textStyle::Union{TextStyle,Void}
+end
+type ShadowStyle <: AbstractEChartType
+    color::Union{String,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+    opacity::Union{Number,Void}
+end
+type AxisPointer <: AbstractEChartType
+    _type::Union{String,Void}
+    axis::Union{String,Void}
+    animation::Union{Bool,Void}
+    animationThreshold::Union{Int64,Void}
+    animationDuration::Union{Int64,Void}
+    animationDelay::Union{Int64,Void}
+    animationDurationUpdate::Union{Int64,Void}
+    animationEasingUpdate::Union{String,Void}
+    animationDelayUpdate::Union{Int64,Void}
+    lineStyle::Union{LineStyle,Void}
+    crossStyle::Union{CrossStyle,Void}
+    shadowStyle::Union{ShadowStyle,Void}
+end
+type Tooltip <: AbstractEChartType
+    show::Union{Bool,Void}
+    showContent::Union{Bool,Void}
+    trigger::Union{String,Void}
+    triggerOn::Union{String,Void}
+    alwaysShowContent::Union{Bool,Void}
+    showDelay::Union{Int64,Void}
+    hideDelay::Union{Int64,Void}
+    enterable::Union{Bool,Void}
+    position::Union{AbstractVector,String,Void}
+    transitionDuration::Union{Number,Void}
+    formatter::Union{String,Void}
+    backgroundColor::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    padding::Union{Int64,Void}
+    textStyle::Union{TextStyle,Void}
+    extraCssText::Union{String,Void}
+    axisPointer::Union{AxisPointer,Void}
+end
+type Legend <: AbstractEChartType
+    show::Union{Bool,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    width::Union{Int64,String,Void}
+    height::Union{Int64,String,Void}
+    orient::Union{String,Void}
+    align::Union{String,Void}
+    padding::Union{Int64,Void}
+    itemGap::Union{Int64,Void}
+    itemWidth::Union{Int64,Void}
+    itemHeight::Union{Int64,Void}
+    formatter::Union{String,Void}
+    selectedMode::Union{Bool,String,Void}
+    selected::Union{Dict{String,Bool},Void}
+    textStyle::Union{TextStyle,Void}
+    data::Union{AbstractVector,Void}
+    backgroundColor::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+end
+type Toolbox <: AbstractEChartType
+    show::Union{Bool,Void}
+    orient::Union{String,Void}
+    itemGap::Union{Number,Void}
+    itemSize::Union{Number,Void}
+    feature::Union{Dict{Any,Any},Void}
+    showTitle::Union{Bool,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    iconStyle::Union{IconStyle,Void}
+    left::Union{Number,String,Void}
+    top::Union{Number,String,Void}
+    right::Union{Number,String,Void}
+    bottom::Union{Number,String,Void}
+    width::Union{Number,String,Void}
+    height::Union{Number,String,Void}
+end
+type Axis <: AbstractEChartType
+    gridIndex::Union{Int64,Void}
+    position::Union{String,Void}
+    _type::Union{String,Void}
+    name::Union{String,Void}
+    nameLocation::Union{String,Void}
+    nameTextStyle::Union{TextStyle,Void}
+    nameGap::Union{Int64,Void}
+    inverse::Union{Bool,Void}
+    boundaryGap::Union{AbstractVector,Bool,Void}
+    min::Union{Int64,String,Void}
+    max::Union{Int64,String,Void}
+    scale::Union{Bool,Void}
+    splitNumber::Union{Int64,Void}
+    minInterval::Union{Int64,Void}
+    interval::Union{Int64,Void}
+    silent::Union{Bool,Void}
+    axisLine::Union{AxisLine,Void}
+    axisTick::Union{AxisTick,Void}
+    axisLabel::Union{AxisLabel,Void}
+    splitLine::Union{SplitLine,Void}
+    splitArea::Union{SplitArea,Void}
+    data::Union{AbstractVector,Void}
+end
+type Title <: AbstractEChartType
+    show::Union{Bool,Void}
+    text::Union{String,Void}
+    link::Union{String,Void}
+    target::Union{String,Void}
+    textStyle::Union{TextStyle,Void}
+    subtext::Union{String,Void}
+    sublink::Union{String,Void}
+    subtarget::Union{String,Void}
+    subtextStyle::Union{TextStyle,Void}
+    padding::Union{Array{Int64,1},Int64,Void}
+    itemGap::Union{Int64,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    backgroundColor::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+end
+type Grid <: AbstractEChartType
+    show::Union{Bool,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    width::Union{Int64,String,Void}
+    height::Union{Int64,String,Void}
+    containLabel::Union{Bool,Void}
+    backgroundColor::Union{String,Void}
+    borderColor::Union{String,Void}
+    borderWidth::Union{Int64,Void}
+    shadowBlur::Union{Int64,Void}
+    shadowColor::Union{String,Void}
+    shadowOffsetX::Union{Int64,Void}
+    shadowOffsetY::Union{Int64,Void}
+end
+type DataZoom <: AbstractEChartType
+    _type::Union{String,Void}
+    start::Union{Number,Void}
+    _end::Union{Number,Void}
+end
+type Timeline <: AbstractEChartType
+    show::Union{Bool,Void}
+    _type::Union{String,Void}
+    axisType::Union{String,Void}
+    currentIndex::Union{Int64,Void}
+    autoPlay::Union{Bool,Void}
+    rewind::Union{Bool,Void}
+    loop::Union{Bool,Void}
+    playInterval::Union{Int64,Void}
+    realtime::Union{Bool,Void}
+    controlPosition::Union{String,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    padding::Union{Array{Int64,1},Int64,Void}
+    orient::Union{String,Void}
+    inverse::Union{Bool,Void}
+    symbol::Union{String,Void}
+    symbolSize::Union{Array{Int64,1},Int64,Void}
+    symbolRotate::Union{Int64,Void}
+    symbolOffset::Union{Array{Int64,1},Void}
+    lineStyle::Union{LineStyle,Void}
+    label::Union{Label,Void}
+    itemStyle::Union{ItemStyle,Void}
+    checkpointStyle::Union{Dict,Void}
+    controlStyle::Union{Dict,Void}
+    data::Union{AbstractVector,Void}
+end
+type Polar <: AbstractEChartType
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    center::Union{Array{String,1},Void}
+    radius::Union{AbstractVector,Void}
+end
+type RadiusAxis <: AbstractEChartType
+    polarIndex::Union{Int64,Void}
+    _type::Union{String,Void}
+    name::Union{String,Void}
+    nameLocation::Union{String,Void}
+    nameTextStyle::Union{TextStyle,Void}
+    nameGap::Union{Int64,Void}
+    inverse::Union{Bool,Void}
+    boundaryGap::Union{Array{String,1},Bool,Void}
+    min::Union{Int64,String,Void}
+    max::Union{Int64,String,Void}
+    scale::Union{Bool,Void}
+    splitNumber::Union{Int64,Void}
+    minInterval::Union{Int64,Void}
+    interval::Union{Int64,Void}
+    silent::Union{Bool,Void}
+    axisLine::Union{AxisLine,Void}
+    axisTick::Union{AxisTick,Void}
+    axisLabel::Union{AxisLabel,Void}
+    splitLine::Union{SplitLine,Void}
+    splitArea::Union{SplitArea,Void}
+    data::Union{AbstractVector,Void}
+end
+type AngleAxis <: AbstractEChartType
+    polarIndex::Union{Int64,Void}
+    startAngle::Union{Int64,Void}
+    clockwise::Union{Bool,Void}
+    _type::Union{String,Void}
+    boundaryGap::Union{AbstractVector,Bool,Void}
+    min::Union{Int64,String,Void}
+    max::Union{Int64,String,Void}
+    scale::Union{Bool,Void}
+    splitNumber::Union{Int64,Void}
+    minInterval::Union{Int64,Void}
+    interval::Union{Int64,Void}
+    silent::Union{Bool,Void}
+    axisLine::Union{AxisLine,Void}
+    axisTick::Union{AxisTick,Void}
+    axisLabel::Union{AxisLabel,Void}
+    splitLine::Union{SplitLine,Void}
+    splitArea::Union{SplitArea,Void}
+    data::Union{AbstractVector,Void}
+end
+type Radar <: AbstractEChartType
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    center::Union{Array{String,1},Void}
+    radius::Union{Int64,String,Void}
+    startAngle::Union{Int64,Void}
+    name::Union{Dict{Any,Any},Void}
+    nameGap::Union{Int64,Void}
+    silent::Union{Bool,Void}
+    axisLine::Union{AxisLine,Void}
+    axisTick::Union{AxisTick,Void}
+    axisLabel::Union{AxisLabel,Void}
+    splitLine::Union{SplitLine,Void}
+    splitArea::Union{SplitArea,Void}
+    indicator::Union{AbstractVector,Void}
+end
+type VisualMap <: AbstractEChartType
+    _type::Union{String,Void}
+end
+type ScaleLimit <: AbstractEChartType
+    min::Union{Int64,Void}
+    max::Union{Int64,Void}
+end
+type Geo <: AbstractEChartType
+    show::Union{Bool,Void}
+    map::Union{String,Void}
+    roam::Union{Bool,Void}
+    center::Union{Array{Number,1},Void}
+    zoom::Union{Int64,Void}
+    scaleLimit::Union{ScaleLimit,Void}
+    nameMap::Union{Dict,Void}
+    selectedMode::Union{Bool,Void}
+    label::Union{Label,Void}
+    itemStyle::Union{ItemStyle,Void}
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    regions::Union{AbstractVector,Void}
+    silent::Union{Bool,Void}
+end
+type Parallel <: AbstractEChartType
+    zlevel::Union{Int64,Void}
+    z::Union{Int64,Void}
+    left::Union{Int64,String,Void}
+    top::Union{Int64,String,Void}
+    right::Union{Int64,String,Void}
+    bottom::Union{Int64,String,Void}
+    width::Union{Int64,String,Void}
+    height::Union{Int64,String,Void}
+    layout::Union{String,Void}
+    parallelAxisDefault::Union{Dict,Void}
+end
+type AreaSelectStyle <: AbstractEChartType
+    width::Union{Int64,Void}
+    borderWidth::Union{Int64,Void}
+    borderColor::Union{String,Void}
+    color::Union{String,Void}
+    opacity::Union{Number,Void}
+end
+type ParallelAxis <: AbstractEChartType
+    dim::Union{Int64,Void}
+    parallelIndex::Union{Int64,Void}
+    areaSelectStyle::Union{AreaSelectStyle,Void}
+    _type::Union{String,Void}
+    name::Union{String,Void}
+    nameLocation::Union{String,Void}
+    nameTextStyle::Union{TextStyle,Void}
+    nameGap::Union{Int64,Void}
+    inverse::Union{Bool,Void}
+    boundaryGap::Union{AbstractVector,Bool,Void}
+    min::Union{Int64,String,Void}
+    max::Union{Int64,String,Void}
+    scale::Union{Bool,Void}
+    splitNumber::Union{Int64,Void}
+    minInterval::Union{Int64,Void}
+    interval::Union{Int64,Void}
+    silent::Union{Bool,Void}
+    axisLine::Union{AxisLine,Void}
+    axisTick::Union{AxisTick,Void}
+    axisLabel::Union{AxisLabel,Void}
+    data::Union{Dict,Void}
+end
+type Series <: AbstractEChartType
+    name::Union{String,Void}
+    _type::Union{String,Void}
+    data::Union{AbstractVector,Void}
+    areaStyle::Union{Dict,Void}
+    smooth::Union{Bool,Void}
+    radius::Union{AbstractVector,String,Void}
+    center::Union{AbstractVector,String,Void}
+    roseType::Union{String,Void}
+    stack::Union{Int64,String,Void}
+    left::Union{String,Void}
+    right::Union{String,Void}
+    top::Union{Int64,Void}
+    bottom::Union{Int64,Void}
+    width::Union{String,Void}
+    min::Union{Int64,Void}
+    max::Union{Int64,Void}
+    minSize::Union{String,Void}
+    maxSize::Union{String,Void}
+    sort::Union{String,Void}
+    gap::Union{Int64,Void}
+    label::Union{Label,Void}
+    labelLine::Union{Dict,Void}
+    itemStyle::Union{ItemStyle,Void}
+end
+type EChart <: AbstractEChartType
+    title::Union{Title,Void}
+    legend::Union{Legend,Void}
+    grid::Union{Grid,Void}
+    xAxis::Union{Array{Axis,1},Void}
+    yAxis::Union{Array{Axis,1},Void}
+    polar::Union{Polar,Void}
+    radiusAxis::Union{RadiusAxis,Void}
+    angleAxis::Union{AngleAxis,Void}
+    radar::Union{Radar,Void}
+    dataZoom::Union{DataZoom,Void}
+    visualMap::Union{VisualMap,Void}
+    tooltip::Union{Tooltip,Void}
+    toolbox::Union{Toolbox,Void}
+    geo::Union{Geo,Void}
+    parallel::Union{Parallel,Void}
+    parallelAxis::Union{ParallelAxis,Void}
+    timeline::Union{Timeline,Void}
+    series::Union{Array{Series,1},Void}
+    color::Union{AbstractVector,Void}
+    backgroundColor::Union{String,Void}
+    textStyle::Union{TextStyle,Void}
+    animation::Union{Bool,Void}
+    animationDuration::Union{Int64,Void}
+    animationEasing::Union{String,Void}
+    animationDelay::Union{Int64,Void}
+    animationDurationUpdate::Union{Int64,Void}
+    animationEasingUpdate::Union{String,Void}
+    animationDelayUpdate::Union{Int64,Void}
+end

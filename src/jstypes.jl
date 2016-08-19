@@ -129,7 +129,9 @@ end
 #Create primitives from one function instead of repeating
 #Use of eval() takes all Expr created above, evaluates their results, so that they become Julia citizens
 function primitivefactory(create::Symbol, spec::AbstractArray)
-    eval(maketype(create, spec))
-    eval(makedefaultfunc(create, spec))
-    eval(maketojs(create, spec))
+    #println(maketype(create, spec))
+    #eval(maketype(create, spec))
+    #println(makedefaultfunc(create, spec))
+    #eval(makedefaultfunc(create, spec))
+    #eval(maketojs(create, spec))
 end

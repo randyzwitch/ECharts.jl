@@ -3,7 +3,6 @@ __precompile__()
 module ECharts
 
 	using JSON, Parameters
-	import Base.writemime
 
 	export print
 
@@ -18,41 +17,10 @@ module ECharts
 	export funnel, gauge
 	export title!, yAxis!, xAxis!, toolbox!
 
-	#Import helper code
-	include("jstypes.jl")
-
-	#Primitives - in order of descending dependency
-	#AbstractVectors should be defined more strictly
-	include("primitives/linestyle.jl")
-	include("primitives/areastyle.jl")
-	include("primitives/textstyle.jl")
-	include("primitives/splitarea.jl")
-	include("primitives/splitline.jl")
-	include("primitives/axislabel.jl")
-	include("primitives/axisline.jl")
-	include("primitives/axistick.jl")
-	include("primitives/label.jl")
-	include("primitives/itemstyle.jl")
-	include("primitives/iconstyle.jl")
-	include("primitives/axispointer.jl")
-	include("primitives/tooltip.jl")
-	include("primitives/legend.jl")
-	include("primitives/toolbox.jl")
-	include("primitives/axis.jl")
-	include("primitives/title.jl")
-	include("primitives/grid.jl")
-	include("primitives/datazoom.jl") #Needs a lot of work still
-	include("primitives/timeline.jl")
-	include("primitives/polar.jl")
-	include("primitives/radiusaxis.jl")
-	include("primitives/angleaxis.jl")
-	include("primitives/radar.jl")
-	include("primitives/visualmap.jl") #Needs a lot of work still
-	include("primitives/geo.jl")
-	include("primitives/parallel.jl")
-	include("primitives/parallelaxis.jl")
-	include("primitives/series.jl")
-	include("primitives/echart.jl")
+	#Primitives - in order of descending dependency within files
+	include("primitives/definetypes.jl")
+	include("primitives/constructors.jl")
+	include("primitives/tojs.jl")
 	include("render.jl")
 
 	#Visualization mutating functions
