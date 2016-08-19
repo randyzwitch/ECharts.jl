@@ -1,6 +1,4 @@
-# All types in Vega.jl are subtypes of AbstractVegaType. Overloading `call` as
-# a parametric type over the field of `AbstractVegaType`s allows us to get much
-# better performance for the first visualization after importing Vega
+# All types are subtypes of AbstractEChartType.
 abstract AbstractEChartType
 
 function Base.call{T<:AbstractEChartType}(::Type{T}; kwargs...)

@@ -1,4 +1,5 @@
 import Base.print
+import Base.show
 print(x::EChart) = print(JSON.json(tojs(x)))
 
 # Open a URL in a browser
@@ -9,7 +10,7 @@ function openurl(url::String)
 end
 
 #Jupyter Notebook display
-function writemime(io::IO, ::MIME"text/html", v::EChart)
+function show(io::IO, ::MIME"text/html", v::EChart)
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(v))
@@ -75,7 +76,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
             )
 end
 
-function Base.show(io::IO, v::EChart)
+function show(io::IO, v::EChart)
 
     if displayable("text/html")
         v
