@@ -19,7 +19,6 @@ module ECharts
 
 	#Primitives - in order of descending dependency within files
 	include("primitives/definetypes.jl")
-	include("primitives/constructors.jl")
 	include("primitives/tojs.jl")
 	include("render.jl")
 
