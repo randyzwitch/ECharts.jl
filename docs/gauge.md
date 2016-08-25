@@ -9,13 +9,13 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-x::Number = 50
+x::Number
 {% endhighlight %}
 
 ## Single Series
 {% highlight julia %}
 using ECharts
-gauge(x = 27.64)
+gauge(27.64)
 {% endhighlight %}
 
 <div id="gaugep" style="height:400px;width:800px;"></div>

@@ -9,8 +9,8 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-x::AbstractVector = [ ]
-y::AbstractArray = [ ]
+x::AbstractVector
+y::AbstractArray
 {% endhighlight %}
 
 ## Single Series
@@ -18,7 +18,7 @@ y::AbstractArray = [ ]
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-lineplot(x = x, y = y)
+lineplot(x, y)
 {% endhighlight %}
 
 <div id="lineplot" style="height:400px;width:800px;"></div>
@@ -36,7 +36,7 @@ using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 y2 = 0.6 .* y
-lineplot(x = x, y = hcat(y, y2))
+lineplot(x, hcat(y, y2))
 {% endhighlight %}
 
 <div id="lineplot2" style="height:400px;width:800px;"></div>

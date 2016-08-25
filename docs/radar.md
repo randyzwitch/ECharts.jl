@@ -9,9 +9,9 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-names::AbstractVector = [ ]
-values::AbstractArray = [ ]
-max::AbstractVector = [ ]
+names::AbstractVector
+values::AbstractArray
+max::AbstractVector
 {% endhighlight %}
 
 ## Single Series
@@ -20,7 +20,7 @@ using ECharts
 names = ["sales", "administration", "information technology", "customer support", "development", "marketing"]
 max = [6500, 16000, 30000, 38000, 52000, 25000]
 values = [4300, 10000, 28000, 35000, 50000, 19000]
-radarchart(names = names, max = max, values = values)
+radarchart(names, values, max)
 {% endhighlight %}
 
 <div id="radarp" style="height:400px;width:800px;"></div>
@@ -39,7 +39,7 @@ names = ["sales", "administration", "information technology", "customer support"
 max = [6500, 16000, 30000, 38000, 52000, 25000]
 values = [4300, 10000, 28000, 35000, 50000, 19000]
 values2 = 0.7 .* values
-radarchart(names = names, max = max, values = hcat(values, values2))
+radarchart(names, values = hcat(values, values2), max)
 {% endhighlight %}
 
 <div id="radar2" style="height:400px;width:800px;"></div>

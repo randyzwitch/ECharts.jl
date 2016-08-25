@@ -9,8 +9,8 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-names::AbstractVector = [ ]
-values::AbstractVector = [ ]
+names::AbstractVector
+values::AbstractVector
 selected::AbstractVector = [ ]
 radius::Union{AbstractVector, AbstractString, Void} = "90%",
 center::Union{AbstractVector, AbstractString, Void} = ["50%", "50%"]
@@ -22,7 +22,7 @@ roseType::Union{AbstractString, Void} = nothing
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-piechart(values = y, names = x)
+piechart(x, y)
 {% endhighlight %}
 
 <div id="pie" style="height:400px;width:800px;"></div>
@@ -41,7 +41,7 @@ using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
 explode = [true, false, false, false, false]
-piechart(values = values, names = names, selected = explode)
+piechart(x, y, selected = explode)
 {% endhighlight %}
 
 <div id="piex" style="height:400px;width:800px;"></div>
@@ -59,7 +59,7 @@ piechart(values = values, names = names, selected = explode)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-donutchart(values = y, names = x)
+donutchart(x, y)
 {% endhighlight %}
 
 <div id="donut" style="height:400px;width:800px;"></div>
@@ -77,7 +77,7 @@ donutchart(values = y, names = x)
 using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
-piechart(values = values, names = names, roseType = "angle")
+piechart(x, y, roseType = "angle")
 {% endhighlight %}
 
 <div id="roseangle" style="height:400px;width:800px;"></div>
@@ -95,7 +95,7 @@ piechart(values = values, names = names, roseType = "angle")
 using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
-donutchart(values = values, names = names, roseType = "radius")
+donutchart(x, y, roseType = "radius")
 {% endhighlight %}
 
 <div id="roseradius" style="height:400px;width:800px;"></div>

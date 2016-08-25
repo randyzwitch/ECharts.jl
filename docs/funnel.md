@@ -9,8 +9,8 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 
 ### Function Keywords
 {% highlight julia %}
-values::AbstractVector = [ ]
-names::AbstractVector = [ ]
+names::AbstractVector
+values::AbstractVector
 {% endhighlight %}
 
 ## Single Series
@@ -18,7 +18,7 @@ names::AbstractVector = [ ]
 using ECharts
 v = [100,60,80,70,50]
 n = ["A", "B", "C", "D", "E"]
-fn = funnel(values = v, names = n)
+funnel(names, values)
 {% endhighlight %}
 
 <div id="funnelp" style="height:400px;width:800px;"></div>
