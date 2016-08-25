@@ -1,7 +1,7 @@
 function title!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   setfield!(ec, title, k) = v
+	   ec.title.(k) = v
 	end
 
 	return ec

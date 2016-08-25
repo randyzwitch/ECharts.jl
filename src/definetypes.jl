@@ -234,7 +234,7 @@ end
     top::Union{Int64,String,Void} = "auto"
     right::Union{Int64,String,Void} = "auto"
     bottom::Union{Int64,String,Void} = "auto"
-    backgroundColor::Union{String,Void} = "transparent"
+    backgroundColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = "transparent"
     borderWidth::Union{Int64,Void} = 1
     shadowBlur::Union{Int64,Void} = nothing

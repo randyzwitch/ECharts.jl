@@ -30,6 +30,7 @@
             <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
             <li><a href = "radar.html">Radar Chart</a></li>
             <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
         <ul>
@@ -45,15 +46,15 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
-<span class="n">y</span><span class="p">::</span><span class="n">AbstractArray</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="p">::</span><span class="n">AbstractVector</span>
+<span class="n">y</span><span class="p">::</span><span class="n">AbstractArray</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="n">lineplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
+<span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
 
 <div id="lineplot" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -70,7 +71,7 @@
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="o">.*</span> <span class="n">y</span>
-<span class="n">lineplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span></code></pre></div>
+<span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span></code></pre></div>
 
 <div id="lineplot2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

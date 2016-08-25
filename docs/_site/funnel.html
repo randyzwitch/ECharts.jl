@@ -30,6 +30,7 @@
             <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
             <li><a href = "radar.html">Radar Chart</a></li>
             <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
         <ul>
@@ -45,15 +46,15 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
-<span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span>
+<span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
 <span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">]</span>
-<span class="n">fn</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span></code></pre></div>
+<span class="n">funnel</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></code></pre></div>
 
 <div id="funnelp" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

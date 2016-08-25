@@ -30,6 +30,7 @@
             <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
             <li><a href = "radar.html">Radar Chart</a></li>
             <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
         <ul>
@@ -45,9 +46,9 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
-<span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
-<span class="n">max</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span>
+<span class="n">values</span><span class="p">::</span><span class="n">AbstractArray</span>
+<span class="n">max</span><span class="p">::</span><span class="n">AbstractVector</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
@@ -55,7 +56,7 @@
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sales&quot;</span><span class="p">,</span> <span class="s">&quot;administration&quot;</span><span class="p">,</span> <span class="s">&quot;information technology&quot;</span><span class="p">,</span> <span class="s">&quot;customer support&quot;</span><span class="p">,</span> <span class="s">&quot;development&quot;</span><span class="p">,</span> <span class="s">&quot;marketing&quot;</span><span class="p">]</span>
 <span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6500</span><span class="p">,</span> <span class="mi">16000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">38000</span><span class="p">,</span> <span class="mi">52000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4300</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">28000</span><span class="p">,</span> <span class="mi">35000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">19000</span><span class="p">]</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">radarchart</span><span class="p">(</span><span class="n">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="n">max</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">)</span></code></pre></div>
+<span class="n">radarchart</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
 
 <div id="radarp" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -64,6 +65,24 @@
 
     // Load data into the ECharts instance
     myChart.setOption({"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"backgroundColor":"transparent","shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"data":[{"value":[4300,10000,28000,35000,50000,19000]}],"smooth":false,"minSize":"0%","type":"radar","maxSize":"100%"}],"radar":{"startAngle":90,"zlevel":0,"radius":"75%","indicator":[{"name":"sales","max":6500},{"name":"administration","max":16000},{"name":"information technology","max":30000},{"name":"customer support","max":38000},{"name":"development","max":52000},{"name":"marketing","max":25000}],"center":["50%","50%"],"z":2,"silent":true,"nameGap":15}});
+</script>
+
+<h2 id="multiple-series">Multiple Series</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sales&quot;</span><span class="p">,</span> <span class="s">&quot;administration&quot;</span><span class="p">,</span> <span class="s">&quot;information technology&quot;</span><span class="p">,</span> <span class="s">&quot;customer support&quot;</span><span class="p">,</span> <span class="s">&quot;development&quot;</span><span class="p">,</span> <span class="s">&quot;marketing&quot;</span><span class="p">]</span>
+<span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6500</span><span class="p">,</span> <span class="mi">16000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">38000</span><span class="p">,</span> <span class="mi">52000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4300</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">28000</span><span class="p">,</span> <span class="mi">35000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">19000</span><span class="p">]</span>
+<span class="n">values2</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">.*</span> <span class="n">values</span>
+<span class="n">radarchart</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">),</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
+
+<div id="radar2" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("radar2"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"backgroundColor":"transparent","shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"data":[{"value":[4300.0,10000.0,28000.0,35000.0,50000.0,19000.0]}],"smooth":false,"minSize":"0%","type":"radar","maxSize":"100%"},{"data":[{"value":[3010.0,7000.0,19600.0,24500.0,35000.0,13300.0]}],"smooth":false,"minSize":"0%","type":"radar","maxSize":"100%"}],"radar":{"startAngle":90,"zlevel":0,"radius":"75%","indicator":[{"name":"sales","max":6500},{"name":"administration","max":16000},{"name":"information technology","max":30000},{"name":"customer support","max":38000},{"name":"development","max":52000},{"name":"marketing","max":25000}],"center":["50%","50%"],"z":2,"silent":true,"nameGap":15}});
 </script>
 
 
