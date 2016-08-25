@@ -1,7 +1,7 @@
 function title!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.title.(k) = v
+	   setfield!(ec, title, k) = v
 	end
 
 	return ec
@@ -46,19 +46,6 @@ function toolbox!(ec::EChart; 	show::Bool = true,
 						"pie" => "Pie",
 						"funnel" => "Funnel"
 						)
-
-	# marklookup = Dict(
-	# 		          "mark" => "Mark",
-	# 		          "markUndo" => "Mark Undo",
-	# 		          "markClear" => "Mark Clear"
-	# 		        )
-	#
-	# linelookup = Dict(
-	# 	          "width" => 1,
-	# 	          "color" => "#1e90ff",
-	# 	          "type" => "dashed"
-	# 	         )
-	#mark? ec.toolbox.feature["mark"] = Dict("show" => true, "title" => marklookup, "lineStyle" => linelookup) : ec.toolbox.feature["mark"] = Dict("show" => false)
 
 	ec.toolbox.show = show
 

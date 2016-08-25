@@ -1,4 +1,4 @@
-function funnel(; values::AbstractVector = [], names::AbstractVector = [])
+function funnel(names::AbstractVector, values::AbstractVector)
 
     ec = deepcopy(EChart())
     ec.series = [Series(_type = "funnel",

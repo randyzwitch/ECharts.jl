@@ -18,7 +18,7 @@ module ECharts
 	export title!, yAxis!, xAxis!, toolbox!
 
 	#Primitives - in order of descending dependency within files
-	include("primitives/definetypes.jl")
+	include("definetypes.jl")
 	include("render.jl")
 
 	#Visualization mutating functions
@@ -51,7 +51,7 @@ module ECharts
 
 	    for f in fieldnames(x)
 	        if getfield(x, f) != nothing
-	            startswith(string(f), "_") ? res[string(f)[2:end]] = tojs(getfield(x, f)):
+	        	startswith(string(f), "_") ? res[string(f)[2:end]] = tojs(getfield(x, f)):
 	                                         res[string(f)] = tojs(getfield(x, f))
 	        end
 	    end

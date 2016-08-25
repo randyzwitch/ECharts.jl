@@ -1,6 +1,4 @@
-
-function circular_plot(; values::AbstractVector = [],
-                        names::AbstractVector = [],
+function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
                         selected::AbstractVector = [],
                         radius::Union{AbstractVector, String, Void} = "90%",
                         center::Union{AbstractVector, String, Void} = ["50%", "50%"],
@@ -8,7 +6,7 @@ function circular_plot(; values::AbstractVector = [],
                         )
 
     # Set default to false if not passed by user
-    selected == [] ? selected = [false for x in 1:length(values)] : selected = selected 
+    selected == [] ? selected = [false for x in 1:length(values)] : selected = selected
 
     data_fmt = dataformat(value = values, name = names, selected = selected)
     ec = deepcopy(EChart())
@@ -18,10 +16,10 @@ function circular_plot(; values::AbstractVector = [],
 
 end
 
-piechart(;values::AbstractVector = [], names::AbstractVector = [], selected::AbstractVector = [], radius::Union{AbstractVector, String} = "90%", center::Union{AbstractVector, String}  = ["50%", "50%"], roseType::Union{String, Void} = nothing) =
-    circular_plot(values = values, names = names, selected = selected, radius = radius, center = center, roseType = roseType)
+piechart(names::AbstractVector, values::AbstractVector; selected::AbstractVector = [], radius::Union{AbstractVector, String} = "90%", center::Union{AbstractVector, String}  = ["50%", "50%"], roseType::Union{String, Void} = nothing) =
+    circular_plot(names, values, selected = selected, radius = radius, center = center, roseType = roseType)
 
-donutchart(;values::AbstractVector = [], names::AbstractVector = [], selected::AbstractVector = [], radius::Union{AbstractVector, String} = ["50%", "90%"], roseType::Union{String, Void} = nothing) =
-    circular_plot(values = values, names = names, selected = selected, radius = radius, center = nothing, roseType = roseType)
+donutchart(names::AbstractVector, values::AbstractVector; selected::AbstractVector = [], radius::Union{AbstractVector, String} = ["50%", "90%"], roseType::Union{String, Void} = nothing) =
+    circular_plot(names, values, selected = selected, radius = radius, center = nothing, roseType = roseType)
 
-gauge(; x::Number = 50) = EChart(series = [Series(_type = "gauge", data = [Dict("value" => x)])])
+gauge(x::Number) = EChart(series = [Series(_type = "gauge", data = [Dict("value" => x)])])
