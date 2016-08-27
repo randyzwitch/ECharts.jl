@@ -12,6 +12,7 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 names::AbstractVector
 values::AbstractArray
 max::AbstractVector
+varargs...
 {% endhighlight %}
 
 ## Single Series

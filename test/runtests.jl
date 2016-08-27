@@ -7,6 +7,7 @@ end
 
 # Because tests rendered by JavaScript, tests somewhat incomplete in testing only valid return type
 # No indication that chart is one actually intended :(
+# Todo: add varargs tests
 println("Test 1: Area Chart")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
@@ -76,3 +77,5 @@ ectest(radarchart(names, values, max))
 
 values2 = 0.7 .* values
 ectest(radarchart(names, hcat(values, values2), max))
+
+#println("Test 11: xAxis!/yAxis!")

@@ -14,7 +14,7 @@ show::Bool = true
 restore::Bool = true
 dataView::Bool = true
 saveAsImage::Bool = true
-chartTypes::AbstractVector = [ ]
+chartTypes::AbstractVector = []
 {% endhighlight %}
 
 ### Examples

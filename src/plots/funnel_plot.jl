@@ -1,9 +1,18 @@
-function funnel(names::AbstractVector, values::AbstractVector)
+function funnel(names::AbstractVector, values::AbstractVector; kwargs...)
 
     ec = deepcopy(EChart())
     ec.series = [Series(_type = "funnel",
                         data =  dataformat(value = values, name = names)
                        )
                 ]
-    ec
+
+    #Process keyword args after defined functionality
+    if length(kwargs) > 0
+        for (k, v) in kwargs
+           setfield!(ec, k, v)
+       end
+    end
+
+    return ec
+    
 end

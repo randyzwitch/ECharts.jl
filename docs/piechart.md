@@ -11,10 +11,11 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 {% highlight julia %}
 names::AbstractVector
 values::AbstractVector
-selected::AbstractVector = [ ]
+selected::AbstractVector = []
 radius::Union{AbstractVector, AbstractString, Void} = "90%",
 center::Union{AbstractVector, AbstractString, Void} = ["50%", "50%"]
 roseType::Union{AbstractString, Void} = nothing
+varargs...
 {% endhighlight %}
 
 ## Pie Chart

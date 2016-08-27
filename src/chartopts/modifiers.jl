@@ -1,7 +1,7 @@
 function title!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.title.(k) = v
+	   setfield!(ec.title, k, v)
 	end
 
 	return ec
@@ -11,7 +11,7 @@ end
 function yAxis!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.yAxis[1].(k) = v
+	   setfield!(ec.yAxis[1], k, v)
 	end
 
 	return ec
@@ -21,7 +21,7 @@ end
 function xAxis!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   ec.xAxis[1].(k) = v
+	   setfield!(ec.xAxis[1], k, v)
 	end
 
 	return ec
