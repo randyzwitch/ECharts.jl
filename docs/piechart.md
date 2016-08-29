@@ -15,7 +15,7 @@ selected::AbstractVector = []
 radius::Union{AbstractVector, AbstractString, Void} = "90%",
 center::Union{AbstractVector, AbstractString, Void} = ["50%", "50%"]
 roseType::Union{AbstractString, Void} = nothing
-varargs...
+kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
 ## Pie Chart

@@ -48,10 +48,11 @@
 
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span>
 <span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">selected</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+<span class="n">selected</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">radius</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractVector</span><span class="p">,</span> <span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="s">&quot;90%&quot;</span><span class="p">,</span>
 <span class="n">center</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractVector</span><span class="p">,</span> <span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;50%&quot;</span><span class="p">,</span> <span class="s">&quot;50%&quot;</span><span class="p">]</span>
-<span class="n">roseType</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span></code></pre></div>
+<span class="n">roseType</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
 
 <h2 id="pie-chart">Pie Chart</h2>
 

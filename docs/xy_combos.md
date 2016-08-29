@@ -16,7 +16,7 @@ you can either specify `lineplot` or `barplot`, then set the appropriate mark op
 x::AbstractVector
 y::AbstractArray
 mark::Union{String, AbstractVector} = "bar"
-varargs...
+kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
 ## Bar Chart, Multiple Series

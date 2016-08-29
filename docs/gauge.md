@@ -10,7 +10,7 @@ title: ECharts.jl - A Julia package for generating visualizations using ECharts
 ### Function Keywords
 {% highlight julia %}
 x::Number
-varargs...
+kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
 ## Single Series

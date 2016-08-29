@@ -52,13 +52,17 @@ function scatterplot(x::AbstractVector, y::AbstractArray; mark::Union{String, Ab
 
 end
 
-function areaplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", kwargs...)
+function areaplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", fill::Union{Bool, AbstractVector} = true, kwargs...)
 
 	ec = xy_plot(x, y; mark = mark, kwargs...)
 	ec.xAxis[1].boundaryGap = false
 
-	for i in 1:length(ec.series)
-		ec.series[i].areaStyle = Dict("normal" => Dict())
+	# Fill area if requested
+	ndims(y) == 1? cols = 1: cols = size(y)[2]
+	typeof(fill) == Bool? fill = [fill for i in 1:cols]: fill = fill
+
+	for i in 1:cols
+		fill[i]? ec.series[i].areaStyle = ItemStyle(normal = AreaStyle()): nothing
 	end
 
 	return ec

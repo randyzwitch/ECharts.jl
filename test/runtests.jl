@@ -7,7 +7,7 @@ end
 
 # Because tests rendered by JavaScript, tests somewhat incomplete in testing only valid return type
 # No indication that chart is one actually intended :(
-# Todo: add varargs tests
+# Todo: add varargs, xyAxis tests
 println("Test 1: Area Chart")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
@@ -18,6 +18,7 @@ println("Test 2: Bar Chart")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(barplot(x, y))
+ectest(barplot(x, y, color = ["green"]))
 ectest(barplot(x, hcat(0.95 .* y, 1.25 .* y,y)))
 
 println("Test 3: Gauge")
@@ -77,5 +78,6 @@ ectest(radarchart(names, values, max))
 
 values2 = 0.7 .* values
 ectest(radarchart(names, hcat(values, values2), max))
+ectest(radarchart(names, hcat(values, values2), max, fill = [false, true]))
 
 #println("Test 11: xAxis!/yAxis!")

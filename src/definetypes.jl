@@ -11,7 +11,7 @@ abstract AbstractEChartType
     opacity::Union{Int,Void} = nothing
 end
 @with_kw type AreaStyle <: AbstractEChartType
-    color::Union{AbstractVector,Void} = String["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]
+    color::Union{AbstractVector,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = 0
@@ -75,8 +75,8 @@ end
     opacity::Union{Int,Void} = nothing
 end
 @with_kw type ItemStyle <: AbstractEChartType
-    normal::Union{ItemStyleOpts,Void} = nothing
-    emphasis::Union{ItemStyleOpts,Void} = nothing
+    normal::Any = nothing
+    emphasis::Any = nothing
 end
 @with_kw type IconStyleOpts <: AbstractEChartType
     color::Union{String,Void} = "adaptive"
@@ -435,7 +435,7 @@ end
     name::Union{String,Void} = nothing
     _type::Union{String,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
-    areaStyle::Union{Dict,Void} = nothing
+    areaStyle::Union{ItemStyle,Void} = nothing
     smooth::Union{Bool,Void} = false
     radius::Union{AbstractVector,String,Void} = nothing
     center::Union{AbstractVector,String,Void} = nothing
@@ -475,14 +475,14 @@ end
     parallelAxis::Union{ParallelAxis,Void} = nothing
     timeline::Union{Timeline,Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
-    color::Union{AbstractVector,Void} = nothing                 #
-    backgroundColor::Union{String,Void} = nothing               #
+    color::Union{AbstractVector,Void} = nothing
+    backgroundColor::Union{String,Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
-    animation::Union{Bool,Void} = nothing                       #
-    animationDuration::Union{Int,Void} = nothing              #
-    animationEasing::Union{String,Void} = nothing               #
-    animationDelay::Union{Int,Void} = nothing                 #
-    animationDurationUpdate::Union{Int,Void} = nothing        #
-    animationEasingUpdate::Union{String,Void} = nothing         #
-    animationDelayUpdate::Union{Int,Void} = nothing           #
+    animation::Union{Bool,Void} = nothing
+    animationDuration::Union{Int,Void} = nothing
+    animationEasing::Union{String,Void} = nothing
+    animationDelay::Union{Int,Void} = nothing
+    animationDurationUpdate::Union{Int,Void} = nothing
+    animationEasingUpdate::Union{String,Void} = nothing
+    animationDelayUpdate::Union{Int,Void} = nothing
 end
