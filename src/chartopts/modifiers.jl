@@ -57,3 +57,19 @@ function toolbox!(ec::EChart; 	show::Bool = true,
 	return ec
 
 end
+
+#Use ColorBrewer.jl scales
+function colorscheme!(ec::EChart; palette::Union{Tuple{AbstractString,Any}, AbstractString, Array, Void} = nothing, reversePalette::Bool = false)
+
+    #colorscheme, single color or array of arbitrary string colors
+    if isa(palette, Tuple)
+        reversePalette == true? ec.color = reverse(colorpalettes[palette[1]]["$(palette[2])"]) : ec.color  = colorpalettes[palette[1]]["$(palette[2])"]
+    elseif isa(palette, AbstractString)
+        ec.color = [palette]
+    elseif isa(palette, Array)
+        reversePalette == true? ec.color  = reverse(collect(palette)) : ec.color  = collect(palette)
+    end
+
+    return ec
+
+end

@@ -2,7 +2,7 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters
+	using JSON, Parameters, NoveltyColors, ColorBrewer
 
 	export print
 
@@ -15,7 +15,10 @@ module ECharts
 	export lineplot, barplot, areaplot, scatterplot
 	export piechart, donutchart, radarchart
 	export funnel, gauge
-	export title!, yAxis!, xAxis!, toolbox!
+	export title!, yAxis!, xAxis!, toolbox!, colorscheme!
+
+	#Create base color library
+	colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
