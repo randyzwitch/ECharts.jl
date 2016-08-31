@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ECharts.jl</title>
+    <title>ECharts.jl | title!</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -22,14 +22,15 @@
 
         <h3>Charts</h3>
         <ul>
-            <li><a href = "areaplot.html">Area Plot</a></li>
-            <li><a href = "barplot.html">Bar Plot</a></li>
-            <li><a href = "funnel.html">Funnel</a></li>
-            <li><a href = "gauge.html">Gauge</a></li>
-            <li><a href = "lineplot.html">Line Plot</a></li>
-            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
-            <li><a href = "radar.html">Radar Chart</a></li>
-            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
             <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
@@ -58,7 +59,7 @@
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">20</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">.+</span> <span class="mi">5</span><span class="n">x</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">barplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">title</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Bar Plot Title&quot;</span><span class="p">,</span> <span class="n">subtext</span> <span class="o">=</span> <span class="s">&quot;Secondary Title&quot;</span><span class="p">)</span></code></pre></div>
 
 <div id="title_ex" style="height:400px;width:800px;"></div>

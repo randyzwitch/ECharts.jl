@@ -12,13 +12,13 @@ module ECharts
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 
-	export lineplot, barplot, areaplot, scatterplot
-	export piechart, donutchart, radarchart
-	export funnel, gauge
+	export line, bar, area, scatter
+	export pie, donut, radar
+	export funnel, gauge, polar
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!
 
 	#Create base color library
-	colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
+	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
@@ -48,7 +48,7 @@ module ECharts
 	tojs(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words
-	# Check for this, strip off before creating js
+	# Check for this, strip off _ before creating js
 	function tojs(x::AbstractEChartType)
 	    res = Dict()
 

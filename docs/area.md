@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: area
 
 ---
 ## Area Plot
@@ -19,7 +19,7 @@ kwargs...(modifies top-level `EChart` fields)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-areaplot(x, y)
+area(x, y)
 {% endhighlight %}
 
 
@@ -38,7 +38,7 @@ using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 y2 = 3.7 .* y
-areaplot(x, hcat(y, y2))
+area(x, hcat(y, y2))
 {% endhighlight %}
 
 <div id="areaplot2" style="height:400px;width:800px;"></div>

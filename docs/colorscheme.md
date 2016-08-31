@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: colorscheme!
 
 ---
 
@@ -21,7 +21,7 @@ names = ["sales", "administration", "information technology", "customer support"
 max = [6500, 16000, 30000, 38000, 52000, 25000]
 values = [4300, 10000, 28000, 35000, 50000, 19000]
 values2 = 0.7 .* values
-r = radarchart(names, hcat(values, values2), max, fill = [false, true])
+r = radar(names, hcat(values, values2), max, fill = [false, true])
 colorscheme!(r, palette = ("acw", "JapaneseGarden"))
 {% endhighlight %}
 

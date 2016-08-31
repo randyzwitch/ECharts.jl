@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: Julia bindings for ECharts 3
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: scatter
 
 ---
 
@@ -17,7 +17,7 @@ kwargs...(modifies top-level `EChart` fields)
 ## Single Series
 {% highlight julia %}
 using ECharts
-scatterplot(1:30, rand(30))
+scatter(1:30, rand(30))
 {% endhighlight %}
 
 <div id="scatter" style="height:400px;width:800px;"></div>
@@ -32,7 +32,7 @@ scatterplot(1:30, rand(30))
 ## Multiple Series
 {% highlight julia %}
 using ECharts
-scatterplot(1:30, hcat(rand(30), rand(30)))
+scatter(1:30, hcat(rand(30), rand(30)))
 {% endhighlight %}
 
 <div id="scatter2" style="height:400px;width:800px;"></div>

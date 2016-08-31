@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ECharts.jl</title>
+    <title>ECharts.jl | radar</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -22,14 +22,15 @@
 
         <h3>Charts</h3>
         <ul>
-            <li><a href = "areaplot.html">Area Plot</a></li>
-            <li><a href = "barplot.html">Bar Plot</a></li>
-            <li><a href = "funnel.html">Funnel</a></li>
-            <li><a href = "gauge.html">Gauge</a></li>
-            <li><a href = "lineplot.html">Line Plot</a></li>
-            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
-            <li><a href = "radar.html">Radar Chart</a></li>
-            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
             <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
@@ -59,7 +60,7 @@
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sales&quot;</span><span class="p">,</span> <span class="s">&quot;administration&quot;</span><span class="p">,</span> <span class="s">&quot;information technology&quot;</span><span class="p">,</span> <span class="s">&quot;customer support&quot;</span><span class="p">,</span> <span class="s">&quot;development&quot;</span><span class="p">,</span> <span class="s">&quot;marketing&quot;</span><span class="p">]</span>
 <span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6500</span><span class="p">,</span> <span class="mi">16000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">38000</span><span class="p">,</span> <span class="mi">52000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4300</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">28000</span><span class="p">,</span> <span class="mi">35000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">19000</span><span class="p">]</span>
-<span class="n">radarchart</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
+<span class="n">radar</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
 
 <div id="radarp" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -77,7 +78,7 @@
 <span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6500</span><span class="p">,</span> <span class="mi">16000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">38000</span><span class="p">,</span> <span class="mi">52000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4300</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">28000</span><span class="p">,</span> <span class="mi">35000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">19000</span><span class="p">]</span>
 <span class="n">values2</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">.*</span> <span class="n">values</span>
-<span class="n">radarchart</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">),</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
+<span class="n">radar</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">),</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
 
 <div id="radar2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -95,7 +96,7 @@
 <span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6500</span><span class="p">,</span> <span class="mi">16000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">38000</span><span class="p">,</span> <span class="mi">52000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4300</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">28000</span><span class="p">,</span> <span class="mi">35000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">19000</span><span class="p">]</span>
 <span class="n">values2</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">.*</span> <span class="n">values</span>
-<span class="n">radarchart</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">),</span> <span class="n">max</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="p">[</span><span class="n">false</span><span class="p">,</span> <span class="n">true</span><span class="p">])</span></code></pre></div>
+<span class="n">radar</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">),</span> <span class="n">max</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="p">[</span><span class="n">false</span><span class="p">,</span> <span class="n">true</span><span class="p">])</span></code></pre></div>
 
 <div id="radar3" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

@@ -1,15 +1,15 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: XY Combination Plots
 
 ---
 
 ## XY Combination Plots
-The functions `areaplot`, `barplot`, `lineplot` and `scatterplot` are convenience wrappers
+The functions `area`, `bar`, `line` and `scatter` are convenience wrappers
 around a generic `xy_plot` function (not currently exported). Each function takes an additional keyword
 argument `mark` which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
-you can either specify `lineplot` or `barplot`, then set the appropriate mark option to get the desired output.
+you can either specify `line`, `bar`, etc., then set the appropriate mark option to get the desired output.
 
 ### Function Keywords
 {% highlight julia %}
@@ -24,7 +24,7 @@ kwargs...(modifies top-level `EChart` fields)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-barplot(x, hcat(0.95 .* y, 1.25 .* y, y))
+bar(x, hcat(0.95 .* y, 1.25 .* y, y))
 {% endhighlight %}
 
 <div id="barchartm" style="height:400px;width:800px;"></div>
@@ -41,7 +41,7 @@ barplot(x, hcat(0.95 .* y, 1.25 .* y, y))
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-barplot(x, hcat(0.95 .* y, 1.25 .* y, y), mark = ["line", "line", "bar"])
+bar(x, hcat(0.95 .* y, 1.25 .* y, y), mark = ["line", "line", "bar"])
 {% endhighlight %}
 
 <div id="barchartm2" style="height:400px;width:800px;"></div>

@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: pie
 
 ---
 
@@ -23,7 +23,7 @@ kwargs...(modifies top-level `EChart` fields)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-piechart(x, y)
+pie(x, y)
 {% endhighlight %}
 
 <div id="pie" style="height:400px;width:800px;"></div>
@@ -42,7 +42,7 @@ using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
 explode = [true, false, false, false, false]
-piechart(x, y, selected = explode)
+pie(x, y, selected = explode)
 {% endhighlight %}
 
 <div id="piex" style="height:400px;width:800px;"></div>
@@ -60,7 +60,7 @@ piechart(x, y, selected = explode)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-donutchart(x, y)
+donut(x, y)
 {% endhighlight %}
 
 <div id="donut" style="height:400px;width:800px;"></div>
@@ -78,7 +78,7 @@ donutchart(x, y)
 using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
-piechart(x, y, roseType = "angle")
+pie(x, y, roseType = "angle")
 {% endhighlight %}
 
 <div id="roseangle" style="height:400px;width:800px;"></div>
@@ -96,7 +96,7 @@ piechart(x, y, roseType = "angle")
 using ECharts
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
-donutchart(x, y, roseType = "radius")
+donut(x, y, roseType = "radius")
 {% endhighlight %}
 
 <div id="roseradius" style="height:400px;width:800px;"></div>

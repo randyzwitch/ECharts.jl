@@ -432,6 +432,7 @@ end
     data::Union{Dict,Void} = nothing
 end
 @with_kw type Series <: AbstractEChartType
+    coordinateSystem::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
     _type::Union{String,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
@@ -455,6 +456,7 @@ end
     label::Union{Label,Void} = nothing
     labelLine::Union{Dict,Void} = nothing
     itemStyle::Union{ItemStyle,Void} = nothing
+    showSymbol::Union{Bool,Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     title::Union{Title,Void} = Title()

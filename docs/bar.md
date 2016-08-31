@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: bar
 
 ---
 
@@ -19,7 +19,7 @@ kwargs...(modifies top-level `EChart` fields)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-barplot(x, y)
+bar(x, y)
 {% endhighlight %}
 
 <div id="barplot" style="height:400px;width:800px;"></div>
@@ -36,7 +36,7 @@ barplot(x, y)
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-barplot(x, y, color = ["green"])
+bar(x, y, color = ["green"])
 {% endhighlight %}
 
 <div id="barplotc" style="height:400px;width:800px;"></div>
@@ -53,7 +53,7 @@ barplot(x, y, color = ["green"])
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-barplot(x, hcat(y,y,y))
+bar(x, hcat(y,y,y))
 {% endhighlight %}
 
 <div id="barplot2" style="height:400px;width:800px;"></div>

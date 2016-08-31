@@ -1,7 +1,7 @@
 ---
 
 layout: minimal
-title: ECharts.jl - A Julia package for generating visualizations using ECharts
+title: title!
 
 ---
 
@@ -21,7 +21,7 @@ y::Int
 using ECharts
 x = 1:20
 y = 3 .+ 5x
-a = barplot(x = x, y = y)
+a = bar(x = x, y = y)
 title!(a, text = "Bar Plot Title", subtext = "Secondary Title")
 {% endhighlight %}
 

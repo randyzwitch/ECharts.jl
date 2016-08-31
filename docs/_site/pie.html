@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ECharts.jl</title>
+    <title>ECharts.jl | pie</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -22,14 +22,15 @@
 
         <h3>Charts</h3>
         <ul>
-            <li><a href = "areaplot.html">Area Plot</a></li>
-            <li><a href = "barplot.html">Bar Plot</a></li>
-            <li><a href = "funnel.html">Funnel</a></li>
-            <li><a href = "gauge.html">Gauge</a></li>
-            <li><a href = "lineplot.html">Line Plot</a></li>
-            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
-            <li><a href = "radar.html">Radar Chart</a></li>
-            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
             <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
@@ -60,7 +61,7 @@
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="n">piechart</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
+<span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
 
 <div id="pie" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -77,7 +78,7 @@
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">335</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">1548</span><span class="p">]</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;direct interview&quot;</span><span class="p">,</span> <span class="s">&quot;email marketing&quot;</span><span class="p">,</span> <span class="s">&quot;advertising alliance&quot;</span><span class="p">,</span> <span class="s">&quot;video ads&quot;</span><span class="p">,</span> <span class="s">&quot;search engine&quot;</span><span class="p">]</span>
 <span class="n">explode</span> <span class="o">=</span> <span class="p">[</span><span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">]</span>
-<span class="n">piechart</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">selected</span> <span class="o">=</span> <span class="n">explode</span><span class="p">)</span></code></pre></div>
+<span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">selected</span> <span class="o">=</span> <span class="n">explode</span><span class="p">)</span></code></pre></div>
 
 <div id="piex" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -93,7 +94,7 @@
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="n">donutchart</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
+<span class="n">donut</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
 
 <div id="donut" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -109,7 +110,7 @@
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">335</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">1548</span><span class="p">]</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;direct interview&quot;</span><span class="p">,</span> <span class="s">&quot;email marketing&quot;</span><span class="p">,</span> <span class="s">&quot;advertising alliance&quot;</span><span class="p">,</span> <span class="s">&quot;video ads&quot;</span><span class="p">,</span> <span class="s">&quot;search engine&quot;</span><span class="p">]</span>
-<span class="n">piechart</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">&quot;angle&quot;</span><span class="p">)</span></code></pre></div>
+<span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">&quot;angle&quot;</span><span class="p">)</span></code></pre></div>
 
 <div id="roseangle" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -125,7 +126,7 @@
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">335</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">1548</span><span class="p">]</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;direct interview&quot;</span><span class="p">,</span> <span class="s">&quot;email marketing&quot;</span><span class="p">,</span> <span class="s">&quot;advertising alliance&quot;</span><span class="p">,</span> <span class="s">&quot;video ads&quot;</span><span class="p">,</span> <span class="s">&quot;search engine&quot;</span><span class="p">]</span>
-<span class="n">donutchart</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">&quot;radius&quot;</span><span class="p">)</span></code></pre></div>
+<span class="n">donut</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">&quot;radius&quot;</span><span class="p">)</span></code></pre></div>
 
 <div id="roseradius" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

@@ -1,4 +1,4 @@
-function radarchart(names::AbstractVector, values::AbstractVector, max::AbstractVector = [];
+function radar(names::AbstractVector, values::AbstractVector, max::AbstractVector = [];
 	 				fill::Bool = false,
 					kwargs...)
 
@@ -26,12 +26,12 @@ function radarchart(names::AbstractVector, values::AbstractVector, max::Abstract
 
 end
 
-function radarchart(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
+function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
 	 				fill::Union{Bool, AbstractVector} = false,
 					kwargs...)
 
 	# Call 1-D method to build base
-	ec = radarchart(names, values[:,1], max; kwargs...)
+	ec = radar(names, values[:,1], max; kwargs...)
 
 	# Append remaining Y data
 	for i in 2:size(values)[2]

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ECharts.jl</title>
+    <title>ECharts.jl | XY Combination Plots</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -22,14 +22,15 @@
 
         <h3>Charts</h3>
         <ul>
-            <li><a href = "areaplot.html">Area Plot</a></li>
-            <li><a href = "barplot.html">Bar Plot</a></li>
-            <li><a href = "funnel.html">Funnel</a></li>
-            <li><a href = "gauge.html">Gauge</a></li>
-            <li><a href = "lineplot.html">Line Plot</a></li>
-            <li><a href = "piechart.html">Pie/Donut/Rose Chart</a></li>
-            <li><a href = "radar.html">Radar Chart</a></li>
-            <li><a href = "scatterplot.html">Scatter Plot</a></li>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
             <li><a href = "xy_combos.html">XY Combination Plots</a></li>
         </ul>
         <h3>Functions</h3>
@@ -44,10 +45,10 @@
 
       <section>
           <h2 id="xy-combination-plots">XY Combination Plots</h2>
-<p>The functions <code>areaplot</code>, <code>barplot</code>, <code>lineplot</code> and <code>scatterplot</code> are convenience wrappers
+<p>The functions <code>area</code>, <code>bar</code>, <code>line</code> and <code>scatter</code> are convenience wrappers
 around a generic <code>xy_plot</code> function (not currently exported). Each function takes an additional keyword
 argument <code>mark</code> which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
-you can either specify <code>lineplot</code> or <code>barplot</code>, then set the appropriate mark option to get the desired output.</p>
+you can either specify <code>line</code>, <code>bar</code>, etc., then set the appropriate mark option to get the desired output.</p>
 
 <h3 id="function-keywords">Function Keywords</h3>
 
@@ -61,7 +62,7 @@ you can either specify <code>lineplot</code> or <code>barplot</code>, then set t
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span></code></pre></div>
+<span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span></code></pre></div>
 
 <div id="barchartm" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -77,7 +78,7 @@ you can either specify <code>lineplot</code> or <code>barplot</code>, then set t
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">mark</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;line&quot;</span><span class="p">,</span> <span class="s">&quot;line&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">])</span></code></pre></div>
+<span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">mark</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;line&quot;</span><span class="p">,</span> <span class="s">&quot;line&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">])</span></code></pre></div>
 
 <div id="barchartm2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

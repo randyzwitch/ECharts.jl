@@ -39,10 +39,10 @@ function xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, Abstra
 
 end
 
-lineplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
-barplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
+line(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
+bar(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
 
-function scatterplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "scatter", kwargs...)
+function scatter(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "scatter", kwargs...)
 
 	#need to sort x array for some reason, echarts doesn't seem to do floats right
 	d = sortrows(hcat(x,y))
@@ -52,7 +52,7 @@ function scatterplot(x::AbstractVector, y::AbstractArray; mark::Union{String, Ab
 
 end
 
-function areaplot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", fill::Union{Bool, AbstractVector} = true, kwargs...)
+function area(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", fill::Union{Bool, AbstractVector} = true, kwargs...)
 
 	ec = xy_plot(x, y; mark = mark, kwargs...)
 	ec.xAxis[1].boundaryGap = false
