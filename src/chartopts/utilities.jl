@@ -19,3 +19,18 @@ function dataformat(; kwargs...)
 
     return datafmt
 end
+
+function boxplotstat{T <: Real}(data::Vector{T})
+
+    #Calculate stats
+    ss = summarystats(data)
+    iqr15 = 1.5 * (ss.q75 - ss.q25)
+    upperbound = ss.q75 + iqr15
+    lowerbound = ss.q25 - iqr15
+
+    #Calculate outliers for scatterplot
+    outliers = filter(x -> (x >= upperbound) || (x <= lowerbound), data)
+
+    return [[lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers]
+
+end

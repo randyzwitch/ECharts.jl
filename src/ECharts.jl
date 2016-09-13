@@ -2,7 +2,7 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
 
 	export print
 
@@ -15,6 +15,7 @@ module ECharts
 	export line, bar, area, scatter
 	export pie, donut, radar
 	export funnel, gauge, polar
+	export box
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!
 
 	#Create base color library
@@ -33,6 +34,7 @@ module ECharts
 	include("plots/circular_plot.jl")
 	include("plots/funnel_plot.jl")
 	include("plots/radar_plot.jl")
+	include("plots/boxplot.jl")
 
 	# From JMW originally
 	tojs(s::Symbol) = string(s)
