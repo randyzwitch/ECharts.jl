@@ -11,6 +11,7 @@ title: box
 {% highlight julia %}
 data::Vector{Vector}
 names::Union{AbstractVector, Void} = nothing
+kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
 ## Multiple Series

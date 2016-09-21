@@ -1,5 +1,6 @@
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing, #No op
 			kwargs...)
 
 	#Validate arrays are same length
@@ -20,6 +21,7 @@ end
 
 function xy_plot(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing,
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
@@ -31,6 +33,11 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	# Append remaining Y data
 	for i in 2:size(y)[2]
 		push!(ec.series, Series(_type = mark[i], data = y[:,i]))
+	end
+
+	#stack
+	if stack != nothing
+		stack == true? [x.stack = 1 for x in ec.series]: [x.stack = stack[i] for (i,x) in enumerate(ec.series)]
 	end
 
 	return ec
@@ -47,9 +54,10 @@ end
 
 function bar(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing,
 			kwargs...)
 
-	 return xy_plot(x, y; mark = mark, kwargs...)
+	 return xy_plot(x, y; mark = mark, stack = stack, kwargs...)
 
 end
 
@@ -68,9 +76,10 @@ end
 function area(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
+			stack::Union{Bool, AbstractVector, Void} = nothing,
 			kwargs...)
 
-	ec = xy_plot(x, y; mark = mark, kwargs...)
+	ec = xy_plot(x, y; stack = stack, mark = mark, kwargs...)
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested
