@@ -7,13 +7,11 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 		error("Arrays names and values need to have the same length.")
 	end
 
-	ec = deepcopy(EChart())
+	ec = newplot(kwargs)
+
 	ec.radar = Radar(indicator = dataformat(name = names, max = max))
 
 	ec.series = [Series(_type = "radar", data = [Dict{Any, Any}("value" => values)])]
-
-	#Process keyword args after defined functionality
-	kwargs!(ec, kwargs)
 
 	# Fill area if requested
 	fill!(ec, 1, fill)

@@ -1,3 +1,15 @@
+function newplot{T}(kwargs::Vector{T})
+
+    #Create new chart
+    ec = deepcopy(EChart())
+
+    #Process keyword args after defined functionality
+	kwargs!(ec, kwargs)
+
+    return ec
+
+end
+
 function dataformat(; kwargs...)
 
     #Determine number of values in array, check that all are equal length

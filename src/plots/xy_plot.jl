@@ -1,34 +1,26 @@
-"""
-    xy_plot(x::AbstractVector, y::AbstractVector; mark::String = "bar", kwargs...)
-
-Single X and Y Series. Used as internal function template for XY Plots.
-"""
-function xy_plot(x::AbstractVector, y::AbstractVector; mark::String = "bar", kwargs...)
+function xy_plot(x::AbstractVector, y::AbstractVector;
+			mark::String = "bar",
+			kwargs...)
 
 	#Validate arrays are same length
 	if size(x)[1] != size(y)[1]
 		error("Arrays X and Y need to have the same length.")
 	end
 
+    ec = newplot(kwargs)
+
 	#General visualization defaults
-	ec = deepcopy(EChart())
 	ec.xAxis = [Axis(_type = "category", data = x)]
 	ec.yAxis = [Axis(_type = "value")]
 	ec.series = [Series(_type = mark, data = y)]
-
-	#Process keyword args after defined functionality
-	kwargs!(ec, kwargs)
 
 	return ec
 
 end
 
-"""
-	xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...)
-
-Single X and multiple Y series. Used as internal function template for XY Plots.
-"""
-function xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...)
+function xy_plot(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "bar",
+			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
 	typeof(mark) <: AbstractVector? nothing : mark = [mark for i in 1:length(x)]
@@ -45,10 +37,25 @@ function xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, Abstra
 
 end
 
-line(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
-bar(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...) = xy_plot(x, y; mark = mark, kwargs...)
+function line(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "line",
+			kwargs...)
 
-function scatter(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "scatter", kwargs...)
+	return xy_plot(x, y; mark = mark, kwargs...)
+
+end
+
+function bar(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "bar",
+			kwargs...)
+
+	 return xy_plot(x, y; mark = mark, kwargs...)
+
+end
+
+function scatter(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "scatter",
+			kwargs...)
 
 	#need to sort x array for some reason, echarts doesn't seem to do floats right
 	d = sortrows(hcat(x,y))
@@ -58,7 +65,10 @@ function scatter(x::AbstractVector, y::AbstractArray; mark::Union{String, Abstra
 
 end
 
-function area(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "line", fill::Union{Bool, AbstractVector} = true, kwargs...)
+function area(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "line",
+			fill::Union{Bool, AbstractVector} = true,
+			kwargs...)
 
 	ec = xy_plot(x, y; mark = mark, kwargs...)
 	ec.xAxis[1].boundaryGap = false
