@@ -29,3 +29,11 @@ function box{T <: Real}(data::Vector{Vector{T}};
     return ec
 
 end
+
+function box{T <: Real}(data::Vector{T};
+            names::Union{AbstractVector, Void} = nothing,
+            kwargs...)
+
+    return box([data], names = names, kwargs...)
+
+end
