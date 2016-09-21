@@ -1,3 +1,8 @@
+"""
+    xy_plot(x::AbstractVector, y::AbstractVector; mark::String = "bar", kwargs...)
+
+Single X and Y Series. Used as internal function template for XY Plots.
+"""
 function xy_plot(x::AbstractVector, y::AbstractVector; mark::String = "bar", kwargs...)
 
 	#Validate arrays are same length
@@ -12,16 +17,17 @@ function xy_plot(x::AbstractVector, y::AbstractVector; mark::String = "bar", kwa
 	ec.series = [Series(_type = mark, data = y)]
 
 	#Process keyword args after defined functionality
-	if length(kwargs) > 0
-		for (k, v) in kwargs
-		   setfield!(ec, k, v)
-	   end
- 	end
+	kwargs!(ec, kwargs)
 
 	return ec
 
 end
 
+"""
+	xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...)
+
+Single X and multiple Y series. Used as internal function template for XY Plots.
+"""
 function xy_plot(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractVector} = "bar", kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
@@ -59,11 +65,7 @@ function area(x::AbstractVector, y::AbstractArray; mark::Union{String, AbstractV
 
 	# Fill area if requested
 	ndims(y) == 1? cols = 1: cols = size(y)[2]
-	typeof(fill) == Bool? fill = [fill for i in 1:cols]: fill = fill
-
-	for i in 1:cols
-		fill[i]? ec.series[i].areaStyle = ItemStyle(normal = AreaStyle()): nothing
-	end
+	fill!(ec, cols, fill)
 
 	return ec
 

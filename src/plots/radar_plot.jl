@@ -13,14 +13,10 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 	ec.series = [Series(_type = "radar", data = [Dict{Any, Any}("value" => values)])]
 
 	#Process keyword args after defined functionality
-	if length(kwargs) > 0
-		for (k, v) in kwargs
-		   setfield!(ec, k, v)
-	   end
-	end
+	kwargs!(ec, kwargs)
 
 	# Fill area if requested
-	fill? ec.series[1].areaStyle = ItemStyle(normal = AreaStyle()): nothing
+	fill!(ec, 1, fill)
 
 	return ec
 
@@ -40,9 +36,8 @@ function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector
 
 	# Fill area if requested
 	typeof(fill) == Bool? fill = [fill for i in 1:size(values)[2]]: fill = fill
-	for i in 1:length(fill)
-		fill[i]? ec.series[i].areaStyle = ItemStyle(normal = AreaStyle()): nothing
-	end
+	cols = length(fill)
+	fill!(ec, cols, fill)
 
 	return ec
 

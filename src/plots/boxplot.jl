@@ -1,4 +1,4 @@
-function box{T <: Real}(data::Vector{Vector{T}}; names::Union{AbstractVector, Void} = nothing)
+function box{T <: Real}(data::Vector{Vector{T}}; names::Union{AbstractVector, Void} = nothing, kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
     length(names) != length(data) ? error("Number of series names must equal number of data series.") : nothing
@@ -21,6 +21,10 @@ function box{T <: Real}(data::Vector{Vector{T}}; names::Union{AbstractVector, Vo
     ec.yAxis = [Axis(_type = "value")]
     ec.series = [Series(name = "boxplot", _type = "boxplot", data = seriesdata)]
     push!(ec.series, Series(name = "outliers", _type = "scatter", data = outliers))
+
+    #Process keyword args after defined functionality
+    kwargs!(ec, kwargs)
+
     return ec
 
 end

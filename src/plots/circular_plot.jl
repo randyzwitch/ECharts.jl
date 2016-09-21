@@ -14,11 +14,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
     ec.series = [Series(_type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 
     #Process keyword args after defined functionality
-    if length(kwargs) > 0
-        for (k, v) in kwargs
-           setfield!(ec, k, v)
-       end
-    end
+	kwargs!(ec, kwargs)
 
     return ec
 
@@ -47,11 +43,7 @@ function gauge(x::Number; kwargs...)
     ec.series = [Series(_type = "gauge", data = [Dict("value" => x)])]
 
     #Process keyword args after defined functionality
-    if length(kwargs) > 0
-        for (k, v) in kwargs
-           setfield!(ec, k, v)
-       end
-    end
+	kwargs!(ec, kwargs)
 
     return ec
 
@@ -66,11 +58,7 @@ function polar(angle::AbstractVector, radius::AbstractVector; splitNumber::Int =
     ec.series = [Series(coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = [[r,a] for (r,a) in zip(radius, angle)])]
 
     #Process keyword args after defined functionality
-    if length(kwargs) > 0
-        for (k, v) in kwargs
-           setfield!(ec, k, v)
-       end
-    end
+	kwargs!(ec, kwargs)
 
     return ec
 

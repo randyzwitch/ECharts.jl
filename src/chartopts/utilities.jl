@@ -20,6 +20,26 @@ function dataformat(; kwargs...)
     return datafmt
 end
 
+function kwargs!{T}(ec::EChart, kwargs::Vector{T})
+
+	if length(kwargs) > 0
+		for (k, v) in kwargs
+		   setfield!(ec, k, v)
+	   end
+	end
+
+end
+
+function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
+
+    typeof(fill) == Bool? fill = [fill for i in 1:cols]: fill = fill
+
+    for i in 1:cols
+        fill[i]? ec.series[i].areaStyle = ItemStyle(normal = AreaStyle()): nothing
+    end
+
+end
+
 function boxplotstat{T <: Real}(data::Vector{T})
 
     #Calculate stats
