@@ -53,6 +53,7 @@
 <span class="n">y</span><span class="p">::</span><span class="n">AbstractArray</span>
 <span class="n">fill</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">AbstractVector</span><span class="p">}</span> <span class="o">=</span> <span class="n">true</span>
 <span class="n">stack</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">AbstractVector</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">step</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">String</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span> <span class="c">#{&quot;start&quot;, &quot;middle&quot;, &quot;end&quot;}</span>
 <span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
@@ -103,6 +104,23 @@
 
     // Load data into the ECharts instance
     myChart.setOption({"xAxis":[{"splitNumber":5,"boundaryGap":false,"data":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"start","nameGap":15,"silent":true,"type":"category"}],"yAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"areaStyle":{"normal":{"shadowOffsetY":0,"shadowOffsetX":0}},"stack":1,"data":[11.0,11.0,15.0,13.0,12.0,13.0,10.0],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"},{"areaStyle":{"normal":{"shadowOffsetY":0,"shadowOffsetX":0}},"stack":1,"data":[7.699999999999999,7.699999999999999,10.5,9.1,8.399999999999999,9.1,7.0],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"}]});
+</script>
+
+<h2 id="multiple-series-stacked-step--middle">Multiple Series (Stacked, step = “middle”)</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">,</span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="s">&quot;Wednesday&quot;</span><span class="p">,</span><span class="s">&quot;Thursday&quot;</span><span class="p">,</span><span class="s">&quot;Friday&quot;</span><span class="p">,</span><span class="s">&quot;Saturday&quot;</span><span class="p">,</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="mf">3.7</span> <span class="o">.*</span> <span class="n">y</span>
+<span class="n">area</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hcat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">step</span> <span class="o">=</span> <span class="s">&quot;middle&quot;</span><span class="p">,</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">true</span><span class="p">)</span></code></pre></div>
+
+<div id="areaplot4" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("areaplot4"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"splitNumber":5,"boundaryGap":false,"data":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"start","nameGap":15,"silent":true,"type":"category"}],"yAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"step":"middle","areaStyle":{"normal":{"shadowOffsetY":0,"shadowOffsetX":0}},"stack":1,"data":[11.0,11.0,15.0,13.0,12.0,13.0,10.0],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"},{"step":"middle","areaStyle":{"normal":{"shadowOffsetY":0,"shadowOffsetX":0}},"stack":1,"data":[40.7,40.7,55.5,48.1,44.400000000000006,48.1,37.0],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"}]});
 </script>
 
 

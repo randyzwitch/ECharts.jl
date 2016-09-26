@@ -1,6 +1,7 @@
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing, #No op
+			step::Union{String, Void} = nothing,
 			kwargs...)
 
 	#Validate arrays are same length
@@ -13,7 +14,7 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 	#General visualization defaults
 	ec.xAxis = [Axis(_type = "category", data = x)]
 	ec.yAxis = [Axis(_type = "value")]
-	ec.series = [Series(_type = mark, data = y)]
+	ec.series = [Series(_type = mark, data = y, step = step)]
 
 	return ec
 
@@ -22,6 +23,7 @@ end
 function xy_plot(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
+			step::Union{String, Void} = nothing,
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
@@ -40,15 +42,19 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 		stack == true? [x.stack = 1 for x in ec.series]: [x.stack = stack[i] for (i,x) in enumerate(ec.series)]
 	end
 
+	#step
+	step != nothing ? [x.step = step for x in ec.series]: nothing
+
 	return ec
 
 end
 
 function line(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "line",
+			step::Union{String, Void} = nothing,
 			kwargs...)
 
-	return xy_plot(x, y; mark = mark, kwargs...)
+	return xy_plot(x, y; mark = mark, step = step, kwargs...)
 
 end
 
@@ -77,9 +83,10 @@ function area(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = nothing,
+			step::Union{String, Void} = nothing,
 			kwargs...)
 
-	ec = xy_plot(x, y; stack = stack, mark = mark, kwargs...)
+	ec = xy_plot(x, y; stack = stack, mark = mark, step = step, kwargs...)
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested

@@ -458,6 +458,7 @@ end
     itemStyle::Union{ItemStyle,Void} = nothing
     showSymbol::Union{Bool,Void} = nothing
     symbolSize::Union{Number, AbstractVector,Void} = nothing
+    step::Union{String,Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     title::Union{Title,Void} = Title()

@@ -18,6 +18,7 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 y2 = 3.7 .* y
 ectest(area(x, hcat(y, y2), stack = true))
+ectest(area(x, hcat(y, y2), step = "middle", stack = true))
 
 
 println("Test 2: Bar")
@@ -44,6 +45,7 @@ println("Test 4: Line")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(line(x, y))
+ectest(line(x, y, step = "end"))
 ectest(line(x, hcat(y, 0.6 .* y)))
 ectest(line(x, hcat(y, 0.6 .* y), mark = ["bar", "line"]))
 

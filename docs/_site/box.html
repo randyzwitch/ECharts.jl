@@ -49,9 +49,24 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">data</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">Vector</span><span class="p">}</span>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">data</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="n">Real</span><span class="p">}{</span><span class="n">Union</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">}}}</span>
 <span class="n">names</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractVector</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
+
+<h2 id="single-series">Single Series</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">850</span><span class="p">,</span> <span class="mi">740</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1070</span><span class="p">,</span> <span class="mi">930</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mi">950</span><span class="p">,</span> <span class="mi">980</span><span class="p">,</span> <span class="mi">980</span><span class="p">,</span> <span class="mi">880</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">980</span><span class="p">,</span> <span class="mi">930</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">760</span><span class="p">,</span> <span class="mi">810</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">960</span><span class="p">,</span> <span class="mi">960</span><span class="p">]</span>
+<span class="n">box</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code></pre></div>
+
+<div id="boxp" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("boxp"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"splitNumber":5,"boundaryGap":true,"data":["1"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"start","nameGap":15,"silent":true,"type":"category"}],"yAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"name":"boxplot","data":[[655.0,850.0,940.0,980.0,1175.0]],"smooth":false,"minSize":"0%","type":"boxplot","maxSize":"100%"},{"name":"outliers","data":[["1",650.0]],"smooth":false,"minSize":"0%","type":"scatter","maxSize":"100%"}]});
+</script>
 
 <h2 id="multiple-series">Multiple Series</h2>
 
@@ -66,10 +81,10 @@
 
 <span class="n">box</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code></pre></div>
 
-<div id="boxp" style="height:400px;width:800px;"></div>
+<div id="box2p" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("boxp"));
+    var myChart = echarts.init(document.getElementById("box2p"));
 
     // Load data into the ECharts instance
     myChart.setOption({"xAxis":[{"splitNumber":5,"boundaryGap":true,"data":["1","2","3","4","5"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"start","nameGap":15,"silent":true,"type":"category"}],"yAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"name":"boxplot","data":[[655.0,850.0,940.0,980.0,1175.0],[672.5,800.0,845.0,885.0,1012.5],[780.0,840.0,855.0,880.0,940.0],[621.25,767.5,815.0,865.0,1011.25],[713.75,807.5,810.0,870.0,963.75]],"smooth":false,"minSize":"0%","type":"boxplot","maxSize":"100%"},{"name":"outliers","data":[["1",650.0],["3",720.0],["3",720.0],["3",620.0],["3",970.0],["3",950.0]],"smooth":false,"minSize":"0%","type":"scatter","maxSize":"100%"}]});
