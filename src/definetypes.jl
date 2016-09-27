@@ -66,6 +66,7 @@ end
 end
 @with_kw type ItemStyleOpts <: AbstractEChartType
     color::Union{String,Void} = "adaptive"
+    barBorderColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = "#000"
     borderWidth::Union{Int,Void} = 0
     shadowBlur::Union{Int,Void} = nothing

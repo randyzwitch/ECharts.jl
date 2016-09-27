@@ -30,11 +30,15 @@ ectest(bar(x, hcat(0.95 .* y, 1.25 .* y, y)))
 
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-ectest(bar(x, hcat(0.95 .* y, 1.25 .* y,y), mark = "bar", color = ["red", "gray", "blue"], stack = true))
+ectest(bar(x, hcat(0.95 .* y, 1.25 .* y, y), mark = "bar", color = ["red", "gray", "blue"], stack = true))
 
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-ectest(bar(x, hcat(0.95 .* y, 1.25 .* y,y), mark = "bar", color = ["red", "gray", "blue"], stack = [1,1,2]))
+ectest(bar(x, hcat(0.95 .* y, 1.25 .* y, y), mark = "bar", color = ["red", "gray", "blue"], stack = [1,1,2]))
+
+x = 1:5
+y = [2900, -1200, -300, -200, -900]
+ectest(waterfall(x, y))
 
 
 println("Test 3: Gauge")

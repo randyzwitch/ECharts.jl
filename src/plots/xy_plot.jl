@@ -96,3 +96,27 @@ function area(x::AbstractVector, y::AbstractArray;
 	return ec
 
 end
+
+function waterfall(x::AbstractVector, y::AbstractVector; kwargs...)
+
+    #Need to add a value for total, since user passes in data values only
+    labels = [string(x) for x in x]
+    push!(labels, "total")
+
+    #Calculate transparent series as base for stacking
+    bottom = cumsum(y)
+    bottom[1] = 0
+    push!(bottom, 0)
+
+    #Calculate actual waterfall
+    top = abs.(y)
+    push!(top, sum(y))
+
+    #Make bottom series transparent
+    trans = ItemStyleOpts(barBorderColor = "transparent", color = "transparent")
+
+    ec = bar(labels, hcat(bottom, top), stack = true, kwargs...)
+    ec.series[1].itemStyle = ItemStyle(normal = trans, emphasis = trans )
+
+    return ec
+end

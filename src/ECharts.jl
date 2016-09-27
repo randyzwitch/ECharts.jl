@@ -12,7 +12,7 @@ module ECharts
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 
-	export line, bar, area, scatter
+	export line, bar, area, scatter, waterfall
 	export pie, donut, radar
 	export funnel, gauge, polar
 	export box

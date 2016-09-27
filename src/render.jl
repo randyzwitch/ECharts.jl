@@ -63,7 +63,8 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
                     <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
                     <!-- ECharts import -->
-                    <script>$(readstring(Pkg.dir("ECharts", "javascript", "echarts.min.js")))</script>
+                    <script>$(readstring(joinpath(dirname(@__FILE__), "..", "javascript", "echarts.min.js")))</script>
+
                     <script type=\"text/javascript\">
                         // Initialize after dom ready
                         var myChart = echarts.init(document.getElementById(\"$divid\"));
