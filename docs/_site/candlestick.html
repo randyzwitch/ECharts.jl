@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl | candlestick</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="http://randyzwitch.github.io/ECharts.jl/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "box.html">box</a></li>
+            <li><a href = "candlestick.html">candlestick</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
+            <li><a href = "waterfall.html">waterfall</a></li>
+            <li><a href = "xy_combos.html">xy combination plots</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="candlestick">Candlestick</h2>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">dt</span><span class="p">::</span><span class="n">AbstractVector</span><span class="p">{</span><span class="n">String</span><span class="p">}</span>
+<span class="n">open</span><span class="p">::</span><span class="n">AbstractVector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">close</span><span class="p">::</span><span class="n">AbstractVector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">low</span><span class="p">::</span><span class="n">AbstractVector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">high</span><span class="p">::</span><span class="n">AbstractVector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
+
+<h2 id="single-series">Single Series</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;2016/08/26&quot;</span><span class="p">,</span> <span class="s">&quot;2016/08/29&quot;</span><span class="p">,</span> <span class="s">&quot;2016/08/30&quot;</span><span class="p">,</span> <span class="s">&quot;2016/08/31&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/01&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/02&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/06&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/07&quot;</span><span class="p">,</span>
+<span class="s">&quot;2016/09/08&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/09&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/12&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/13&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/14&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/15&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/16&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/19&quot;</span><span class="p">,</span>
+<span class="s">&quot;2016/09/20&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/21&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/22&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/23&quot;</span><span class="p">,</span> <span class="s">&quot;2016/09/26&quot;</span><span class="p">]</span>
+
+<span class="n">close_</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.3800</span><span class="p">,</span> <span class="mf">12.4700</span><span class="p">,</span> <span class="mf">12.5500</span><span class="p">,</span> <span class="mf">12.6000</span><span class="p">,</span> <span class="mf">12.4400</span><span class="p">,</span> <span class="mf">12.5000</span><span class="p">,</span> <span class="mf">12.6700</span><span class="p">,</span> <span class="mf">12.7000</span><span class="p">,</span> <span class="mf">12.7300</span><span class="p">,</span> <span class="mf">12.3800</span><span class="p">,</span> <span class="mf">12.7000</span><span class="p">,</span> <span class="mf">12.3800</span><span class="p">,</span>
+<span class="mf">12.1400</span><span class="p">,</span> <span class="mf">12.1100</span><span class="p">,</span> <span class="mf">12.1100</span><span class="p">,</span> <span class="mf">12.1100</span><span class="p">,</span> <span class="mf">12.0000</span><span class="p">,</span> <span class="mf">12.0900</span><span class="p">,</span> <span class="mf">12.1800</span><span class="p">,</span> <span class="mf">12.1700</span><span class="p">,</span> <span class="mf">12.0100</span><span class="p">]</span>
+
+<span class="n">open_</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.4700</span><span class="p">,</span> <span class="mf">12.3800</span><span class="p">,</span> <span class="mf">12.4600</span><span class="p">,</span> <span class="mf">12.4800</span><span class="p">,</span> <span class="mf">12.6600</span><span class="p">,</span> <span class="mf">12.5300</span><span class="p">,</span> <span class="mf">12.4900</span><span class="p">,</span> <span class="mf">12.6200</span><span class="p">,</span> <span class="mf">12.5000</span><span class="p">,</span> <span class="mf">12.6100</span><span class="p">,</span> <span class="mf">12.3200</span><span class="p">,</span> <span class="mf">12.5300</span><span class="p">,</span>
+<span class="mf">12.1800</span><span class="p">,</span> <span class="mf">12.1400</span><span class="p">,</span> <span class="mf">12.0500</span><span class="p">,</span> <span class="mf">12.1200</span><span class="p">,</span> <span class="mf">12.0900</span><span class="p">,</span> <span class="mf">12.0800</span><span class="p">,</span> <span class="mf">12.1700</span><span class="p">,</span> <span class="mf">12.1200</span><span class="p">,</span> <span class="mf">12.1200</span><span class="p">]</span>
+
+<span class="n">high_</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.5500</span><span class="p">,</span> <span class="mf">12.5000</span><span class="p">,</span> <span class="mf">12.5600</span><span class="p">,</span> <span class="mf">12.6100</span><span class="p">,</span> <span class="mf">12.7200</span><span class="p">,</span> <span class="mf">12.5700</span><span class="p">,</span> <span class="mf">12.6700</span><span class="p">,</span> <span class="mf">12.7500</span><span class="p">,</span> <span class="mf">12.7500</span><span class="p">,</span> <span class="mf">12.6850</span><span class="p">,</span> <span class="mf">12.7700</span><span class="p">,</span> <span class="mf">12.6800</span><span class="p">,</span>
+<span class="mf">12.3100</span><span class="p">,</span> <span class="mf">12.1800</span><span class="p">,</span> <span class="mf">12.1300</span><span class="p">,</span> <span class="mf">12.3300</span><span class="p">,</span> <span class="mf">12.1900</span><span class="p">,</span> <span class="mf">12.1100</span><span class="p">,</span> <span class="mf">12.2900</span><span class="p">,</span> <span class="mf">12.2200</span><span class="p">,</span> <span class="mf">12.1200</span><span class="p">]</span>
+
+<span class="n">low_</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.3400</span><span class="p">,</span> <span class="mf">12.3800</span><span class="p">,</span> <span class="mf">12.4300</span><span class="p">,</span> <span class="mf">12.4800</span><span class="p">,</span> <span class="mf">12.3500</span><span class="p">,</span> <span class="mf">12.4600</span><span class="p">,</span> <span class="mf">12.4300</span><span class="p">,</span> <span class="mf">12.6200</span><span class="p">,</span> <span class="mf">12.5000</span><span class="p">,</span> <span class="mf">12.3800</span><span class="p">,</span> <span class="mf">12.2800</span><span class="p">,</span> <span class="mf">12.3300</span><span class="p">,</span>
+<span class="mf">12.1100</span><span class="p">,</span> <span class="mf">12.0600</span><span class="p">,</span> <span class="mf">12.0100</span><span class="p">,</span> <span class="mf">12.0586</span><span class="p">,</span> <span class="mf">11.9600</span><span class="p">,</span> <span class="mf">12.0100</span><span class="p">,</span> <span class="mf">12.1600</span><span class="p">,</span> <span class="mf">12.1200</span><span class="p">,</span> <span class="mf">12.0000</span><span class="p">]</span>
+
+<span class="n">candlestick</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">open_</span><span class="p">,</span> <span class="n">close_</span><span class="p">,</span> <span class="n">low_</span><span class="p">,</span> <span class="n">high_</span><span class="p">)</span></code></pre></div>
+
+<div id="candle" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("candle"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"splitNumber":5,"boundaryGap":true,"data":["2016/08/26","2016/08/29","2016/08/30","2016/08/31","2016/09/01","2016/09/02","2016/09/06","2016/09/07","2016/09/08","2016/09/09","2016/09/12","2016/09/13","2016/09/14","2016/09/15","2016/09/16","2016/09/19","2016/09/20","2016/09/21","2016/09/22","2016/09/23","2016/09/26"],"scale":true,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"start","nameGap":15,"silent":true,"type":"category"}],"yAxis":[{"splitNumber":5,"gridIndex":0,"minInterval":0,"silent":true,"inverse":false,"scale":true,"nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"data":[[12.47,12.38,12.34,12.55],[12.38,12.47,12.38,12.5],[12.46,12.55,12.43,12.56],[12.48,12.6,12.48,12.61],[12.66,12.44,12.35,12.72],[12.53,12.5,12.46,12.57],[12.49,12.67,12.43,12.67],[12.62,12.7,12.62,12.75],[12.5,12.73,12.5,12.75],[12.61,12.38,12.38,12.685],[12.32,12.7,12.28,12.77],[12.53,12.38,12.33,12.68],[12.18,12.14,12.11,12.31],[12.14,12.11,12.06,12.18],[12.05,12.11,12.01,12.13],[12.12,12.11,12.0586,12.33],[12.09,12.0,11.96,12.19],[12.08,12.09,12.01,12.11],[12.17,12.18,12.16,12.29],[12.12,12.17,12.12,12.22],[12.12,12.01,12.0,12.12]],"smooth":false,"minSize":"0%","type":"candlestick","maxSize":"100%"}]});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

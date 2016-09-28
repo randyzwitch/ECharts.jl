@@ -16,6 +16,7 @@ module ECharts
 	export pie, donut, radar
 	export funnel, gauge, polar
 	export box
+	export candlestick
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!
 
 	#Create base color library
@@ -35,6 +36,7 @@ module ECharts
 	include("plots/funnel_plot.jl")
 	include("plots/radar_plot.jl")
 	include("plots/boxplot.jl")
+	include("plots/candlestick.jl")
 
 	# From JMW originally
 	tojs(s::Symbol) = string(s)
