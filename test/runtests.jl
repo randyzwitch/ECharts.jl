@@ -135,6 +135,7 @@ data = [
 b = box(data)
 ectest(b)
 
+
 println("Test 13: candlestick")
 #open/close/low/high
 dt = ["2016/08/26", "2016/08/29", "2016/08/30", "2016/08/31", "2016/09/01", "2016/09/02", "2016/09/06", "2016/09/07",
@@ -155,4 +156,15 @@ low_ = [12.3400, 12.3800, 12.4300, 12.4800, 12.3500, 12.4600, 12.4300, 12.6200, 
 
 ectest(candlestick(dt, open_, close_, low_, high_))
 
-#println("Test 13: xAxis!/yAxis!")
+println("Test 14: sankey")
+name = ["Agricultural waste", "Bio-conversion", "Liquid", "Losses", "Solid", "Gas", "Biofuel imports",
+    "Biomass imports", "Coal imports", "Coal"]
+
+source = [0, 1, 1, 1, 1, 6, 7, 8, 10]
+target = [1, 2, 3, 4, 5, 2, 4, 9, 9]
+value = [124.729, 0.597, 26.862, 280.322, 81.144, 35, 35, 11.606, 63.965]
+
+ectest(sankey(name, source, target, value))
+
+
+#println("Test 14: xAxis!/yAxis!")

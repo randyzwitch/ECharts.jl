@@ -9,6 +9,7 @@ abstract AbstractEChartType
     shadowOffsetX::Union{Int,Void} = 0
     shadowOffsetY::Union{Int,Void} = 0
     opacity::Union{Int,Void} = nothing
+    curveness::Union{AbstractFloat,Void} = nothing
 end
 @with_kw type AreaStyle <: AbstractEChartType
     color::Union{AbstractVector,Void} = nothing
@@ -457,9 +458,12 @@ end
     label::Union{Label,Void} = nothing
     labelLine::Union{Dict,Void} = nothing
     itemStyle::Union{ItemStyle,Void} = nothing
+    lineStyle::Union{ItemStyle,Void} = nothing
     showSymbol::Union{Bool,Void} = nothing
     symbolSize::Union{Number, AbstractVector,Void} = nothing
     step::Union{String,Void} = nothing
+    layout::Union{String,Void} = nothing
+    links::Union{AbstractVector,Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     title::Union{Title,Void} = Title()
