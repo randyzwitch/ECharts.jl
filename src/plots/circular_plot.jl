@@ -9,11 +9,11 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
     # Set default to false if not passed by user
     selected == [] ? selected = [false for x in 1:length(values)] : selected = selected
 
-    ec = newplot(kwargs)
+    ec = newplot(kwargs, charttype = "circular")
 
     data_fmt = dataformat(value = values, name = names, selected = selected)
 
-    ec.series = [Series(_type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
+    ec.series = [Series(name = "Series 1", _type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 
     return ec
 
@@ -39,9 +39,9 @@ donut(names::AbstractVector, values::AbstractVector;
 function gauge(x::Number;
             kwargs...)
 
-    ec = newplot(kwargs)
+    ec = newplot(kwargs, charttype = "gauge")
 
-    ec.series = [Series(_type = "gauge", data = [Dict("value" => x)])]
+    ec.series = [Series(name = "Series 1", _type = "gauge", data = [Dict("value" => x)])]
 
     return ec
 
@@ -51,12 +51,12 @@ function polar(angle::AbstractVector, radius::AbstractVector;
             splitNumber::Int = 12, showSymbol::Bool = false,
             kwargs...)
 
-    ec = newplot(kwargs)
+    ec = newplot(kwargs, charttype = "polar")
 
     ec.polar = Polar()
     ec.angleAxis = AngleAxis(_type = "value", splitNumber = splitNumber)
     ec.radiusAxis = RadiusAxis(min = 0)
-    ec.series = [Series(coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = [[r,a] for (r,a) in zip(radius, angle)])]
+    ec.series = [Series(name = "Series 1", coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = [[r,a] for (r,a) in zip(radius, angle)])]
 
     return ec
 

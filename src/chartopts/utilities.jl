@@ -1,7 +1,8 @@
-function newplot{T}(kwargs::Vector{T})
+#Common code across all plots
+function newplot{T}(kwargs::Vector{T}; charttype::Union{String, Void} = nothing)
 
     #Create new chart
-    ec = deepcopy(EChart())
+    ec = deepcopy(EChart(charttype = charttype))
 
     #Process keyword args after defined functionality
 	kwargs!(ec, kwargs)
@@ -10,6 +11,7 @@ function newplot{T}(kwargs::Vector{T})
 
 end
 
+#Separate arrays as inputs to array of dicts
 function dataformat(; kwargs...)
 
     #Determine number of values in array, check that all are equal length
@@ -32,6 +34,7 @@ function dataformat(; kwargs...)
     return datafmt
 end
 
+#Common kwargs code for all plots
 function kwargs!{T}(ec::EChart, kwargs::Vector{T})
 
 	if length(kwargs) > 0
@@ -42,6 +45,7 @@ function kwargs!{T}(ec::EChart, kwargs::Vector{T})
 
 end
 
+# Fill area inside areaStyle
 function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
     typeof(fill) == Bool? fill = [fill for i in 1:cols]: fill = fill
@@ -67,9 +71,33 @@ function boxplotstat{T <: Real}(data::Vector{T})
 
 end
 
+#Flip x and y axis. Currently only works for XY plots, not boxplot
 function flip!(ec::EChart)
 
     ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
+    return ec
+
+end
+
+#Automatically name series, so that downstream functions like legend which use names have one
+function seriesnames!(ec::EChart)
+
+    for (i, x) in enumerate(ec.series)
+        x.name == nothing? x.name = "Series $i": nothing
+    end
+
+    return ec
+
+end
+
+function seriesnames!{T}(ec::EChart, names::AbstractVector{T})
+
+    length(ec.series) != length(names) ? error("Names not equal to number of Series"): nothing
+
+    for i in 1:length(ec.series)
+        ec.series[i].name = names[i]
+    end
+
     return ec
 
 end

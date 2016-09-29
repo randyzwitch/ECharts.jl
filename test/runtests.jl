@@ -12,6 +12,7 @@ println("Test 1: Area")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(area(x, y))
+ectest(legend!(area(x, y)))
 ectest(area(x, y, horizontal = true))
 ectest(area(x, hcat(y, 3.7 .* y)))
 
@@ -51,6 +52,7 @@ println("Test 4: Line")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(line(x, y))
+ectest(legend!(line(x, y)))
 ectest(line(x, y, step = "end"))
 ectest(line(x, hcat(y, 0.6 .* y)))
 ectest(line(x, hcat(y, 0.6 .* y), mark = ["bar", "line"]))
@@ -69,6 +71,7 @@ ectest(pie(names, values, selected = explode))
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(donut(x, y))
+ectest(legend!(donut(x, y)))
 
 values = [335, 310, 234, 135, 1548]
 names = ["direct interview", "email marketing", "advertising alliance", "video ads", "search engine"]
@@ -99,6 +102,7 @@ v = [100,60,80,70,50]
 n = ["A", "B", "C", "D", "E"]
 fn = funnel(n, v)
 ectest(fn)
+ectest(legend!(fn))
 ectest(colorscheme!(fn,  palette = ("acw", "VitaminC"), reversePalette = true))
 
 

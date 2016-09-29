@@ -18,7 +18,7 @@ module ECharts
 	export box
 	export candlestick
 	export sankey
-	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!
+	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!
 
 	#Create base color library
 	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)

@@ -73,3 +73,16 @@ function colorscheme!(ec::EChart; palette::Union{Tuple{AbstractString,Any}, Abst
     return ec
 
 end
+
+# Works, but doesn't make sense for: sankey, gauge
+function legend!(ec::EChart)
+
+	if ec.charttype in ["circular", "funnel"]
+		ec.legend = Legend(data = [x["name"] for x in ec.series[1].data])
+	else
+		ec.legend = Legend(data = [x.name for x in ec.series])
+	end
+
+    return ec
+
+end

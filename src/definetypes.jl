@@ -152,7 +152,7 @@ end
     show::Union{Bool,Void} = true
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
-    left::Union{Int,String,Void} = "auto"
+    left::Union{Int,String,Void} = nothing
     top::Union{Int,String,Void} = "auto"
     right::Union{Int,String,Void} = "auto"
     bottom::Union{Int,String,Void} = "auto"
@@ -170,7 +170,7 @@ end
     textStyle::Union{TextStyle,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
     backgroundColor::Union{String,Void} = "transparent"
-    borderColor::Union{String,Void} = "#ccc"
+    borderColor::Union{String,Void} = "transparent"
     borderWidth::Union{Int,Void} = 1
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
@@ -466,6 +466,7 @@ end
     links::Union{AbstractVector,Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
+    charttype::Union{String,Void} = nothing
     title::Union{Title,Void} = Title()
     legend::Union{Legend,Void} = nothing
     grid::Union{Grid,Void} = nothing

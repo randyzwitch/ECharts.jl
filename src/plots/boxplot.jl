@@ -1,3 +1,4 @@
+#Make this work with seriesnames!?
 function box{T <: Real}(data::Vector{Vector{T}};
             names::Union{AbstractVector, Void} = nothing,
             kwargs...)
@@ -18,7 +19,7 @@ function box{T <: Real}(data::Vector{Vector{T}};
         end
     end
 
-    ec = newplot(kwargs)
+    ec = newplot(kwargs, charttype = "box")
 
     ec.xAxis = [Axis(_type = "category", data = names, boundaryGap = true)]
     ec.yAxis = [Axis(_type = "value")]

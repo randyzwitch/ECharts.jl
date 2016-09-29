@@ -10,12 +10,12 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 		error("Arrays X and Y need to have the same length.")
 	end
 
-    ec = newplot(kwargs)
+    ec = newplot(kwargs, charttype = "xy plot")
 
 	#General visualization defaults
 	ec.xAxis = [Axis(_type = "category", data = x)]
 	ec.yAxis = [Axis(_type = "value")]
-	ec.series = [Series(_type = mark, data = y, step = step)]
+	ec.series = [Series(name = "Series 1", _type = mark, data = y, step = step)]
 
 	#Make plot horizontal
 	horizontal? flip!(ec): nothing
@@ -52,6 +52,9 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 
 	#Make plot horizontal
 	horizontal? flip!(ec): nothing
+
+	# Add default names to series
+	seriesnames!(ec)
 
 	return ec
 
