@@ -66,3 +66,10 @@ function boxplotstat{T <: Real}(data::Vector{T})
     return [[lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers]
 
 end
+
+function flip!(ec::EChart)
+
+    ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
+    return ec
+
+end

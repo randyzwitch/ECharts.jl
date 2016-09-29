@@ -7,8 +7,8 @@ title: XY Combination Plots
 
 ## XY Combination Plots
 The functions `area`, `bar`, `line`, and `scatter` are convenience wrappers
-around a generic `xy_plot` function (not currently exported). Each function takes an additional keyword
-argument `mark` which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
+around a generic `xy_plot` function (not currently exported). Each function takes additional keyword
+arguments such `mark` which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
 you can either specify `line`, `bar`, etc., then set the appropriate mark option to get the desired output.
 
 ### Function Keywords
@@ -16,6 +16,7 @@ you can either specify `line`, `bar`, etc., then set the appropriate mark option
 x::AbstractVector
 y::AbstractArray
 mark::Union{String, AbstractVector} = "bar"
+horizontal::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

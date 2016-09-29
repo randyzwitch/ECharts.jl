@@ -1,7 +1,8 @@
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing, #No op
+			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
 			step::Union{String, Void} = nothing,
+			horizontal::Bool = false,
 			kwargs...)
 
 	#Validate arrays are same length
@@ -16,6 +17,9 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 	ec.yAxis = [Axis(_type = "value")]
 	ec.series = [Series(_type = mark, data = y, step = step)]
 
+	#Make plot horizontal
+	horizontal? flip!(ec): nothing
+
 	return ec
 
 end
@@ -24,6 +28,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			step::Union{String, Void} = nothing,
+			horizontal::Bool = false,
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
@@ -44,6 +49,9 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 
 	#step
 	step != nothing ? [x.step = step for x in ec.series]: nothing
+
+	#Make plot horizontal
+	horizontal? flip!(ec): nothing
 
 	return ec
 

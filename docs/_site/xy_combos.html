@@ -40,6 +40,7 @@
         <h3>Functions</h3>
         <ul>
             <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "flip.html">flip!</a></li>
             <li><a href = "title.html">title!</a></li>
             <li><a href = "toolbox.html">toolbox!</a></li>
             <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
@@ -50,8 +51,8 @@
       <section>
           <h2 id="xy-combination-plots">XY Combination Plots</h2>
 <p>The functions <code>area</code>, <code>bar</code>, <code>line</code>, and <code>scatter</code> are convenience wrappers
-around a generic <code>xy_plot</code> function (not currently exported). Each function takes an additional keyword
-argument <code>mark</code> which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
+around a generic <code>xy_plot</code> function (not currently exported). Each function takes additional keyword
+arguments such <code>mark</code> which can take an array of mark types. As such, to make a combination of a bar plot and line plot,
 you can either specify <code>line</code>, <code>bar</code>, etc., then set the appropriate mark option to get the desired output.</p>
 
 <h3 id="function-keywords">Function Keywords</h3>
@@ -59,6 +60,7 @@ you can either specify <code>line</code>, <code>bar</code>, etc., then set the a
 <div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="p">::</span><span class="n">AbstractVector</span>
 <span class="n">y</span><span class="p">::</span><span class="n">AbstractArray</span>
 <span class="n">mark</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">String</span><span class="p">,</span> <span class="n">AbstractVector</span><span class="p">}</span> <span class="o">=</span> <span class="s">&quot;bar&quot;</span>
+<span class="n">horizontal</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
 <span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
 
 <h2 id="bar-chart-multiple-series">Bar Chart, Multiple Series</h2>

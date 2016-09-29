@@ -12,6 +12,7 @@ println("Test 1: Area")
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(area(x, y))
+ectest(area(x, y, horizontal = true))
 ectest(area(x, hcat(y, 3.7 .* y)))
 
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -26,6 +27,7 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ectest(bar(x, y))
 ectest(bar(x, y, color = ["green"]))
+ectest(bar(x, y, horizontal = true, color = ["green"]))
 ectest(bar(x, hcat(0.95 .* y, 1.25 .* y, y)))
 
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
