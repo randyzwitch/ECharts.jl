@@ -6,6 +6,10 @@ module ECharts
 
 	export print
 
+	#Create base color library
+	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
+	export colorpalettes
+
 	export EChart
 	export Title, Axis, Series, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
@@ -18,10 +22,9 @@ module ECharts
 	export box
 	export candlestick
 	export sankey
-	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!
+	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
-	#Create base color library
-	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
+
 
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")

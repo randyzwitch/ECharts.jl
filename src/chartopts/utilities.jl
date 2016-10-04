@@ -1,8 +1,8 @@
 #Common code across all plots
-function newplot{T}(kwargs::Vector{T}; charttype::Union{String, Void} = nothing)
+function newplot{T}(kwargs::Vector{T}; ec_charttype::Union{String, Void} = nothing)
 
     #Create new chart
-    ec = deepcopy(EChart(charttype = charttype))
+    ec = deepcopy(EChart(ec_charttype = ec_charttype))
 
     #Process keyword args after defined functionality
 	kwargs!(ec, kwargs)
@@ -68,14 +68,6 @@ function boxplotstat{T <: Real}(data::Vector{T})
     outliers = filter(x -> (x >= upperbound) || (x <= lowerbound), data)
 
     return [[lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers]
-
-end
-
-#Flip x and y axis. Currently only works for XY plots, not boxplot
-function flip!(ec::EChart)
-
-    ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
-    return ec
 
 end
 

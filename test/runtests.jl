@@ -160,7 +160,9 @@ high_ = [12.5500, 12.5000, 12.5600, 12.6100, 12.7200, 12.5700, 12.6700, 12.7500,
 low_ = [12.3400, 12.3800, 12.4300, 12.4800, 12.3500, 12.4600, 12.4300, 12.6200, 12.5000, 12.3800, 12.2800, 12.3300,
 12.1100, 12.0600, 12.0100, 12.0586, 11.9600, 12.0100, 12.1600, 12.1200, 12.0000]
 
-ectest(candlestick(dt, open_, close_, low_, high_))
+c = candlestick(dt, open_, close_, low_, high_)
+ectest(c)
+ectest(slider!(c))
 
 println("Test 14: sankey")
 name = ["Agricultural waste", "Bio-conversion", "Liquid", "Losses", "Solid", "Gas", "Biofuel imports",

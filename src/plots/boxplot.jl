@@ -19,7 +19,7 @@ function box{T <: Real}(data::Vector{Vector{T}};
         end
     end
 
-    ec = newplot(kwargs, charttype = "box")
+    ec = newplot(kwargs, ec_charttype = "box")
 
     ec.xAxis = [Axis(_type = "category", data = names, boundaryGap = true)]
     ec.yAxis = [Axis(_type = "value")]

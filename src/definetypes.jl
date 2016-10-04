@@ -129,7 +129,7 @@ end
     shadowStyle::Union{ShadowStyle,Void} = nothing
 end
 @with_kw type Tooltip <: AbstractEChartType
-    show::Union{Bool,Void} = true
+    show::Union{Bool,Void} = false
     showContent::Union{Bool,Void} = true
     trigger::Union{String,Void} = "item"
     triggerOn::Union{String,Void} = "mousemove"
@@ -180,7 +180,7 @@ end
 @with_kw type Toolbox <: AbstractEChartType
     show::Union{Bool,Void} = false
     orient::Union{String,Void} = "vertical"
-    itemGap::Union{Number,Void} = 10
+    itemGap::Union{Number,Void} = 20
     itemSize::Union{Number,Void} = 15
     feature::Union{Dict{Any,Any},Void} = Dict{Any,Any}()
     showTitle::Union{Bool,Void} = true
@@ -199,9 +199,9 @@ end
     position::Union{String,Void} = nothing
     _type::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
-    nameLocation::Union{String,Void} = "start"
+    nameLocation::Union{String,Void} = "middle"
     nameTextStyle::Union{TextStyle,Void} = nothing
-    nameGap::Union{Int,Void} = 15
+    nameGap::Union{Int,Void} = 30
     inverse::Union{Bool,Void} = false
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
     min::Union{Int,String,Void} = nothing
@@ -265,8 +265,9 @@ end
 end
 @with_kw type DataZoom <: AbstractEChartType
     _type::Union{String,Void} = nothing
-    start::Union{Number,Void} = 60
-    _end::Union{Number,Void} = 80
+    show::Bool = false
+    start::Union{Number,Void} = nothing
+    _end::Union{Number,Void} = nothing
 end
 @with_kw type Timeline <: AbstractEChartType
     show::Union{Bool,Void} = true
@@ -464,11 +465,14 @@ end
     step::Union{String,Void} = nothing
     layout::Union{String,Void} = nothing
     links::Union{AbstractVector,Void} = nothing
+    #markLine::Union{Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
-    charttype::Union{String,Void} = nothing
-    title::Union{Title,Void} = Title()
-    legend::Union{Legend,Void} = nothing
+    ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
+    ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
+    ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
+    title::Union{Vector{Title},Void} = [Title()]
+    legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
     grid::Union{Grid,Void} = nothing
     xAxis::Union{Array{Axis,1},Void} = nothing
     yAxis::Union{Array{Axis,1},Void} = nothing
@@ -476,8 +480,8 @@ end
     radiusAxis::Union{RadiusAxis,Void} = nothing
     angleAxis::Union{AngleAxis,Void} = nothing
     radar::Union{Radar,Void} = nothing
-    dataZoom::Union{DataZoom,Void} = nothing
-    visualMap::Union{VisualMap,Void} = nothing
+    dataZoom::Union{Vector{DataZoom},Void} = nothing  #typedef needs to be filled out
+    visualMap::Union{VisualMap,Void} = nothing  #typedef needs to be filled out
     tooltip::Union{Tooltip,Void} = nothing
     toolbox::Union{Toolbox,Void} = Toolbox()
     geo::Union{Geo,Void} = nothing

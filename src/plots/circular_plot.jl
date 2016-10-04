@@ -9,7 +9,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
     # Set default to false if not passed by user
     selected == [] ? selected = [false for x in 1:length(values)] : selected = selected
 
-    ec = newplot(kwargs, charttype = "circular")
+    ec = newplot(kwargs, ec_charttype = "circular")
 
     data_fmt = dataformat(value = values, name = names, selected = selected)
 
@@ -39,7 +39,7 @@ donut(names::AbstractVector, values::AbstractVector;
 function gauge(x::Number;
             kwargs...)
 
-    ec = newplot(kwargs, charttype = "gauge")
+    ec = newplot(kwargs, ec_charttype = "gauge")
 
     ec.series = [Series(name = "Series 1", _type = "gauge", data = [Dict("value" => x)])]
 
@@ -51,7 +51,7 @@ function polar(angle::AbstractVector, radius::AbstractVector;
             splitNumber::Int = 12, showSymbol::Bool = false,
             kwargs...)
 
-    ec = newplot(kwargs, charttype = "polar")
+    ec = newplot(kwargs, ec_charttype = "polar")
 
     ec.polar = Polar()
     ec.angleAxis = AngleAxis(_type = "value", splitNumber = splitNumber)

@@ -1,7 +1,7 @@
 function funnel(names::AbstractVector, values::AbstractVector;
             kwargs...)
 
-    ec = newplot(kwargs, charttype = "funnel")
+    ec = newplot(kwargs, ec_charttype = "funnel")
 
     ec.series = [Series(name = "Series 1",
                         _type = "funnel",

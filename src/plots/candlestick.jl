@@ -6,7 +6,7 @@ function candlestick{T <: Real}(dt::AbstractVector{String}, open::AbstractVector
         push!(fmtdata, [o,c,l,h])
     end
 
-    ec = newplot(kwargs, charttype = "candlestick")
+    ec = newplot(kwargs, ec_charttype = "candlestick")
     ec.xAxis = [Axis(_type = "category", data = dt, scale = true, boundaryGap = true)]
     ec.yAxis = [Axis(scale = true)]
     ec.series = [Series(name = "Series 1", _type = "candlestick", data = fmtdata)]

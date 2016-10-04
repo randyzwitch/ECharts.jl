@@ -1,7 +1,8 @@
+#By convention from definetypes.jl, make title! update the first Title object in array
 function title!(ec::EChart; kwargs...)
 
 	for (k, v) in kwargs
-	   setfield!(ec.title, k, v)
+	   setfield!(ec.title[1], k, v)
 	end
 
 	return ec
@@ -77,11 +78,28 @@ end
 # Works, but doesn't make sense for: sankey, gauge
 function legend!(ec::EChart)
 
-	if ec.charttype in ["circular", "funnel"]
+	if ec.ec_charttype in ["circular", "funnel"]
 		ec.legend = Legend(data = [x["name"] for x in ec.series[1].data])
 	else
 		ec.legend = Legend(data = [x.name for x in ec.series])
 	end
+
+    return ec
+
+end
+
+#Flip x and y axis. Currently only works for XY plots, not boxplot
+function flip!(ec::EChart)
+
+    ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
+    return ec
+
+end
+
+function slider!(ec::EChart)
+
+    #Need to be more robust in checking the structure of dataZoom, specify axis, etc.
+    ec.dataZoom == nothing? ec.dataZoom = [DataZoom(show = true)] : push!(ec.dataZoom, DataZoom(show = true))
 
     return ec
 

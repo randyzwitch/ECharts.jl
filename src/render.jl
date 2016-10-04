@@ -10,15 +10,17 @@ function openurl(url::String)
 end
 
 #Jupyter Notebook display
-function show(io::IO, ::MIME"text/html", v::EChart)
+function show(io::IO, ::MIME"text/html", ec::EChart)
 
     divid = "Echart" * randstring(3)
-    option = JSON.json(tojs(v))
+    option = JSON.json(tojs(ec))
+    width = ec.ec_width
+    height = ec.ec_height
 
         display("text/html", """
 
               <body>
-                <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
+                <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
               </body>
 
                 <script type=\"text/javascript\">
@@ -47,10 +49,12 @@ function show(io::IO, ::MIME"text/html", v::EChart)
 end
 
 #ECharts scaffold for REPL: works!
-function writehtml(io::IO, v::EChart; title="ECharts")
+function writehtml(io::IO, ec::EChart; title="ECharts")
 
     divid = "Echart" * randstring(3)
-    option = JSON.json(tojs(v))
+    option = JSON.json(tojs(ec))
+    width = ec.ec_width
+    height = ec.ec_height
 
     println(io,
                 "
@@ -61,7 +65,7 @@ function writehtml(io::IO, v::EChart; title="ECharts")
                 </head>
                 <body>
                     <!-- Prepare a Dom with size (width and height) for ECharts -->
-                    <div id=\"$divid\" style=\"height:400px;width:800px;\"></div>
+                    <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
                     <!-- ECharts import -->
                     <script>$(readstring(joinpath(dirname(@__FILE__), "..", "javascript", "echarts.min.js")))</script>
 
@@ -77,15 +81,15 @@ function writehtml(io::IO, v::EChart; title="ECharts")
             )
 end
 
-function show(io::IO, v::EChart)
+function show(io::IO, ec::EChart)
 
     if displayable("text/html")
-        v
+        ec
     else
         # create a temporary file
         tmppath = string(tempname(), ".echart.html")
         io = open(tmppath, "w")
-        writehtml(io, v)
+        writehtml(io, ec)
         close(io)
 
         # Open the browser

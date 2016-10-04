@@ -7,7 +7,7 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 		error("Arrays names and values need to have the same length.")
 	end
 
-	ec = newplot(kwargs, charttype = "radar")
+	ec = newplot(kwargs, ec_charttype = "radar")
 
 	ec.radar = Radar(indicator = dataformat(name = names, max = max))
 
