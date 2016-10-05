@@ -2,14 +2,9 @@ import Base.print
 import Base.show
 print(x::EChart) = print(JSON.json(tojs(x)))
 
-# Open a URL in a browser
-function openurl(url::String)
-    @static if is_apple() run(`open $url`) end
-    @static if is_windows() run(`cmd /c start $url`) end
-    @static if is_linux() run(`xdg-open $url`) end
-end
-
 #Jupyter Notebook display
+#Refactor this so it's not so repetitive
+#require.config is due to Jupyter Notebook not wanting to load js
 function show(io::IO, ::MIME"text/html", ec::EChart)
 
     divid = "Echart" * randstring(3)
@@ -48,54 +43,37 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
               """)
 end
 
-#ECharts scaffold for REPL: works!
-function writehtml(io::IO, ec::EChart; title="ECharts")
+function blink_show(ec::EChart)
+    w = Window()
+    echarts = joinpath(dirname(@__FILE__), "..", "javascript", "echarts.min.js")
+    for file in (echarts,)
+        load!(w, file)
+    end
 
     divid = "Echart" * randstring(3)
     option = JSON.json(tojs(ec))
     width = ec.ec_width
     height = ec.ec_height
+    body =
 
-    println(io,
-                "
-                <!DOCTYPE html>
-                <head>
-                    <meta charset=\"utf-8\">
-                    <title>$title</title>
-                </head>
-                <body>
-                    <!-- Prepare a Dom with size (width and height) for ECharts -->
-                    <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
-                    <!-- ECharts import -->
-                    <script>$(readstring(joinpath(dirname(@__FILE__), "..", "javascript", "echarts.min.js")))</script>
+        """
+        <body>
+            <!-- Prepare a Dom with size (width and height) for ECharts -->
+            <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
+        </body>
 
-                    <script type=\"text/javascript\">
-                        // Initialize after dom ready
-                        var myChart = echarts.init(document.getElementById(\"$divid\"));
+            <script type=\"text/javascript\">
+                // Initialize after dom ready
+               var myChart = echarts.init(document.getElementById(\"$divid\"));
 
-                        // Load data into the ECharts instance
-                        myChart.setOption($option);
-                    </script>
-                </body>
-                "
-            )
+                // Load data into the ECharts instance
+                myChart.setOption($option);
+            </script>
+
+        """
+
+    body!(w, body)
 end
 
-function show(io::IO, ec::EChart)
-
-    if displayable("text/html")
-        ec
-    else
-        # create a temporary file
-        tmppath = string(tempname(), ".echart.html")
-        io = open(tmppath, "w")
-        writehtml(io, ec)
-        close(io)
-
-        # Open the browser
-        openurl(tmppath)
-
-    end
-
-    return
-end
+# See if it can render in Jupyter Notebook, if not, Blink
+show(io::IO, ec::EChart) = displayable("text/html")? ec: blink_show(ec)

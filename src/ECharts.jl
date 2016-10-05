@@ -2,7 +2,7 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
 
 	export print
 

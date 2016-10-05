@@ -5,7 +5,7 @@ title: slider!
 
 ---
 
-## title!
+## slider!
 
 ### Function Keywords
 {% highlight julia %}
