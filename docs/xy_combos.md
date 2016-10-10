@@ -17,6 +17,7 @@ x::AbstractVector
 y::AbstractArray
 mark::Union{String, AbstractVector} = "bar"
 horizontal::Bool = false
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

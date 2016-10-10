@@ -1,4 +1,5 @@
 function funnel(names::AbstractVector, values::AbstractVector;
+            legend::Bool = false,
             kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "funnel")
@@ -8,6 +9,9 @@ function funnel(names::AbstractVector, values::AbstractVector;
                         data =  dataformat(value = values, name = names)
                        )
                 ]
+
+    #Add legend if requested
+    legend? legend!(ec) : nothing
 
     return ec
 

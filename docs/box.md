@@ -11,6 +11,7 @@ title: box
 {% highlight julia %}
 data::Vector{T <: Real}{Union{T, Vector{T}}}
 names::Union{AbstractVector, Void} = nothing
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

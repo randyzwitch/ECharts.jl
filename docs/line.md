@@ -12,6 +12,7 @@ title: line
 x::AbstractVector
 y::AbstractArray
 step::Union{String, Void} = nothing #{"start", "middle", "end"}
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

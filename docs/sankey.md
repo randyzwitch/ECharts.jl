@@ -13,6 +13,7 @@ name::AbstractVector{String}
 source::AbstractVector{Int}
 target::AbstractVector{Int}
 value::AbstractVector{T}
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

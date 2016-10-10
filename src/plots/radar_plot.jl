@@ -1,5 +1,6 @@
 function radar(names::AbstractVector, values::AbstractVector, max::AbstractVector = [];
 	 				fill::Bool = false,
+					legend::Bool = false,
 					kwargs...)
 
 	#Validate arrays are same length
@@ -16,12 +17,16 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 	# Fill area if requested
 	fill!(ec, 1, fill)
 
+	#Add legend if requested
+	legend? legend!(ec) : nothing
+
 	return ec
 
 end
 
 function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
 	 				fill::Union{Bool, AbstractVector} = false,
+					legend::Bool = false,
 					kwargs...)
 
 	# Call 1-D method to build base
@@ -39,6 +44,9 @@ function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector
 	fill!(ec, cols, fill)
 
 	seriesnames!(ec)
+
+	#Add legend if requested
+	legend? legend!(ec) : nothing
 
 	return ec
 

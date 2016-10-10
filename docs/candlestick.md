@@ -14,6 +14,7 @@ open::AbstractVector{T}
 close::AbstractVector{T}
 low::AbstractVector{T}
 high::AbstractVector{T}
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

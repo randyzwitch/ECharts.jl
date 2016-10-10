@@ -13,6 +13,7 @@ y::AbstractArray
 fill::Union{Bool, AbstractVector} = true
 stack::Union{Bool, AbstractVector, Void} = nothing
 step::Union{String, Void} = nothing #{"start", "middle", "end"}
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

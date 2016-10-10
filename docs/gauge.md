@@ -10,6 +10,7 @@ title: gauge
 ### Function Keywords
 {% highlight julia %}
 x::Number
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

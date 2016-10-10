@@ -3,6 +3,7 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
 			step::Union{String, Void} = nothing,
 			horizontal::Bool = false,
+			legend::Bool = false,
 			kwargs...)
 
 	#Validate arrays are same length
@@ -20,6 +21,9 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 	#Make plot horizontal
 	horizontal? flip!(ec): nothing
 
+	#Add legend if requested
+	legend? legend!(ec) : nothing
+
 	return ec
 
 end
@@ -29,6 +33,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			step::Union{String, Void} = nothing,
 			horizontal::Bool = false,
+			legend::Bool = false,
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
@@ -63,28 +68,31 @@ end
 function line(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
+			legend::Bool = false,
 			kwargs...)
 
-	return xy_plot(x, y; mark = mark, step = step, kwargs...)
+	return xy_plot(x, y; mark = mark, step = step, legend = legend, kwargs...)
 
 end
 
 function bar(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
+			legend::Bool = false,
 			kwargs...)
 
-	 return xy_plot(x, y; mark = mark, stack = stack, kwargs...)
+	 return xy_plot(x, y; mark = mark, stack = stack, legend = legend, kwargs...)
 
 end
 
 function scatter(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "scatter",
+			legend::Bool = false,
 			kwargs...)
 
 	#need to sort x array for some reason, echarts doesn't seem to do floats right
 	d = sortrows(hcat(x,y))
-	ec = xy_plot(d[:,1], d[:,2:end]; mark = mark, kwargs...)
+	ec = xy_plot(d[:,1], d[:,2:end]; mark = mark, legend = legend, kwargs...)
 
 	return ec
 
@@ -95,9 +103,10 @@ function area(x::AbstractVector, y::AbstractArray;
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			step::Union{String, Void} = nothing,
+			legend::Bool = false,
 			kwargs...)
 
-	ec = xy_plot(x, y; stack = stack, mark = mark, step = step, kwargs...)
+	ec = xy_plot(x, y; stack = stack, mark = mark, step = step, legend = legend, kwargs...)
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested
@@ -108,7 +117,9 @@ function area(x::AbstractVector, y::AbstractArray;
 
 end
 
-function waterfall(x::AbstractVector, y::AbstractVector; kwargs...)
+function waterfall(x::AbstractVector, y::AbstractVector;
+					legend::Bool = false,
+					kwargs...)
 
     #Need to add a value for total, since user passes in data values only
     labels = [string(x) for x in x]
@@ -126,7 +137,7 @@ function waterfall(x::AbstractVector, y::AbstractVector; kwargs...)
     #Make bottom series transparent
     trans = ItemStyleOpts(barBorderColor = "transparent", color = "transparent")
 
-    ec = bar(labels, hcat(bottom, top), stack = true, kwargs...)
+    ec = bar(labels, hcat(bottom, top), stack = true, legend = legend, kwargs...)
     ec.series[1].itemStyle = ItemStyle(normal = trans, emphasis = trans )
 
     return ec

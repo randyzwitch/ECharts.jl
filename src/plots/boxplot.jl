@@ -1,6 +1,7 @@
 #Make this work with seriesnames!?
 function box{T <: Real}(data::Vector{Vector{T}};
             names::Union{AbstractVector, Void} = nothing,
+            legend::Bool = false,
             kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
@@ -27,14 +28,18 @@ function box{T <: Real}(data::Vector{Vector{T}};
     ec.series = [Series(name = "boxplot", _type = "boxplot", data = seriesdata)]
     push!(ec.series, Series(name = "outliers", _type = "scatter", data = outliers))
 
+    #Add legend if requested
+    legend? legend!(ec) : nothing
+
     return ec
 
 end
 
 function box{T <: Real}(data::Vector{T};
             names::Union{AbstractVector, Void} = nothing,
+            legend::Bool = false,
             kwargs...)
 
-    return box([data], names = names, kwargs...)
+    return box([data], names = names, legend = legend, kwargs...)
 
 end

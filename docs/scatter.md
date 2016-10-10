@@ -11,6 +11,7 @@ title: scatter
 {% highlight julia %}
 x::AbstractVector
 y::AbstractArray
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

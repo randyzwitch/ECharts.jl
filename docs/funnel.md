@@ -11,6 +11,7 @@ title: funnel
 {% highlight julia %}
 names::AbstractVector
 values::AbstractVector
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

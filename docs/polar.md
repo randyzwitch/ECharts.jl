@@ -5,7 +5,7 @@ title: polar
 
 ---
 
-## Radar Chart
+## Polar Chart
 
 ### Function Keywords
 {% highlight julia %}
@@ -13,6 +13,7 @@ names::AbstractVector
 values::AbstractArray
 max::AbstractVector
 fill::Union{Bool, AbstractVector} = false
+legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
