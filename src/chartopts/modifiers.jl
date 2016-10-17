@@ -92,6 +92,11 @@ end
 function flip!(ec::EChart)
 
     ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
+
+	# If boxplot, invert outlier values
+	# This could be more robust to not use numeric indices
+	ec.ec_charttype == "box" &&  length(ec.series) > 1 ? ec.series[2].data = [[x[2], x[1]] for x in ec.series[2].data] : nothing
+
     return ec
 
 end

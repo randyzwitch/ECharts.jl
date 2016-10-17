@@ -7,13 +7,35 @@ title: title!
 
 ## title!
 
+The `title!` functions is just a convenience around the `Title` type, so that end-users don't need to reference `ec.title` directly (though, nothing prevents users modifying the `EChart` chart instance).
+
 ### Function Keywords
 {% highlight julia %}
 ec::EChart
-text::AbstractString
-subtext::AbstractString
-x::Int
-y::Int
+show::Union{Bool,Void} = true
+text::Union{String,Void} = nothing
+link::Union{String,Void} = nothing
+target::Union{String,Void} = "blank"
+textStyle::Union{TextStyle,Void} = nothing
+subtext::Union{String,Void} = nothing
+sublink::Union{String,Void} = nothing
+subtarget::Union{String,Void} = "blank"
+subtextStyle::Union{TextStyle,Void} = nothing
+padding::Union{Array{Int,1},Int,Void} = 5
+itemGap::Union{Int,Void} = 5
+zlevel::Union{Int,Void} = 0
+z::Union{Int,Void} = 2
+left::Union{Int,String,Void} = "left"
+top::Union{Int,String,Void} = "auto"
+right::Union{Int,String,Void} = "auto"
+bottom::Union{Int,String,Void} = "auto"
+backgroundColor::Union{String,Void} = nothing
+borderColor::Union{String,Void} = "transparent"
+borderWidth::Union{Int,Void} = 1
+shadowBlur::Union{Int,Void} = nothing
+shadowColor::Union{String,Void} = nothing
+shadowOffsetX::Union{Int,Void} = 0
+shadowOffsetY::Union{Int,Void} = 0
 {% endhighlight %}
 
 ### Examples

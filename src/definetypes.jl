@@ -195,6 +195,7 @@ end
     height::Union{Number,String,Void} = "auto"
 end
 @with_kw type Axis <: AbstractEChartType
+    show::Union{Bool, Void} = nothing
     gridIndex::Union{Int,Void} = 0
     position::Union{String,Void} = nothing
     _type::Union{String,Void} = nothing

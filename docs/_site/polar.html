@@ -51,23 +51,24 @@
       </header>
 
       <section>
-          <h2 id="radar-chart">Radar Chart</h2>
+          <h2 id="polar-chart">Polar Chart</h2>
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">values</span><span class="p">::</span><span class="n">AbstractArray</span>
-<span class="n">max</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">fill</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">AbstractVector</span><span class="p">}</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">values</span><span class="o">::</span><span class="n">AbstractArray</span>
+<span class="n">max</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">fill</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">AbstractVector</span><span class="x">}</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">360</span>
-<span class="n">angle</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="p">]</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="p">]</span>
-<span class="n">polar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;pink&quot;</span><span class="p">])</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
+<span class="n">polar</span><span class="x">(</span><span class="n">t</span><span class="x">,</span> <span class="n">radius</span><span class="x">,</span> <span class="n">color</span> <span class="o">=</span> <span class="x">[</span><span class="s">"pink"</span><span class="x">])</span></code></pre></div>
 
 <div id="polar1" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

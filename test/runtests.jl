@@ -140,6 +140,8 @@ data = [
 ]
 b = box(data)
 ectest(b)
+ectest(flip!(b))
+ectest(box(data, horizontal = true))
 
 
 println("Test 13: candlestick")

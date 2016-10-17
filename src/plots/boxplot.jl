@@ -2,6 +2,7 @@
 function box{T <: Real}(data::Vector{Vector{T}};
             names::Union{AbstractVector, Void} = nothing,
             legend::Bool = false,
+            horizontal::Bool = false,
             kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
@@ -31,6 +32,8 @@ function box{T <: Real}(data::Vector{Vector{T}};
     #Add legend if requested
     legend? legend!(ec) : nothing
 
+    horizontal? flip!(ec) : nothing
+
     return ec
 
 end
@@ -38,8 +41,9 @@ end
 function box{T <: Real}(data::Vector{T};
             names::Union{AbstractVector, Void} = nothing,
             legend::Bool = false,
+            horizontal::Bool = false,
             kwargs...)
 
-    return box([data], names = names, legend = legend, kwargs...)
+    return box([data], names = names, legend = legend, horizontal = horizontal, kwargs...)
 
 end

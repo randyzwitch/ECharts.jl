@@ -55,16 +55,17 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">values</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">values</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
-<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">]</span>
-<span class="n">funnel</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">v</span> <span class="o">=</span> <span class="x">[</span><span class="mi">100</span><span class="x">,</span><span class="mi">60</span><span class="x">,</span><span class="mi">80</span><span class="x">,</span><span class="mi">70</span><span class="x">,</span><span class="mi">50</span><span class="x">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="x">[</span><span class="s">"A"</span><span class="x">,</span> <span class="s">"B"</span><span class="x">,</span> <span class="s">"C"</span><span class="x">,</span> <span class="s">"D"</span><span class="x">,</span> <span class="s">"E"</span><span class="x">]</span>
+<span class="n">funnel</span><span class="x">(</span><span class="n">names</span><span class="x">,</span> <span class="n">values</span><span class="x">)</span></code></pre></div>
 
 <div id="funnelp" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

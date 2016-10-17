@@ -3,8 +3,9 @@ header {
 	height: 100%;
 	background: #333745;
 	width: 200px;
-	 border-top-right-radius: 0px;
-	 border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	overflow-y: auto;
 }
 
 header > h3 {
@@ -44,4 +45,9 @@ a {
 
 h3 {
     border-bottom: none;
+}
+
+header ul {
+
+    padding-bottom: 10px;
 }

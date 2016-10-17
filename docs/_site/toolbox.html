@@ -55,21 +55,21 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="p">::</span><span class="n">EChart</span>
-<span class="n">show</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">restore</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">dataView</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">saveAsImage</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">chartTypes</span><span class="p">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="p">[]</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span>
+<span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">restore</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">dataView</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">saveAsImage</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">chartTypes</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[]</span></code></pre></div>
 
 <h3 id="examples">Examples</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">20</span>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">20</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">.+</span> <span class="mi">5</span><span class="n">x</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">title</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Bar Plot Title&quot;</span><span class="p">,</span> <span class="n">subtext</span> <span class="o">=</span> <span class="s">&quot;Secondary Title&quot;</span><span class="p">)</span>
-<span class="n">toolbox</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;line&quot;</span><span class="p">])</span></code></pre></div>
+<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">title!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Bar Plot Title"</span><span class="x">,</span> <span class="n">subtext</span> <span class="o">=</span> <span class="s">"Secondary Title"</span><span class="x">)</span>
+<span class="n">toolbox!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="x">[</span><span class="s">"bar"</span><span class="x">,</span> <span class="s">"line"</span><span class="x">])</span></code></pre></div>
 
 <div id="title_ex" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

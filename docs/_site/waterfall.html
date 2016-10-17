@@ -59,16 +59,17 @@
 
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="p">::</span><span class="n">AbstractVector</span>
-<span class="n">y</span><span class="p">::</span><span class="n">AbstractArray</span>
-<span class="n">kwargs</span><span class="o">...</span><span class="p">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">y</span><span class="o">::</span><span class="n">AbstractArray</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
 
 <h2 id="single-series">Single Series</h2>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2900</span><span class="p">,</span> <span class="o">-</span><span class="mi">1200</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">900</span><span class="p">]</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">waterfall</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2900</span><span class="x">,</span> <span class="o">-</span><span class="mi">1200</span><span class="x">,</span> <span class="o">-</span><span class="mi">300</span><span class="x">,</span> <span class="o">-</span><span class="mi">200</span><span class="x">,</span> <span class="o">-</span><span class="mi">900</span><span class="x">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></div>
 
 <div id="waterf" style="height:400px;width:800px;"></div>
 <script type="text/javascript">

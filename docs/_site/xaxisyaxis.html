@@ -53,15 +53,34 @@
       <section>
           <h2 id="xaxisyaxis">xAxis!/yAxis!</h2>
 
+<p>The <code>xAxis!</code> and <code>yAxis!</code> functions are just convenience functions around the <code>Axis</code> type, so that end-users don’t need to reference <code>ec.yAxis</code> or <code>ec.xAxis</code> directly (though, nothing prevents users modifying the <code>EChart</code> chart instance).</p>
+
 <h3 id="function-keywords">Function Keywords</h3>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="p">::</span><span class="n">EChart</span>
-<span class="n">_type</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractString</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
-<span class="n">data</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">AbstractVector</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">boundaryGap</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
-<span class="n">min</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Number</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
-<span class="n">max</span><span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Number</span><span class="p">,</span> <span class="n">Void</span><span class="p">}</span> <span class="o">=</span> <span class="n">nothing</span>
-<span class="n">show</span><span class="p">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span></code></pre></div>
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span>
+<span class="n">_type</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">data</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="x">[]</span>
+<span class="n">boundaryGap</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">min</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Number</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">max</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Number</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">gridIndex</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">position</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">name</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">nameLocation</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"middle"</span>
+<span class="n">nameTextStyle</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">TextStyle</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">nameGap</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">inverse</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">splitNumber</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">minInterval</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">interval</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">silent</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">axisLine</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisLine</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">axisTick</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisTick</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">axisLabel</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisLabel</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">splitLine</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitLine</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">splitArea</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitArea</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span></code></pre></div>
 
 
       </section>
