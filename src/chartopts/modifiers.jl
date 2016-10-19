@@ -89,9 +89,14 @@ function legend!(ec::EChart)
 end
 
 #Flip x and y axis. Currently only works for XY plots, not boxplot
-function flip!(ec::EChart)
+function flip!(ec::EChart; rotatedims::Bool = false)
 
     ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
+
+	#Rotate dimensions to keep same aspect ratio
+	if rotatedims
+		ec.ec_width, ec.ec_height = ec.ec_height, ec.ec_width
+	end
 
 	# If boxplot, invert outlier values
 	# This could be more robust to not use numeric indices

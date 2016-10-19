@@ -16,6 +16,7 @@ Pass in your values as you expect to see them on the chart, positive or negative
 x::AbstractVector
 y::AbstractArray
 legend::Bool = false
+scale::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 

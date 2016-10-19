@@ -24,8 +24,6 @@ module ECharts
 	export sankey
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
-
-
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
 	include("render.jl")

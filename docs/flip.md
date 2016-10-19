@@ -12,6 +12,7 @@ This function is the underlying code behind the `horizontal` keyword for all xy 
 ### Function Keywords
 {% highlight julia %}
 ec::EChart
+rotatedims::Bool = false
 {% endhighlight %}
 
 ### Examples

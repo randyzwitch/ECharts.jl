@@ -3,6 +3,7 @@ function box{T <: Real}(data::Vector{Vector{T}};
             names::Union{AbstractVector, Void} = nothing,
             legend::Bool = false,
             horizontal::Bool = false,
+            scale::Bool = false,
             kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
@@ -24,7 +25,7 @@ function box{T <: Real}(data::Vector{Vector{T}};
     ec = newplot(kwargs, ec_charttype = "box")
 
     ec.xAxis = [Axis(_type = "category", data = names, boundaryGap = true)]
-    ec.yAxis = [Axis(_type = "value")]
+    ec.yAxis = [Axis(_type = "value", scale = true)]
 
     ec.series = [Series(name = "boxplot", _type = "boxplot", data = seriesdata)]
     push!(ec.series, Series(name = "outliers", _type = "scatter", data = outliers))

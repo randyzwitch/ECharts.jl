@@ -82,6 +82,39 @@
 <span class="n">splitLine</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitLine</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">splitArea</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitArea</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span></code></pre></div>
 
+<h2 id="log-scale-on-axis">Log Scale on Axis</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="o">^</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="x">]</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">line</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">yAxis!</span><span class="x">(</span><span class="n">l</span><span class="x">,</span> <span class="n">_type</span> <span class="o">=</span> <span class="s">"log"</span><span class="x">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></div>
+
+<div id="logscale" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("logscale"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"data":[1,2,3,4,5,6,7,8,9,10],"inverse":false,"type":"category","nameLocation":"middle","nameGap":30}],"yAxis":[{"scale":true,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"log","nameLocation":"middle","nameGap":50}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":20,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"ec_width":800,"ec_height":400,"ec_charttype":"xy plot","title":[{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true}],"series":[{"name":"Series 1","data":[2,4,8,16,32,64,128,256,512,1024],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"}]});
+</script>
+
+<h2 id="re-scale-axis-to-not-include-zero">(Re-)Scale axis to not include zero</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="x">[</span><span class="mi">850</span><span class="x">,</span> <span class="mi">740</span><span class="x">,</span> <span class="mi">900</span><span class="x">,</span> <span class="mi">1070</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">950</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">650</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">960</span><span class="x">,</span> <span class="mi">960</span><span class="x">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">,</span> <span class="n">horizontal</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span>
+<span class="n">xAxis!</span><span class="x">(</span><span class="n">b</span><span class="x">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></div>
+
+<div id="hbp" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("hbp"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"scale":true,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"middle","nameGap":30}],"yAxis":[{"splitNumber":5,"boundaryGap":true,"data":["1"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"middle","nameGap":30,"silent":true,"type":"category"}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":20,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"ec_width":800,"ec_height":400,"ec_charttype":"box","title":[{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true}],"series":[{"name":"boxplot","data":[[655.0,850.0,940.0,980.0,1175.0]],"smooth":false,"minSize":"0%","type":"boxplot","maxSize":"100%"},{"name":"outliers","data":[[650.0,"1"]],"smooth":false,"minSize":"0%","type":"scatter","maxSize":"100%"}]});
+</script>
+
 
       </section>
       <footer>

@@ -12,6 +12,7 @@ title: scatter
 x::AbstractVector
 y::AbstractArray
 legend::Bool = false
+scale::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
