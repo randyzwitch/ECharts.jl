@@ -1,6 +1,6 @@
 function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
             selected::AbstractVector = [],
-            radius::Union{AbstractVector, String, Void} = "90%",
+            radius::Union{AbstractVector, String, Void} = "80%",
             center::Union{AbstractVector, String, Void} = ["50%", "50%"],
             roseType::Union{String, Void} = nothing, # roseType = {"angle", "radius"}
             legend::Bool = false,
@@ -25,7 +25,7 @@ end
 
 pie(names::AbstractVector, values::AbstractVector;
             selected::AbstractVector = [],
-            radius::Union{AbstractVector, String} = "90%",
+            radius::Union{AbstractVector, String} = "80%",
             center::Union{AbstractVector, String}  = ["50%", "50%"],
             roseType::Union{String, Void} = nothing,
             legend::Bool = false,
@@ -35,7 +35,7 @@ pie(names::AbstractVector, values::AbstractVector;
 
 donut(names::AbstractVector, values::AbstractVector;
             selected::AbstractVector = [],
-            radius::Union{AbstractVector, String} = ["50%", "90%"],
+            radius::Union{AbstractVector, String} = ["50%", "80%"],
             center::Union{AbstractVector, String} = ["50%", "50%"],
             roseType::Union{String, Void} = nothing,
             legend::Bool = false,
@@ -66,7 +66,7 @@ function polar(angle::AbstractVector, radius::AbstractVector;
 
     ec = newplot(kwargs, ec_charttype = "polar")
 
-    ec.polar = Polar()
+    ec.polar = [Polar()]
     ec.angleAxis = AngleAxis(_type = "value", splitNumber = splitNumber)
     ec.radiusAxis = RadiusAxis(min = 0)
     ec.series = [Series(name = "Series 1", coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = [[r,a] for (r,a) in zip(radius, angle)])]

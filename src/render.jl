@@ -1,5 +1,3 @@
-import Base.print
-import Base.show
 print(x::EChart) = print(JSON.json(tojs(x)))
 
 #Jupyter Notebook display

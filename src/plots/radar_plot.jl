@@ -10,7 +10,7 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 
 	ec = newplot(kwargs, ec_charttype = "radar")
 
-	ec.radar = Radar(indicator = dataformat(name = names, max = max))
+	ec.radar = [Radar(indicator = dataformat(name = names, max = max))]
 
 	ec.series = [Series(name = "Series 1", _type = "radar", data = [Dict{Any, Any}("value" => values)])]
 

@@ -196,7 +196,7 @@ end
 end
 @with_kw type Axis <: AbstractEChartType
     show::Union{Bool, Void} = nothing
-    gridIndex::Union{Int,Void} = 0
+    gridIndex::Int = 0
     position::Union{String,Void} = nothing
     _type::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
@@ -246,23 +246,27 @@ end
     shadowOffsetY::Union{Int,Void} = 0
 end
 @with_kw type Grid <: AbstractEChartType
-    show::Union{Bool,Void} = false
-    zlevel::Union{Int,Void} = 0
-    z::Union{Int,Void} = 2
-    left::Union{Int,String,Void} = "auto"
-    top::Union{Int,String,Void} = 60
-    right::Union{Int,String,Void} = "10%"
-    bottom::Union{Int,String,Void} = 60
+    show::Bool = false
+    zlevel::Union{Int,Void} = nothing
+    z::Union{Int,Void} = nothing
+    x::Union{String,Void} = nothing
+    y::Union{String,Void} = nothing
+    x2::Union{String,Void} = nothing
+    y2::Union{String,Void} = nothing
+    left::Union{Int,String,Void} = nothing
+    top::Union{Int,String,Void} = nothing
+    right::Union{Int,String,Void} = nothing
+    bottom::Union{Int,String,Void} = nothing
     width::Union{Int,String,Void} = "auto"
     height::Union{Int,String,Void} = "auto"
-    containLabel::Union{Bool,Void} = false
+    containLabel::Union{Bool,Void} = nothing
     backgroundColor::Union{String,Void} = "transparent"
-    borderColor::Union{String,Void} = "#ccc"
-    borderWidth::Union{Int,Void} = 1
+    borderColor::Union{String,Void} = nothing
+    borderWidth::Union{Int,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = 0
-    shadowOffsetY::Union{Int,Void} = 0
+    shadowOffsetX::Union{Int,Void} = nothing
+    shadowOffsetY::Union{Int,Void} = nothing
 end
 @with_kw type DataZoom <: AbstractEChartType
     _type::Union{String,Void} = nothing
@@ -453,8 +457,8 @@ end
     width::Union{String,Void} = nothing
     min::Union{Int,Void} = nothing
     max::Union{Int,Void} = nothing
-    minSize::Union{String,Void} = "0%"
-    maxSize::Union{String,Void} = "100%"
+    minSize::Union{String,Void} = nothing
+    maxSize::Union{String,Void} = nothing
     sort::Union{String,Void} = nothing
     gap::Union{Int,Void} = nothing
     label::Union{Label,Void} = nothing
@@ -466,6 +470,9 @@ end
     step::Union{String,Void} = nothing
     layout::Union{String,Void} = nothing
     links::Union{AbstractVector,Void} = nothing
+    funnelAlign::Union{String,Void} = nothing
+    xAxisIndex::Int = 0
+    yAxisIndex::Int = 0
     #markLine::Union{Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
@@ -474,13 +481,13 @@ end
     ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
     title::Union{Vector{Title},Void} = [Title()]
     legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
-    grid::Union{Grid,Void} = nothing
+    grid::Union{Array{Grid},Void} = [Grid()]
     xAxis::Union{Array{Axis,1},Void} = nothing
     yAxis::Union{Array{Axis,1},Void} = nothing
-    polar::Union{Polar,Void} = nothing
+    polar::Union{Vector{Polar},Void} = nothing
     radiusAxis::Union{RadiusAxis,Void} = nothing
     angleAxis::Union{AngleAxis,Void} = nothing
-    radar::Union{Radar,Void} = nothing
+    radar::Union{Vector{Radar},Void} = nothing
     dataZoom::Union{Vector{DataZoom},Void} = nothing  #typedef needs to be filled out
     visualMap::Union{VisualMap,Void} = nothing  #typedef needs to be filled out
     tooltip::Union{Tooltip,Void} = nothing

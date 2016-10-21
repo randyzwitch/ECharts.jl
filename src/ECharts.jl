@@ -3,6 +3,7 @@ __precompile__()
 module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
+	import Base.hcat, Base.print, Base.show
 
 	export print
 
