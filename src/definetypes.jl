@@ -138,6 +138,7 @@ end
     hideDelay::Union{Int,Void} = 100
     enterable::Union{Bool,Void} = true
     position::Union{AbstractVector,String,Void} = nothing
+    confine::Union{Bool,Void} = false
     transitionDuration::Union{Number,Void} = 0.4
     formatter::Union{String,Void} = nothing
     backgroundColor::Union{String,Void} = "rgba(50,50,50,0.7)"
@@ -147,6 +148,7 @@ end
     textStyle::Union{TextStyle,Void} = "#fff"
     extraCssText::Union{String,Void} = nothing
     axisPointer::Union{AxisPointer,Void} = nothing
+    data::Union{AbstractArray, Void} = nothing
 end
 @with_kw type Legend <: AbstractEChartType
     show::Union{Bool,Void} = true
@@ -166,27 +168,28 @@ end
     itemHeight::Union{Int,Void} = 14
     formatter::Union{String,Void} = nothing
     selectedMode::Union{Bool,String,Void} = true
+    inactiveColor::Union{String,Void} = "#ccc"
     selected::Union{Dict{String,Bool},Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
-    backgroundColor::Union{String,Void} = "transparent"
-    borderColor::Union{String,Void} = "transparent"
-    borderWidth::Union{Int,Void} = 1
-    shadowBlur::Union{Int,Void} = nothing
-    shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = 0
-    shadowOffsetY::Union{Int,Void} = 0
+    # backgroundColor::Union{String,Void} = "transparent"
+    # borderColor::Union{String,Void} = "transparent"
+    # borderWidth::Union{Int,Void} = 1
+    # shadowBlur::Union{Int,Void} = nothing
+    # shadowColor::Union{String,Void} = nothing
+    # shadowOffsetX::Union{Int,Void} = 0
+    # shadowOffsetY::Union{Int,Void} = 0
 end
 @with_kw type Toolbox <: AbstractEChartType
     show::Union{Bool,Void} = false
     orient::Union{String,Void} = "vertical"
-    itemGap::Union{Number,Void} = 20
     itemSize::Union{Number,Void} = 15
-    feature::Union{Dict{Any,Any},Void} = Dict{Any,Any}()
+    itemGap::Union{Number,Void} = 20
     showTitle::Union{Bool,Void} = true
+    feature::Union{Dict{Any,Any},Void} = Dict{Any,Any}()
+    iconStyle::Union{IconStyle,Void} = nothing
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
-    iconStyle::Union{IconStyle,Void} = nothing
     left::Union{Number,String,Void} = nothing
     top::Union{Number,String,Void} = "center"
     right::Union{Number,String,Void} = "auto"
@@ -194,15 +197,21 @@ end
     width::Union{Number,String,Void} = "auto"
     height::Union{Number,String,Void} = "auto"
 end
+#Need to implement
+@with_kw type Brush <: AbstractEChartType
+    fillin::Any
+end
 @with_kw type Axis <: AbstractEChartType
-    show::Union{Bool, Void} = nothing
-    gridIndex::Int = 0
+    # show::Union{Bool, Void} = nothing
+    gridIndex::Union{Int,Void} = 0
     position::Union{String,Void} = nothing
+    offset::Union{Int,Void} = nothing
     _type::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
     nameLocation::Union{String,Void} = "middle"
     nameTextStyle::Union{TextStyle,Void} = nothing
     nameGap::Union{Int,Void} = 30
+    nameRotate::Union{Int,Void} = nothing
     inverse::Union{Bool,Void} = false
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
     min::Union{Int,String,Void} = nothing
@@ -211,13 +220,17 @@ end
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
     interval::Union{Int,Void} = nothing
+    logBase::Union{Int, Void} = nothing
     silent::Union{Bool,Void} = true
+    triggerEvent::Union{Bool,Void} = false
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
     axisLabel::Union{AxisLabel,Void} = nothing
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    zlevel::Union{Int,Void} = 0
+    z::Union{Int,Void} = 0
 end
 @with_kw type Title <: AbstractEChartType
     show::Union{Bool,Void} = true
@@ -225,6 +238,8 @@ end
     link::Union{String,Void} = nothing
     target::Union{String,Void} = "blank"
     textStyle::Union{TextStyle,Void} = nothing
+    textAlign::Union{String,Void} = nothing
+    textBaseline::Union{String,Void} = nothing
     subtext::Union{String,Void} = nothing
     sublink::Union{String,Void} = nothing
     subtarget::Union{String,Void} = "blank"
@@ -249,10 +264,10 @@ end
     show::Bool = false
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
-    x::Union{String,Void} = nothing
-    y::Union{String,Void} = nothing
-    x2::Union{String,Void} = nothing
-    y2::Union{String,Void} = nothing
+    # x::Union{String,Void} = nothing
+    # y::Union{String,Void} = nothing
+    # x2::Union{String,Void} = nothing
+    # y2::Union{String,Void} = nothing
     left::Union{Int,String,Void} = nothing
     top::Union{Int,String,Void} = nothing
     right::Union{Int,String,Void} = nothing
@@ -268,6 +283,7 @@ end
     shadowOffsetX::Union{Int,Void} = nothing
     shadowOffsetY::Union{Int,Void} = nothing
 end
+#This needs work, documentation not clear about what to implement
 @with_kw type DataZoom <: AbstractEChartType
     _type::Union{String,Void} = nothing
     show::Bool = false
@@ -318,21 +334,26 @@ end
     nameLocation::Union{String,Void} = "start"
     nameTextStyle::Union{TextStyle,Void} = nothing
     nameGap::Union{Int,Void} = 15
+    nameRotate::Union{Int,Void} = nothing
     inverse::Union{Bool,Void} = false
     boundaryGap::Union{Array{String,1},Bool,Void} = nothing
-    min::Union{Int,String,Void} = "auto"
-    max::Union{Int,String,Void} = "auto"
+    min::Union{Int,String,Void} = nothing
+    max::Union{Int,String,Void} = nothing
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
     interval::Union{Int,Void} = nothing
+    logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
+    triggerEvent::Union{Bool,Void} = false
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
     axisLabel::Union{AxisLabel,Void} = nothing
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    zlevel::Union{Int,Void} = nothing
+    z::Union{Int,Void} = nothing
 end
 @with_kw type AngleAxis <: AbstractEChartType
     polarIndex::Union{Int,Void} = 0
@@ -346,13 +367,17 @@ end
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
     interval::Union{Int,Void} = nothing
+    logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
+    triggerEvent::Union{Bool,Void} = nothing
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
     axisLabel::Union{AxisLabel,Void} = nothing
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    zlevel::Union{Int,Void} = nothing
+    z::Union{Int,Void} = nothing
 end
 @with_kw type Radar <: AbstractEChartType
     zlevel::Union{Int,Void} = 0
@@ -362,7 +387,11 @@ end
     startAngle::Union{Int,Void} = 90
     name::Union{Dict{Any,Any},Void} = nothing
     nameGap::Union{Int,Void} = 15
+    splitNumber::Union{Int,Void} = nothing
+    shape::Union{String, Void} = nothing
+    scale::Union{Bool, Void} = nothing
     silent::Union{Bool,Void} = true
+    triggerEvent::Union{Bool, Void} = nothing
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
     axisLabel::Union{AxisLabel,Void} = nothing
@@ -370,6 +399,7 @@ end
     splitArea::Union{SplitArea,Void} = nothing
     indicator::Union{AbstractVector,Void} = nothing
 end
+#Needs to be fleshed out
 @with_kw type VisualMap <: AbstractEChartType
     _type::Union{String,Void} = nothing
 end
@@ -382,6 +412,7 @@ end
     map::Union{String,Void} = nothing
     roam::Union{Bool,Void} = false
     center::Union{Array{Number,1},Void} = nothing
+    aspectScale::Union{Number, Void} = nothing
     zoom::Union{Int,Void} = 1
     scaleLimit::Union{ScaleLimit,Void} = nothing
     nameMap::Union{Dict,Void} = nothing
@@ -394,6 +425,8 @@ end
     top::Union{Int,String,Void} = "auto"
     right::Union{Int,String,Void} = "auto"
     bottom::Union{Int,String,Void} = "auto"
+    layoutCenter::Union{Array{Number,1},Void} = nothing
+    layoutSize::Union{Number,Void} = nothing
     regions::Union{AbstractVector,Void} = nothing
     silent::Union{Bool,Void} = false
 end
@@ -407,6 +440,10 @@ end
     width::Union{Int,String,Void} = "auto"
     height::Union{Int,String,Void} = "auto"
     layout::Union{String,Void} = "horizontal"
+    axisExpandable::Union{Bool, Void} = nothing
+    axisExpandCenter::Union{Number, Void} = nothing
+    axisExpandCount::Union{Number, Void} = nothing
+    axisExpandWidth::Union{Number, Void} = nothing
     parallelAxisDefault::Union{Dict,Void} = nothing
 end
 @with_kw type AreaSelectStyle <: AbstractEChartType
@@ -419,12 +456,14 @@ end
 @with_kw type ParallelAxis <: AbstractEChartType
     dim::Union{Int,Void} = nothing
     parallelIndex::Union{Int,Void} = 0
+    realtime::Union{Bool,Void} = nothing
     areaSelectStyle::Union{AreaSelectStyle,Void} = nothing
     _type::Union{String,Void} = "value"
     name::Union{String,Void} = nothing
     nameLocation::Union{String,Void} = "start"
     nameTextStyle::Union{TextStyle,Void} = "#fff"
     nameGap::Union{Int,Void} = 15
+    nameRotate::Union{Int,Void}
     inverse::Union{Bool,Void} = false
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
     min::Union{Int,String,Void} = "auto"
@@ -433,11 +472,52 @@ end
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
     interval::Union{Int,Void} = nothing
+    logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
+    triggerEvent::Union{Bool,Void} = nothing
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
     axisLabel::Union{AxisLabel,Void} = nothing
     data::Union{Dict,Void} = nothing
+end
+#Needs to be fleshed out
+@with_kw type singleAxis <: AbstractEChartType
+    zlevel::Any = nothing
+    z::Any = nothing
+    left::Any = nothing
+    top::Any = nothing
+    right::Any = nothing
+    bottom::Any = nothing
+    width::Any = nothing
+    height::Any = nothing
+    orient::Any = nothing
+    _type::Any = nothing
+    name::Any = nothing
+    nameLocation::Any = nothing
+    nameTextStyle::Any = nothing
+    nameGap::Any = nothing
+    nameRotate::Any = nothing
+    inverse::Any = nothing
+    boundaryGap::Any = nothing
+    min::Any = nothing
+    max::Any = nothing
+    scale::Any = nothing
+    splitNumber::Any = nothing
+    minInterval::Any = nothing
+    interval::Any = nothing
+    logBase::Any = nothing
+    silent::Any = nothing
+    triggerEvent::Any = nothing
+    axisLine::Any = nothing
+    axisTick::Any = nothing
+    axisLabel::Any = nothing
+    splitLine::Any = nothing
+    splitArea::Any = nothing
+    data::Any = nothing
+end
+#Needs to be fleshed out
+@with_kw type Graphic <: AbstractEChartType
+    tbd::Any = nothing
 end
 @with_kw type Series <: AbstractEChartType
     coordinateSystem::Union{String,Void} = nothing
