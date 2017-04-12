@@ -25,6 +25,29 @@ module ECharts
 	export sankey
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
+	import JSON
+	using JSON.StructuralContext
+	using JSON.Serializations.CommonSerialization
+
+	immutable JSSerialization <: CommonSerialization end
+	immutable JSFunction
+		data::String
+	end
+
+	function JSON.show_json(io::StructuralContext,
+							  ::JSSerialization, f::JSFunction)
+		first = true
+		for line in split(f.data, '\n')
+			if !first
+				JSON.indent(io)
+			end
+			first = false
+			Base.print(io, line)
+		end
+	end
+
+	json(x) = sprint(JSON.show_json, JSSerialization(), x)
+
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
 	include("render.jl")
@@ -53,6 +76,7 @@ module ECharts
 	    end
 	    return res
 	end
+	tojs(x::JSFunction) = JSON.json(x)
 	tojs(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words

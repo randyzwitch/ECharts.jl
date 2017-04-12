@@ -1,4 +1,4 @@
-abstract AbstractEChartType
+abstract type AbstractEChartType end
 
 @with_kw type LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = "#333"
@@ -311,7 +311,7 @@ end
     orient::Union{String,Void} = "horizontal"
     inverse::Union{Bool,Void} = false
     symbol::Union{String,Void} = "emptyCircle"
-    symbolSize::Union{Array{Int,1},Int,Void} = 10
+    symbolSize::Union{Array{Int,1},Int,JSFunction,Void} = 10
     symbolRotate::Union{Int,Void} = nothing
     symbolOffset::Union{Array{Int,1},Void} = [0,0]
     lineStyle::Union{LineStyle,Void} = nothing
@@ -546,7 +546,7 @@ end
     itemStyle::Union{ItemStyle,Void} = nothing
     lineStyle::Union{ItemStyle,Void} = nothing
     showSymbol::Union{Bool,Void} = nothing
-    symbolSize::Union{Number, AbstractVector,Void} = nothing
+    symbolSize::Union{Number, AbstractVector,JSFunction,Void} = nothing
     step::Union{String,Void} = nothing
     layout::Union{String,Void} = nothing
     links::Union{AbstractVector,Void} = nothing
