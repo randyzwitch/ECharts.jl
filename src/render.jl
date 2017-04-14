@@ -1,4 +1,4 @@
-print(x::EChart) = print(JSON.json(tojs(x)))
+print(x::EChart) = print(json(makevalidjson(x)))
 
 #Jupyter Notebook display
 #Refactor this so it's not so repetitive
@@ -6,7 +6,7 @@ print(x::EChart) = print(JSON.json(tojs(x)))
 function show(io::IO, ::MIME"text/html", ec::EChart)
 
     divid = "Echart" * randstring(3)
-    option = JSON.json(tojs(ec))
+    option = json(makevalidjson(ec))
     width = ec.ec_width
     height = ec.ec_height
 
@@ -20,7 +20,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"https://randyzwitch.github.io/ECharts.jl/javascripts/echarts.min\",
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3\",
                       }
                     });
 
@@ -74,4 +74,4 @@ function blink_show(ec::EChart)
 end
 
 # See if it can render in Jupyter Notebook, if not, Blink
-show(io::IO, ec::EChart) = displayable("text/html")? ec: blink_show(ec)
+#show(io::IO, ec::EChart) = displayable("text/html")? ec: blink_show(ec)
