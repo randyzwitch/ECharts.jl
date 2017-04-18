@@ -2,8 +2,12 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
 	import Base.hcat, Base.print, Base.show
+
+	import JSON
+	using JSON.StructuralContext
+	using JSON.Serializations.CommonSerialization
 
 	export print
 
@@ -16,6 +20,7 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
+	export JSFunction
 
 	export line, bar, area, scatter, waterfall
 	export pie, donut, radar
@@ -25,10 +30,7 @@ module ECharts
 	export sankey
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
-	import JSON
-	using JSON.StructuralContext
-	using JSON.Serializations.CommonSerialization
-
+	#Define custom JSON serialization rule
 	immutable JSSerialization <: CommonSerialization end
 	immutable JSFunction
 		data::String
@@ -36,17 +38,19 @@ module ECharts
 
 	function JSON.show_json(io::StructuralContext,
 							  ::JSSerialization, f::JSFunction)
-		first = true
+		#first = true
 		for line in split(f.data, '\n')
-			if !first
-				JSON.indent(io)
-			end
-			first = false
+			# if !first
+			# 	JSON.indent(io)
+			# end
+			# first = false
 			Base.print(io, line)
 		end
 	end
 
+	#this is a package local function, it is not overloading JSON.json
 	json(x) = sprint(JSON.show_json, JSSerialization(), x)
+	#end custom JSON serialization rule
 
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
@@ -66,28 +70,26 @@ module ECharts
 	include("plots/sankey.jl")
 
 	# From JMW originally
-	tojs(s::Symbol) = string(s)
-	tojs(v::Vector) = [tojs(v_i) for v_i in v]
+	makevalidjson(s::Symbol) = string(s)
+	makevalidjson(v::Vector) = [makevalidjson(v_i) for v_i in v]
 
-	function tojs(v::Dict)
+	function makevalidjson(v::Dict)
 	    res = Dict()
 	    for (k, v) in v
-	        res[k] = tojs(v)
+	        res[k] = makevalidjson(v)
 	    end
 	    return res
 	end
-	tojs(x::JSFunction) = JSON.json(x)
-	tojs(x::Any) = x
+	makevalidjson(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words
 	# Check for this, strip off _ before creating js
-	function tojs(x::AbstractEChartType)
+	function makevalidjson(x::AbstractEChartType)
 	    res = Dict()
 
 	    for f in fieldnames(x)
 	        if getfield(x, f) != nothing
-	        	startswith(string(f), "_") ? res[string(f)[2:end]] = tojs(getfield(x, f)):
-	                                         res[string(f)] = tojs(getfield(x, f))
+	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)): res[string(f)] = makevalidjson(getfield(x, f))
 	        end
 	    end
 	    return res

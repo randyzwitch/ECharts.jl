@@ -40,38 +40,3 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
               """)
 end
-
-function blink_show(ec::EChart)
-    w = Window()
-    echarts = joinpath(dirname(@__FILE__), "..", "javascript", "echarts.min.js")
-    for file in (echarts,)
-        load!(w, file)
-    end
-
-    divid = "Echart" * randstring(3)
-    option = JSON.json(tojs(ec))
-    width = ec.ec_width
-    height = ec.ec_height
-    body =
-
-        """
-        <body>
-            <!-- Prepare a Dom with size (width and height) for ECharts -->
-            <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
-        </body>
-
-            <script type=\"text/javascript\">
-                // Initialize after dom ready
-               var myChart = echarts.init(document.getElementById(\"$divid\"));
-
-                // Load data into the ECharts instance
-                myChart.setOption($option);
-            </script>
-
-        """
-
-    body!(w, body)
-end
-
-# See if it can render in Jupyter Notebook, if not, Blink
-#show(io::IO, ec::EChart) = displayable("text/html")? ec: blink_show(ec)

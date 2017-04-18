@@ -42,7 +42,7 @@ end
     inside::Union{Bool,Void} = false
     rotate::Union{Int,Void} = 0
     margin::Union{Int,Void} = 8
-    formatter::Union{String,Void} = nothing
+    formatter::Union{String,Void, JSFunction} = nothing
     textStyle::Union{TextStyle,Void} = nothing
 end
 @with_kw type AxisLine <: AbstractEChartType
@@ -140,8 +140,8 @@ end
     position::Union{AbstractVector,String,Void} = nothing
     confine::Union{Bool,Void} = false
     transitionDuration::Union{Number,Void} = 0.4
-    formatter::Union{String,Void} = nothing
-    backgroundColor::Union{String,Void} = "rgba(50,50,50,0.7)"
+    formatter::Union{String,Void, JSFunction} = nothing
+    backgroundColor::Union{String,Void, JSFunction} = "rgba(50,50,50,0.7)"
     borderColor::Union{String,Void} = "#333"
     borderWidth::Union{Int,Void} = 0
     padding::Union{Int,Void} = 5
@@ -166,7 +166,7 @@ end
     itemGap::Union{Int,Void} = 10
     itemWidth::Union{Int,Void} = 25
     itemHeight::Union{Int,Void} = 14
-    formatter::Union{String,Void} = nothing
+    formatter::Union{String,Void, JSFunction} = nothing
     selectedMode::Union{Bool,String,Void} = true
     inactiveColor::Union{String,Void} = "#ccc"
     selected::Union{Dict{String,Bool},Void} = nothing
@@ -252,7 +252,7 @@ end
     top::Union{Int,String,Void} = "auto"
     right::Union{Int,String,Void} = "auto"
     bottom::Union{Int,String,Void} = "auto"
-    backgroundColor::Union{String,Void} = nothing
+    backgroundColor::Union{String,Void, JSFunction} = nothing
     borderColor::Union{String,Void} = "transparent"
     borderWidth::Union{Int,Void} = 1
     shadowBlur::Union{Int,Void} = nothing
@@ -275,7 +275,7 @@ end
     width::Union{Int,String,Void} = "auto"
     height::Union{Int,String,Void} = "auto"
     containLabel::Union{Bool,Void} = nothing
-    backgroundColor::Union{String,Void} = "transparent"
+    backgroundColor::Union{String,Void,JSFunction} = "transparent"
     borderColor::Union{String,Void} = nothing
     borderWidth::Union{Int,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
@@ -578,7 +578,7 @@ end
     timeline::Union{Timeline,Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
     color::Union{AbstractVector,Void} = nothing
-    backgroundColor::Union{String,Void} = nothing
+    backgroundColor::Union{String,Void, JSFunction} = nothing
     textStyle::Union{TextStyle,Void} = nothing
     animation::Union{Bool,Void} = nothing
     animationDuration::Union{Int,Void} = nothing
