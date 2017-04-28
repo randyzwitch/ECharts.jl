@@ -3,7 +3,7 @@ __precompile__()
 module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
-	import Base.hcat, Base.print, Base.show
+	import Base.print, Base.show
 
 	import JSON
 	using JSON.StructuralContext
@@ -22,14 +22,6 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export JSFunction
 
-	export line, bar, area, scatter, waterfall
-	export pie, donut, radar
-	export funnel, gauge, polar
-	export box
-	export candlestick
-	export sankey
-	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
-
 	#Define custom JSON serialization rule
 	immutable JSSerialization <: CommonSerialization end
 	immutable JSFunction
@@ -38,12 +30,7 @@ module ECharts
 
 	function JSON.show_json(io::StructuralContext,
 							  ::JSSerialization, f::JSFunction)
-		#first = true
 		for line in split(f.data, '\n')
-			# if !first
-			# 	JSON.indent(io)
-			# end
-			# first = false
 			Base.print(io, line)
 		end
 	end
@@ -55,19 +42,6 @@ module ECharts
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
 	include("render.jl")
-
-	#Visualization mutating functions
-	include("chartopts/utilities.jl")
-	include("chartopts/modifiers.jl")
-
-	#Plots
-	include("plots/xy_plot.jl")
-	include("plots/circular_plot.jl")
-	include("plots/funnel_plot.jl")
-	include("plots/radar_plot.jl")
-	include("plots/boxplot.jl")
-	include("plots/candlestick.jl")
-	include("plots/sankey.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)
