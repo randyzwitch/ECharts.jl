@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl | xAxis!/yAxis!</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/ECharts.jl/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "box.html">box</a></li>
+            <li><a href = "candlestick.html">candlestick</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "sankey.html">sankey</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
+            <li><a href = "waterfall.html">waterfall</a></li>
+            <li><a href = "xy_combos.html">xy combination plots</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "flip.html">flip!</a></li>
+            <li><a href = "legend.html">legend!</a></li>
+            <li><a href = "slider.html">slider!</a></li>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="xaxisyaxis">xAxis!/yAxis!</h2>
+
+<p>The <code>xAxis!</code> and <code>yAxis!</code> functions are just convenience functions around the <code>Axis</code> type, so that end-users don’t need to reference <code>ec.yAxis</code> or <code>ec.xAxis</code> directly (though, nothing prevents users modifying the <code>EChart</code> chart instance).</p>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span>
+<span class="n">_type</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">data</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="x">[]</span>
+<span class="n">boundaryGap</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">min</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Number</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">max</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Number</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">gridIndex</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">position</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">name</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">nameLocation</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"middle"</span>
+<span class="n">nameTextStyle</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">TextStyle</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">nameGap</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">inverse</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">splitNumber</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">minInterval</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">interval</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">silent</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">axisLine</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisLine</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">axisTick</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisTick</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">axisLabel</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AxisLabel</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">splitLine</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitLine</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">splitArea</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">SplitArea</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span></code></pre></div>
+
+<h2 id="log-scale-on-axis">Log Scale on Axis</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="o">^</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="x">]</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">line</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">yAxis!</span><span class="x">(</span><span class="n">l</span><span class="x">,</span> <span class="n">_type</span> <span class="o">=</span> <span class="s">"log"</span><span class="x">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></div>
+
+<div id="logscale" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("logscale"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"data":[1,2,3,4,5,6,7,8,9,10],"inverse":false,"type":"category","nameLocation":"middle","nameGap":30}],"yAxis":[{"scale":true,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"log","nameLocation":"middle","nameGap":50}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":20,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"ec_width":800,"ec_height":400,"ec_charttype":"xy plot","title":[{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true}],"series":[{"name":"Series 1","data":[2,4,8,16,32,64,128,256,512,1024],"smooth":false,"minSize":"0%","type":"line","maxSize":"100%"}]});
+</script>
+
+<h2 id="re-scale-axis-to-not-include-zero">(Re-)Scale axis to not include zero</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="x">[</span><span class="mi">850</span><span class="x">,</span> <span class="mi">740</span><span class="x">,</span> <span class="mi">900</span><span class="x">,</span> <span class="mi">1070</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">950</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">650</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">960</span><span class="x">,</span> <span class="mi">960</span><span class="x">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">,</span> <span class="n">horizontal</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span>
+<span class="n">xAxis!</span><span class="x">(</span><span class="n">b</span><span class="x">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></div>
+
+<div id="hbp" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("hbp"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"scale":true,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"middle","nameGap":30}],"yAxis":[{"splitNumber":5,"boundaryGap":true,"data":["1"],"scale":false,"gridIndex":0,"minInterval":0,"inverse":false,"nameLocation":"middle","nameGap":30,"silent":true,"type":"category"}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":20,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"ec_width":800,"ec_height":400,"ec_charttype":"box","title":[{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true}],"series":[{"name":"boxplot","data":[[655.0,850.0,940.0,980.0,1175.0]],"smooth":false,"minSize":"0%","type":"boxplot","maxSize":"100%"},{"name":"outliers","data":[[650.0,"1"]],"smooth":false,"minSize":"0%","type":"scatter","maxSize":"100%"}]});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

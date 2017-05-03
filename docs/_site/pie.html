@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl | pie</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/ECharts.jl/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "box.html">box</a></li>
+            <li><a href = "candlestick.html">candlestick</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "sankey.html">sankey</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
+            <li><a href = "waterfall.html">waterfall</a></li>
+            <li><a href = "xy_combos.html">xy combination plots</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "flip.html">flip!</a></li>
+            <li><a href = "legend.html">legend!</a></li>
+            <li><a href = "slider.html">slider!</a></li>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="piedonutrose-chart">Pie/Donut/Rose Chart</h2>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">values</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">selected</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[]</span>
+<span class="n">radius</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="kt">AbstractString</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"90%"</span><span class="x">,</span>
+<span class="n">center</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="kt">AbstractString</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="x">[</span><span class="s">"50%"</span><span class="x">,</span> <span class="s">"50%"</span><span class="x">]</span>
+<span class="n">roseType</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
+
+<h2 id="pie-chart">Pie Chart</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
+<span class="n">pie</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></div>
+
+<div id="pie" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("pie"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[{"name":"Monday","selected":false,"value":11},{"name":"Tuesday","selected":false,"value":11},{"name":"Wednesday","selected":false,"value":15},{"name":"Thursday","selected":false,"value":13},{"name":"Friday","selected":false,"value":12},{"name":"Saturday","selected":false,"value":13},{"name":"Sunday","selected":false,"value":10}],"smooth":false,"radius":"90%","center":["50%","50%"],"type":"pie"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+<h2 id="pie-chart---exploded">Pie Chart - Exploded</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">values</span> <span class="o">=</span> <span class="x">[</span><span class="mi">335</span><span class="x">,</span> <span class="mi">310</span><span class="x">,</span> <span class="mi">234</span><span class="x">,</span> <span class="mi">135</span><span class="x">,</span> <span class="mi">1548</span><span class="x">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="x">[</span><span class="s">"direct interview"</span><span class="x">,</span> <span class="s">"email marketing"</span><span class="x">,</span> <span class="s">"advertising alliance"</span><span class="x">,</span> <span class="s">"video ads"</span><span class="x">,</span> <span class="s">"search engine"</span><span class="x">]</span>
+<span class="n">explode</span> <span class="o">=</span> <span class="x">[</span><span class="n">true</span><span class="x">,</span> <span class="n">false</span><span class="x">,</span> <span class="n">false</span><span class="x">,</span> <span class="n">false</span><span class="x">,</span> <span class="n">false</span><span class="x">]</span>
+<span class="n">pie</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">selected</span> <span class="o">=</span> <span class="n">explode</span><span class="x">)</span></code></pre></div>
+
+<div id="piex" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("piex"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[{"name":"direct interview","selected":true,"value":335},{"name":"email marketing","selected":false,"value":310},{"name":"advertising alliance","selected":false,"value":234},{"name":"video ads","selected":false,"value":135},{"name":"search engine","selected":false,"value":1548}],"smooth":false,"radius":"90%","center":["50%","50%"],"type":"pie"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+<h2 id="donut-chart">Donut Chart</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
+<span class="n">donut</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></div>
+
+<div id="donut" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("donut"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[{"name":"Monday","selected":false,"value":11},{"name":"Tuesday","selected":false,"value":11},{"name":"Wednesday","selected":false,"value":15},{"name":"Thursday","selected":false,"value":13},{"name":"Friday","selected":false,"value":12},{"name":"Saturday","selected":false,"value":13},{"name":"Sunday","selected":false,"value":10}],"smooth":false,"radius":["50%","90%"],"type":"pie"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+<h2 id="rose-chart---angle">Rose Chart - Angle</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">values</span> <span class="o">=</span> <span class="x">[</span><span class="mi">335</span><span class="x">,</span> <span class="mi">310</span><span class="x">,</span> <span class="mi">234</span><span class="x">,</span> <span class="mi">135</span><span class="x">,</span> <span class="mi">1548</span><span class="x">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="x">[</span><span class="s">"direct interview"</span><span class="x">,</span> <span class="s">"email marketing"</span><span class="x">,</span> <span class="s">"advertising alliance"</span><span class="x">,</span> <span class="s">"video ads"</span><span class="x">,</span> <span class="s">"search engine"</span><span class="x">]</span>
+<span class="n">pie</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">"angle"</span><span class="x">)</span></code></pre></div>
+
+<div id="roseangle" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("roseangle"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[{"name":"direct interview","selected":false,"value":335},{"name":"email marketing","selected":false,"value":310},{"name":"advertising alliance","selected":false,"value":234},{"name":"video ads","selected":false,"value":135},{"name":"search engine","selected":false,"value":1548}],"smooth":false,"radius":"90%","center":["50%","50%"],"type":"pie","roseType":"angle"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+<h2 id="rose-chart---radius">Rose Chart - Radius</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">values</span> <span class="o">=</span> <span class="x">[</span><span class="mi">335</span><span class="x">,</span> <span class="mi">310</span><span class="x">,</span> <span class="mi">234</span><span class="x">,</span> <span class="mi">135</span><span class="x">,</span> <span class="mi">1548</span><span class="x">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="x">[</span><span class="s">"direct interview"</span><span class="x">,</span> <span class="s">"email marketing"</span><span class="x">,</span> <span class="s">"advertising alliance"</span><span class="x">,</span> <span class="s">"video ads"</span><span class="x">,</span> <span class="s">"search engine"</span><span class="x">]</span>
+<span class="n">donut</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">roseType</span> <span class="o">=</span> <span class="s">"radius"</span><span class="x">)</span></code></pre></div>
+
+<div id="roseradius" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("roseradius"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{},"series":[{"data":[{"name":"direct interview","selected":false,"value":335},{"name":"email marketing","selected":false,"value":310},{"name":"advertising alliance","selected":false,"value":234},{"name":"video ads","selected":false,"value":135},{"name":"search engine","selected":false,"value":1548}],"smooth":false,"radius":["50%","90%"],"type":"pie","roseType":"radius"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

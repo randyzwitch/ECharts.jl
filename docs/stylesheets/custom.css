@@ -1,0 +1,48 @@
+header {
+	margin: 0px;
+	height: 100%;
+	background: #333745;
+	width: 200px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	overflow-y: auto;
+}
+
+header > h3 {
+	color: #77C4D3;
+}
+
+section {
+    width: 800px;
+    padding-bottom: 50px;
+    padding-left: 360px;
+    float: left;
+}
+
+body {
+	padding: 0px;
+}
+
+header li, header li:hover {
+    margin-bottom: 0px;
+    line-height: 0em;
+    background: none;
+    border-radius: 0px;
+    border: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	width: 150px;
+}
+
+header a:hover {
+	color: #EA2E49;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+h3 {
+    border-bottom: none;
+}

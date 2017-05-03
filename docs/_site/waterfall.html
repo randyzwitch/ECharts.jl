@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl | waterfall</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/ECharts.jl/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "box.html">box</a></li>
+            <li><a href = "candlestick.html">candlestick</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "sankey.html">sankey</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
+            <li><a href = "waterfall.html">waterfall</a></li>
+            <li><a href = "xy_combos.html">xy combination plots</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "flip.html">flip!</a></li>
+            <li><a href = "legend.html">legend!</a></li>
+            <li><a href = "slider.html">slider!</a></li>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="waterfall">Waterfall</h2>
+
+<p>This function is just a convenience function around the <code>bar</code> function with <code>stacked = true</code> and the offset series set as transparent in order to give the waterfall chart effect.</p>
+
+<p>Pass in your values as you expect to see them on the chart, positive or negative and in order. The function will do the offset calculations and the total calculation and automatically add them to the chart.</p>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span>
+<span class="n">y</span><span class="o">::</span><span class="n">AbstractArray</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
+
+<h2 id="single-series">Single Series</h2>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2900</span><span class="x">,</span> <span class="o">-</span><span class="mi">1200</span><span class="x">,</span> <span class="o">-</span><span class="mi">300</span><span class="x">,</span> <span class="o">-</span><span class="mi">200</span><span class="x">,</span> <span class="o">-</span><span class="mi">900</span><span class="x">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></div>
+
+<div id="waterf" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("waterf"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"data":["1","2","3","4","5","total"],"inverse":false,"type":"category","nameLocation":"start","nameGap":15}],"yAxis":[{"scale":false,"gridIndex":0,"splitNumber":5,"minInterval":0,"silent":true,"inverse":false,"type":"value","nameLocation":"start","nameGap":15}],"toolbox":{"feature":{},"itemSize":15,"orient":"vertical","height":"auto","zlevel":0,"z":2,"itemGap":10,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"title":{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","top":"auto","subtarget":"blank","show":true},"series":[{"itemStyle":{"normal":{"shadowOffsetY":0,"shadowOffsetX":0,"barBorderColor":"transparent","color":"transparent","borderColor":"#000","borderWidth":0},"emphasis":{"shadowOffsetY":0,"shadowOffsetX":0,"barBorderColor":"transparent","color":"transparent","borderColor":"#000","borderWidth":0}},"stack":1,"data":[0,1700,1400,1200,300,0],"smooth":false,"minSize":"0%","type":"bar","maxSize":"100%"},{"stack":1,"data":[2900,1200,300,200,900,300],"smooth":false,"minSize":"0%","type":"bar","maxSize":"100%"}]});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>

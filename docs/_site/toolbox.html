@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ECharts.jl | toolbox!</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <script src="javascripts/echarts.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/ECharts.jl/">ECharts.jl</a></h1>
+
+        <h3>Charts</h3>
+        <ul>
+            <li><a href = "area.html">area</a></li>
+            <li><a href = "bar.html">bar</a></li>
+            <li><a href = "box.html">box</a></li>
+            <li><a href = "candlestick.html">candlestick</a></li>
+            <li><a href = "funnel.html">funnel</a></li>
+            <li><a href = "gauge.html">gauge</a></li>
+            <li><a href = "line.html">line</a></li>
+            <li><a href = "pie.html">pie/donut</a></li>
+            <li><a href = "polar.html">polar</a></li>
+            <li><a href = "radar.html">radar</a></li>
+            <li><a href = "sankey.html">sankey</a></li>
+            <li><a href = "scatter.html">scatter</a></li>
+            <li><a href = "waterfall.html">waterfall</a></li>
+            <li><a href = "xy_combos.html">xy combination plots</a></li>
+        </ul>
+        <h3>Functions</h3>
+        <ul>
+            <li><a href = "colorscheme.html">colorscheme!</a></li>
+            <li><a href = "flip.html">flip!</a></li>
+            <li><a href = "legend.html">legend!</a></li>
+            <li><a href = "slider.html">slider!</a></li>
+            <li><a href = "title.html">title!</a></li>
+            <li><a href = "toolbox.html">toolbox!</a></li>
+            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+        </ul>
+
+      </header>
+
+      <section>
+          <h2 id="toolbox">toolbox!</h2>
+
+<p>toolbox! provides interactive functionality in the style of many popular analytics dashboards. toolbox! options allow for users to access raw data, change between compatible graph types (flip between bar and line, etc.) and provides a means for downloading static PNG images.</p>
+
+<h3 id="function-keywords">Function Keywords</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span>
+<span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">restore</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">dataView</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">saveAsImage</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">chartTypes</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[]</span></code></pre></div>
+
+<h3 id="examples">Examples</h3>
+
+<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">20</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">.+</span> <span class="mi">5</span><span class="n">x</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">title!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Bar Plot Title"</span><span class="x">,</span> <span class="n">subtext</span> <span class="o">=</span> <span class="s">"Secondary Title"</span><span class="x">)</span>
+<span class="n">toolbox!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="x">[</span><span class="s">"bar"</span><span class="x">,</span> <span class="s">"line"</span><span class="x">])</span></code></pre></div>
+
+<div id="title_ex" style="height:400px;width:800px;"></div>
+<script type="text/javascript">
+    // Initialize after dom ready
+    var myChart = echarts.init(document.getElementById("title_ex"));
+
+    // Load data into the ECharts instance
+    myChart.setOption({"xAxis":[{"show":true,"data":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"type":"category"}],"yAxis":[{"show":true,"type":"value"}],"toolbox":{"itemGap":15,"show":true,"x":"right","feature":{"dataView":{"show":true,"title":"Data View","lang":["Data View","Cancel","Refresh"]},"restore":{"show":true,"title":"Restore"},"saveAsImage":{"show":true,"title":"Save As PNG"},"magicType":{"show":true,"title":{"line":"Line","bar":"Bar","tiled":"Tiled","chord":"Chord","stack":"Stack","pie":"Pie","force":"Force","funnel":"Funnel"},"type":["bar","line"]}},"orient":"vertical","y":"center"},"title":{"subtext":"Secondary Title","text":"Bar Plot Title"},"series":[{"data":[8,13,18,23,28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,103],"smooth":false,"type":"bar"}],"backgroundColor":"rgba(0,0,0,0)"});
+</script>
+
+
+      </section>
+      <footer>
+
+      </footer>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
