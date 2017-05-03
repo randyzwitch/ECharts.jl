@@ -23,7 +23,7 @@ module ECharts
 	export JSFunction
 
 	export xy_plot, bar, line, scatter, area
-	export radar
+	export radar, funnel
 	export pie, donut, gauge, polar
 
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
@@ -61,6 +61,7 @@ module ECharts
 	include("plots/area.jl")
 	include("plots/radar.jl")
 	include("plots/circular_plot.jl")
+	include("plots/funnel.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)
