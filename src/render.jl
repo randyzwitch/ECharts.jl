@@ -40,3 +40,36 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
               """)
 end
+
+#Register what a EChart is
+media(EChart, Media.Graphical)
+
+#Define how to render a VegaVisualization and where
+function Media.render(pane::Atom.PlotPane, ec::EChart)
+
+    divid = "Echart" * randstring(3)
+    option = json(makevalidjson(ec))
+
+    #Make new window
+    w = Juno.Atom.blinkplot()
+
+    #Get window size
+    width, height = Juno.plotsize()
+
+    #Load JavaScript library via Blink API
+    load!(w, "https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3.js")
+
+    a =
+    """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
+    <script type="text/javascript">
+        // Initialize after dom ready
+        var myChart = echarts.init(document.getElementById("$divid"));
+
+        // Load data into the ECharts instance
+        myChart.setOption($option);
+    </script>
+    """
+
+    body!(w, a)
+
+end

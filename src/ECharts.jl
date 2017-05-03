@@ -2,7 +2,7 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom
 	import Base.print, Base.show
 
 	import JSON
@@ -21,6 +21,12 @@ module ECharts
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export JSFunction
+
+	export xy_plot, bar, line, scatter, area
+	export radar
+	export pie, donut, gauge, polar
+
+	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
 	#Define custom JSON serialization rule
 	immutable JSSerialization <: CommonSerialization end
@@ -42,6 +48,19 @@ module ECharts
 	#Primitives - in order of descending dependency within files
 	include("definetypes.jl")
 	include("render.jl")
+
+	#Visualization mutating functions
+	include("chartopts/utilities.jl")
+	include("chartopts/modifiers.jl")
+
+	#Plots
+	include("plots/xy_plot.jl")
+	include("plots/bar.jl")
+	include("plots/line.jl")
+	include("plots/scatter.jl")
+	include("plots/area.jl")
+	include("plots/radar.jl")
+	include("plots/circular_plot.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)

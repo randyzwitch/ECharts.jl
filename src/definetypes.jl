@@ -1,4 +1,4 @@
-abstract type AbstractEChartType end
+abstract AbstractEChartType
 
 @with_kw type LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = "#333"
