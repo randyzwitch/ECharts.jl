@@ -61,6 +61,10 @@ module ECharts
 	include("plots/area.jl")
 	include("plots/radar.jl")
 	include("plots/circular_plot.jl")
+	include("plots/pie.jl")
+	include("plots/donut.jl")
+	include("plots/gauge.jl")
+	include("plots/polar.jl")
 	include("plots/funnel.jl")
 
 	# From JMW originally
