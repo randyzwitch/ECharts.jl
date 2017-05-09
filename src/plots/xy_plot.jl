@@ -35,7 +35,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			step::Union{String, Void} = nothing,
 			horizontal::Bool = false,
-			legend::Bool = false,
+			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
 
@@ -50,9 +50,16 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 		push!(ec.series, Series(_type = mark[i], data = y[:,i]))
 	end
 
-	#stack
+	#stack: this logic feels janky, but seems to work
 	if stack != nothing
-		stack == true? [x.stack = 1 for x in ec.series]: [x.stack = stack[i] for (i,x) in enumerate(ec.series)]
+		if stack == true
+			[x.stack = 1 for x in ec.series]
+		elseif typeof(stack) <: AbstractVector
+			[x.stack = stack[i] for (i,x) in enumerate(ec.series)]
+		else
+			nothing
+		end
+
 	end
 
 	#step
@@ -63,6 +70,9 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 
 	# Add default names to series
 	seriesnames!(ec)
+
+	#Add legend if requested
+	legend? legend!(ec) : nothing
 
 	return ec
 
