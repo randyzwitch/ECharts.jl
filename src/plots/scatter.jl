@@ -1,4 +1,4 @@
-function scatter(x::AbstractVector, y::AbstractVector;
+function scatter(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = false,
 			scale::Bool = false,

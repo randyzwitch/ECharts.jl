@@ -114,32 +114,49 @@ end
     shadowOffsetY::Union{Int,Void} = 0
     opacity::Union{Number,Void} = 0
 end
+@with_kw type AxisPointerLabel <: AbstractEChartType
+    show::Union{Bool, Void} = false
+    precision::Union{String, Number, Void} = "auto"
+    formatter::Union{String, JSFunction, Void} = nothing
+    margin::Union{Bool, Number, Void} = nothing
+    textStyle::Union{TextStyle, Void} = nothing
+    padding::Union{String, AbstractVector, Void} = 5
+    backgroundColor::Union{String, Void} = nothing
+    borderColor::Union{String, Void} = nothing
+    borderWidth::Union{String, Number, Void} = nothing
+    shadowBlur::Union{Number, Void} = nothing
+    shadowColor::Union{String, JSFunction, Void} = nothing
+    shadowOffsetX::Union{Number, Void} = nothing
+    shadowOffsetY::Union{Number, Void} = nothing
+end
 @with_kw type AxisPointer <: AbstractEChartType
+    show::Union{Bool,Void} = false
     _type::Union{String,Void} = "line"
-    axis::Union{String,Void} = "auto"
-    animation::Union{Bool,Void} = "auto"
-    animationThreshold::Union{Int,Void} = 2000
-    animationDuration::Union{Int,Void} = 1000
-    animationDelay::Union{Int,Void} = 1000
-    animationDurationUpdate::Union{Int,Void} = 300
-    animationEasingUpdate::Union{String,Void} = "cubicOut"
-    animationDelayUpdate::Union{Int,Void} = 0
+    snap::Union{Bool,Void} = nothing
+    z::Union{Int,Void} = nothing
+    label::Union{AxisPointerLabel,Void} = nothing
     lineStyle::Union{LineStyle,Void} = nothing
-    crossStyle::Union{CrossStyle,Void} = nothing
     shadowStyle::Union{ShadowStyle,Void} = nothing
+    triggerTooltip::Union{String,Void} = nothing
+    value::Union{Number, Void} = nothing
+    status::Union{Bool, Void} = nothing
+    handle::Any = nothing #for mobile device, do later
+    link::Union{AbstractVector, Any} = nothing
+    triggerOn::Union{String, Void} = nothing
 end
 @with_kw type Tooltip <: AbstractEChartType
     show::Union{Bool,Void} = false
-    showContent::Union{Bool,Void} = true
     trigger::Union{String,Void} = "item"
-    triggerOn::Union{String,Void} = "mousemove"
+    axisPointer::Union{AxisPointer,Void} = nothing
+    showContent::Union{Bool,Void} = true
     alwaysShowContent::Union{Bool,Void} = false
+    triggerOn::Union{String,Void} = "mousemove"
     showDelay::Union{Int,Void} = 0
     hideDelay::Union{Int,Void} = 100
     enterable::Union{Bool,Void} = true
-    position::Union{AbstractVector,String,Void} = nothing
     confine::Union{Bool,Void} = false
     transitionDuration::Union{Number,Void} = 0.4
+    position::Union{AbstractVector,String,Void} = nothing
     formatter::Union{String,Void, JSFunction} = nothing
     backgroundColor::Union{String,Void, JSFunction} = "rgba(50,50,50,0.7)"
     borderColor::Union{String,Void} = "#333"
@@ -147,8 +164,6 @@ end
     padding::Union{Int,Void} = 5
     textStyle::Union{TextStyle,Void} = "#fff"
     extraCssText::Union{String,Void} = nothing
-    axisPointer::Union{AxisPointer,Void} = nothing
-    data::Union{AbstractArray, Void} = nothing
 end
 @with_kw type Legend <: AbstractEChartType
     show::Union{Bool,Void} = true
@@ -171,14 +186,15 @@ end
     inactiveColor::Union{String,Void} = "#ccc"
     selected::Union{Dict{String,Bool},Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
     data::Union{AbstractVector,Void} = nothing
-    # backgroundColor::Union{String,Void} = "transparent"
-    # borderColor::Union{String,Void} = "transparent"
-    # borderWidth::Union{Int,Void} = 1
-    # shadowBlur::Union{Int,Void} = nothing
-    # shadowColor::Union{String,Void} = nothing
-    # shadowOffsetX::Union{Int,Void} = 0
-    # shadowOffsetY::Union{Int,Void} = 0
+    backgroundColor::Union{String,Void} = "transparent"
+    borderColor::Union{String,Void} = "transparent"
+    borderWidth::Union{Int,Void} = 1
+    shadowBlur::Union{Int,Void} = nothing
+    shadowColor::Union{String,Void} = nothing
+    shadowOffsetX::Union{Int,Void} = 0
+    shadowOffsetY::Union{Int,Void} = 0
 end
 @with_kw type Toolbox <: AbstractEChartType
     show::Union{Bool,Void} = false
@@ -197,12 +213,26 @@ end
     width::Union{Number,String,Void} = "auto"
     height::Union{Number,String,Void} = "auto"
 end
-#Need to implement
 @with_kw type Brush <: AbstractEChartType
-    fillin::Any
+    toolbox::Union{AbstractArray, Void} = nothing
+    brushLink::Union{AbstractArray, String, Void} = nothing
+    seriesIndex::Union{AbstractArray, Number, String, Void} = nothing
+    geoIndex::Union{AbstractArray, Number, String, Void} = nothing
+    xAxisIndex::Union{AbstractArray, Number, String, Void} = nothing
+    yAxisIndex::Union{AbstractArray, Number, String, Void} = nothing
+    brushType::Union{String, Void} = nothing
+    brushMode::Union{String, Void} = nothing
+    transformable::Union{Bool, Void} = nothing
+    brushStyle::Union{Dict, Void} = nothing
+    throttleType::Union{String, Void} = nothing
+    throttleDelay::Union{Number, Void} = nothing
+    removeOnClick::Union{Bool, Void} = nothing
+    inBrush::Union{Dict, Void} = nothing
+    outOfBrush::Union{Dict, Void} = nothing
+    z::Union{Int, Void} = nothing
 end
 @with_kw type Axis <: AbstractEChartType
-    # show::Union{Bool, Void} = nothing
+    show::Union{Bool, Void} = nothing
     gridIndex::Union{Int,Void} = 0
     position::Union{String,Void} = nothing
     offset::Union{Int,Void} = nothing
@@ -229,6 +259,7 @@ end
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    axisPointer::Union{AxisPointer, Void} = nothing
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 0
 end
@@ -264,10 +295,6 @@ end
     show::Bool = false
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
-    # x::Union{String,Void} = nothing
-    # y::Union{String,Void} = nothing
-    # x2::Union{String,Void} = nothing
-    # y2::Union{String,Void} = nothing
     left::Union{Int,String,Void} = nothing
     top::Union{Int,String,Void} = nothing
     right::Union{Int,String,Void} = nothing
@@ -282,6 +309,7 @@ end
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = nothing
     shadowOffsetY::Union{Int,Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
 end
 #This needs work, documentation not clear about what to implement
 @with_kw type DataZoom <: AbstractEChartType
@@ -326,6 +354,7 @@ end
     z::Union{Int,Void} = 2
     center::Union{Array{String,1},Void} = String["50%","50%"]
     radius::Union{AbstractVector,Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
 end
 @with_kw type RadiusAxis <: AbstractEChartType
     polarIndex::Union{Int,Void} = 0
@@ -352,6 +381,7 @@ end
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    axisPointer::Union{AxisPointer, Void} = nothing
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
 end
@@ -376,6 +406,7 @@ end
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
+    axisPointer::Union{AxisPointer, Void} = nothing
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
 end
@@ -413,6 +444,7 @@ end
     roam::Union{Bool,Void} = false
     center::Union{Array{Number,1},Void} = nothing
     aspectScale::Union{Number, Void} = nothing
+    boundingCoords::Union{AbstractArray, Void} = nothing
     zoom::Union{Int,Void} = 1
     scaleLimit::Union{ScaleLimit,Void} = nothing
     nameMap::Union{Dict,Void} = nothing
@@ -426,7 +458,7 @@ end
     right::Union{Int,String,Void} = "auto"
     bottom::Union{Int,String,Void} = "auto"
     layoutCenter::Union{Array{Number,1},Void} = nothing
-    layoutSize::Union{Number,Void} = nothing
+    layoutSize::Union{Number,String,Void} = nothing
     regions::Union{AbstractVector,Void} = nothing
     silent::Union{Bool,Void} = false
 end
@@ -444,6 +476,7 @@ end
     axisExpandCenter::Union{Number, Void} = nothing
     axisExpandCount::Union{Number, Void} = nothing
     axisExpandWidth::Union{Number, Void} = nothing
+    axisExpandTriggerOn::Union{String, Void} = nothing
     parallelAxisDefault::Union{Dict,Void} = nothing
 end
 @with_kw type AreaSelectStyle <: AbstractEChartType
@@ -480,45 +513,67 @@ end
     axisLabel::Union{AxisLabel,Void} = nothing
     data::Union{Dict,Void} = nothing
 end
-#Needs to be fleshed out
-@with_kw type singleAxis <: AbstractEChartType
-    zlevel::Any = nothing
-    z::Any = nothing
-    left::Any = nothing
-    top::Any = nothing
-    right::Any = nothing
-    bottom::Any = nothing
-    width::Any = nothing
-    height::Any = nothing
-    orient::Any = nothing
-    _type::Any = nothing
-    name::Any = nothing
-    nameLocation::Any = nothing
-    nameTextStyle::Any = nothing
-    nameGap::Any = nothing
-    nameRotate::Any = nothing
-    inverse::Any = nothing
-    boundaryGap::Any = nothing
-    min::Any = nothing
-    max::Any = nothing
-    scale::Any = nothing
-    splitNumber::Any = nothing
-    minInterval::Any = nothing
-    interval::Any = nothing
-    logBase::Any = nothing
-    silent::Any = nothing
-    triggerEvent::Any = nothing
-    axisLine::Any = nothing
-    axisTick::Any = nothing
-    axisLabel::Any = nothing
-    splitLine::Any = nothing
-    splitArea::Any = nothing
-    data::Any = nothing
+@with_kw type SingleAxis <: AbstractEChartType
+    zlevel::Union{Int,Void} = nothing
+    z::Union{Int,Void} = nothing
+    left::Union{String, Number, Void} = nothing
+    top::Union{String, Number, Void} = nothing
+    right::Union{String, Number, Void} = nothing
+    bottom::Union{String, Number, Void} = nothing
+    width::Union{String, Number, Void} = nothing
+    height::Union{String, Number, Void} = nothing
+    orient::Union{String, Void} = nothing
+    _type::Union{String, Void} = nothing
+    name::Union{String, Void} = nothing
+    nameLocation::Union{String, Void} = nothing
+    nameTextStyle::Union{TextStyle, Void} = nothing
+    nameGap::Union{Number, Void} = nothing
+    nameRotate::Union{Number, Void} = nothing
+    inverse::Union{Bool, Void} = nothing
+    boundaryGap::Union{Bool, AbstractVector, Void} = nothing
+    min::Union{String, Number, Void} = nothing
+    max::Union{String, Number, Void} = nothing
+    scale::Union{Bool, Void} = nothing
+    splitNumber::Union{Number, Void} = nothing
+    minInterval::Union{Number, Void}  = nothing
+    interval::Union{Number, Void} = nothing
+    logBase::Union{Number, Void} = nothing
+    silent::Union{Bool, Void} = nothing
+    triggerEvent::Union{Bool, Void} = nothing
+    axisLine::Union{AxisLine, Void} = nothing
+    axisTick::Union{AxisTick, Void} = nothing
+    axisLabel::Union{AxisLabel, Void} = nothing
+    splitLine::Union{SplitLine, Void} = nothing
+    splitArea::Union{SplitArea, Void} = nothing
+    data::Union{AbstractVector, Void} = nothing
+    axisPointer::Union{AxisPointer, Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
 end
-#Needs to be fleshed out
+#Needs to be fleshed out, might not be possible due to $action fieldname
 @with_kw type Graphic <: AbstractEChartType
     tbd::Any = nothing
 end
+@with_kw type Calendar <: AbstractEChartType
+    zlevel::Union{Int,Void} = nothing
+    z::Union{Int,Void} = nothing
+    left::Union{String, Number, Void} = nothing
+    top::Union{String, Number, Void} = nothing
+    right::Union{String, Number, Void} = nothing
+    bottom::Union{String, Number, Void} = nothing
+    width::Union{String, Number, Void} = nothing
+    height::Union{String, Number, Void} = nothing
+    range::Union{String, Number, AbstractVector, Void} = nothing
+    cellSize::Union{Number, AbstractVector, Void} = nothing
+    orient::Union{String, Void} = nothing
+    splitLine::Union{SplitLine, Void} = nothing
+    itemStyle::Union{ItemStyle, Void} = nothing
+    dayLabel::Union{Dict, Void} = nothing
+    monthLabel::Union{Dict, Void} = nothing
+    yearLabel::Union{Dict, Void} = nothing
+    silent::Union{Bool,Void} = nothing
+end
+#Need to validate for all types
+#Make individual series types like echarts.js?
 @with_kw type Series <: AbstractEChartType
     coordinateSystem::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
@@ -553,7 +608,6 @@ end
     funnelAlign::Union{String,Void} = nothing
     xAxisIndex::Int = 0
     yAxisIndex::Int = 0
-    #markLine::Union{Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
@@ -571,20 +625,26 @@ end
     dataZoom::Union{Vector{DataZoom},Void} = nothing  #typedef needs to be filled out
     visualMap::Union{VisualMap,Void} = nothing  #typedef needs to be filled out
     tooltip::Union{Tooltip,Void} = nothing
+    axisPointer::Union{AxisPointer, Void} = nothing
     toolbox::Union{Toolbox,Void} = Toolbox()
     geo::Union{Geo,Void} = nothing
     parallel::Union{Parallel,Void} = nothing
     parallelAxis::Union{ParallelAxis,Void} = nothing
+    singleAxis::Union{SingleAxis,Void} = nothing
     timeline::Union{Timeline,Void} = nothing
+    graphic::Union{Graphic,Void} = nothing
+    calendar::Union{Calendar,Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
     color::Union{AbstractVector,Void} = nothing
     backgroundColor::Union{String,Void, JSFunction} = nothing
     textStyle::Union{TextStyle,Void} = nothing
     animation::Union{Bool,Void} = nothing
+    animationThreshold::Union{Int,Void} = nothing
     animationDuration::Union{Int,Void} = nothing
     animationEasing::Union{String,Void} = nothing
     animationDelay::Union{Int,Void} = nothing
     animationDurationUpdate::Union{Int,Void} = nothing
     animationEasingUpdate::Union{String,Void} = nothing
     animationDelayUpdate::Union{Int,Void} = nothing
+    useUTC::Union{Bool, Void} = nothing
 end

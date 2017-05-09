@@ -1,6 +1,7 @@
 #Generic plot interface for all plots needing X-Y axis with a single series
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
 			step::Union{String, Void} = nothing,
 			horizontal::Bool = false,
 			legend::Bool = false,
@@ -24,6 +25,44 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 
 	#Add legend if requested
 	legend? legend!(ec) : nothing
+
+	return ec
+
+end
+
+function xy_plot(x::AbstractVector, y::AbstractArray;
+			mark::Union{String, AbstractVector} = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing,
+			step::Union{String, Void} = nothing,
+			horizontal::Bool = false,
+			legend::Bool = false,
+			scale::Bool = false,
+			kwargs...)
+
+	# Allow for convenience of using single string to represent same mark for all series values
+	typeof(mark) <: AbstractVector? nothing : mark = [mark for i in 1:length(x)]
+
+	# Call 1-D method to build base
+	ec = xy_plot(x, y[:,1]; mark = mark[1], scale = scale, kwargs...)
+
+	# Append remaining Y data
+	for i in 2:size(y)[2]
+		push!(ec.series, Series(_type = mark[i], data = y[:,i]))
+	end
+
+	#stack
+	if stack != nothing
+		stack == true? [x.stack = 1 for x in ec.series]: [x.stack = stack[i] for (i,x) in enumerate(ec.series)]
+	end
+
+	#step
+	step != nothing ? [x.step = step for x in ec.series]: nothing
+
+	#Make plot horizontal
+	horizontal? flip!(ec): nothing
+
+	# Add default names to series
+	seriesnames!(ec)
 
 	return ec
 

@@ -22,12 +22,14 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
 	export JSFunction
 
-	export xy_plot, bar, line, scatter, area
+	export xy_plot, bar, line, scatter, area, waterfall
+	export box, candlestick, sankey
 	export radar, funnel
 	export pie, donut, gauge, polar
 
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
+	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
 	immutable JSSerialization <: CommonSerialization end
 	immutable JSFunction
@@ -41,7 +43,6 @@ module ECharts
 		end
 	end
 
-	#this is a package local function, it is not overloading JSON.json
 	json(x) = sprint(JSON.show_json, JSSerialization(), x)
 	#end custom JSON serialization rule
 
@@ -66,6 +67,10 @@ module ECharts
 	include("plots/gauge.jl")
 	include("plots/polar.jl")
 	include("plots/funnel.jl")
+	include("plots/waterfall.jl")
+	include("plots/box.jl")
+	include("plots/candlestick.jl")
+	include("plots/sankey.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)

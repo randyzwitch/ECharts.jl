@@ -23,3 +23,31 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 	return ec
 
 end
+
+function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
+	 				fill::Union{Bool, AbstractVector} = false,
+					legend::Bool = false,
+					kwargs...)
+
+	# Call 1-D method to build base
+	ec = radar(names, values[:,1], max; kwargs...)
+
+	# Append remaining Y data
+	for i in 2:size(values)[2]
+		push!(ec.series, Series(_type = "radar", data = [Dict{Any, Any}("value" => values[:,i])]))
+	end
+
+	# Fill area if requested
+	# This is smelly
+	typeof(fill) == Bool? fill = [fill for i in 1:size(values)[2]]: fill = fill
+	cols = length(fill)
+	fill!(ec, cols, fill)
+
+	seriesnames!(ec)
+
+	#Add legend if requested
+	legend? legend!(ec) : nothing
+
+	return ec
+
+end

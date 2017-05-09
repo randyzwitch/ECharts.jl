@@ -1,4 +1,4 @@
-function line(x::AbstractVector, y::AbstractVector;
+function line(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
 			legend::Bool = false,
