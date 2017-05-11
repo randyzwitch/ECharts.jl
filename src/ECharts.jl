@@ -20,7 +20,7 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export JSFunction
+	export JSFunction, LinearGradient, RadialGradient
 
 	export xy_plot, bar, line, scatter, area, waterfall
 	export box, candlestick, sankey
@@ -53,6 +53,7 @@ module ECharts
 	#Visualization mutating functions
 	include("chartopts/utilities.jl")
 	include("chartopts/modifiers.jl")
+	include("chartopts/js_to_julia.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
