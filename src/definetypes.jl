@@ -635,7 +635,7 @@ end
     graphic::Union{Graphic,Void} = nothing
     calendar::Union{Calendar,Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
-    color::Union{AbstractVector,Void} = nothing
+    color::Union{AbstractVector,JSFunction,Void} = nothing
     backgroundColor::Union{String,Void, JSFunction} = nothing
     textStyle::Union{TextStyle,Void} = nothing
     animation::Union{Bool,Void} = nothing
