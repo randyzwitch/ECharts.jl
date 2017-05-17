@@ -58,12 +58,13 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
 
     #Load JavaScript library via Blink API
     load!(w, "https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3.js")
+    load!(w, "https://randyzwitch.github.io/ECharts.jl/javascripts/roma.js")
 
     a =
     """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
     <script type="text/javascript">
         // Initialize after dom ready
-        var myChart = echarts.init(document.getElementById("$divid"));
+        var myChart = echarts.init(document.getElementById("$divid"), 'roma');
 
         // Load data into the ECharts instance
         myChart.setOption($option);
