@@ -26,7 +26,7 @@ end
 
 function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
 	 				fill::Union{Bool, AbstractVector} = false,
-					legend::Bool = false,
+					legend::Bool = true,
 					kwargs...)
 
 	# Call 1-D method to build base

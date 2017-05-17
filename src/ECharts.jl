@@ -2,8 +2,8 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
-	import Base.hcat, Base.print, Base.show
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom
+	import Base.print, Base.show
 
 	import JSON
 	using JSON.StructuralContext
@@ -20,16 +20,16 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export JSFunction
+	export JSFunction, LinearGradient, RadialGradient
 
-	export line, bar, area, scatter, waterfall
-	export pie, donut, radar
-	export funnel, gauge, polar
-	export box
-	export candlestick
-	export sankey
+	export xy_plot, bar, line, scatter, area, waterfall
+	export box, candlestick, sankey
+	export radar, funnel
+	export pie, donut, gauge, polar
+
 	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
 
+	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
 	immutable JSSerialization <: CommonSerialization end
 	immutable JSFunction
@@ -38,17 +38,11 @@ module ECharts
 
 	function JSON.show_json(io::StructuralContext,
 							  ::JSSerialization, f::JSFunction)
-		#first = true
 		for line in split(f.data, '\n')
-			# if !first
-			# 	JSON.indent(io)
-			# end
-			# first = false
 			Base.print(io, line)
 		end
 	end
 
-	#this is a package local function, it is not overloading JSON.json
 	json(x) = sprint(JSON.show_json, JSSerialization(), x)
 	#end custom JSON serialization rule
 
@@ -59,13 +53,23 @@ module ECharts
 	#Visualization mutating functions
 	include("chartopts/utilities.jl")
 	include("chartopts/modifiers.jl")
+	include("chartopts/js_to_julia.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
+	include("plots/bar.jl")
+	include("plots/line.jl")
+	include("plots/scatter.jl")
+	include("plots/area.jl")
+	include("plots/radar.jl")
 	include("plots/circular_plot.jl")
-	include("plots/funnel_plot.jl")
-	include("plots/radar_plot.jl")
-	include("plots/boxplot.jl")
+	include("plots/pie.jl")
+	include("plots/donut.jl")
+	include("plots/gauge.jl")
+	include("plots/polar.jl")
+	include("plots/funnel.jl")
+	include("plots/waterfall.jl")
+	include("plots/box.jl")
 	include("plots/candlestick.jl")
 	include("plots/sankey.jl")
 
