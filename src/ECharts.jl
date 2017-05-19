@@ -20,7 +20,7 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
-	export JSFunction, LinearGradient, RadialGradient
+	export JSFunction, LinearGradient, RadialGradient, Theme
 
 	export xy_plot, bar, line, scatter, area, waterfall
 	export box, candlestick, sankey

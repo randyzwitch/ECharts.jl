@@ -9,6 +9,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
     option = json(makevalidjson(ec))
     width = ec.ec_width
     height = ec.ec_height
+    theme = json(makevalidjson(ec.theme))
 
         display("text/html", """
 
@@ -20,7 +21,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3\",
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3\"
                       }
                     });
 
@@ -28,8 +29,10 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                         window.echarts = echarts
 
+                        var obj = JSON.parse('$theme');
+
                         // Initialize after dom ready
-                        var myChart = echarts.init(document.getElementById(\"$divid\"));
+                        var myChart = echarts.init(document.getElementById(\"$divid\"), obj);
 
                         // Load data into the ECharts instance
                         myChart.setOption($option);
@@ -49,6 +52,7 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
 
     divid = "Echart" * randstring(3)
     option = json(makevalidjson(ec))
+    theme = json(makevalidjson(ec.theme))
 
     #Make new window
     w = Juno.Atom.blinkplot()
@@ -58,18 +62,20 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
 
     #Load JavaScript library via Blink API
     load!(w, "https://randyzwitch.github.io/ECharts.jl/javascripts/echarts-3.5.3.js")
-    load!(w, "https://randyzwitch.github.io/ECharts.jl/javascripts/roma.js")
 
-    a =
-    """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
-    <script type="text/javascript">
-        // Initialize after dom ready
-        var myChart = echarts.init(document.getElementById("$divid"), 'roma');
+        a =
+        """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
+        <script type="text/javascript">
 
-        // Load data into the ECharts instance
-        myChart.setOption($option);
-    </script>
-    """
+            var obj = JSON.parse('$theme');
+
+            // Initialize after dom ready
+            var myChart = echarts.init(document.getElementById("$divid"), obj);
+
+            // Load data into the ECharts instance
+            myChart.setOption($option);
+        </script>
+        """
 
     body!(w, a)
 
