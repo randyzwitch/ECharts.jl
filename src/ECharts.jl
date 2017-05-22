@@ -2,7 +2,7 @@ __precompile__()
 
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom, DataFrames
 	import Base.print, Base.show
 
 	import JSON
@@ -27,7 +27,7 @@ module ECharts
 	export radar, funnel
 	export pie, donut, gauge, polar
 
-	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!
+	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule

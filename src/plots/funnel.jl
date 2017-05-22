@@ -6,7 +6,7 @@ function funnel(names::AbstractVector, values::AbstractVector;
 
     ec.series = [Series(name = "Series 1",
                         _type = "funnel",
-                        data =  dataformat(value = values, name = names)
+                        data =  arrayofdicts(value = values, name = names)
                        )
                 ]
 

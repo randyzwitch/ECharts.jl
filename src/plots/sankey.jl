@@ -2,8 +2,8 @@ function sankey{T <: Real}(name::AbstractVector{String}, source::AbstractVector{
                             kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "sankey")
-    ec.series = [Series(name = "Series 1", _type = "sankey", layout = "none", data = dataformat(name = name),
-        links = dataformat(source = source, target = target, value = value))]
+    ec.series = [Series(name = "Series 1", _type = "sankey", layout = "none", data = arrayofdicts(name = name),
+        links = arrayofdicts(source = source, target = target, value = value))]
 
     return ec
 

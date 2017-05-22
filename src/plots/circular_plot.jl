@@ -12,7 +12,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
 
     ec = newplot(kwargs, ec_charttype = "circular")
 
-    data_fmt = dataformat(value = values, name = names, selected = selected)
+    data_fmt = arrayofdicts(value = values, name = names, selected = selected)
 
     ec.series = [Series(name = "Series 1", _type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 

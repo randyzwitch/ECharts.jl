@@ -12,7 +12,7 @@ function newplot{T}(kwargs::Vector{T}; ec_charttype::Union{String, Void} = nothi
 end
 
 #Separate arrays as inputs to array of dicts
-function dataformat(; kwargs...)
+function arrayofdicts(; kwargs...)
 
     #Determine number of values in array, check that all are equal length
     lengths = [length(x[2]) for x in kwargs]
@@ -33,6 +33,9 @@ function dataformat(; kwargs...)
 
     return datafmt
 end
+
+#Combine arrays into array of arrays by each value
+xyarrayofarray(x::AbstractVector,y::AbstractVector) = [[x,y] for (x,y) in zip(x,y)]
 
 #Common kwargs code for all plots
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js
@@ -90,6 +93,9 @@ function seriesnames!{T}(ec::EChart, names::AbstractVector{T})
     for i in 1:length(ec.series)
         ec.series[i].name = names[i]
     end
+
+    #Modify legend attribute to use new seriesnames
+    ec.legend.data = names
 
     return ec
 

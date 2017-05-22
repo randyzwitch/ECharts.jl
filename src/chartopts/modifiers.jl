@@ -88,7 +88,8 @@ function legend!(ec::EChart)
 
 end
 
-#Flip x and y axis. Currently only works for XY plots, not boxplot
+#Flip x and y axis. Currently only works for XY plots
+#Doesn't work for scatter, boxplot brittle
 function flip!(ec::EChart; rotatedims::Bool = false)
 
     ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
@@ -112,5 +113,13 @@ function slider!(ec::EChart)
     ec.dataZoom == nothing? ec.dataZoom = [DataZoom(show = true)] : push!(ec.dataZoom, DataZoom(show = true))
 
     return ec
+
+end
+
+function smooth!(ec::EChart)
+
+	[x.smooth = true for x in ec.series]
+
+	return ec
 
 end

@@ -1,36 +1,5 @@
 abstract AbstractEChartType
 
-# @with_kw type Theme <: AbstractEChartType
-#     color::Union{AbstractVector, Void} = nothing
-#     backgroundColor::Union{String, Void} = nothing
-#     textStyle::Union{Dict, Void} = nothing
-#     title::Union{Dict, Void} = nothing
-#     line::Union{Dict, Void} = nothing
-#     radar::Union{Dict, Void} = nothing
-#     bar::Union{Dict, Void} = nothing
-#     pie::Union{Dict, Void} = nothing
-#     scatter::Union{Dict, Void} = nothing
-#     boxplot::Union{Dict, Void} = nothing
-#     parallel::Union{Dict, Void} = nothing
-#     sankey::Union{Dict, Void} = nothing
-#     funnel::Union{Dict, Void} = nothing
-#     gauge::Union{Dict, Void} = nothing
-#     candlestick::Union{Dict, Void} = nothing
-#     graph::Union{Dict, Void} = nothing
-#     map::Union{Dict, Void} = nothing
-#     geo::Union{Dict, Void} = nothing
-#     categoryAxis::Union{Dict, Void} = nothing
-#     valueAxis::Union{Dict, Void} = nothing
-#     logAxis::Union{Dict, Void} = nothing
-#     timeAxis::Union{Dict, Void} = nothing
-#     toolbox::Union{Dict, Void} = nothing
-#     legend::Union{Dict, Void} = nothing
-#     tooltip::Union{Dict, Void} = nothing
-#     timeline::Union{Dict, Void} = nothing
-#     visualMap::Union{Dict, Void} = nothing
-#     dataZoom::Union{Dict, Void} = nothing
-#     markPoint::Union{Dict, Void} = nothing
-# end
 @with_kw type Theme <: AbstractEChartType
     color::Union{AbstractVector, Void} = [
         "#e01f54",
@@ -94,8 +63,8 @@ abstract AbstractEChartType
     )
     boxplot::Union{Dict, Void} = Dict(
         "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0, "borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0, "borderColor" => "#ccc")
+            "normal" => Dict("borderWidth" => 1),
+            "emphasis" => Dict("borderWidth" => 2)
         )
     )
     parallel::Union{Dict, Void} = Dict(
