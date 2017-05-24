@@ -9,21 +9,27 @@ function title!(ec::EChart; kwargs...)
 
 end
 
-function yAxis!(ec::EChart; kwargs...)
+function yAxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
 
 	for (k, v) in kwargs
 	   setfield!(ec.yAxis[1], k, v)
 	end
 
+	#Apply axis label format if present
+	formatter != nothing? ec.yAxis[1].axisLabel.formatter = formatter : nothing
+
 	return ec
 
 end
 
-function xAxis!(ec::EChart; kwargs...)
+function xAxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
 
 	for (k, v) in kwargs
 	   setfield!(ec.xAxis[1], k, v)
 	end
+
+	#Apply axis label format if present
+	formatter != nothing? ec.xAxis[1].axisLabel.formatter = formatter : nothing
 
 	return ec
 

@@ -481,7 +481,7 @@ end
     inside::Union{Bool,Void} = false
     rotate::Union{Int,Void} = 0
     margin::Union{Int,Void} = 8
-    formatter::Union{String,Void, JSFunction} = nothing
+    formatter::Union{String,Void, JSFunction} = "{value}"
     textStyle::Union{TextStyle,Void} = nothing
 end
 @with_kw type AxisLine <: AbstractEChartType
@@ -694,7 +694,7 @@ end
     triggerEvent::Union{Bool,Void} = false
     axisLine::Union{AxisLine,Void} = nothing
     axisTick::Union{AxisTick,Void} = nothing
-    axisLabel::Union{AxisLabel,Void} = nothing
+    axisLabel::Union{AxisLabel,Void} = AxisLabel()
     splitLine::Union{SplitLine,Void} = nothing
     splitArea::Union{SplitArea,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
