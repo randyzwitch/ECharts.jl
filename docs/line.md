@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: line
-
+title: Line
+sidebar: mydoc_sidebar
+permalink: /line
 ---
 
-## Line Plot
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 x::AbstractVector
 y::AbstractArray

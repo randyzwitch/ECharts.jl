@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: box
-
+title: Box
+sidebar: mydoc_sidebar
+permalink: /box
 ---
 
-## Box Plot
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 data::Vector{T <: Real}{Union{T, Vector{T}}}
 names::Union{AbstractVector, Void} = nothing

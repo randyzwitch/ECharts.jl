@@ -1,0 +1,100 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product:
+  version:
+  folders:
+
+  - title: Overview
+    output: web, pdf
+    folderitems:
+
+    - title: Get started
+      url: /
+      output: web, pdf
+      type: homepage
+
+  - title: Charts
+    output: web, pdf
+    folderitems:
+
+    - title: area
+      url: /area
+      output: web, pdf
+
+    - title: bar
+      url: /bar
+      output: web, pdf
+
+    - title: box
+      url: /box
+      output: web, pdf
+
+    - title: candlestick
+      url: /candlestick
+      output: web, pdf
+
+    - title: funnel
+      url: /funnel
+      output: web, pdf
+
+    - title: gauge
+      url: /gauge
+      output: web, pdf
+
+    - title: line
+      url: /line
+      output: web, pdf
+
+    - title: pie/donut
+      url: /pie
+      output: web, pdf
+
+    - title: polar
+      url: /polar
+      output: web, pdf
+
+    - title: radar
+      url: /radar
+      output: web, pdf
+
+    - title: sankey
+      url: /sankey
+      output: web, pdf
+
+    - title: scatter
+      url: /scatter
+      output: web, pdf
+
+    - title: waterfall
+      url: /waterfall
+      output: web, pdf
+
+  - title: Functions
+    output: web, pdf
+    folderitems:
+
+    - title: colorscheme!
+      url: /colorscheme
+      output: web, pdf
+
+    - title: flip!
+      url: /flip
+      output: web, pdf
+
+    - title: legend!
+      url: /legend
+      output: web, pdf
+
+    - title: slider!
+      url: /slider
+      output: web, pdf
+
+    - title: toolbox!
+      url: /toolbox
+      output: web, pdf
+
+    - title: xAxis/yAxis!
+      url: /xaxisyaxis
+      output: web, pdf

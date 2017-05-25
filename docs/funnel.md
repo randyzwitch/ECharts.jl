@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: funnel
-
+title: Funnel
+sidebar: mydoc_sidebar
+permalink: /funnel
 ---
 
-## Funnel
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 names::AbstractVector
 values::AbstractVector

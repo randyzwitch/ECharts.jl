@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: radar
-
+title: Radar
+sidebar: mydoc_sidebar
+permalink: /radar
 ---
 
-## Radar Chart
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 names::AbstractVector
 values::AbstractArray

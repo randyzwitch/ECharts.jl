@@ -1,15 +1,12 @@
 ---
-
-layout: minimal
 title: title!
-
+sidebar: mydoc_sidebar
+permalink: /title
 ---
-
-## title!
 
 The `title!` functions is just a convenience around the `Title` type, so that end-users don't need to reference `ec.title` directly (though, nothing prevents users modifying the `EChart` chart instance).
 
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 ec::EChart
 show::Union{Bool,Void} = true

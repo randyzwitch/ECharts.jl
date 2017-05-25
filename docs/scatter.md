@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: scatter
-
+title: Scatter
+sidebar: mydoc_sidebar
+permalink: /scatter
 ---
 
-## Scatter Plot
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 x::AbstractVector
 y::AbstractArray

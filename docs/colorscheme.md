@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
 title: colorscheme!
-
+sidebar: mydoc_sidebar
+permalink: /colorscheme
 ---
 
-## colorscheme!
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 ec::EChart
 palette::Union{Tuple{AbstractString,Any}, AbstractString, Array, Void} = nothing

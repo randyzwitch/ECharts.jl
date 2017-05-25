@@ -1,72 +1,406 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ECharts.jl | box</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Box | ECharts.jl</title>
+<link rel="stylesheet" href="css/syntax.css">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <link rel="stylesheet" href="stylesheets/custom.css">
-    <script src="javascripts/echarts.min.js"></script>
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header"><a href="/ECharts.jl/">ECharts.jl</a></h1>
 
-        <h3>Charts</h3>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<script src="js/echarts-3.5.3.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> ECharts.jl</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Box">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">Overview</a>
         <ul>
-            <li><a href = "area.html">area</a></li>
-            <li><a href = "bar.html">bar</a></li>
-            <li><a href = "box.html">box</a></li>
-            <li><a href = "candlestick.html">candlestick</a></li>
-            <li><a href = "funnel.html">funnel</a></li>
-            <li><a href = "gauge.html">gauge</a></li>
-            <li><a href = "line.html">line</a></li>
-            <li><a href = "pie.html">pie/donut</a></li>
-            <li><a href = "polar.html">polar</a></li>
-            <li><a href = "radar.html">radar</a></li>
-            <li><a href = "sankey.html">sankey</a></li>
-            <li><a href = "scatter.html">scatter</a></li>
-            <li><a href = "waterfall.html">waterfall</a></li>
-            <li><a href = "xy_combos.html">xy combination plots</a></li>
+            
+            
+            
+            <li><a href="">Get started</a></li>
+            
+            
+            
+            
         </ul>
-        <h3>Functions</h3>
+     </li>
+       
+        
+    
+    <li>
+        <a href="#">Charts</a>
         <ul>
-            <li><a href = "colorscheme.html">colorscheme!</a></li>
-            <li><a href = "flip.html">flip!</a></li>
-            <li><a href = "legend.html">legend!</a></li>
-            <li><a href = "slider.html">slider!</a></li>
-            <li><a href = "title.html">title!</a></li>
-            <li><a href = "toolbox.html">toolbox!</a></li>
-            <li><a href = "xaxisyaxis.html">xAxis!/yAxis!</a></li>
+            
+            
+            
+            <li><a href="area">area</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="bar">bar</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="box">box</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="candlestick">candlestick</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="funnel">funnel</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="gauge">gauge</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="line">line</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="pie">pie/donut</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="polar">polar</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="radar">radar</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="sankey">sankey</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="scatter">scatter</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="waterfall">waterfall</a></li>
+            
+            
+            
+            
         </ul>
+     </li>
+       
+        
+    
+    <li>
+        <a href="#">Functions</a>
+        <ul>
+            
+            
+            
+            <li><a href="colorscheme">colorscheme!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="flip">flip!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="legend">legend!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="slider">slider!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="toolbox">toolbox!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="xaxisyaxis">xAxis/yAxis!</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
 
-      </header>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
 
-      <section>
-          <h2 id="box-plot">Box Plot</h2>
+            </div>
+            
+        
 
-<h3 id="function-keywords">Function Keywords</h3>
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Box</h1>
+</div>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">data</span><span class="o">::</span><span class="n">Vector</span><span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="n">Real</span><span class="x">}{</span><span class="n">Union</span><span class="x">{</span><span class="n">T</span><span class="x">,</span> <span class="n">Vector</span><span class="x">{</span><span class="n">T</span><span class="x">}}}</span>
+
+
+<div class="post-content">
+
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+    
+
+
+  <h2 id="function-keywords">Function Keywords</h2>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">data</span><span class="o">::</span><span class="n">Vector</span><span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="n">Real</span><span class="x">}{</span><span class="n">Union</span><span class="x">{</span><span class="n">T</span><span class="x">,</span> <span class="n">Vector</span><span class="x">{</span><span class="n">T</span><span class="x">}}}</span>
 <span class="n">names</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
 <span class="n">horizontal</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
 <span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></div>
+<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="single-series">Single Series</h2>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">data</span> <span class="o">=</span> <span class="x">[</span><span class="mi">850</span><span class="x">,</span> <span class="mi">740</span><span class="x">,</span> <span class="mi">900</span><span class="x">,</span> <span class="mi">1070</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">950</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">650</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">960</span><span class="x">,</span> <span class="mi">960</span><span class="x">]</span>
-<span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">)</span></code></pre></div>
+<span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">)</span></code></pre></figure>
 
 <div id="boxp" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -79,7 +413,7 @@
 
 <h2 id="multiple-series">Multiple Series</h2>
 
-<div class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">data</span> <span class="o">=</span> <span class="x">[</span>
     <span class="x">[</span><span class="mi">850</span><span class="x">,</span> <span class="mi">740</span><span class="x">,</span> <span class="mi">900</span><span class="x">,</span> <span class="mi">1070</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">950</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">980</span><span class="x">,</span> <span class="mi">930</span><span class="x">,</span> <span class="mi">650</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">960</span><span class="x">,</span> <span class="mi">960</span><span class="x">],</span>
     <span class="x">[</span><span class="mi">960</span><span class="x">,</span> <span class="mi">940</span><span class="x">,</span> <span class="mi">960</span><span class="x">,</span> <span class="mi">940</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">800</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">900</span><span class="x">,</span> <span class="mi">840</span><span class="x">,</span> <span class="mi">830</span><span class="x">,</span> <span class="mi">790</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">880</span><span class="x">,</span> <span class="mi">830</span><span class="x">,</span> <span class="mi">800</span><span class="x">,</span> <span class="mi">790</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">800</span><span class="x">],</span>
@@ -88,7 +422,7 @@
     <span class="x">[</span><span class="mi">890</span><span class="x">,</span> <span class="mi">840</span><span class="x">,</span> <span class="mi">780</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">760</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">790</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">820</span><span class="x">,</span> <span class="mi">850</span><span class="x">,</span> <span class="mi">870</span><span class="x">,</span> <span class="mi">870</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">740</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">940</span><span class="x">,</span> <span class="mi">950</span><span class="x">,</span> <span class="mi">800</span><span class="x">,</span> <span class="mi">810</span><span class="x">,</span> <span class="mi">870</span><span class="x">]</span>
 <span class="x">]</span>
 
-<span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">)</span></code></pre></div>
+<span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="x">)</span></code></pre></figure>
 
 <div id="box2p" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -100,13 +434,29 @@
 </script>
 
 
-      </section>
-      <footer>
 
-      </footer>
-
+    <div class="tags">
+        
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
-  </body>
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+ Site last generated: May 25, 2017 <br />
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
 </html>

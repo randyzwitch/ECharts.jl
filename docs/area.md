@@ -1,12 +1,10 @@
 ---
-
-layout: minimal
-title: area
-
+title: Area
+sidebar: mydoc_sidebar
+permalink: /area
 ---
-## Area Plot
 
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 x::AbstractVector
 y::AbstractArray
