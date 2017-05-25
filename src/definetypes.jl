@@ -1,444 +1,442 @@
-abstract AbstractEChartType
-
-@with_kw type Theme <: AbstractEChartType
-    color::Union{AbstractVector, Void} = [
-        "#e01f54",
-        "#001852",
-        "#f5e8c8",
-        "#b8d2c7",
-        "#c6b38e",
-        "#a4d8c2",
-        "#f3d999",
-        "#d3758f",
-        "#dcc392",
-        "#2e4783",
-        "#82b6e9",
-        "#ff6347",
-        "#a092f1",
-        "#0a915d",
-        "#eaf889",
-        "#6699FF",
-        "#ff6666",
-        "#3cb371",
-        "#d5b158",
-        "#38b6b6"
-    ]
-    backgroundColor::Union{String, Void} = "rgba(0,0,0,0)"
-    textStyle::Union{Dict, Void} = Dict()
-    title::Union{Dict, Void} = Dict(
-        "textStyle" => Dict("color" => "#333333"),
-        "subtextStyle" => Dict("color" => "#aaaaaa")
-    )
-    line::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict("normal" => Dict("borderWidth" => 1)),
-        "lineStyle" => Dict("normal" => Dict("width" => 2)),
-        "symbolSize" => 4,
-        "symbol" => "emptyCircle",
-        "smooth" => false
-    )
-    radar::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict("normal" => Dict("borderWidth" => 1)),
-        "lineStyle" => Dict("normal"=> Dict("width" => 2)),
-        "symbolSize" => 4,
-        "symbol" => "emptyCircle",
-        "smooth" => false
-    )
-    bar::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("barBorderWidth" => 0, "barBorderColor" => "#ccc"),
-            "emphasis" => Dict("barBorderWidth" => 0,"barBorderColor" => "#ccc")
-        )
-    )
-    pie::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        )
-    )
-    scatter::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        )
-    )
-    boxplot::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 1),
-            "emphasis" => Dict("borderWidth" => 2)
-        )
-    )
-    parallel::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0, "borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        )
-    )
-    sankey::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0, "borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0, "borderColor" => "#ccc")
-        )
-    )
-    funnel::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        )
-    )
-    gauge::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
-            "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        )
-    )
-    candlestick::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict(
-                "color" => "#e01f54",
-                "color0" => "#001852",
-                "borderColor" => "#f5e8c8",
-                "borderColor0" => "#b8d2c7",
-                "borderWidth" => 1
-            )
-        )
-    )
-    graph::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
-        ),
-        "lineStyle" => Dict(
-            "normal" => Dict("width" => 1, "color" => "#aaaaaa")
-        ),
-        "symbolSize" => 4,
-        "symbol" => "emptyCircle",
-        "smooth" => false,
-        "color" => [
-            "#e01f54",
-            "#001852",
-            "#f5e8c8",
-            "#b8d2c7",
-            "#c6b38e",
-            "#a4d8c2",
-            "#f3d999",
-            "#d3758f",
-            "#dcc392",
-            "#2e4783",
-            "#82b6e9",
-            "#ff6347",
-            "#a092f1",
-            "#0a915d",
-            "#eaf889",
-            "#6699FF",
-            "#ff6666",
-            "#3cb371",
-            "#d5b158",
-            "#38b6b6"
-        ],
-        "label" => Dict(
-            "normal" => Dict("textStyle" => Dict("color" => "#eeeeee"))
-        )
-    )
-    map::Union{Dict, Void} = Dict(
-        "itemStyle" => Dict(
-            "normal" => Dict(
-                "areaColor" => "#eeeeee",
-                "borderColor" => "#444444",
-                "borderWidth" => 0.5
-            ),
-            "emphasis" => Dict(
-                "areaColor" => "rgba(255,215,0,0.8)",
-                "borderColor" => "#444444",
-                "borderWidth" => 1
-            )
-        ),
-        "label" => Dict(
-            "normal" => Dict(
-                "textStyle" => Dict(
-                    "color" => "#000000"
-                )
-            ),
-            "emphasis" => Dict(
-                "textStyle" => Dict(
-                    "color" => "rgb(100,0,0)"
-                )
-            )
-        )
-    )
-    geo::Union{Dict, Void} = Dict(
-        "itemStyle" =>  Dict(
-            "normal" =>  Dict(
-                "areaColor" =>  "#eeeeee",
-                "borderColor" =>  "#444444",
-                "borderWidth" =>  0.5
-            ),
-            "emphasis" =>  Dict(
-                "areaColor" =>  "rgba(255,215,0,0.8)",
-                "borderColor" =>  "#444444",
-                "borderWidth" =>  1
-            )
-        ),
-        "label" =>  Dict(
-            "normal" =>  Dict(
-                "textStyle" =>  Dict(
-                    "color" =>  "#000000"
-                )
-            ),
-            "emphasis" =>  Dict(
-                "textStyle" =>  Dict(
-                    "color" =>  "rgb(100,0,0)"
-                )
-            )
-        )
-    )
-    categoryAxis::Union{Dict, Void} = Dict(
-        "axisLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisTick" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisLabel" => Dict(
-            "show" => true,
-            "textStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "splitLine" => Dict(
-            "show" => false,
-            "lineStyle" => Dict(
-                "color" => [
-                    "#ccc"
-                ]
-            )
-        ),
-        "splitArea" => Dict(
-            "show" => false,
-            "areaStyle" => Dict(
-                "color" => [
-                    "rgba(250,250,250,0.3)",
-                    "rgba(200,200,200,0.3)"
-                ]
-            )
-        )
-    )
-    valueAxis::Union{Dict, Void} = Dict(
-        "axisLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisTick" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisLabel" => Dict(
-            "show" => true,
-            "textStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "splitLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => [
-                    "#ccc"
-                ]
-            )
-        ),
-        "splitArea" => Dict(
-            "show" => false,
-            "areaStyle" => Dict(
-                "color" => [
-                    "rgba(250,250,250,0.3)",
-                    "rgba(200,200,200,0.3)"
-                ]
-            )
-        )
-    )
-    logAxis::Union{Dict, Void} = Dict(
-        "axisLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisTick" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisLabel" => Dict(
-            "show" => true,
-            "textStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "splitLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => [
-                    "#ccc"
-                ]
-            )
-        ),
-        "splitArea" => Dict(
-            "show" => false,
-            "areaStyle" => Dict(
-                "color" => [
-                    "rgba(250,250,250,0.3)",
-                    "rgba(200,200,200,0.3)"
-                ]
-            )
-        )
-    )
-    timeAxis::Union{Dict, Void} = Dict(
-        "axisLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisTick" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "axisLabel" => Dict(
-            "show" => true,
-            "textStyle" => Dict(
-                "color" => "#333"
-            )
-        ),
-        "splitLine" => Dict(
-            "show" => true,
-            "lineStyle" => Dict(
-                "color" => [
-                    "#ccc"
-                ]
-            )
-        ),
-        "splitArea" => Dict(
-            "show" => false,
-            "areaStyle" => Dict(
-                "color" => [
-                    "rgba(250,250,250,0.3)",
-                    "rgba(200,200,200,0.3)"
-                ]
-            )
-        )
-    )
-    toolbox::Union{Dict, Void} = Dict(
-        "iconStyle" => Dict(
-            "normal" => Dict(
-                "borderColor" => "#999999"
-            ),
-            "emphasis" => Dict(
-                "borderColor" => "#666666"
-            )
-        )
-    )
-    legend = Dict(
-        "textStyle" => Dict(
-            "color" => "#333333"
-        )
-    )
-    tooltip::Union{Dict, Void} = Dict(
-        "axisPointer" => Dict(
-            "lineStyle" => Dict(
-                "color" => "#cccccc",
-                "width" => 1
-            ),
-            "crossStyle" => Dict(
-                "color" => "#cccccc",
-                "width" => 1
-            )
-        )
-    )
-    timeline::Union{Dict, Void} = Dict(
-        "lineStyle" => Dict(
-            "color" => "#293c55",
-            "width" => 1
-        ),
-        "itemStyle" => Dict(
-            "normal" => Dict(
-                "color" => "#293c55",
-                "borderWidth" => 1
-            ),
-            "emphasis" => Dict(
-                "color" => "#a9334c"
-            )
-        ),
-        "controlStyle" => Dict(
-            "normal" => Dict(
-                "color" => "#293c55",
-                "borderColor" => "#293c55",
-                "borderWidth" => 0.5
-            ),
-            "emphasis" => Dict(
-                "color" => "#293c55",
-                "borderColor" => "#293c55",
-                "borderWidth" => 0.5
-            )
-        ),
-        "checkpointStyle" => Dict(
-            "color" => "#e43c59",
-            "borderColor" => "rgba(194,53,49,0.5)"
-        ),
-        "label" => Dict(
-            "normal" => Dict(
-                "textStyle" => Dict(
-                    "color" => "#293c55"
-                )
-            ),
-            "emphasis" => Dict(
-                "textStyle" => Dict(
-                    "color" => "#293c55"
-                )
-            )
-        )
-    )
-    visualMap::Union{Dict, Void} = Dict(
-        "color" => [
-            "#e01f54",
-            "#e7dbc3"
-        ]
-    )
-    dataZoom::Union{Dict, Void} = Dict(
-        "backgroundColor" => "rgba(47,69,84,0)",
-        "dataBackgroundColor" => "rgba(47,69,84,0.3)",
-        "fillerColor" => "rgba(167,183,204,0.4)",
-        "handleColor" => "#a7b7cc",
-        "handleSize" => "100%",
-        "textStyle" => Dict(
-            "color" => "#333333"
-        )
-    )
-    markPoint::Union{Dict, Void} = Dict(
-        "label" => Dict(
-            "normal" => Dict(
-                "textStyle" => Dict(
-                    "color" => "#eeeeee"
-                )
-            ),
-            "emphasis" => Dict(
-                "textStyle" => Dict(
-                    "color" => "#eeeeee"
-                )
-            )
-        )
-    )
-end
+# @with_kw type Theme <: AbstractEChartType
+#     color::Union{AbstractVector, Void} = [
+#         "#e01f54",
+#         "#001852",
+#         "#f5e8c8",
+#         "#b8d2c7",
+#         "#c6b38e",
+#         "#a4d8c2",
+#         "#f3d999",
+#         "#d3758f",
+#         "#dcc392",
+#         "#2e4783",
+#         "#82b6e9",
+#         "#ff6347",
+#         "#a092f1",
+#         "#0a915d",
+#         "#eaf889",
+#         "#6699FF",
+#         "#ff6666",
+#         "#3cb371",
+#         "#d5b158",
+#         "#38b6b6"
+#     ]
+#     backgroundColor::Union{String, Void} = "rgba(0,0,0,0)"
+#     textStyle::Union{Dict, Void} = Dict()
+#     title::Union{Dict, Void} = Dict(
+#         "textStyle" => Dict("color" => "#333333"),
+#         "subtextStyle" => Dict("color" => "#aaaaaa")
+#     )
+#     line::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict("normal" => Dict("borderWidth" => 1)),
+#         "lineStyle" => Dict("normal" => Dict("width" => 2)),
+#         "symbolSize" => 4,
+#         "symbol" => "emptyCircle",
+#         "smooth" => false
+#     )
+#     radar::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict("normal" => Dict("borderWidth" => 1)),
+#         "lineStyle" => Dict("normal"=> Dict("width" => 2)),
+#         "symbolSize" => 4,
+#         "symbol" => "emptyCircle",
+#         "smooth" => false
+#     )
+#     bar::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("barBorderWidth" => 0, "barBorderColor" => "#ccc"),
+#             "emphasis" => Dict("barBorderWidth" => 0,"barBorderColor" => "#ccc")
+#         )
+#     )
+#     pie::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         )
+#     )
+#     scatter::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         )
+#     )
+#     boxplot::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 1),
+#             "emphasis" => Dict("borderWidth" => 2)
+#         )
+#     )
+#     parallel::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0, "borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         )
+#     )
+#     sankey::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0, "borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0, "borderColor" => "#ccc")
+#         )
+#     )
+#     funnel::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         )
+#     )
+#     gauge::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc"),
+#             "emphasis" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         )
+#     )
+#     candlestick::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict(
+#                 "color" => "#e01f54",
+#                 "color0" => "#001852",
+#                 "borderColor" => "#f5e8c8",
+#                 "borderColor0" => "#b8d2c7",
+#                 "borderWidth" => 1
+#             )
+#         )
+#     )
+#     graph::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict("borderWidth" => 0,"borderColor" => "#ccc")
+#         ),
+#         "lineStyle" => Dict(
+#             "normal" => Dict("width" => 1, "color" => "#aaaaaa")
+#         ),
+#         "symbolSize" => 4,
+#         "symbol" => "emptyCircle",
+#         "smooth" => false,
+#         "color" => [
+#             "#e01f54",
+#             "#001852",
+#             "#f5e8c8",
+#             "#b8d2c7",
+#             "#c6b38e",
+#             "#a4d8c2",
+#             "#f3d999",
+#             "#d3758f",
+#             "#dcc392",
+#             "#2e4783",
+#             "#82b6e9",
+#             "#ff6347",
+#             "#a092f1",
+#             "#0a915d",
+#             "#eaf889",
+#             "#6699FF",
+#             "#ff6666",
+#             "#3cb371",
+#             "#d5b158",
+#             "#38b6b6"
+#         ],
+#         "label" => Dict(
+#             "normal" => Dict("textStyle" => Dict("color" => "#eeeeee"))
+#         )
+#     )
+#     map::Union{Dict, Void} = Dict(
+#         "itemStyle" => Dict(
+#             "normal" => Dict(
+#                 "areaColor" => "#eeeeee",
+#                 "borderColor" => "#444444",
+#                 "borderWidth" => 0.5
+#             ),
+#             "emphasis" => Dict(
+#                 "areaColor" => "rgba(255,215,0,0.8)",
+#                 "borderColor" => "#444444",
+#                 "borderWidth" => 1
+#             )
+#         ),
+#         "label" => Dict(
+#             "normal" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "#000000"
+#                 )
+#             ),
+#             "emphasis" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "rgb(100,0,0)"
+#                 )
+#             )
+#         )
+#     )
+#     geo::Union{Dict, Void} = Dict(
+#         "itemStyle" =>  Dict(
+#             "normal" =>  Dict(
+#                 "areaColor" =>  "#eeeeee",
+#                 "borderColor" =>  "#444444",
+#                 "borderWidth" =>  0.5
+#             ),
+#             "emphasis" =>  Dict(
+#                 "areaColor" =>  "rgba(255,215,0,0.8)",
+#                 "borderColor" =>  "#444444",
+#                 "borderWidth" =>  1
+#             )
+#         ),
+#         "label" =>  Dict(
+#             "normal" =>  Dict(
+#                 "textStyle" =>  Dict(
+#                     "color" =>  "#000000"
+#                 )
+#             ),
+#             "emphasis" =>  Dict(
+#                 "textStyle" =>  Dict(
+#                     "color" =>  "rgb(100,0,0)"
+#                 )
+#             )
+#         )
+#     )
+#     categoryAxis::Union{Dict, Void} = Dict(
+#         "axisLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisTick" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisLabel" => Dict(
+#             "show" => true,
+#             "textStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "splitLine" => Dict(
+#             "show" => false,
+#             "lineStyle" => Dict(
+#                 "color" => [
+#                     "#ccc"
+#                 ]
+#             )
+#         ),
+#         "splitArea" => Dict(
+#             "show" => false,
+#             "areaStyle" => Dict(
+#                 "color" => [
+#                     "rgba(250,250,250,0.3)",
+#                     "rgba(200,200,200,0.3)"
+#                 ]
+#             )
+#         )
+#     )
+#     valueAxis::Union{Dict, Void} = Dict(
+#         "axisLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisTick" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisLabel" => Dict(
+#             "show" => true,
+#             "textStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "splitLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => [
+#                     "#ccc"
+#                 ]
+#             )
+#         ),
+#         "splitArea" => Dict(
+#             "show" => false,
+#             "areaStyle" => Dict(
+#                 "color" => [
+#                     "rgba(250,250,250,0.3)",
+#                     "rgba(200,200,200,0.3)"
+#                 ]
+#             )
+#         )
+#     )
+#     logAxis::Union{Dict, Void} = Dict(
+#         "axisLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisTick" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisLabel" => Dict(
+#             "show" => true,
+#             "textStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "splitLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => [
+#                     "#ccc"
+#                 ]
+#             )
+#         ),
+#         "splitArea" => Dict(
+#             "show" => false,
+#             "areaStyle" => Dict(
+#                 "color" => [
+#                     "rgba(250,250,250,0.3)",
+#                     "rgba(200,200,200,0.3)"
+#                 ]
+#             )
+#         )
+#     )
+#     timeAxis::Union{Dict, Void} = Dict(
+#         "axisLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisTick" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "axisLabel" => Dict(
+#             "show" => true,
+#             "textStyle" => Dict(
+#                 "color" => "#333"
+#             )
+#         ),
+#         "splitLine" => Dict(
+#             "show" => true,
+#             "lineStyle" => Dict(
+#                 "color" => [
+#                     "#ccc"
+#                 ]
+#             )
+#         ),
+#         "splitArea" => Dict(
+#             "show" => false,
+#             "areaStyle" => Dict(
+#                 "color" => [
+#                     "rgba(250,250,250,0.3)",
+#                     "rgba(200,200,200,0.3)"
+#                 ]
+#             )
+#         )
+#     )
+#     toolbox::Union{Dict, Void} = Dict(
+#         "iconStyle" => Dict(
+#             "normal" => Dict(
+#                 "borderColor" => "#999999"
+#             ),
+#             "emphasis" => Dict(
+#                 "borderColor" => "#666666"
+#             )
+#         )
+#     )
+#     legend = Dict(
+#         "textStyle" => Dict(
+#             "color" => "#333333"
+#         )
+#     )
+#     tooltip::Union{Dict, Void} = Dict(
+#         "axisPointer" => Dict(
+#             "lineStyle" => Dict(
+#                 "color" => "#cccccc",
+#                 "width" => 1
+#             ),
+#             "crossStyle" => Dict(
+#                 "color" => "#cccccc",
+#                 "width" => 1
+#             )
+#         )
+#     )
+#     timeline::Union{Dict, Void} = Dict(
+#         "lineStyle" => Dict(
+#             "color" => "#293c55",
+#             "width" => 1
+#         ),
+#         "itemStyle" => Dict(
+#             "normal" => Dict(
+#                 "color" => "#293c55",
+#                 "borderWidth" => 1
+#             ),
+#             "emphasis" => Dict(
+#                 "color" => "#a9334c"
+#             )
+#         ),
+#         "controlStyle" => Dict(
+#             "normal" => Dict(
+#                 "color" => "#293c55",
+#                 "borderColor" => "#293c55",
+#                 "borderWidth" => 0.5
+#             ),
+#             "emphasis" => Dict(
+#                 "color" => "#293c55",
+#                 "borderColor" => "#293c55",
+#                 "borderWidth" => 0.5
+#             )
+#         ),
+#         "checkpointStyle" => Dict(
+#             "color" => "#e43c59",
+#             "borderColor" => "rgba(194,53,49,0.5)"
+#         ),
+#         "label" => Dict(
+#             "normal" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "#293c55"
+#                 )
+#             ),
+#             "emphasis" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "#293c55"
+#                 )
+#             )
+#         )
+#     )
+#     visualMap::Union{Dict, Void} = Dict(
+#         "color" => [
+#             "#e01f54",
+#             "#e7dbc3"
+#         ]
+#     )
+#     dataZoom::Union{Dict, Void} = Dict(
+#         "backgroundColor" => "rgba(47,69,84,0)",
+#         "dataBackgroundColor" => "rgba(47,69,84,0.3)",
+#         "fillerColor" => "rgba(167,183,204,0.4)",
+#         "handleColor" => "#a7b7cc",
+#         "handleSize" => "100%",
+#         "textStyle" => Dict(
+#             "color" => "#333333"
+#         )
+#     )
+#     markPoint::Union{Dict, Void} = Dict(
+#         "label" => Dict(
+#             "normal" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "#eeeeee"
+#                 )
+#             ),
+#             "emphasis" => Dict(
+#                 "textStyle" => Dict(
+#                     "color" => "#eeeeee"
+#                 )
+#             )
+#         )
+#     )
+# end
 @with_kw type LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = "#333"
     width::Union{Int,Void} = 1
@@ -1014,45 +1012,174 @@ end
 #Need to validate for all types
 #Make individual series types like echarts.js?
 @with_kw type Series <: AbstractEChartType
-    coordinateSystem::Union{String,Void} = nothing
-    name::Union{String,Void} = nothing
+    #line
     _type::Union{String,Void} = nothing
-    data::Union{AbstractVector,Void} = nothing
+    name::Union{String,Void} = nothing
+    coordinateSystem::Union{String,Void} = nothing
+    xAxisIndex::Int = 0
+    yAxisIndex::Int = 0
+    polarIndex::Union{Int, Void} = nothing
+    symbol::Union{String, Void} = nothing
+    symbolSize::Union{Number, AbstractVector,JSFunction,Void} = nothing
+    symbolRotate::Union{Int, Void} = nothing
+    symbolOffset::Union{AbstractVector, Void} = nothing
+    showSymbol::Union{Bool,Void} = nothing
+    showAllSymbol::Union{Bool,Void} = nothing
+    hoverAnimation::Union{Bool,Void} = nothing
+    legendHoverLink::Union{Bool,Void} = nothing
+    stack::Union{Int,String,Void} = nothing
+    clipOverflow::Union{Bool,Void} = nothing
+    connectNulls::Union{Bool,Void} = nothing
+    step::Union{String,Void} = nothing
+    label::Union{Label,Void} = nothing
+    itemStyle::Union{ItemStyle,Void} = nothing
+    lineStyle::Union{ItemStyle,Void} = nothing
     areaStyle::Union{ItemStyle,Void} = nothing
     smooth::Union{Bool,Void} = false
-    radius::Union{AbstractVector,String,Void} = nothing
-    center::Union{AbstractVector,String,Void} = nothing
+    smoothMonotone::Union{String,Void} = nothing
+    sampling::Union{String,Void} = nothing
+    data::Union{AbstractVector,Void} = nothing
+    #markPoint::Union{MarkPoint, Void} = nothing
+    #markLine::Union{MarkLine, Void} = nothing
+    #markArea::Union{MarkArea, Void} = nothing
+    zlevel::Union{Int, Void} = nothing
+    z::Union{Int, Void} = nothing
+    animation::Union{Bool,Void} = nothing
+    animationThreshold::Union{Int,Void} = nothing
+    animationDuration::Union{Int,Void} = nothing
+    animationEasing::Union{String,Void} = nothing
+    animationDelay::Union{Int, JSFunction, Void} = nothing
+    animationDurationUpdate::Union{Int,JSFunction, Void} = nothing
+    animationEasingUpdate::Union{String,Void} = nothing
+    animationDelayUpdate::Union{Int, JSFunction, Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
+    #bar
+    barWidth::Union{Int, Void} = nothing
+    barMaxWidth::Union{Int, String, Void} = nothing
+    barMinHeight::Union{Int, Void} = nothing
+    barGap::Union{String, Int, Void} = nothing
+    barCategoryGap::Union{String, Int, Void} = nothing
+    #pie
+    selectedMode::Union{Bool, String, Void} = nothing
+    selectedOffset::Union{Int, Void} = nothing
+    clockwise::Union{Bool, Void} = nothing
+    startAngle::Union{Int, Void} = nothing
+    minAngle::Union{Int, Void} = nothing
     roseType::Union{String,Void} = nothing
-    stack::Union{Int,String,Void} = nothing
+    avoidLabelOverlap::Union{Bool, Void} = nothing
+    stillShowZeroSum::Union{Bool, Void} = nothing
+    labelLine::Union{Dict,Void} = nothing
+    center::Union{AbstractVector,String,Void} = nothing
+    radius::Union{AbstractVector,String,Void} = nothing
+    silent::Union{Bool, Void} = nothing
+    animationType::Union{String,Void} = nothing
+    #scatter
+    geoIndex::Union{Int, Void} = nothing
+    large::Union{Bool, Void} = nothing
+    largeThreshold::Union{Int, Void} = nothing
+    #effectScatter
+    effectType::Union{String, Void} = nothing
+    showEffectOn::Union{String, Void} = nothing
+    #rippleEffect::Union{RippleEffect, Void} = nothing
+
+    #radar
+    radarIndex::Union{Int, Void} = nothing
+    #treemap
     left::Union{String,Void} = nothing
     right::Union{String,Void} = nothing
     top::Union{Int,Void} = nothing
     bottom::Union{Int,Void} = nothing
     width::Union{String,Void} = nothing
+    height::Union{String,Void} = nothing
+    squareRatio::Union{Number, Void} = nothing
+    leafDepth::Union{Int,Void} = nothing
+    roam::Union{Bool, String, Void} = nothing
+    nodeClick::Union{Bool, String, Void} = nothing
+    zoomToNodeRatio::Union{Number, Void} = nothing
+    #levels::Union{AbstractVector, Void} = nothing
+    visualDimension::Union{Number, AbstractVector, Void} = nothing
+    visualMin::Union{Number, Void} = nothing
+    visualMax::Union{Number, Void} = nothing
+    colorAlpha::Union{AbstractVector, Void} = nothing
+    colorSaturation::Union{Number, Void} = nothing
+    colorMappingBy::Union{String,Void} = nothing
+    visibleMin::Union{Number, Void} = nothing
+    childrenVisibleMin::Union{Number, Void} = nothing
+    #breadcrumb::Union{Dict, Void} = nothing
+
+    #boxplot
+    layout::Union{String, Void} = nothing
+    boxWidth::Union{AbstractVector, Void} = nothing
+    #candlestick
+    barMinWidth::Union{Int, String, Void} = nothing
+    #heatmap
+    blurSize::Union{Number, Void} = nothing
+    minOpacity::Union{Number, Void} = nothing
+    maxOpacity::Union{Number, Void} = nothing
+    #map
+    map::Union{String, Void} = nothing
+    aspectScale::Union{Number, Void} = nothing
+    boundingCoords::Union{AbstractVector, Void} = nothing
+    zoom::Union{Number, Void} = nothing
+    scaleLimit::Union{ScaleLimit, Void} = nothing
+    #nameMap::Union{Dict, Void} = nothing
+    layoutCenter::Union{AbstractVector, Void} = nothing
+    layoutSize::Union{Number, String, Void} = nothing
+    mapValueCalculation::Union{String, Void} = nothing
+    showLegendSymbol::Union{Bool, Void} = nothing
+    #parallelIndex
+    parallelIndex::Union{Number, Void} = nothing
+    inactiveOpacity::Union{Number, Void} = nothing
+    activeOpacity::Union{Number, Void} = nothing
+    realtime::Union{Bool, Void} = nothing
+    #lines
+    polyline::Union{Bool, Void} = nothing
+    #effect::Union{Dict, Void} = nothing
+    #graph
+    #circular::Union{Dict, Void} = nothing
+    #force::Union{Dict, Void} = nothing
+    nodeScaleRatio::Union{Number, Void} = nothing
+    draggable::Union{Bool, Void} = nothing
+    focusNodeAdjacency::Union{Bool, Void} = nothing
+    edgeSymbol::Union{AbstractVector, Bool, Void} = nothing
+    edgeSymbolSize::Union{AbstractVector, Number, Void} = nothing
+    #edgeLabel::Union{Dict, Void} = nothing
+    categories::Union{Dict, Void} = nothing
+    #nodes::Union{AbstractVector,Void} = nothing #alias for data
+    links::Union{AbstractVector,Void} = nothing
+    #sankey
+    nodeWidth::Union{Number, Void} = nothing
+    nodeGap::Union{Number, Void} = nothing
+    layoutIterations::Union{Number, Void} = nothing
+    #funnel
     min::Union{Int,Void} = nothing
     max::Union{Int,Void} = nothing
     minSize::Union{String,Void} = nothing
     maxSize::Union{String,Void} = nothing
     sort::Union{String,Void} = nothing
     gap::Union{Int,Void} = nothing
-    label::Union{Label,Void} = nothing
-    labelLine::Union{Dict,Void} = nothing
-    itemStyle::Union{ItemStyle,Void} = nothing
-    lineStyle::Union{ItemStyle,Void} = nothing
-    showSymbol::Union{Bool,Void} = nothing
-    symbolSize::Union{Number, AbstractVector,JSFunction,Void} = nothing
-    step::Union{String,Void} = nothing
-    layout::Union{String,Void} = nothing
-    links::Union{AbstractVector,Void} = nothing
     funnelAlign::Union{String,Void} = nothing
-    xAxisIndex::Int = 0
-    yAxisIndex::Int = 0
+    #gauge
+    endAngle::Union{Number, Void} = nothing
+    pointer::Union{Dict, Void} = nothing
+    title::Union{Title, Void} = nothing
+    detail::Union{Dict, Void} = nothing
+    #pictorialBar
+    symbolPosition::Union{String, Void} = nothing
+    symbolRepeat::Union{Bool, Number, String, Void} = nothing
+    symbolRepeatDirection::Union{String, Void} = nothing
+    symbolMargin::Union{Number, String, Void} = nothing
+    symbolClip::Union{Bool, Void} = nothing
+    symbolBoundingData::Union{Number, Void} = nothing
+    symbolPatternSize::Union{Number, Void} = nothing
+    #themeriver
+    singleAxisIndex::Union{Number, Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
     ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
     ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
-    theme::Theme = Theme() #required for chart to render
+    theme::Theme = defaulttheme() #required for chart to render
     title::Union{Vector{Title},Void} = [Title()]
     legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
     grid::Union{Array{Grid},Void} = [Grid()]

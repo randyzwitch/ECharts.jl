@@ -47,6 +47,7 @@ module ECharts
 	#end custom JSON serialization rule
 
 	#Primitives - in order of descending dependency within files
+	include("theme.jl")
 	include("definetypes.jl")
 	include("render.jl")
 
