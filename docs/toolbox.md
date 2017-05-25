@@ -1,15 +1,12 @@
 ---
-
-layout: minimal
 title: toolbox!
-
+sidebar: mydoc_sidebar
+permalink: /toolbox
 ---
-
-## toolbox!
 
 toolbox! provides interactive functionality in the style of many popular analytics dashboards. toolbox! options allow for users to access raw data, change between compatible graph types (flip between bar and line, etc.) and provides a means for downloading static PNG images.
 
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 ec::EChart
 show::Bool = true

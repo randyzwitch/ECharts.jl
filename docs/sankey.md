@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: sankey
-
+title: Sankey
+sidebar: mydoc_sidebar
+permalink: /sankey
 ---
 
-## Sankey
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 name::AbstractVector{String}
 source::AbstractVector{Int}

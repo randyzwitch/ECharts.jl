@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: pie
-
+title: Pie
+sidebar: mydoc_sidebar
+permalink: /pie
 ---
 
-## Pie/Donut/Rose Chart
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 names::AbstractVector
 values::AbstractVector

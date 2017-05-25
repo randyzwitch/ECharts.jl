@@ -1,15 +1,12 @@
 ---
-
-layout: minimal
 title: xAxis!/yAxis!
-
+sidebar: mydoc_sidebar
+permalink: /xaxisyaxis
 ---
-
-## xAxis!/yAxis!
 
 The `xAxis!` and `yAxis!` functions are just convenience functions around the `Axis` type, so that end-users don't need to reference `ec.yAxis` or `ec.xAxis` directly (though, nothing prevents users modifying the `EChart` chart instance).
 
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 ec::EChart
 _type::Union{AbstractString, Void} = nothing

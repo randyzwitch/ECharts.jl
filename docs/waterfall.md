@@ -1,11 +1,8 @@
 ---
-
-layout: minimal
-title: waterfall
-
+title: Waterfall
+sidebar: mydoc_sidebar
+permalink: /waterfall
 ---
-
-## Waterfall
 
 This function is just a convenience function around the `bar` function with `stacked = true` and the offset series set as transparent in order to give the waterfall chart effect.
 

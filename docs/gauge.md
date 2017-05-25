@@ -1,13 +1,9 @@
 ---
-
-layout: minimal
-title: gauge
-
+title: Gauge
+sidebar: mydoc_sidebar
+permalink: /gauge
 ---
-
-## Gauge
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 x::Number
 legend::Bool = false

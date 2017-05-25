@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: candlestick
-
+title: Candlestick
+sidebar: mydoc_sidebar
+permalink: /candlestick
 ---
 
-## Candlestick
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 dt::AbstractVector{String}
 open::AbstractVector{T}

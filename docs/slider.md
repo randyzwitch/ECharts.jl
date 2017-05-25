@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
 title: slider!
-
+sidebar: mydoc_sidebar
+permalink: /slider
 ---
 
-## slider!
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 ec::EChart
 {% endhighlight %}

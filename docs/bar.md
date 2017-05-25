@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: bar
-
+title: Bar
+sidebar: mydoc_sidebar
+permalink: /bar
 ---
 
-## Bar Plot
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 x::AbstractVector
 y::AbstractArray

@@ -1,13 +1,10 @@
 ---
-
-layout: minimal
-title: polar
-
+title: Polar
+sidebar: mydoc_sidebar
+permalink: /polar
 ---
 
-## Polar Chart
-
-### Function Keywords
+## Function Keywords
 {% highlight julia %}
 names::AbstractVector
 values::AbstractArray

@@ -1,11 +1,8 @@
 ---
-
-layout: minimal
 title: flip!
-
+sidebar: mydoc_sidebar
+permalink: /flip
 ---
-
-## flip!
 
 This function is the underlying code behind the `horizontal` keyword for all xy charts. Calling `flip!` directly is useful for interactive use, where you have a chart and think it might look better with a different orientation.
 
