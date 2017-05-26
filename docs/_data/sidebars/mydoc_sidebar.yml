@@ -7,94 +7,106 @@ entries:
   folders:
 
   - title: Overview
-    output: web, pdf
+    output: web
     folderitems:
 
     - title: Get started
       url: /
-      output: web, pdf
+      output: web
       type: homepage
 
   - title: Charts
-    output: web, pdf
+    output: web
     folderitems:
 
     - title: area
       url: /area
-      output: web, pdf
+      output: web
 
     - title: bar
       url: /bar
-      output: web, pdf
+      output: web
 
     - title: box
       url: /box
-      output: web, pdf
+      output: web
 
     - title: candlestick
       url: /candlestick
-      output: web, pdf
+      output: web
 
     - title: funnel
       url: /funnel
-      output: web, pdf
+      output: web
 
     - title: gauge
       url: /gauge
-      output: web, pdf
+      output: web
 
     - title: line
       url: /line
-      output: web, pdf
+      output: web
 
     - title: pie/donut
       url: /pie
-      output: web, pdf
+      output: web
 
     - title: polar
       url: /polar
-      output: web, pdf
+      output: web
 
     - title: radar
       url: /radar
-      output: web, pdf
+      output: web
 
     - title: sankey
       url: /sankey
-      output: web, pdf
+      output: web
 
     - title: scatter
       url: /scatter
-      output: web, pdf
+      output: web
 
     - title: waterfall
       url: /waterfall
-      output: web, pdf
+      output: web
 
   - title: Functions
-    output: web, pdf
+    output: web
     folderitems:
 
     - title: colorscheme!
       url: /colorscheme
-      output: web, pdf
+      output: web
 
     - title: flip!
       url: /flip
-      output: web, pdf
+      output: web
+
+    - title: Gradients (Linear/Radial)
+      url: /gradients
+      output: web
 
     - title: legend!
       url: /legend
-      output: web, pdf
+      output: web
+
+    - title: seriesnames!
+      url: /seriesnames
+      output: web
 
     - title: slider!
       url: /slider
-      output: web, pdf
+      output: web
+
+    - title: smooth!
+      url: /smooth
+      output: web
 
     - title: toolbox!
       url: /toolbox
-      output: web, pdf
+      output: web
 
     - title: xAxis/yAxis!
       url: /xaxisyaxis
-      output: web, pdf
+      output: web
