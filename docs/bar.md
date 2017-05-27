@@ -125,6 +125,9 @@ bcs = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], sta
 
 
 ## Stacked Bar - Ad-Hoc Stacking
+
+The numbers for the `stack` keyword indicate which group each series belongs to. In this example, Series 1 and 2 are stacked together as 'group 1' and Series 2 is in 'group 2'. When using this keyword, a group has to be assigned for each series.
+
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
