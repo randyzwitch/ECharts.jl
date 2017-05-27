@@ -1,4 +1,4 @@
-function gauge(x::Number;
+function gauge(x::Real;
                kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "gauge")

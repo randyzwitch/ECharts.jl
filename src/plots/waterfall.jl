@@ -1,4 +1,4 @@
-function waterfall(x::AbstractVector, y::AbstractVector;
+function waterfall{T <: Real}(x::AbstractVector, y::AbstractVector{T};
 					legend::Bool = false,
 					scale::Bool = false,
 					kwargs...)
