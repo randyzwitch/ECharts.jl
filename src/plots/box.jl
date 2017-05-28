@@ -3,7 +3,6 @@ function box{T <: Real}(data::Vector{Vector{T}};
             names::Union{AbstractVector, Void} = nothing,
             legend::Bool = false,
             horizontal::Bool = false,
-            scale::Bool = false,
             kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
