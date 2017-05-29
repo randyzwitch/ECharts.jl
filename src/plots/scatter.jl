@@ -28,6 +28,10 @@ function scatter(x::AbstractVector, y::AbstractArray;
 		push!(ec.series, Series(_type = "scatter", data = xyarrayofarray(x, y[:,i])))
 	end
 
+	seriesnames!(ec)
+	
+	legend == true? legend!(ec) : nothing
+
 	return ec
 
 end
