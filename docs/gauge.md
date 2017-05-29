@@ -11,7 +11,7 @@ gauge(x::Real)
 ## Optional Arguments
 {% highlight julia %}
 legend::Bool = false
-kwargs...(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Single Series

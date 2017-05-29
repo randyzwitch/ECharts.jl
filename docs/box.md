@@ -17,7 +17,7 @@ box(data::Vector{Vector{T <: Real}})
 names::Union{AbstractVector, Void} = nothing
 legend::Bool = false
 horizontal::Bool = false
-kwargs...(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Single Series

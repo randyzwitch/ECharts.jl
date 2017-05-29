@@ -17,7 +17,7 @@ line(x::AbstractVector, y::AbstractArray)
 step::Union{String, Void} = nothing #choice of {"start", "middle", "end"}
 legend::Bool = false
 scale::Bool = false
-kwargs...(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Single Series

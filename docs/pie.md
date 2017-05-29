@@ -19,7 +19,7 @@ radius::Union{AbstractVector, AbstractString, Void} = "90%",
 center::Union{AbstractVector, AbstractString, Void} = ["50%", "50%"]
 roseType::Union{AbstractString, Void} = nothing #choice of {"angle", "radius"}
 legend::Bool = false
-kwargs...(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Pie Chart

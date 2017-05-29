@@ -17,7 +17,7 @@ polar(angle::AbstractVector, radius::AbstractArray)
 splitNumber::Int = 12
 showSymbol::Bool = false
 legend::Bool = false
-kwargs... #(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Single Series

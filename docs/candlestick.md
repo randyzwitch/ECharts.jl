@@ -15,7 +15,7 @@ close::AbstractVector{T <: Real}, low::AbstractVector{T <: Real}, high::Abstract
 {% highlight julia %}
 legend::Bool = false
 scale::Bool = true
-kwargs...(modifies top-level `EChart` fields)
+kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Single Series
