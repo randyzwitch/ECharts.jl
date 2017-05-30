@@ -10,8 +10,13 @@ entries:
     output: web
     folderitems:
 
-    - title: Get started
-      url: /
+    - title: Motivation
+      url: /#motivation
+      output: web
+      type: homepage
+
+    - title: Workflow
+      url: /#workflow
       output: web
       type: homepage
 
