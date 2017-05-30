@@ -1,4 +1,4 @@
-function radar(names::AbstractVector, values::AbstractVector, max::AbstractVector = [];
+function radar(names::AbstractVector, values::AbstractVector, max::AbstractVector;
 	 				fill::Bool = false,
 					legend::Bool = false,
 					kwargs...)
@@ -24,7 +24,7 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 
 end
 
-function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector = [];
+function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector;
 	 				fill::Union{Bool, AbstractVector} = false,
 					legend::Bool = true,
 					kwargs...)

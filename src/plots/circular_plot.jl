@@ -1,5 +1,5 @@
 function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
-            selected::AbstractVector = [],
+            selected::Union{AbstractVector, Void} = nothing,
             radius::Union{AbstractVector, String, Void} = "80%",
             center::Union{AbstractVector, String, Void} = ["50%", "50%"],
             roseType::Union{String, Void} = nothing, # roseType = {"angle", "radius"}
@@ -8,7 +8,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
             )
 
     # Set default to false if not passed by user
-    selected == [] ? selected = [false for x in 1:length(values)] : selected = selected
+    selected == nothing ? selected = [false for x in 1:length(values)] : selected = selected
 
     ec = newplot(kwargs, ec_charttype = "circular")
 

@@ -1,4 +1,4 @@
-function funnel(names::AbstractVector, values::AbstractVector;
+function funnel{T <: Real}(names::AbstractVector, values::AbstractVector{T};
             legend::Bool = false,
             kwargs...)
 

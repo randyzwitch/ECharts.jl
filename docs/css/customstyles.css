@@ -310,6 +310,9 @@ li.dropdownActive a {
 
 footer {
     font-size: smaller;
+    border-top: 1px;
+    border-top-style: ridge;
+    padding-top: 10px;
 }
 
 /* FAQ page */
