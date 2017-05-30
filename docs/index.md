@@ -22,9 +22,9 @@ The idea behind the API of ECharts.jl is _simplicity_; while it is possible to b
 
 ## Workflow
 
-1. Choose a base chart type, then (optionally)
-2. Use one of more visualization mutating functions (the functions with a `!` on the end) to modify the base chart
-3. (Optionally) Set individual fields in the resulting `EChart` composite type
+1. Choose a base chart type
+2. (Optional) Use one of more visualization mutating functions (the functions with a `!` on the end) to modify the base chart
+3. (Optional) Set individual fields in the resulting `EChart` composite type for even more refinement
 
 For example, to create an area chart with gradient shading (`LinearGradient`), a smoothed line (`smooth!`) and label the axes (`xAxis!/yAxis!`):
 

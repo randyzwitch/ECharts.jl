@@ -88,9 +88,9 @@ entries:
       url: /flip
       output: web
 
-    - title: Gradients (Linear/Radial)
-      url: /gradients
-      output: web
+    # - title: Gradients (Linear/Radial)
+    #   url: /gradients
+    #   output: web
 
     - title: legend!
       url: /legend

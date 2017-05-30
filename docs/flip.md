@@ -8,7 +8,7 @@ This function is the underlying code behind the `horizontal` keyword for all x/y
 
 ## Method Signatures
 {% highlight julia %}
-ec::EChart
+flip!(ec::EChart)
 {% endhighlight %}
 
 ## Optional Arguments

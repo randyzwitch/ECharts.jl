@@ -6,7 +6,7 @@ permalink: /colorscheme
 
 ## Method Signatures
 {% highlight julia %}
-ec::EChart
+colorscheme!(ec::EChart)
 {% endhighlight %}
 
 ## Optional Arguments
