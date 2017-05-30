@@ -19,7 +19,7 @@ module ECharts
 	export Title, Axis, Series, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
-	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea
+	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export JSFunction, LinearGradient, RadialGradient, Theme
 
 	export xy_plot, bar, line, scatter, area, waterfall
