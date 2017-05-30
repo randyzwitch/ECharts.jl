@@ -4,20 +4,24 @@ sidebar: mydoc_sidebar
 permalink: /flip
 ---
 
-This function is the underlying code behind the `horizontal` keyword for all xy charts. Calling `flip!` directly is useful for interactive use, where you have a chart and think it might look better with a different orientation.
+This function is the underlying code behind the `horizontal` keyword for all x/y charts. Calling `flip!` directly is useful for interactive use, where you have a chart and think it might look better with the inverse orientation.
 
-### Function Keywords
+## Method Signatures
 {% highlight julia %}
 ec::EChart
+{% endhighlight %}
+
+## Optional Arguments
+{% highlight julia %}
 rotatedims::Bool = false
 {% endhighlight %}
 
-### Examples
+## Examples
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-bm = bar(x, hcat(0.95 .* y, 1.25 .* y,y), mark = "bar", color = ["red", "gray", "blue"], stack = true)
+bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], stack = true)
 {% endhighlight %}
 
 <div id="barplot3" style="height:400px;width:800px;"></div>
