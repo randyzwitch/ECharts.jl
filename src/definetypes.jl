@@ -784,6 +784,8 @@ end
     symbolPatternSize::Union{Number, Void} = nothing
     #themeriver
     singleAxisIndex::Union{Number, Void} = nothing
+    #gauge
+    axisLine::Union{AxisLine, Void} = nothing
 end
 @with_kw type EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
