@@ -428,9 +428,52 @@ end
     splitArea::Union{SplitArea,Void} = nothing
     indicator::Union{AbstractVector,Void} = nothing
 end
-#Needs to be fleshed out
 @with_kw type VisualMap <: AbstractEChartType
+    #continuous
     _type::Union{String,Void} = nothing
+    min::Union{Int,Void} = nothing
+    max::Union{Int,Void} = nothing
+    range::Union{AbstractVector, Void} = nothing
+    calculable::Union{Bool, Void} = nothing
+    realtime::Union{Bool, Void} = nothing
+    inverse::Union{Bool, Void} = nothing
+    precision::Union{Int,Void} = nothing
+    itemWidth::Union{Int,Void} = nothing
+    itemHeight::Union{Int,Void} = nothing
+    align::Union{String,Void} = nothing
+    text::Union{AbstractVector, Void} = nothing
+    textGap::Union{AbstractVector, Int, Void} = nothing
+    show::Union{Bool, Void} = nothing
+    dimension::Union{String,Void} = nothing
+    seriesIndex::Union{AbstractVector, Int, Void} = nothing
+    hoverLink::Union{Bool, Void} = nothing
+    inRange::Union{Dict, Void} = nothing
+    outOfRange::Union{Dict, Void} = nothing
+    controller::Union{Dict, Void} = nothing
+    zlevel::Union{Int, Void} = nothing
+    z::Union{Int, Void} = nothing
+    left::Union{String, Int, Void} = nothing
+    top::Union{String, Int, Void} = nothing
+    right::Union{String, Int, Void} = nothing
+    bottom::Union{String, Int, Void} = nothing
+    orient::Union{String,Void} = nothing
+    padding::Union{AbstractVector, Int ,Void} = nothing
+    backgroundColor::Union{String,Void} = nothing
+    borderColor::Union{String,Void} = nothing
+    borderWidth::Union{Int,Void} = nothing
+    textStyle::Union{TextStyle, Void} = nothing
+    formatter::Union{String, JSFunction, Void} = nothing
+    #piecewise
+    splitNumber::Union{Int, Void} = nothing
+    pieces::Union{AbstractVector, Void} = nothing
+    categories::Union{AbstractVector, Void} = nothing
+    minOpen::Union{Bool, Void} = nothing
+    maxOpen::Union{Bool, Void} = nothing
+    selectedMode::Union{String, Void} = nothing
+    showLabel::Union{Bool, Void} = nothing
+    itemGap::Union{Int, Void} = nothing
+    itemSymbol::Union{String, Void} = nothing
+
 end
 @with_kw type ScaleLimit <: AbstractEChartType
     min::Union{Int,Void} = nothing
@@ -690,8 +733,7 @@ end
     #effectScatter
     effectType::Union{String, Void} = nothing
     showEffectOn::Union{String, Void} = nothing
-    #rippleEffect::Union{RippleEffect, Void} = nothing
-
+    rippleEffect::Union{Dict, Void} = nothing
     #radar
     radarIndex::Union{Int, Void} = nothing
     #treemap
@@ -706,7 +748,7 @@ end
     roam::Union{Bool, String, Void} = nothing
     nodeClick::Union{Bool, String, Void} = nothing
     zoomToNodeRatio::Union{Number, Void} = nothing
-    #levels::Union{AbstractVector, Void} = nothing
+    levels::Union{AbstractVector, Void} = nothing
     visualDimension::Union{Number, AbstractVector, Void} = nothing
     visualMin::Union{Number, Void} = nothing
     visualMax::Union{Number, Void} = nothing
@@ -715,8 +757,7 @@ end
     colorMappingBy::Union{String,Void} = nothing
     visibleMin::Union{Number, Void} = nothing
     childrenVisibleMin::Union{Number, Void} = nothing
-    #breadcrumb::Union{Dict, Void} = nothing
-
+    breadcrumb::Union{Dict, Void} = nothing
     #boxplot
     layout::Union{String, Void} = nothing
     boxWidth::Union{AbstractVector, Void} = nothing
@@ -732,7 +773,7 @@ end
     boundingCoords::Union{AbstractVector, Void} = nothing
     zoom::Union{Number, Void} = nothing
     scaleLimit::Union{ScaleLimit, Void} = nothing
-    #nameMap::Union{Dict, Void} = nothing
+    nameMap::Union{Dict, Void} = nothing
     layoutCenter::Union{AbstractVector, Void} = nothing
     layoutSize::Union{Number, String, Void} = nothing
     mapValueCalculation::Union{String, Void} = nothing
@@ -744,18 +785,18 @@ end
     realtime::Union{Bool, Void} = nothing
     #lines
     polyline::Union{Bool, Void} = nothing
-    #effect::Union{Dict, Void} = nothing
+    effect::Union{Dict, Void} = nothing
     #graph
-    #circular::Union{Dict, Void} = nothing
-    #force::Union{Dict, Void} = nothing
+    circular::Union{Dict, Void} = nothing
+    force::Union{Dict, Void} = nothing
     nodeScaleRatio::Union{Number, Void} = nothing
     draggable::Union{Bool, Void} = nothing
     focusNodeAdjacency::Union{Bool, Void} = nothing
     edgeSymbol::Union{AbstractVector, Bool, Void} = nothing
     edgeSymbolSize::Union{AbstractVector, Number, Void} = nothing
-    #edgeLabel::Union{Dict, Void} = nothing
+    edgeLabel::Union{Dict, Void} = nothing
     categories::Union{Dict, Void} = nothing
-    #nodes::Union{AbstractVector,Void} = nothing #alias for data
+    nodes::Union{AbstractVector,Void} = nothing #alias for data
     links::Union{AbstractVector,Void} = nothing
     #sankey
     nodeWidth::Union{Number, Void} = nothing
@@ -774,6 +815,11 @@ end
     pointer::Union{Dict, Void} = nothing
     title::Union{Title, Void} = nothing
     detail::Union{Dict, Void} = nothing
+    axisLine::Union{AxisLine, Void} = nothing
+    splitNumber::Union{Number, Void} = nothing
+    splitLine::Union{SplitLine, Void} = nothing
+    axisTick::Union{AxisTick, Void} = nothing
+    axisLabel::Union{AxisLabel, Void} = nothing
     #pictorialBar
     symbolPosition::Union{String, Void} = nothing
     symbolRepeat::Union{Bool, Number, String, Void} = nothing
@@ -784,8 +830,7 @@ end
     symbolPatternSize::Union{Number, Void} = nothing
     #themeriver
     singleAxisIndex::Union{Number, Void} = nothing
-    #gauge
-    axisLine::Union{AxisLine, Void} = nothing
+
 end
 @with_kw type EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
@@ -801,7 +846,7 @@ end
     radiusAxis::Union{RadiusAxis,Void} = nothing
     angleAxis::Union{AngleAxis,Void} = nothing
     radar::Union{Vector{Radar},Void} = nothing
-    dataZoom::Union{Vector{DataZoom},Void} = nothing  #typedef needs to be filled out
+    dataZoom::Union{Vector{DataZoom},Void} = nothing
     visualMap::Union{VisualMap,Void} = nothing  #typedef needs to be filled out
     tooltip::Union{Tooltip,Void} = nothing
     axisPointer::Union{AxisPointer, Void} = nothing
