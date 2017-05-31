@@ -129,3 +129,36 @@ function smooth!(ec::EChart)
 	return ec
 
 end
+
+# echarts built-in for average, min, max
+function yline!(ec::EChart, value::String; series::Int = 1)
+
+    ec.series[series].markLine == nothing ?
+        ec.series[series].markLine = MarkLine(data = [Dict{Any, Any}("type" => value)]) :
+            push!(ec.series[series].markLine.data, Dict{Any, Any}("type" => value))
+
+    return ec
+
+end
+
+#arbitrary number line
+function yline!(ec::EChart, value::Real; series::Int = 1)
+
+    ec.series[series].markLine == nothing ?
+        ec.series[series].markLine = MarkLine(data = [Dict("yAxis" => value)]) :
+            push!(ec.series[series].markLine.data, Dict("yAxis" => value))
+
+    return ec
+
+end
+
+#arbitrary line: need to confirm that the xAxis line can only be xAxis => value, not min/max/average
+function xline!(ec::EChart, value::Any; series::Int = 1)
+
+    ec.series[series].markLine == nothing ?
+        ec.series[series].markLine = MarkLine(data = [Dict("xAxis" => value)]) :
+            push!(ec.series[series].markLine.data, Dict("xAxis" => value))
+
+    return ec
+
+end

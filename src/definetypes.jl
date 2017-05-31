@@ -596,7 +596,7 @@ end
     precision::Union{Int, Void} = nothing
     label::Union{Dict, Void} = nothing
     lineStyle::Union{LineStyle, Void} = nothing
-    data::Union{Dict, Void} = nothing
+    data::Union{Vector, Void} = nothing
     animation::Union{Bool, Void} = nothing
     animationThreshold::Union{Int, Void} = nothing
     animationDuration::Union{Int, Void} = nothing
@@ -649,9 +649,9 @@ end
     smoothMonotone::Union{String,Void} = nothing
     sampling::Union{String,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
-    #markPoint::Union{MarkPoint, Void} = nothing
-    #markLine::Union{MarkLine, Void} = nothing
-    #markArea::Union{MarkArea, Void} = nothing
+    markPoint::Union{MarkPoint, Void} = nothing
+    markLine::Union{MarkLine, Void} = nothing
+    markArea::Union{MarkArea, Void} = nothing
     zlevel::Union{Int, Void} = nothing
     z::Union{Int, Void} = nothing
     animation::Union{Bool,Void} = nothing
