@@ -88,9 +88,9 @@ entries:
       url: /flip
       output: web
 
-    # - title: Gradients (Linear/Radial)
-    #   url: /gradients
-    #   output: web
+    - title: gradient (linear/radial)
+      url: /gradient
+      output: web
 
     - title: legend!
       url: /legend
@@ -112,6 +112,10 @@ entries:
       url: /toolbox
       output: web
 
-    - title: xAxis/yAxis!
+    - title: xaxis!/yaxis!
       url: /xaxisyaxis
+      output: web
+
+    - title: xline!/yline!
+      url: /xlineyline
       output: web

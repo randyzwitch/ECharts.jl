@@ -19,10 +19,10 @@ None currently
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y, color = LinearGradient("purple", "cyan"))
+ar = area(x, y, color = lineargradient("purple", "cyan"))
 smooth!(ar)
-xAxis!(ar, name = "Day of Week")
-yAxis!(ar, name = "Daily High Temperature °C")
+xaxis!(ar, name = "Day of Week")
+yaxis!(ar, name = "Daily High Temperature °C")
 {% endhighlight %}
 
 <div id="smooth1" style="height:400px;width:800px;"></div>

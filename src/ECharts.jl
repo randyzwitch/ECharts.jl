@@ -20,15 +20,15 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
-	export JSFunction, LinearGradient, RadialGradient, Theme
+	export JSFunction, Theme
 
 	export xy_plot, bar, line, scatter, area, waterfall
 	export box, candlestick, sankey
 	export radar, funnel
 	export pie, donut, gauge, polar
 
-	export title!, yAxis!, xAxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
-	export yline!, xline!
+	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
+	export yline!, xline!, lineargradient, radialgradient
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
@@ -37,8 +37,7 @@ module ECharts
 		data::String
 	end
 
-	function JSON.show_json(io::StructuralContext,
-							  ::JSSerialization, f::JSFunction)
+	function JSON.show_json(io::StructuralContext, ::JSSerialization, f::JSFunction)
 		for line in split(f.data, '\n')
 			Base.print(io, line)
 		end

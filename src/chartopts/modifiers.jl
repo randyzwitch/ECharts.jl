@@ -9,7 +9,7 @@ function title!(ec::EChart; kwargs...)
 
 end
 
-function yAxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
+function yaxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
 
 	for (k, v) in kwargs
 	   setfield!(ec.yAxis[1], k, v)
@@ -22,7 +22,7 @@ function yAxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing
 
 end
 
-function xAxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
+function xaxis!(ec::EChart; formatter::Union{String, JSFunction, Void} = nothing, kwargs...)
 
 	for (k, v) in kwargs
 	   setfield!(ec.xAxis[1], k, v)

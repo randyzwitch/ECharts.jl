@@ -26,7 +26,7 @@ The idea behind the API of ECharts.jl is _simplicity_; while it is possible to b
 2. (Optional) Use one of more visualization mutating functions (the functions with a `!` on the end) to modify the base chart
 3. (Optional) Set individual fields in the resulting `EChart` composite type for even more refinement
 
-For example, to create an area chart with gradient shading (`LinearGradient`), a smoothed line (`smooth!`) and label the axes (`xAxis!/yAxis!`):
+For example, to create an area chart with gradient shading (`lineargradient`), a smoothed line (`smooth!`) and label the axes (`xaxis!/yaxis!`):
 
 {% highlight julia %}
 #Define data
@@ -34,12 +34,12 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 
 #Step 1: Choose a base chart type
-ar = area(x, y, color = LinearGradient("purple", "cyan"))
+ar = area(x, y, color = lineargradient("purple", "cyan"))
 
 #Step 2: Apply visualization mutating functions
 smooth!(ar)
-xAxis!(ar, name = "Day of Week")
-yAxis!(ar, name = "Daily High Temperature °C")
+xaxis!(ar, name = "Day of Week")
+yaxis!(ar, name = "Daily High Temperature °C")
 {% endhighlight %}
 
 <div id="areaex" style="height:400px;width:800px;"></div>
