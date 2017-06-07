@@ -11,12 +11,12 @@ entries:
     folderitems:
 
     - title: Motivation
-      url: /ECharts.jl/#motivation
+      url: /index.html#motivation
       output: web
       type: homepage
 
     - title: Workflow
-      url: /ECharts.jl/#workflow
+      url: /index.html#workflow
       output: web
       type: homepage
 

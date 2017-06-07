@@ -20,7 +20,9 @@ scale::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -40,7 +42,7 @@ l = line(x, y)
         );
 </script>
 
-## Single Series (`step` = "end")
+### Single Series (`step` = "end")
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -60,7 +62,7 @@ ls = line(x, y, step = "end")
         );
 </script>
 
-## Multiple Series
+### Multiple Series
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]

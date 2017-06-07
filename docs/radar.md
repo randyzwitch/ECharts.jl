@@ -18,7 +18,9 @@ legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 names = ["sales", "administration", "information technology", "customer support", "development",
@@ -40,7 +42,7 @@ radar(names, values, max)
         );
 </script>
 
-## Multiple Series
+### Multiple Series
 {% highlight julia %}
 using ECharts
 names = ["sales", "administration", "information technology", "customer support", "development",
@@ -63,7 +65,7 @@ r2 = radar(names, hcat(values, values2), max)
         );
 </script>
 
-## Multiple Series - fill
+### Multiple Series - fill
 {% highlight julia %}
 using ECharts
 names = ["sales", "administration", "information technology", "customer support", "development",

@@ -17,7 +17,9 @@ legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 
 This example demonstrates the _auto-sorting_ behavior as described above.
 

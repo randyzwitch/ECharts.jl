@@ -22,7 +22,9 @@ legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Pie Chart
+## Examples
+
+### Pie Chart
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -42,7 +44,7 @@ p = pie(x, y)
         );
 </script>
 
-## Pie Chart - Exploded
+### Pie Chart - Exploded
 
 {% highlight julia %}
 using ECharts
@@ -64,7 +66,7 @@ pe = pie(names, values, selected = explode)
         );
 </script>
 
-## Donut Chart
+### Donut Chart
 
 {% highlight julia %}
 using ECharts
@@ -85,7 +87,7 @@ d = donut(x, y)
         );
 </script>
 
-## Rose Chart - Angle
+### Rose Chart - Angle
 
 {% highlight julia %}
 using ECharts
@@ -106,7 +108,7 @@ rose = pie(names, values, roseType = "angle")
         );
 </script>
 
-## Rose Chart - Radius
+### Rose Chart - Radius
 
 {% highlight julia %}
 using ECharts

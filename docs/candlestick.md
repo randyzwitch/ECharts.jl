@@ -18,7 +18,9 @@ scale::Bool = true
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 dt = ["2016/08/26", "2016/08/29", "2016/08/30", "2016/08/31", "2016/09/01", "2016/09/02",

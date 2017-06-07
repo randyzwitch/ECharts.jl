@@ -1,7 +1,7 @@
 ---
 title: ECharts.jl
 sidebar: mydoc_sidebar
-permalink: /
+permalink: /index.html
 ---
 
 The [ECharts.jl](https://github.com/randyzwitch/ECharts.jl) package provides a Julia wrapper around the [ECharts 3 JavaScript library](http://echarts.baidu.com/download.html) from [Baidu](http://www.baidu.com/).

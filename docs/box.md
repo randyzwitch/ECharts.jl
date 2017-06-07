@@ -20,7 +20,9 @@ horizontal::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960]
@@ -39,7 +41,7 @@ b = box(data)
         );
 </script>
 
-## Multiple Series
+### Multiple Series
 {% highlight julia %}
 using ECharts
 data = [

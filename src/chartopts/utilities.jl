@@ -86,7 +86,7 @@ function seriesnames!(ec::EChart)
 
 end
 
-function seriesnames!{T}(ec::EChart, names::AbstractVector{T})
+function seriesnames!(ec::EChart, names::AbstractVector{String})
 
     length(ec.series) != length(names) ? error("Names not equal to number of Series"): nothing
 
@@ -100,3 +100,5 @@ function seriesnames!{T}(ec::EChart, names::AbstractVector{T})
     return ec
 
 end
+
+seriesnames!{T <: Real}(ec::EChart, names::AbstractVector{T}) = seriesnames!(ec, String[string(x) for x in names])

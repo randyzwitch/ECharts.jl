@@ -20,7 +20,9 @@ legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 t = 0:360
@@ -41,7 +43,7 @@ p = polar(angle, radius)
         );
 </script>
 
-## Multiple Series
+### Multiple Series
 
 {% highlight julia %}
 using ECharts

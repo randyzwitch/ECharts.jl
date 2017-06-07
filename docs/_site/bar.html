@@ -182,14 +182,14 @@ var roma = function(){
             
             
             
-            <li><a href="ECharts.jl#motivation">Motivation</a></li>
+            <li><a href="index.html#motivation">Motivation</a></li>
             
             
             
             
             
             
-            <li><a href="ECharts.jl#workflow">Workflow</a></li>
+            <li><a href="index.html#workflow">Workflow</a></li>
             
             
             
@@ -444,7 +444,9 @@ $('#toc').on('click', 'a', function() {
 <span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
 <span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level EChart properties</span></code></pre></figure>
 
-<h2 id="single-series">Single Series</h2>
+<h2 id="examples">Examples</h2>
+
+<h3 id="single-series">Single Series</h3>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
@@ -463,7 +465,7 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h2 id="single-series---color-keyword">Single Series - <code class="highlighter-rouge">color</code> keyword</h2>
+<h3 id="single-series---color-keyword">Single Series - <code class="highlighter-rouge">color</code> keyword</h3>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
@@ -482,7 +484,7 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h2 id="single-series---horizontal-keyword">Single Series - <code class="highlighter-rouge">horizontal</code> keyword</h2>
+<h3 id="single-series---horizontal-keyword">Single Series - <code class="highlighter-rouge">horizontal</code> keyword</h3>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
@@ -502,7 +504,7 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h2 id="multiple-series">Multiple Series</h2>
+<h3 id="multiple-series">Multiple Series</h3>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
@@ -521,7 +523,7 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h2 id="stacked-bar">Stacked Bar</h2>
+<h3 id="stacked-bar">Stacked Bar</h3>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
@@ -540,7 +542,7 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h2 id="stacked-bar---ad-hoc-stacking">Stacked Bar - Ad-Hoc Stacking</h2>
+<h3 id="stacked-bar---ad-hoc-stacking">Stacked Bar - Ad-Hoc Stacking</h3>
 
 <p>The numbers for the <code class="highlighter-rouge">stack</code> keyword indicate which group each series belongs to. In this example, Series 1 and 2 are stacked together as ‘group 1’ and Series 2 is in ‘group 2’. When using this keyword, a group has to be assigned for each series.</p>
 
@@ -574,7 +576,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jun 5, 2017 <br />
+ Site last generated: Jun 7, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/">randyzwitch</a>
                 </div>
             </div>

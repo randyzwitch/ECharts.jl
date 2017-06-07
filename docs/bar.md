@@ -21,7 +21,9 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -41,7 +43,7 @@ b = bar(x, y)
         );
 </script>
 
-## Single Series - `color` keyword
+### Single Series - `color` keyword
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -61,7 +63,7 @@ bc = bar(x, y, color = "green")
         );
 </script>
 
-## Single Series - `horizontal` keyword
+### Single Series - `horizontal` keyword
 
 {% highlight julia %}
 using ECharts
@@ -83,7 +85,7 @@ bch = bar(x, y, color = "lightgray", horizontal = true)
         );
 </script>
 
-## Multiple Series
+### Multiple Series
 {% highlight julia %}
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
@@ -103,7 +105,7 @@ bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y))
         );
 </script>
 
-## Stacked Bar
+### Stacked Bar
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -124,7 +126,7 @@ bcs = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], sta
 </script>
 
 
-## Stacked Bar - Ad-Hoc Stacking
+### Stacked Bar - Ad-Hoc Stacking
 
 The numbers for the `stack` keyword indicate which group each series belongs to. In this example, Series 1 and 2 are stacked together as 'group 1' and Series 2 is in 'group 2'. When using this keyword, a group has to be assigned for each series.
 

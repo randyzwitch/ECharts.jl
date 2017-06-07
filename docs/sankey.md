@@ -14,7 +14,7 @@ sankey(name::AbstractVector{String}, source::AbstractVector{Int}, target::Abstra
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Example
+## Examples
 {% highlight julia %}
 using ECharts
 name = ["Agricultural waste", "Bio-conversion", "Liquid", "Losses", "Solid", "Gas", "Biofuel imports",

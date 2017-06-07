@@ -23,7 +23,9 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
-## Single Series
+## Examples
+
+### Single Series
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -43,7 +45,7 @@ ar = area(x, y)
         );
 </script>
 
-## Multiple Series (Stacked Area)
+### Multiple Series (Stacked Area)
 
 The default when passed multiple series is to _stack_ the series, i.e. showing the individual series contribution to the whole. If you want to overlay each series relative to zero on the Y-axis, use `stack = false`.
 
@@ -67,7 +69,7 @@ as = area(x, hcat(y, y2))
         );
 </script>
 
-## Step Chart
+### Step Chart
 
 {% highlight julia %}
 using ECharts
