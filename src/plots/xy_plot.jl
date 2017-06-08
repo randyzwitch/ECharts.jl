@@ -77,3 +77,53 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	return ec
 
 end
+
+#dataframe, single series
+function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
+			mark::String = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
+			step::Union{String, Void} = nothing,
+			horizontal::Bool = false,
+			legend::Bool = false,
+			scale::Bool = false,
+			kwargs...)
+
+	#Intialize for single series
+	ec = xy_plot(df[x], df[y], mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+
+	#Name axes since we know them
+	xaxis!(ec, name = string(x))
+	yaxis!(ec, name = string(y))
+
+	#Add legend if requested
+	legend? legend!(ec) : nothing
+
+	return ec
+
+end
+
+#dataframe, multiple series
+function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+			mark::String = "bar",
+			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
+			step::Union{String, Void} = nothing,
+			horizontal::Bool = false,
+			legend::Bool = true,
+			scale::Bool = false,
+			kwargs...)
+
+	#long to wide
+	pivotdf = unstack(df, x, group, y)
+
+	ec = xy_plot(pivotdf[x], convert(Array, pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+
+	#Name axes since we know them
+	xaxis!(ec, name = string(x))
+	yaxis!(ec, name = string(y))
+
+	#Add legend if requested
+	legend? legend!(ec) : nothing
+
+	return ec
+
+end

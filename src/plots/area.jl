@@ -39,3 +39,43 @@ function area(x::AbstractVector, y::AbstractArray;
 	return ec
 
 end
+
+#dataframe, single series
+function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
+			mark::Union{String, AbstractVector} = "line",
+			fill::Union{Bool, AbstractVector} = true,
+			stack::Union{Bool, AbstractVector, Void} = nothing,
+			step::Union{String, Void} = nothing,
+			legend::Bool = false,
+			scale::Bool = false,
+			kwargs...)
+
+			ec = xy_plot(df, x, y, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
+
+			ec.xAxis[1].boundaryGap = false
+
+			fill!(ec, 1, fill)
+
+			return ec
+
+end
+
+#dataframe, group argument
+function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+			mark::Union{String, AbstractVector} = "line",
+			fill::Union{Bool, AbstractVector} = true,
+			stack::Union{Bool, AbstractVector, Void} = true,
+			step::Union{String, Void} = nothing,
+			legend::Bool = true,
+			scale::Bool = false,
+			kwargs...)
+
+			ec = xy_plot(df, x, y, group, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
+
+			ec.xAxis[1].boundaryGap = false
+
+			fill!(ec, length(ec.series), fill)
+
+			return ec
+
+end
