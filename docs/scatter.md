@@ -62,7 +62,7 @@ sc2 = scatter(rand(30), hcat(rand(30), rand(30)))
         );
 </script>
 
-### DataFrame with group argument
+### DataFrame with `group` argument
 {% highlight julia %}
 using ECharts, RDatasets
 df = dataset("datasets", "mtcars")

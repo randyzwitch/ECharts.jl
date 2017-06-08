@@ -96,7 +96,7 @@ astep = area(x, hcat(y, y2), step = "middle")
         );
 </script>
 
-### DataFrame with group argument
+### DataFrame with `group` argument
 {% highlight julia %}
 using ECharts, DataFrames
 x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])

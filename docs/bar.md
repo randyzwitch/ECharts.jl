@@ -153,7 +153,7 @@ bcsa = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], st
         );
 </script>
 
-### DataFrame with group argument
+### DataFrame with `group` argument
 
 {% highlight julia %}
 using ECharts, DataFrames
