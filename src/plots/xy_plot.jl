@@ -112,8 +112,11 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
-	#long to wide
+	#create grouped df
 	pivotdf = unstack(df, x, group, y)
+
+	#Get number of groups
+	numgroups = length(pivotdf)
 
 	ec = xy_plot(pivotdf[x], convert(Array, pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
@@ -123,6 +126,9 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 
 	#Add legend if requested
 	legend? legend!(ec) : nothing
+
+	#Add series names
+	seriesnames!(ec, names(pivotdf)[2:end])
 
 	return ec
 

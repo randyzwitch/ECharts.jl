@@ -101,4 +101,4 @@ function seriesnames!(ec::EChart, names::AbstractVector{String})
 
 end
 
-seriesnames!{T <: Real}(ec::EChart, names::AbstractVector{T}) = seriesnames!(ec, String[string(x) for x in names])
+seriesnames!(ec::EChart, names::AbstractVector) = seriesnames!(ec, String[string(x) for x in names])
