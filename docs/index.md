@@ -54,4 +54,4 @@ yaxis!(ar, name = "Daily High Temperature °C")
         );
 </script>
 
-To learn more about specific features, see the Table of Contents on the left sidebar.
+To learn more about specific features, see the Table of Contents on the left sidebar. For inspiration, see the Baidu [demos](https://ecomfe.github.io/echarts-examples/public/index.html) to see what is (likely) possible and the [user-submitted gallery](http://gallery.echartsjs.com/explore.html) (may require additional JS libraries not implemented in Julia).

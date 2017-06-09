@@ -7,8 +7,8 @@ permalink: /pie
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 pie(names::AbstractVector, values::AbstractVector)
-
 donut(names::AbstractVector, values::AbstractVector; radius = ["50%", "80%"])
 {% endhighlight %}
 

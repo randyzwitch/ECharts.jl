@@ -7,6 +7,7 @@ Candlestick plots are financial plots showing the relationship between the open,
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 candlestick(dt::AbstractVector{String}, open::AbstractVector{T <: Real},
 close::AbstractVector{T <: Real}, low::AbstractVector{T <: Real}, high::AbstractVector{T <: Real})
 {% endhighlight %}

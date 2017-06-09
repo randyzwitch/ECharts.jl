@@ -6,8 +6,8 @@ permalink: /radar
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 radar(names::AbstractVector, values::AbstractVector, max::AbstractVector)
-
 radar(names::AbstractVector, values::AbstractArray, max::AbstractVector)
 {% endhighlight %}
 

@@ -7,9 +7,11 @@ permalink: /box
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 box(data::Vector{T <: Real})
-
 box(data::Vector{Vector{T <: Real}})
+
+#DataFrame methods
 {% endhighlight %}
 
 ## Optional Arguments

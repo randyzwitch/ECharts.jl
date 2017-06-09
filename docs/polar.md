@@ -7,8 +7,8 @@ permalink: /polar
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 polar(angle::AbstractVector, radius::AbstractVector)
-
 polar(angle::AbstractVector, radius::AbstractArray)
 {% endhighlight %}
 

@@ -6,6 +6,7 @@ permalink: /sankey
 
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 sankey(name::AbstractVector{String}, source::AbstractVector{Int}, target::AbstractVector{Int}, value::AbstractVector{T <: Real};
 {% endhighlight %}
 

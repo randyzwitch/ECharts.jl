@@ -5,6 +5,7 @@ permalink: /gauge
 ---
 ## Method Signatures
 {% highlight julia %}
+#Array methods
 gauge(x::Real)
 {% endhighlight %}
 
