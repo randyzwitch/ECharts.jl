@@ -6,12 +6,14 @@ permalink: /smooth
 
 ## Method Signatures
 {% highlight julia %}
-smooth!(ec::EChart)
+smooth!(ec::EChart) #All series
+smooth!(ec::EChart, series::Int) #Single series, specified by number
+smooth!(ec::EChart, series::Vector{Int}) #Multiple series, specified in array
 {% endhighlight %}
 
 ## Optional Arguments
 {% highlight julia %}
-None currently
+smooth::Bool = true
 {% endhighlight %}
 
 ## Examples
