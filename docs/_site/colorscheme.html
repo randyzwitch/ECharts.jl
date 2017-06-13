@@ -439,12 +439,13 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">,</span> <span class="n">palette</span><span class="o">::</span><span class="n">Tuple</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span><span class="kt">Any</span><span class="x">})</span> <span class="c">#ColorBrewer or NoveltyColors palettes</span>
+<span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">,</span> <span class="n">palette</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span> <span class="n">JSFunction</span><span class="x">})</span> <span class="c">#Single color or gradient</span>
+<span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">,</span> <span class="n">palette</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">)</span> <span class="c">#Specify array of user-defined colors</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">palette</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Tuple</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span><span class="kt">Any</span><span class="x">},</span> <span class="kt">AbstractString</span><span class="x">,</span> <span class="n">AbstractVector</span><span class="x">,</span> <span class="n">JSFunction</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
-<span class="n">reversePalette</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">reversePalette</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
@@ -457,7 +458,7 @@ $('#toc').on('click', 'a', function() {
 <span class="n">values</span> <span class="o">=</span> <span class="x">[</span><span class="mi">4300</span><span class="x">,</span> <span class="mi">10000</span><span class="x">,</span> <span class="mi">28000</span><span class="x">,</span> <span class="mi">35000</span><span class="x">,</span> <span class="mi">50000</span><span class="x">,</span> <span class="mi">19000</span><span class="x">]</span>
 <span class="n">values2</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">.*</span> <span class="n">values</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">radar</span><span class="x">(</span><span class="n">names</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="n">values</span><span class="x">,</span> <span class="n">values2</span><span class="x">),</span> <span class="n">max</span><span class="x">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="x">[</span><span class="n">false</span><span class="x">,</span> <span class="n">true</span><span class="x">])</span>
-<span class="n">colorscheme!</span><span class="x">(</span><span class="n">r</span><span class="x">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="x">(</span><span class="s">"acw"</span><span class="x">,</span> <span class="s">"JapaneseGarden"</span><span class="x">))</span></code></pre></figure>
+<span class="n">colorscheme!</span><span class="x">(</span><span class="n">r</span><span class="x">,</span> <span class="x">(</span><span class="s">"acw"</span><span class="x">,</span> <span class="s">"JapaneseGarden"</span><span class="x">))</span></code></pre></figure>
 
 <div id="color1" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -477,7 +478,7 @@ $('#toc').on('click', 'a', function() {
 <span class="n">v</span> <span class="o">=</span> <span class="x">[</span><span class="mi">100</span><span class="x">,</span><span class="mi">60</span><span class="x">,</span><span class="mi">80</span><span class="x">,</span><span class="mi">70</span><span class="x">,</span><span class="mi">50</span><span class="x">]</span>
 <span class="n">n</span> <span class="o">=</span> <span class="x">[</span><span class="s">"A"</span><span class="x">,</span> <span class="s">"B"</span><span class="x">,</span> <span class="s">"C"</span><span class="x">,</span> <span class="s">"D"</span><span class="x">,</span> <span class="s">"E"</span><span class="x">]</span>
 <span class="n">fn</span> <span class="o">=</span> <span class="n">funnel</span><span class="x">(</span><span class="n">n</span><span class="x">,</span> <span class="n">v</span><span class="x">)</span>
-<span class="n">colorscheme!</span><span class="x">(</span><span class="n">fn</span><span class="x">,</span>  <span class="n">palette</span> <span class="o">=</span> <span class="x">(</span><span class="s">"acw"</span><span class="x">,</span> <span class="s">"VitaminC"</span><span class="x">),</span> <span class="n">reversePalette</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></figure>
+<span class="n">colorscheme!</span><span class="x">(</span><span class="n">fn</span><span class="x">,</span>  <span class="x">(</span><span class="s">"acw"</span><span class="x">,</span> <span class="s">"VitaminC"</span><span class="x">),</span> <span class="n">reversePalette</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></figure>
 
 <div id="color2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -501,7 +502,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jun 10, 2017 <br />
+ Site last generated: Jun 13, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

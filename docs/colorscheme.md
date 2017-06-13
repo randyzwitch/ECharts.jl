@@ -6,12 +6,13 @@ permalink: /colorscheme
 
 ## Method Signatures
 {% highlight julia %}
-colorscheme!(ec::EChart)
+colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}) #ColorBrewer or NoveltyColors palettes
+colorscheme!(ec::EChart, palette::Union{AbstractString, JSFunction}) #Single color or gradient
+colorscheme!(ec::EChart, palette::AbstractVector) #Specify array of user-defined colors
 {% endhighlight %}
 
 ## Optional Arguments
 {% highlight julia %}
-palette::Union{Tuple{AbstractString,Any}, AbstractString, AbstractVector, JSFunction, Void} = nothing
 reversePalette::Bool = false
 {% endhighlight %}
 
@@ -26,7 +27,7 @@ max = [6500, 16000, 30000, 38000, 52000, 25000]
 values = [4300, 10000, 28000, 35000, 50000, 19000]
 values2 = 0.7 .* values
 r = radar(names, hcat(values, values2), max, fill = [false, true])
-colorscheme!(r, palette = ("acw", "JapaneseGarden"))
+colorscheme!(r, ("acw", "JapaneseGarden"))
 {% endhighlight %}
 
 <div id="color1" style="height:400px;width:800px;"></div>
@@ -48,7 +49,7 @@ using ECharts
 v = [100,60,80,70,50]
 n = ["A", "B", "C", "D", "E"]
 fn = funnel(n, v)
-colorscheme!(fn,  palette = ("acw", "VitaminC"), reversePalette = true)
+colorscheme!(fn,  ("acw", "VitaminC"), reversePalette = true)
 {% endhighlight %}
 
 
