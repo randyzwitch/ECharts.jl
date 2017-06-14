@@ -3,6 +3,7 @@ title: colorscheme!
 sidebar: mydoc_sidebar
 permalink: /colorscheme
 ---
+This method changes the series colors for all `ECharts` accepting a top-level `color` argument. Currently, the only chart type where `colorscheme!` has no effect is that [gauge](/gauge) chart type; use the `colors` argument from the `gauge` function directly to change its colors.
 
 ## Method Signatures
 {% highlight julia %}

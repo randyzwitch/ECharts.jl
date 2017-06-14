@@ -6,6 +6,8 @@ permalink: /flip
 
 This function is the underlying code behind the `horizontal` keyword for all x/y charts. Calling `flip!` directly is useful for interactive use, where you have a chart and think it might look better with the inverse orientation.
 
+Due to the properties of a scatterplot (i.e. points, x-axis/y-axis are numeric, no "orientation" per se), flip! has no affect; should you wish to change the 'orientation' of the series of a scatterplot, just switch the series' in the call to `scatter` (i.e. `scatter(x,y) => scatter(y,x)`).
+
 ## Method Signatures
 {% highlight julia %}
 flip!(ec::EChart)

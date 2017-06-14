@@ -465,7 +465,9 @@ $('#toc').on('click', 'a', function() {
     
 
 
-  <h2 id="method-signatures">Method Signatures</h2>
+  <p>This method changes the series colors for all <code class="highlighter-rouge">ECharts</code> accepting a top-level <code class="highlighter-rouge">color</code> argument. Currently, the only chart type where <code class="highlighter-rouge">colorscheme!</code> has no effect is that <a href="/gauge">gauge</a> chart type; use the <code class="highlighter-rouge">colors</code> argument from the <code class="highlighter-rouge">gauge</code> function directly to change its colors.</p>
+
+<h2 id="method-signatures">Method Signatures</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">,</span> <span class="n">palette</span><span class="o">::</span><span class="n">Tuple</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span><span class="kt">Any</span><span class="x">})</span> <span class="c">#ColorBrewer or NoveltyColors palettes</span>
 <span class="n">colorscheme!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">,</span> <span class="n">palette</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">AbstractString</span><span class="x">,</span> <span class="n">JSFunction</span><span class="x">})</span> <span class="c">#Single color or gradient</span>
