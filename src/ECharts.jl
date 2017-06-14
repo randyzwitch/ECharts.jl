@@ -28,7 +28,7 @@ module ECharts
 	export pie, donut, gauge, polar
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
-	export yline!, xline!, lineargradient, radialgradient
+	export yline!, xline!, lineargradient, radialgradient, text!
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule

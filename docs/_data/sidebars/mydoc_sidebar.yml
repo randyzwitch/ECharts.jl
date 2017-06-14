@@ -116,6 +116,10 @@ entries:
       url: /smooth
       output: web
 
+    - title: text!
+      url: /text
+      output: web
+
     - title: title!
       url: /title
       output: web

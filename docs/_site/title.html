@@ -368,6 +368,13 @@ var roma = function(){
             
             
             
+            <li><a href="text">text!</a></li>
+            
+            
+            
+            
+            
+            
             <li class="active"><a href="title">title!</a></li>
             
             
@@ -451,13 +458,13 @@ $('#toc').on('click', 'a', function() {
     
 
 
-  <p>The <code class="highlighter-rouge">title!</code> functions is just a convenience around the <code class="highlighter-rouge">Title</code> type, so that end-users don’t need to reference <code class="highlighter-rouge">ec.title</code> directly (though, nothing prevents users modifying the <code class="highlighter-rouge">EChart</code> chart instance).</p>
+  <p>The <code class="highlighter-rouge">title!</code> function is just a convenience around the <code class="highlighter-rouge">Title</code> type, so that end-users don’t need to reference <code class="highlighter-rouge">ec.title</code> directly (though, nothing prevents users modifying the <code class="highlighter-rouge">EChart</code> chart instance).</p>
 
 <p>By convention, the graph’s ‘title’ is the first object in the the <code class="highlighter-rouge">ec.title</code> vector; <code class="highlighter-rouge">title!</code> modifies this first array element, which by default is present each time an <code class="highlighter-rouge">EChart</code> is created. Further instances of <code class="highlighter-rouge">Title</code> in the <code class="highlighter-rouge">ec.title</code> vector are reserved for arbitrary text embellishments through the <code class="highlighter-rouge">text!</code> function.</p>
 
 <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">title!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">title!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 

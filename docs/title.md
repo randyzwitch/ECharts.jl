@@ -4,13 +4,13 @@ sidebar: mydoc_sidebar
 permalink: /title
 ---
 
-The `title!` functions is just a convenience around the `Title` type, so that end-users don't need to reference `ec.title` directly (though, nothing prevents users modifying the `EChart` chart instance).
+The `title!` function is just a convenience around the `Title` type, so that end-users don't need to reference `ec.title` directly (though, nothing prevents users modifying the `EChart` chart instance).
 
 By convention, the graph's 'title' is the first object in the the `ec.title` vector; `title!` modifies this first array element, which by default is present each time an `EChart` is created. Further instances of `Title` in the `ec.title` vector are reserved for arbitrary text embellishments through the `text!` function.
 
 ## Method Signatures
 {% highlight julia %}
-title!(ec::EChart; kwargs...)
+title!(ec::EChart)
 {% endhighlight %}
 
 ## Optional Arguments
