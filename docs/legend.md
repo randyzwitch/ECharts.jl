@@ -3,6 +3,7 @@ title: legend!
 sidebar: mydoc_sidebar
 permalink: /legend
 ---
+The `legend!` function is just a convenience around the `Legend` type, so that end-users don't need to reference `ec.legend` directly (though, nothing prevents users modifying the `EChart` chart instance).
 
 ## Method Signatures
 {% highlight julia %}
@@ -11,7 +12,35 @@ legend!(ec::EChart)
 
 ## Optional Arguments
 {% highlight julia %}
-None currently
+show::Union{Bool,Void} = true
+zlevel::Union{Int,Void} = 0
+z::Union{Int,Void} = 2
+left::Union{Int,String,Void} = nothing
+top::Union{Int,String,Void} = "auto"
+right::Union{Int,String,Void} = "auto"
+bottom::Union{Int,String,Void} = "auto"
+width::Union{Int,String,Void} = "auto"
+height::Union{Int,String,Void} = "auto"
+orient::Union{String,Void} = "horizontal"
+align::Union{String,Void} = "auto"
+padding::Union{Int,Void} = 5
+itemGap::Union{Int,Void} = 10
+itemWidth::Union{Int,Void} = 25
+itemHeight::Union{Int,Void} = 14
+formatter::Union{String,Void, JSFunction} = nothing
+selectedMode::Union{Bool,String,Void} = true
+inactiveColor::Union{String,Void} = "#ccc"
+selected::Union{Dict{String,Bool},Void} = nothing
+textStyle::Union{TextStyle,Void} = nothing
+tooltip::Union{Tooltip, Void} = nothing
+data::Union{AbstractVector,Void} = nothing
+backgroundColor::Union{String,Void} = "transparent"
+borderColor::Union{String,Void} = "transparent"
+borderWidth::Union{Int,Void} = 1
+shadowBlur::Union{Int,Void} = nothing
+shadowColor::Union{String,Void} = nothing
+shadowOffsetX::Union{Int,Void} = 0
+shadowOffsetY::Union{Int,Void} = 0
 {% endhighlight %}
 
 ## Examples
