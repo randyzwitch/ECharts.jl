@@ -652,7 +652,7 @@ end
 @with_kw type MarkArea <: AbstractEChartType
     silent::Union{Bool, Void} = nothing
     itemStyle::Union{ItemStyle, Void} = nothing
-    data::Union{Dict, Void} = nothing
+    data::Union{AbstractVector, Void} = nothing
     animation::Union{Bool, Void} = nothing
     animationThreshold::Union{Int, Void} = nothing
     animationDuration::Union{Int, Void} = nothing

@@ -128,6 +128,10 @@ entries:
       url: /toolbox
       output: web
 
+    - title: xarea!/yarea!
+      url: /xareayarea
+      output: web
+
     - title: xaxis!/yaxis!
       url: /xaxisyaxis
       output: web

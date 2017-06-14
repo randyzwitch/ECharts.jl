@@ -210,3 +210,24 @@ function xline!(ec::EChart, value::Any; series::Int = 1)
     return ec
 
 end
+
+#Merge methods together using metaprogramming?
+function xarea!(ec::EChart, startval, endval; series::Int = 1)
+
+    ec.series[series].markArea == nothing ?
+        ec.series[series].markArea = MarkArea(data = [[Dict("xAxis" => startval), Dict("xAxis" => endval)]]) :
+            push!(ec.series[series].markArea.data, [Dict("xAxis" => startval), Dict("xAxis" => endval)])
+
+    return ec
+
+end
+
+function yarea!(ec::EChart, startval, endval; series::Int = 1)
+
+    ec.series[series].markArea == nothing ?
+        ec.series[series].markArea = MarkArea(data = [[Dict("yAxis" => startval), Dict("yAxis" => endval)]]) :
+            push!(ec.series[series].markArea.data, [Dict("yAxis" => startval), Dict("yAxis" => endval)])
+
+    return ec
+
+end

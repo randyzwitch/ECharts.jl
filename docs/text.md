@@ -48,7 +48,7 @@ shadowOffsetY::Union{Int,Void} = 0
 
 ### Add text to a chart
 {% highlight julia %}
-using ECharts, DataFrames
+using ECharts, RDatasets
 df = dataset("datasets", "mtcars")
 sgrp = scatter(df, :MPG, :HP, :Cyl)
 title!(sgrp, text = "Horsepower vs. Miles Per Gallon")
