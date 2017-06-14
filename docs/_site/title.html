@@ -326,7 +326,7 @@ var roma = function(){
             
             
             
-            <li><a href="gradient">gradient (linear/radial)</a></li>
+            <li><a href="gradient">lineargradient</a></li>
             
             
             
@@ -334,6 +334,13 @@ var roma = function(){
             
             
             <li><a href="legend">legend!</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="gradient">radialgradient</a></li>
             
             
             
@@ -355,6 +362,13 @@ var roma = function(){
             
             
             <li><a href="smooth">smooth!</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="title">title!</a></li>
             
             
             
@@ -439,14 +453,21 @@ $('#toc').on('click', 'a', function() {
 
   <p>The <code class="highlighter-rouge">title!</code> functions is just a convenience around the <code class="highlighter-rouge">Title</code> type, so that end-users don’t need to reference <code class="highlighter-rouge">ec.title</code> directly (though, nothing prevents users modifying the <code class="highlighter-rouge">EChart</code> chart instance).</p>
 
-<h2 id="function-keywords">Function Keywords</h2>
+<p>By convention, the graph’s ‘title’ is the first object in the the <code class="highlighter-rouge">ec.title</code> vector; <code class="highlighter-rouge">title!</code> modifies this first array element, which by default is present each time an <code class="highlighter-rouge">EChart</code> is created. Further instances of <code class="highlighter-rouge">Title</code> in the <code class="highlighter-rouge">ec.title</code> vector are reserved for arbitrary text embellishments through the <code class="highlighter-rouge">text!</code> function.</p>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span>
-<span class="n">show</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
+<h2 id="method-signatures">Method Signatures</h2>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">title!</span><span class="x">(</span><span class="n">ec</span><span class="o">::</span><span class="n">EChart</span><span class="x">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="x">)</span></code></pre></figure>
+
+<h2 id="optional-arguments">Optional Arguments</h2>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">show</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
 <span class="n">text</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">link</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">target</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"blank"</span>
 <span class="n">textStyle</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">TextStyle</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">textAlign</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">textBaseline</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">subtext</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">sublink</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">subtarget</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"blank"</span>
@@ -459,7 +480,7 @@ $('#toc').on('click', 'a', function() {
 <span class="n">top</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"auto"</span>
 <span class="n">right</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"auto"</span>
 <span class="n">bottom</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"auto"</span>
-<span class="n">backgroundColor</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
+<span class="n">backgroundColor</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">,</span> <span class="n">JSFunction</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
 <span class="n">borderColor</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="s">"transparent"</span>
 <span class="n">borderWidth</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">shadowBlur</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span><span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span>
@@ -472,16 +493,20 @@ $('#toc').on('click', 'a', function() {
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">20</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">.+</span> <span class="mi">5</span><span class="n">x</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
 <span class="n">title!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Bar Plot Title"</span><span class="x">,</span> <span class="n">subtext</span> <span class="o">=</span> <span class="s">"Secondary Title"</span><span class="x">)</span></code></pre></figure>
 
 <div id="title_ex" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
+
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("title_ex"));
+    var myChart = echarts.init(document.getElementById("title_ex"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
-    myChart.setOption({"xAxis":[{"show":true,"data":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"type":"category"}],"yAxis":[{"show":true,"type":"value"}],"toolbox":{"itemGap":15,"show":false,"x":"right","feature":{},"orient":"vertical","y":"center"},"title":{"subtext":"Secondary Title","text":"Bar Plot Title"},"series":[{"data":[8,13,18,23,28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,103],"smooth":false,"type":"bar"}],"backgroundColor":"rgba(0,0,0,0)"});
+    myChart.setOption(
+{"theme":{"geo":{"label":{"normal":{"textStyle":{"color":"#000000"}},"emphasis":{"textStyle":{"color":"rgb(100,0,0)"}}},"itemStyle":{"normal":{"borderColor":"#444444","borderWidth":0.5,"areaColor":"#eeeeee"},"emphasis":{"borderColor":"#444444","borderWidth":1,"areaColor":"rgba(255,215,0,0.8)"}}},"parallel":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"markPoint":{"label":{"normal":{"textStyle":{"color":"#eeeeee"}},"emphasis":{"textStyle":{"color":"#eeeeee"}}}},"visualMap":{"color":["#e01f54","#e7dbc3"]},"funnel":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"bar":{"itemStyle":{"normal":{"barBorderColor":"#ccc","barBorderWidth":0},"emphasis":{"barBorderColor":"#ccc","barBorderWidth":0}}},"map":{"label":{"normal":{"textStyle":{"color":"#000000"}},"emphasis":{"textStyle":{"color":"rgb(100,0,0)"}}},"itemStyle":{"normal":{"borderColor":"#444444","borderWidth":0.5,"areaColor":"#eeeeee"},"emphasis":{"borderColor":"#444444","borderWidth":1,"areaColor":"rgba(255,215,0,0.8)"}}},"scatter":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"pie":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"graph":{"label":{"normal":{"textStyle":{"color":"#eeeeee"}}},"symbolSize":4,"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"}},"smooth":false,"symbol":"emptyCircle","color":["#e01f54","#001852","#f5e8c8","#b8d2c7","#c6b38e","#a4d8c2","#f3d999","#d3758f","#dcc392","#2e4783","#82b6e9","#ff6347","#a092f1","#0a915d","#eaf889","#6699FF","#ff6666","#3cb371","#d5b158","#38b6b6"],"lineStyle":{"normal":{"color":"#aaaaaa","width":1}}},"backgroundColor":"rgba(0,0,0,0)","line":{"symbolSize":4,"itemStyle":{"normal":{"borderWidth":1}},"smooth":false,"symbol":"emptyCircle","lineStyle":{"normal":{"width":2}}},"candlestick":{"itemStyle":{"normal":{"borderColor0":"#b8d2c7","color":"#e01f54","borderColor":"#f5e8c8","borderWidth":1,"color0":"#001852"}}},"sankey":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"valueAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"toolbox":{"iconStyle":{"normal":{"borderColor":"#999999"},"emphasis":{"borderColor":"#666666"}}},"categoryAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":false,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"tooltip":{"axisPointer":{"crossStyle":{"color":"#cccccc","width":1},"lineStyle":{"color":"#cccccc","width":1}}},"timeline":{"label":{"normal":{"textStyle":{"color":"#293c55"}},"emphasis":{"textStyle":{"color":"#293c55"}}},"controlStyle":{"normal":{"color":"#293c55","borderColor":"#293c55","borderWidth":0.5},"emphasis":{"color":"#293c55","borderColor":"#293c55","borderWidth":0.5}},"checkpointStyle":{"color":"#e43c59","borderColor":"rgba(194,53,49,0.5)"},"itemStyle":{"normal":{"color":"#293c55","borderWidth":1},"emphasis":{"color":"#a9334c"}},"lineStyle":{"color":"#293c55","width":1}},"radar":{"symbolSize":4,"itemStyle":{"normal":{"borderWidth":1}},"smooth":false,"symbol":"emptyCircle","lineStyle":{"normal":{"width":2}}},"logAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"textStyle":{},"gauge":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"boxplot":{"itemStyle":{"normal":{"borderWidth":1},"emphasis":{"borderWidth":2}}},"color":["#e01f54","#001852","#f5e8c8","#b8d2c7","#c6b38e","#a4d8c2","#f3d999","#d3758f","#dcc392","#2e4783","#82b6e9","#ff6347","#a092f1","#0a915d","#eaf889","#6699FF","#ff6666","#3cb371","#d5b158","#38b6b6"],"title":{"textStyle":{"color":"#333333"},"subtextStyle":{"color":"#aaaaaa"}},"dataZoom":{"backgroundColor":"rgba(47,69,84,0)","textStyle":{"color":"#333333"},"handleSize":"100%","handleColor":"#a7b7cc","fillerColor":"rgba(167,183,204,0.4)","dataBackgroundColor":"rgba(47,69,84,0.3)"},"timeAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"legend":{"textStyle":{"color":"#333333"}}},"xAxis":[{"splitNumber":5,"axisLabel":{"show":true,"interval":"auto","rotate":0,"inside":false,"formatter":"{value}","margin":8},"data":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"scale":false,"gridIndex":0,"minInterval":0,"zlevel":0,"triggerEvent":false,"z":0,"inverse":false,"nameLocation":"middle","nameGap":30,"silent":true,"type":"category"}],"yAxis":[{"splitNumber":5,"axisLabel":{"show":true,"interval":"auto","rotate":0,"inside":false,"formatter":"{value}","margin":8},"scale":false,"gridIndex":0,"minInterval":0,"zlevel":0,"triggerEvent":false,"z":0,"inverse":false,"nameLocation":"middle","nameGap":50,"silent":true,"type":"value"}],"toolbox":{"feature":{},"orient":"vertical","itemSize":15,"height":"auto","zlevel":0,"z":2,"itemGap":20,"right":"auto","top":"center","width":"auto","show":false,"showTitle":true},"ec_width":800,"ec_height":400,"ec_charttype":"xy plot","title":[{"left":"left","borderColor":"transparent","bottom":"auto","padding":5,"zlevel":0,"borderWidth":1,"target":"blank","z":2,"itemGap":5,"shadowOffsetY":0,"shadowOffsetX":0,"right":"auto","subtext":"Secondary Title","top":"auto","subtarget":"blank","show":true,"text":"Bar Plot Title"}],"grid":[{"height":"auto","show":false,"width":"auto","backgroundColor":"transparent"}],"series":[{"name":"Series 1","yAxisIndex":0,"xAxisIndex":0,"smooth":false,"data":[8,13,18,23,28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,103],"type":"bar"}]}
+
+        );
 </script>
 
 
@@ -497,7 +522,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jun 13, 2017 <br />
+ Site last generated: Jun 14, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

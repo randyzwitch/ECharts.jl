@@ -92,12 +92,16 @@ entries:
       url: /flip
       output: web
 
-    - title: gradient (linear/radial)
+    - title: lineargradient
       url: /gradient
       output: web
 
     - title: legend!
       url: /legend
+      output: web
+
+    - title: radialgradient
+      url: /gradient
       output: web
 
     - title: seriesnames!
@@ -110,6 +114,10 @@ entries:
 
     - title: smooth!
       url: /smooth
+      output: web
+
+    - title: title!
+      url: /title
       output: web
 
     - title: toolbox!
