@@ -238,3 +238,30 @@ function yarea!(ec::EChart, startval, endval; series::Int = 1)
     return ec
 
 end
+
+#Merge methods together using metaprogramming?
+#Stump, figure out what other arguments to add (or add kwargs)
+function xgridlines!(ec::EChart; show::Bool = true)
+
+    if ec.xAxis[1].splitLine == nothing
+        ec.xAxis[1].splitLine = SplitLine(show = show)
+    else
+        ec.xAxis[1].splitLine.show = show
+    end
+
+    return ec
+
+end
+
+#Stump, figure out what other arguments to add (or add kwargs)
+function ygridlines!(ec::EChart; show::Bool = true)
+
+    if ec.yAxis[1].splitLine == nothing
+        ec.yAxis[1].splitLine = SplitLine(show = show)
+    else
+        ec.yAxis[1].splitLine.show = show
+    end
+
+    return ec
+
+end

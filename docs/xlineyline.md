@@ -9,7 +9,6 @@ Note that `xline` and `yline` is a reference to what each axis is labeled within
 ## Method Signatures
 {% highlight julia %}
 yline!(ec::EChart, value::String) #One of {"min", "max", "average"}
-
 yline!(ec::EChart, value::Real) #Any numeric value
 
 xline!(ec::EChart, value::Any) #Any value, depending on type of X axis

@@ -136,6 +136,10 @@ entries:
       url: /xaxisyaxis
       output: web
 
+    - title: xgridlines!/ygridlines!
+      url: /xgridlinesygridlines
+      output: web
+
     - title: xline!/yline!
       url: /xlineyline
       output: web
