@@ -60,7 +60,7 @@ function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
 end
 
-function boxplotstat{T <: Real}(data::Vector{T})
+function boxplotstat{T <: Real}(data::AbstractVector{T})
 
     #Calculate stats
     ss = summarystats(data)
@@ -71,7 +71,7 @@ function boxplotstat{T <: Real}(data::Vector{T})
     #Calculate outliers for scatterplot
     outliers = filter(x -> (x >= upperbound) || (x <= lowerbound), data)
 
-    return [[lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers]
+    return BoxPlotStats([lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers)
 
 end
 

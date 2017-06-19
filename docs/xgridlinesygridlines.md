@@ -4,7 +4,7 @@ sidebar: mydoc_sidebar
 permalink: /xgridlinesygridlines
 ---
 
-`xgridlines` and `ygridlines` are convenience functions around the `splitLine` property of `xAxis`/`yAxis`. This function assumes you are setting the properties on the first instance of an axis (the most common case).
+`xgridlines!` and `ygridlines!` are convenience functions around the `splitLine` property of `xAxis`/`yAxis`. This function assumes you are setting the properties on the first instance of an axis (the most common case).
 
 ## Method Signatures
 {% highlight julia %}

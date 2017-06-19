@@ -1,3 +1,8 @@
+type BoxPlotStats
+    summary::AbstractVector
+    outliers::AbstractVector
+end
+
 @with_kw type LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = "#333"
     width::Union{Int,Void} = 1
