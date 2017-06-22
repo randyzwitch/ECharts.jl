@@ -89,7 +89,6 @@ l2s = line(x, hcat(y, y2))
 
 ### DataFrame with `group` argument
 {% highlight julia %}
-using ECharts
 using ECharts, DataFrames
 x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])
 y = @data([28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15])

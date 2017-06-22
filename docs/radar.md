@@ -27,7 +27,7 @@ names = ["sales", "administration", "information technology", "customer support"
 "marketing"]
 max = [6500, 16000, 30000, 38000, 52000, 25000]
 values = [4300, 10000, 28000, 35000, 50000, 19000]
-radar(names, values, max)
+r = radar(names, values, max)
 {% endhighlight %}
 
 <div id="radar1" style="height:400px;width:800px;"></div>
