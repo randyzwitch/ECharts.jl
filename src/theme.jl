@@ -1,4 +1,4 @@
-abstract AbstractEChartType
+abstract type AbstractEChartType end
 
 @with_kw type Theme <: AbstractEChartType
     color::Union{AbstractVector, Void} = nothing

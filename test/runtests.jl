@@ -241,9 +241,19 @@ y = [2900, -1200, -300, -200, -900]
 w = waterfall(x, y)
 @test typeof(w) == EChart
 
+#16: histogram
+df = dataset("ggplot2", "diamonds")
+h = fit(Histogram, df[:Price], closed = :left)
+hs = histogram(h)
+@test typeof(hs) == EChart
+
+h2 = fit(Histogram, (df[:Price], df[:Carat]), closed = :left)
+hs2 = histogram(h2)
+@test typeof(hs2) == EChart
+
 #### Chart option functions
 
-#16: colorscheme!
+#1: colorscheme!
 names = ["sales", "administration", "information technology", "customer support", "development",
 "marketing"]
 max = [6500, 16000, 30000, 38000, 52000, 25000]
@@ -259,14 +269,14 @@ fn = funnel(n, v)
 colorscheme!(fn,  ("acw", "VitaminC"), reversePalette = true)
 @test typeof(fn) == EChart
 
-#17: flip!
+#2: flip!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], stack = true)
 flip!(bm)
 @test typeof(bm) == EChart
 
-#18: lineargradient
+#3: lineargradient
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ar = area(x, y, color = lineargradient("purple", "cyan"))
@@ -281,21 +291,21 @@ ar = area(x, y, color = lineargradient("purple", "cyan", x0 = 0.4, y0 = 0.9, x2 
 smooth!(ar)
 @test typeof(ar) == EChart
 
-#19: radialgradient
+#4: radialgradient
 pp = pie(["all"], [1], color = radialgradient("red", "purple"))
 @test typeof(pp) == EChart
 
 pp2 = pie(["all"], [1], color = radialgradient("red", "purple", x = 0.25, y = 0.3, r = 0.4))
 @test typeof(pp2) == EChart
 
-#20: seriesnames!
+#5: seriesnames!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 bm = bar(x, hcat(0.95 .* y, 1.25 .* y,y))
 seriesnames!(bm, ["Pink Series", "Blue Series", "Tan Series"])
 @test typeof(bm) == EChart
 
-#21: slider!
+#6: slider!
 dt = ["2016/08/26", "2016/08/29", "2016/08/30", "2016/08/31", "2016/09/01", "2016/09/02",
 "2016/09/06", "2016/09/07", "2016/09/08", "2016/09/09", "2016/09/12", "2016/09/13",
 "2016/09/14", "2016/09/15", "2016/09/16", "2016/09/19", "2016/09/20", "2016/09/21",
@@ -321,7 +331,7 @@ c = candlestick(dt, open_, close_, low_, high_)
 slider!(c)
 @test typeof(c) == EChart
 
-#22: smooth!
+#7: smooth!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ar = area(x, y, color = lineargradient("purple", "cyan"))
@@ -330,7 +340,7 @@ xaxis!(ar, name = "Day of Week")
 yaxis!(ar, name = "Daily High Temperature °C")
 @test typeof(ar) == EChart
 
-#23: text!
+#8: text!
 df = dataset("datasets", "mtcars")
 sgrp = scatter(df, :MPG, :HP, :Cyl)
 title!(sgrp, text = "Horsepower vs. Miles Per Gallon")
@@ -340,21 +350,21 @@ text!(sgrp, subtext = "Source: mtcars dataset from R", left = "0%", bottom = "0%
 text!(sgrp, 2, sublink = "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html")
 @test typeof(sgrp) == EChart
 
-#24: title!
+#9: title!
 x = 1:20
 y = 3 .+ 5x
 a = bar(x, y)
 title!(a, text = "Bar Plot Title", subtext = "Secondary Title")
 @test typeof(a) == EChart
 
-#25: toolbox!
+#10: toolbox!
 x = 1:20
 y = 3 .+ 5x
 a = bar(x, y)
 toolbox!(a, chartTypes = ["bar", "line"])
 @test typeof(a) == EChart
 
-#26: xarea!/yarea!
+#11: xarea!/yarea!
 df = dataset("datasets", "mtcars")
 sgrp = scatter(df, :MPG, :HP, :Cyl)
 xarea!(sgrp, 28, 33)
@@ -364,7 +374,7 @@ xarea!(sgrp, 10, 14)
 yarea!(sgrp, 100, 150, series = 2)
 @test typeof(sgrp) == EChart
 
-#27: xaxis!/yaxis!
+#12: xaxis!/yaxis!
 x = 1:10
 y = [2^x for x in x]
 l = line(x, y)
@@ -377,14 +387,14 @@ l = line(x, y)
 yaxis!(l, _type = "log", scale = true, formatter = "{value} kg")
 @test typeof(l) == EChart
 
-#28: xgridlines!/ygridlines!
+#13: xgridlines!/ygridlines!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 l = line(x, y)
 ygridlines!(l, show = false)
 @test typeof(l) == EChart
 
-#29: xline!/yline!
+#14: xline!/yline!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 y2 = 3.7 .* y

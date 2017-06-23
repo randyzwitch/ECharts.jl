@@ -20,12 +20,14 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, ItemStyleOpts, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
-	export JSFunction, Theme
+	export JSFunction, Theme, VisualMap
 
 	export xy_plot, bar, line, scatter, area, waterfall
 	export box, candlestick, sankey
 	export radar, funnel
 	export pie, donut, gauge, polar
+	export histogram
+	export heatmap
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -73,6 +75,8 @@ module ECharts
 	include("plots/box.jl")
 	include("plots/candlestick.jl")
 	include("plots/sankey.jl")
+	include("plots/heatmap.jl")
+	include("plots/histogram.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)

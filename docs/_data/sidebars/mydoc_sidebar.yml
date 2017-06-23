@@ -48,6 +48,10 @@ entries:
       url: /gauge
       output: web
 
+    - title: histogram
+      url: /histogram
+      output: web
+
     - title: line
       url: /line
       output: web
