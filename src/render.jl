@@ -21,7 +21,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-3.5.3\"
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-3.6.2\"
                       }
                     });
 
@@ -61,7 +61,7 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     width, height = Juno.plotsize()
 
     #Load JavaScript library via Blink API
-    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-3.5.3.js")
+    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-3.6.2.js")
 
         a =
         """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
