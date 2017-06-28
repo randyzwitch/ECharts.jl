@@ -390,14 +390,14 @@ end
 end
 @with_kw type AngleAxis <: AbstractEChartType
     polarIndex::Union{Int,Void} = 0
-    startAngle::Union{Int,Void} = 0
+    startAngle::Union{Int,Void} = nothing
     clockwise::Union{Bool,Void} = true
-    _type::Union{String,Void} = "category"
+    _type::Union{String,Void} = nothing #"category"
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
-    min::Union{Int,String,Void} = "auto"
-    max::Union{Int,String,Void} = "auto"
+    min::Union{Int,String,Void} = nothing #"auto"
+    max::Union{Int,String,Void} = nothing #"auto"
     scale::Union{Bool,Void} = false
-    splitNumber::Union{Int,Void} = 5
+    splitNumber::Union{Int,Void} = nothing
     minInterval::Union{Int,Void} = 0
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
@@ -847,7 +847,7 @@ end
     grid::Union{Array{Grid},Void} = [Grid()]
     xAxis::Union{Array{Axis,1},Void} = nothing
     yAxis::Union{Array{Axis,1},Void} = nothing
-    polar::Union{Vector{Polar},Void} = nothing
+    polar::Union{Vector{Polar}, Polar, Void} = nothing
     radiusAxis::Union{RadiusAxis,Void} = nothing
     angleAxis::Union{AngleAxis,Void} = nothing
     radar::Union{Vector{Radar},Void} = nothing

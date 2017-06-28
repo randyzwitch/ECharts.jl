@@ -104,6 +104,10 @@ entries:
       url: /legend
       output: web
 
+    - title: radial!
+      url: /radial
+      output: web
+
     - title: radialgradient
       url: /gradient
       output: web
