@@ -251,6 +251,21 @@ h2 = fit(Histogram, (df[:Price], df[:Carat]), closed = :left)
 hs2 = histogram(h2)
 @test typeof(hs2) == EChart
 
+#17: radialbar
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = radialbar(x, y)
+@test typeof(b) == EChart
+
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y))
+@test typeof(b) == EChart
+
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
+@test typeof(b) == EChart
 #### Chart option functions
 
 #1: colorscheme!
@@ -403,3 +418,16 @@ yline!(as, "average")
 yline!(as, 40.362)
 xline!(as, "Tuesday")
 @test typeof(as) == EChart
+
+#15: radial!
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = bar(x, y)
+radial!(b)
+@test typeof(b) == EChart
+
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = bar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
+radial!(b)
+@test typeof(b) == EChart

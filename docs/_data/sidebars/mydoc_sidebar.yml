@@ -68,6 +68,10 @@ entries:
       url: /radar
       output: web
 
+    - title: radialbar
+      url: /radialbar
+      output: web
+
     - title: sankey
       url: /sankey
       output: web
