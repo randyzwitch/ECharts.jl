@@ -121,7 +121,8 @@ adfg = area(df_merged, :x, :y, :g)
         );
 </script>
 
-### DataFrame with `group` argument
+### UnivariateKDE
+
 {% highlight julia %}
 using ECharts
 using KernelDensity, Distributions
