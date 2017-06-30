@@ -8,3 +8,5 @@ Juno
 Blink
 Atom
 DataFrames
+KernelDensity
+Distributions

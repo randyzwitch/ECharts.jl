@@ -79,3 +79,18 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			return ec
 
 end
+
+function area(k::KernelDensity.UnivariateKDE;
+				mark::Union{String, AbstractVector} = "line",
+				fill::Union{Bool, AbstractVector} = true,
+				stack::Union{Bool, AbstractVector, Void} = nothing,
+				step::Union{String, Void} = nothing,
+				legend::Bool = false,
+				scale::Bool = false,
+				kwargs...)
+
+	ec = area(collect(k.x), k.density, mark = mark, fill = fill, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
+
+	return ec
+
+end

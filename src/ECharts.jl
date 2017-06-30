@@ -3,6 +3,7 @@ __precompile__()
 module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom, DataFrames
+	using KernelDensity, Distributions
 	import Base.print, Base.show
 
 	import JSON
