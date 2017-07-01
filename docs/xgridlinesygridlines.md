@@ -15,6 +15,16 @@ ygridlines!(ec::EChart)
 ## Optional Arguments
 {% highlight julia %}
 show::Bool = true
+interval::Union{Int, String, JSFunction, Void} = "auto"
+color::Union{AbstractVector,String,Void} = nothing
+width::Union{Int,Void} = nothing
+_type::Union{String,Void} = nothing
+shadowBlur::Union{Int,Void} = nothing
+shadowColor::Union{String,Void} = nothing
+shadowOffsetX::Union{Int,Void} = nothing
+shadowOffsetY::Union{Int,Void} = nothing
+opacity::Union{Int,Void} = nothing
+curveness::Union{AbstractFloat,Void} = nothing
 {% endhighlight %}
 
 ## Examples

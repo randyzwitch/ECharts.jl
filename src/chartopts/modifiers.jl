@@ -240,27 +240,37 @@ function yarea!(ec::EChart, startval, endval; series::Int = 1)
 end
 
 #Merge methods together using metaprogramming?
-#Stump, figure out what other arguments to add (or add kwargs)
-function xgridlines!(ec::EChart; show::Bool = true)
+function xgridlines!(ec::EChart; show::Bool = true,
+								 interval::Union{Int, String, JSFunction, Void} = "auto",
+								 kwargs...)
 
-    if ec.xAxis[1].splitLine == nothing
-        ec.xAxis[1].splitLine = SplitLine(show = show)
-    else
-        ec.xAxis[1].splitLine.show = show
-    end
+	#Set if not present
+    ec.xAxis[1].splitLine == nothing ? ec.xAxis[1].splitLine = SplitLine() : nothing
+
+	#Set top-level properties
+    ec.xAxis[1].splitLine.show = show
+	ec.xAxis[1].splitLine.interval = interval
+
+	#kwargs all the lineStyle arguments
+	length(kwargs) > 0 ? for (k, v) in kwargs setfield!(ec.xAxis[1].splitLine.lineStyle, k, v) end : nothing
 
     return ec
 
 end
 
-#Stump, figure out what other arguments to add (or add kwargs)
-function ygridlines!(ec::EChart; show::Bool = true)
+function ygridlines!(ec::EChart; show::Bool = true,
+								 interval::Union{Int, String, JSFunction, Void} = "auto",
+								 kwargs...)
 
-    if ec.yAxis[1].splitLine == nothing
-        ec.yAxis[1].splitLine = SplitLine(show = show)
-    else
-        ec.yAxis[1].splitLine.show = show
-    end
+	#Set if not present
+    ec.yAxis[1].splitLine == nothing ? ec.yAxis[1].splitLine = SplitLine() : nothing
+
+	#Set top-level properties
+    ec.yAxis[1].splitLine.show = show
+	ec.yAxis[1].splitLine.interval = interval
+
+	#kwargs all the lineStyle arguments
+	length(kwargs) > 0 ? for (k, v) in kwargs setfield!(ec.yAxis[1].splitLine.lineStyle, k, v) end : nothing
 
     return ec
 

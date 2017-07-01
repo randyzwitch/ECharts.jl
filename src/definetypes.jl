@@ -4,13 +4,13 @@ type BoxPlotStats
 end
 
 @with_kw type LineStyle <: AbstractEChartType
-    color::Union{AbstractVector,String,Void} = "#333"
-    width::Union{Int,Void} = 1
-    _type::Union{String,Void} = "solid"
-    shadowBlur::Union{Int,Void} = 1
+    color::Union{AbstractVector,String,Void} = nothing #"#333"
+    width::Union{Int,Void} = nothing #1
+    _type::Union{String,Void} = nothing #"solid"
+    shadowBlur::Union{Int,Void} = nothing #1
     shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = 0
-    shadowOffsetY::Union{Int,Void} = 0
+    shadowOffsetX::Union{Int,Void} = nothing #0
+    shadowOffsetY::Union{Int,Void} = nothing #0
     opacity::Union{Int,Void} = nothing
     curveness::Union{AbstractFloat,Void} = nothing
 end
@@ -36,8 +36,8 @@ end
 end
 @with_kw type SplitLine <: AbstractEChartType
     show::Union{Bool,Void} = true
-    interval::Union{Int,String,Void} = "auto"
-    lineStyle::Union{LineStyle,Void} = nothing
+    interval::Union{Int,String,JSFunction,Void} = "auto"
+    lineStyle::Union{LineStyle,Void} = LineStyle()
 end
 @with_kw type AxisLabel <: AbstractEChartType
     show::Union{Bool,Void} = true
