@@ -17,6 +17,15 @@ xline!(ec::EChart, value::Any) #Any value, depending on type of X axis
 ## Optional Arguments
 {% highlight julia %}
 series::Int = 1
+color::Union{AbstractVector,String,Void} = nothing
+width::Union{Int,Void} = nothing
+_type::Union{String,Void} = nothing
+shadowBlur::Union{Int,Void} = nothing
+shadowColor::Union{String,Void} = nothing
+shadowOffsetX::Union{Int,Void} = nothing
+shadowOffsetY::Union{Int,Void} = nothing
+opacity::Union{Int,Void} = nothing
+curveness::Union{AbstractFloat,Void} = nothing
 {% endhighlight %}
 
 ## Examples

@@ -41,11 +41,11 @@ xyarrayofarray(x::AbstractVector,y::AbstractVector) = [[x,y] for (x,y) in zip(x,
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js
 function kwargs!{T}(ec::EChart, kwargs::Vector{T})
 
-	if length(kwargs) > 0
+	#if length(kwargs) > 0
 		for (k, v) in kwargs
             k == :color && typeof(v) in [String, JSFunction] ? setfield!(ec, k, [v]) : setfield!(ec, k, v)
 	    end
-	end
+	#end
 
 end
 

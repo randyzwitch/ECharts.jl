@@ -2,7 +2,18 @@ type BoxPlotStats
     summary::AbstractVector
     outliers::AbstractVector
 end
-
+#type is recursive, this is a hack
+@with_kw type LineStyleOpts <: AbstractEChartType
+    color::Union{AbstractVector,String,Void} = nothing #"#333"
+    width::Union{Int,Void} = nothing #1
+    _type::Union{String,Void} = nothing #"solid"
+    shadowBlur::Union{Int,Void} = nothing #1
+    shadowColor::Union{String,Void} = nothing
+    shadowOffsetX::Union{Int,Void} = nothing #0
+    shadowOffsetY::Union{Int,Void} = nothing #0
+    opacity::Union{Int,Void} = nothing
+    curveness::Union{AbstractFloat,Void} = nothing
+end
 @with_kw type LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = nothing #"#333"
     width::Union{Int,Void} = nothing #1
@@ -13,6 +24,8 @@ end
     shadowOffsetY::Union{Int,Void} = nothing #0
     opacity::Union{Int,Void} = nothing
     curveness::Union{AbstractFloat,Void} = nothing
+    normal::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
+    emphasis::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
 end
 @with_kw type AreaStyle <: AbstractEChartType
     color::Union{AbstractVector,Void} = nothing
@@ -643,8 +656,8 @@ end
     symbolSize::Union{Int, AbstractVector, JSFunction, Void} = nothing
     precision::Union{Int, Void} = nothing
     label::Union{Dict, Void} = nothing
-    lineStyle::Union{LineStyle, Void} = nothing
-    data::Union{Vector, Void} = nothing
+    lineStyle::Union{LineStyle, Void} = deepcopy(LineStyle())
+    data::Union{Vector, Void} = Any[]
     animation::Union{Bool, Void} = nothing
     animationThreshold::Union{Int, Void} = nothing
     animationDuration::Union{Int, Void} = nothing
@@ -698,7 +711,7 @@ end
     sampling::Union{String,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
     markPoint::Union{MarkPoint, Void} = nothing
-    markLine::Union{MarkLine, Void} = nothing
+    markLine::Union{MarkLine, Void} = MarkLine()
     markArea::Union{MarkArea, Void} = nothing
     zlevel::Union{Int, Void} = nothing
     z::Union{Int, Void} = nothing
