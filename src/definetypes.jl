@@ -82,18 +82,18 @@ end
     emphasis::Union{LabelOpts,Void} = nothing
 end
 @with_kw type ItemStyleOpts <: AbstractEChartType
-    color::Union{String,Void} = "adaptive"
+    color::Union{String, JSFunction, Void} = nothing
     barBorderColor::Union{String,Void} = nothing
-    borderColor::Union{String,Void} = "#000"
-    borderWidth::Union{Int,Void} = 0
+    borderColor::Union{String,Void} = nothing
+    borderWidth::Union{Int,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = 0
-    shadowOffsetY::Union{Int,Void} = 0
-    opacity::Union{Int,Void} = nothing
+    shadowOffsetX::Union{Int,Void} = nothing
+    shadowOffsetY::Union{Int,Void} = nothing
+    opacity::Union{Float64,Void} = nothing
 end
 @with_kw type ItemStyle <: AbstractEChartType
-    normal::Any = nothing
+    normal::Any = deepcopy(ItemStyleOpts())
     emphasis::Any = nothing
 end
 @with_kw type IconStyleOpts <: AbstractEChartType
@@ -670,7 +670,7 @@ end
 @with_kw type MarkArea <: AbstractEChartType
     silent::Union{Bool, Void} = nothing
     itemStyle::Union{ItemStyle, Void} = nothing
-    data::Union{AbstractVector, Void} = nothing
+    data::Union{AbstractVector, Void} = Any[]
     animation::Union{Bool, Void} = nothing
     animationThreshold::Union{Int, Void} = nothing
     animationDuration::Union{Int, Void} = nothing

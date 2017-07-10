@@ -16,6 +16,15 @@ yarea!(ec::EChart, startval, endval)
 ## Optional Keywords
 {% highlight julia %}
 series::Int = 1
+color::Union{String, JSFunction, Void} = nothing
+barBorderColor::Union{String,Void} = nothing
+borderColor::Union{String,Void} = nothing
+borderWidth::Union{Int,Void} = nothing
+shadowBlur::Union{Int,Void} = nothing
+shadowColor::Union{String,Void} = nothing
+shadowOffsetX::Union{Int,Void} = nothing
+shadowOffsetY::Union{Int,Void} = nothing
+opacity::Union{Float64,Void} = nothing
 {% endhighlight %}
 
 
