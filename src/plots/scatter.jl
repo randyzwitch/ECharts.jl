@@ -7,9 +7,9 @@ function scatter(x::AbstractVector, y::AbstractVector;
 			largeThreshold::Int = 2000,
 			kwargs...)
 
-	ec = xy_plot(x, xyarrayofarray(x,y); mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(x, arrayofarray(x,y); mark = mark, legend = legend, scale = scale, kwargs...)
 	ec.xAxis[1]._type = "value"
-	ec.xAxis[1].data = nothing #This is necessary to re-use xy_plot, deletes data since scatter uses xyarrayofarray
+	ec.xAxis[1].data = nothing #This is necessary to re-use xy_plot, deletes data since scatter uses arrayofarray
 
 	#Enable optimization for lots of data
 	[x.large = large for x in ec.series]
@@ -33,7 +33,7 @@ function scatter(x::AbstractVector, y::AbstractArray;
 
 	#Append remaining series
 	for i in 2:size(y)[2]
-		push!(ec.series, Series(_type = "scatter", data = xyarrayofarray(x, y[:,i])))
+		push!(ec.series, Series(_type = "scatter", data = arrayofarray(x, y[:,i])))
 	end
 
 	seriesnames!(ec)
@@ -96,7 +96,7 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 
 	#Append remaining series
 	for i in 2:numgroups
-		push!(ec.series, Series(_type = "scatter", data = xyarrayofarray(subdf[i][x], subdf[i][y])))
+		push!(ec.series, Series(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y])))
 	end
 
 	#Add series names based on levels of grouped df

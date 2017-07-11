@@ -35,7 +35,8 @@ function arrayofdicts(; kwargs...)
 end
 
 #Combine arrays into array of arrays by each value
-xyarrayofarray(x::AbstractVector,y::AbstractVector) = [[x,y] for (x,y) in zip(x,y)]
+arrayofarray(x::AbstractVector,y::AbstractVector) = [[x,y] for (x,y) in zip(x,y)]
+arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[x,y,z] for (x,y,z) in zip(x,y,z)]
 
 #Common kwargs code for all plots
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js
