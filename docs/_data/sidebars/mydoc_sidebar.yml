@@ -80,6 +80,10 @@ entries:
       url: /scatter
       output: web
 
+    - title: streamgraph
+      url: /streamgraph
+      output: web
+
     - title: x/y combination plots
       url: /xycomboplots
       output: web

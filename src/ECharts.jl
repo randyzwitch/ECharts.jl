@@ -29,6 +29,7 @@ module ECharts
 	export pie, donut, gauge, polar
 	export histogram
 	export heatmap
+	export streamgraph
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -80,6 +81,8 @@ module ECharts
 	include("plots/sankey.jl")
 	include("plots/heatmap.jl")
 	include("plots/histogram.jl")
+	include("plots/streamgraph.jl")
+
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)

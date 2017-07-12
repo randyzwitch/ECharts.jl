@@ -117,6 +117,8 @@ function legend!(ec::EChart; kwargs...)
 	#This currently clobbers, should this be a check for nothing instead of clobber?
 	if ec.ec_charttype in ["circular", "funnel"]
 		ec.legend = Legend(data = [x["name"] for x in ec.series[1].data])
+	elseif ec.ec_charttype in ["streamgraph"]
+		ec.legend = Legend(data = unique([x[3] for x in ec.series[1].data]))
 	else
 		ec.legend = Legend(data = [x.name for x in ec.series])
 	end
@@ -270,7 +272,7 @@ function yarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 	for (k, v) in kwargs
 		setfield!(ec.series[series].markArea.data[end][1]["itemStyle"].normal, k, v)
 	end
-	
+
     return ec
 
 end

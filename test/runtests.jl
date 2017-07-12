@@ -266,6 +266,12 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 @test typeof(b) == EChart
+
+#18: streamgraph
+s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
+sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
+@test typeof(sg) == EChart
+
 #### Chart option functions
 
 #1: colorscheme!
