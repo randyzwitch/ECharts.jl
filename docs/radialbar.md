@@ -1,5 +1,5 @@
 ---
-title: radialbar
+title: Radial Bar
 sidebar: mydoc_sidebar
 permalink: /radialbar
 ---

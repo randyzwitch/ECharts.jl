@@ -272,6 +272,17 @@ s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
 sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 @test typeof(sg) == EChart
 
+#19: bubble
+df = dataset("datasets", "mtcars")
+sgrp = bubble(df, :MPG, :HP, :Disp)
+@test typeof(sgrp) == EChart
+
+sgrp2 = bubble(df[:MPG], df[:HP], df[:Disp])
+@test typeof(sgrp2) == EChart
+
+sgrp3 = bubble(df, :MPG, :HP, :Disp, :Cyl)
+@test typeof(sgrp3) == EChart
+
 #### Chart option functions
 
 #1: colorscheme!

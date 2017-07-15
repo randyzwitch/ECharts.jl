@@ -36,6 +36,10 @@ entries:
       url: /box
       output: web
 
+    - title: bubble
+      url: /bubble
+      output: web
+
     - title: candlestick
       url: /candlestick
       output: web

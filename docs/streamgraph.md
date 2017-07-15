@@ -1,5 +1,5 @@
 ---
-title: streamgraph
+title: Streamgraph
 sidebar: mydoc_sidebar
 permalink: /streamgraph
 ---
