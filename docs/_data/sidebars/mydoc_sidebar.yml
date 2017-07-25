@@ -108,6 +108,10 @@ entries:
       url: /flip
       output: web
 
+    - title: jitter!
+      url: /jitter
+      output: web
+
     - title: lineargradient
       url: /gradient
       output: web

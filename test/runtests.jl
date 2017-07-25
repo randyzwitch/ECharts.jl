@@ -448,3 +448,23 @@ y = [11, 11, 15, 13, 12, 13, 10]
 b = bar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 radial!(b)
 @test typeof(b) == EChart
+
+#16: jitter!
+x = rand(1:10, 500)
+y = rand(0:10, 500) + x
+a = scatter(x, y)
+jitter!(a)
+@test typeof(a) == EChart
+
+jitter!(a, pctxrange = 0, pctyrange = 0.05)
+@test typeof(a) == EChart
+
+jitter!(a, pctxrange = 0.1, pctyrange = 0.05)
+@test typeof(a) == EChart
+
+jitter!(a, 1, pctxrange = 0.1, pctyrange = 0.05)
+@test typeof(a) == EChart
+
+sm = scatter(1:30, hcat(rand(30), rand(30)))
+jitter!(sm)
+@test typeof(sm) == EChart
