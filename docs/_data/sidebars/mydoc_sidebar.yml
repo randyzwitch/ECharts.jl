@@ -44,6 +44,10 @@ entries:
       url: /candlestick
       output: web
 
+    - title: corrplot
+      url: /corrplot
+      output: web
+
     - title: funnel
       url: /funnel
       output: web

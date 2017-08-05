@@ -449,8 +449,8 @@ end
 @with_kw type VisualMap <: AbstractEChartType
     #continuous
     _type::Union{String,Void} = nothing
-    min::Union{Int,Void} = nothing
-    max::Union{Int,Void} = nothing
+    min::Union{Real,Void} = nothing
+    max::Union{Real,Void} = nothing
     range::Union{AbstractVector, Void} = nothing
     calculable::Union{Bool, Void} = nothing
     realtime::Union{Bool, Void} = nothing

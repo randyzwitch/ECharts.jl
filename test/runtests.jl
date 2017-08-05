@@ -283,6 +283,17 @@ sgrp2 = bubble(df[:MPG], df[:HP], df[:Disp])
 sgrp3 = bubble(df, :MPG, :HP, :Disp, :Cyl)
 @test typeof(sgrp3) == EChart
 
+#19: corrplot
+df = dataset("datasets", "mtcars")
+cplot = corrplot(df)
+@test typeof(cplot) == EChart
+
+df = dataset("datasets", "mtcars")
+df_num = df[[x <: Number for x in eltypes(df)]]
+c = cor(convert(Matrix, df_num))
+ccc = corrplot(c)
+@test typeof(ccc) == EChart
+
 #### Chart option functions
 
 #1: colorscheme!
