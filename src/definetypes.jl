@@ -74,7 +74,10 @@ end
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
 @with_kw type LabelOpts <: AbstractEChartType
-    show::Union{Bool,Void} = false
+    show::Union{Bool,Void} = nothing
+    position::Union{String, Void} = nothing
+    offset::Union{AbstractVector, Void} = nothing
+    formatter::Union{String, JSFunction, Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
 end
 @with_kw type Label <: AbstractEChartType

@@ -36,8 +36,8 @@ module ECharts
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
-	immutable JSSerialization <: CommonSerialization end
-	immutable JSFunction
+	struct JSSerialization <: CommonSerialization end
+	struct JSFunction
 		data::String
 	end
 
@@ -104,7 +104,7 @@ module ECharts
 
 	    for f in fieldnames(x)
 	        if getfield(x, f) != nothing
-	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)): res[string(f)] = makevalidjson(getfield(x, f))
+	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)) : res[string(f)] = makevalidjson(getfield(x, f))
 	        end
 	    end
 	    return res

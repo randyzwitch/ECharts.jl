@@ -1,8 +1,9 @@
 function corrplot(m::Matrix;
-                  bubblesize::Int = 40,
+                  bubblesize::Int = 45,
                   layout::String = "lower",
-                  ec_height::Real = 600,
-                  ec_width::Real = 600,
+                  labels::Bool = true,
+                  ec_height::Real = 650,
+                  ec_width::Real = 650,
                   kwargs...)
 
     #Validate input, since cor in StatsBase returns plain Matrix
@@ -45,26 +46,36 @@ function corrplot(m::Matrix;
     ec.visualMap = VisualMap(left = "right", top = "middle",
                              min = -1.0,
                              max = 1.0,
-                             inRange = Dict("color" => colorpalettes["RdBu"]["11"]),
+                             inRange = Dict("color" => colorpalettes["RdBu"]["9"]),
                              calculable = true,
                              precision = 2
                             )
+
+    #overlay labels. figure out what might be worth a keyword in method definition
+    labels ?
+    ec.series[1].label = ECharts.Label(normal = ECharts.LabelOpts(show = true,
+                                                              position = "inside",
+                                                              formatter = JSFunction("""function (params) {return params.data[2].toFixed(2);}"""),
+                                                              textStyle = TextStyle(fontWeight = "bold", color = "black", fontSize = 14)
+                                                             )
+                                  ) : nothing
     ec
 
 end
 
 function corrplot(df::AbstractDataFrame;
-                  bubblesize::Int = 40,
+                  bubblesize::Int = 45,
                   layout::String = "lower",
-                  ec_height::Real = 600,
-                  ec_width::Real = 600,
+                  labels::Bool = true,
+                  ec_height::Real = 650,
+                  ec_width::Real = 650,
                   kwargs...)
 
     #get numeric columns from df, call cor from StatsBase
     df_num = df[[x <: Number for x in eltypes(df)]]
     c = cor(convert(Matrix, df_num))
 
-    ec = corrplot(c, bubblesize = bubblesize, layout = layout, ec_height = ec_height, ec_width = ec_width, kwargs...)
+    ec = corrplot(c, bubblesize = bubblesize, layout = layout, labels = labels, ec_height = ec_height, ec_width = ec_width, kwargs...)
 
     #add column names
     yaxis!(ec, data = names(df_num))
