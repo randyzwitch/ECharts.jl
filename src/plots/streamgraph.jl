@@ -1,6 +1,6 @@
-function streamgraph{T <: Real}(x::AbstractVector{String}, y::AbstractVector{T}, group::AbstractVector;
-                     legend::Bool = false,
-                     kwargs...)
+function streamgraph(x::AbstractVector{String}, y::AbstractVector{T}, group::AbstractVector;
+          legend::Bool = false,
+          kwargs...) where T <: Real
 
     ec = ECharts.newplot(kwargs, ec_charttype = "streamgraph")
 
@@ -18,9 +18,9 @@ function streamgraph{T <: Real}(x::AbstractVector{String}, y::AbstractVector{T},
 
 end
 
-function streamgraph{T <: Real}(x::AbstractVector{T}, y::AbstractVector{T}, group::AbstractVector;
-                     legend::Bool = false,
-                     kwargs...)
+function streamgraph(x::AbstractVector{T}, y::AbstractVector{T}, group::AbstractVector;
+          legend::Bool = false,
+          kwargs...) where T <: Real
 
     ec = ECharts.newplot(kwargs, ec_charttype = "streamgraph")
 
