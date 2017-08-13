@@ -1,5 +1,5 @@
 #Common code across all plots
-function newplot{T}(kwargs::Vector{T}; ec_charttype::Union{String, Void} = nothing)
+function newplot(kwargs::Vector{T}; ec_charttype::Union{String, Void} = nothing) where T
 
     #Create new chart
     ec = deepcopy(EChart(ec_charttype = ec_charttype))
@@ -40,7 +40,7 @@ arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[x,y,z] f
 
 #Common kwargs code for all plots
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js
-function kwargs!{T}(ec::EChart, kwargs::Vector{T})
+function kwargs!(ec::EChart, kwargs::Vector{T}) where T
 
 	for (k, v) in kwargs
         k == :color && typeof(v) in [String, JSFunction] ? setfield!(ec, k, [v]) : setfield!(ec, k, v)
@@ -59,7 +59,7 @@ function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
 end
 
-function boxplotstat{T <: Real}(data::AbstractVector{T})
+function boxplotstat(data::AbstractVector{T}) where T <: Real
 
     #Calculate stats
     ss = summarystats(data)

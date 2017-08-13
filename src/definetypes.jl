@@ -1,4 +1,4 @@
-type BoxPlotStats
+mutable struct BoxPlotStats
     summary::AbstractVector
     outliers::AbstractVector
 end

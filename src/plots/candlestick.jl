@@ -1,7 +1,7 @@
-function candlestick{T <: Real}(dt::AbstractVector{String}, open::AbstractVector{T}, close::AbstractVector{T}, low::AbstractVector{T}, high::AbstractVector{T};
-                                legend::Bool = false,
-                                scale::Bool = true,
-                                kwargs...)
+function candlestick(dt::AbstractVector{String}, open::AbstractVector{T}, close::AbstractVector{T}, low::AbstractVector{T}, high::AbstractVector{T};
+                     legend::Bool = false,
+                     scale::Bool = true,
+                     kwargs...) where T <: Real
 
     #Put in array of array format
     fmtdata = []

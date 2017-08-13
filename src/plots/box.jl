@@ -1,10 +1,10 @@
 #Array of Arrays: awkward as data structure, awkward code but works
-function box{T <: Real}(data::Vector{Vector{T}};
-            names::Union{AbstractVector, Void} = nothing,
-            outliers::Bool = true,
-            legend::Bool = false,
-            horizontal::Bool = false,
-            kwargs...)
+function box(data::Vector{Vector{T}};
+ names::Union{AbstractVector, Void} = nothing,
+ outliers::Bool = true,
+ legend::Bool = false,
+ horizontal::Bool = false,
+ kwargs...) where T <: Real
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
     length(names) != length(data) ? error("Number of series names must equal number of data series.") : nothing
@@ -42,12 +42,12 @@ function box{T <: Real}(data::Vector{Vector{T}};
 end
 
 #Single series
-box{T <: Real}(data::AbstractVector{T};
-             names::String = "",
-             outliers::Bool = true,
-             legend::Bool = false,
-             horizontal::Bool = false,
-             kwargs...) =
+box(data::AbstractVector{T};
+  names::String = "",
+  outliers::Bool = true,
+  legend::Bool = false,
+  horizontal::Bool = false,
+  kwargs...) where {T <: Real} =
 
              box([data], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 

@@ -1,7 +1,7 @@
-function waterfall{T <: Real}(x::AbstractVector, y::AbstractVector{T};
-					legend::Bool = false,
-					scale::Bool = false,
-					kwargs...)
+function waterfall(x::AbstractVector, y::AbstractVector{T};
+ 		legend::Bool = false,
+ 		scale::Bool = false,
+ 		kwargs...) where T <: Real
 
     #Need to add a value for total, since user passes in data values only
     labels = [string(x) for x in x]
