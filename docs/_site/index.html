@@ -46,7 +46,7 @@ var roma = function(){
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="ECharts.jl" href="http://localhost:4000/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -551,17 +551,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>For example, to create an area chart with gradient shading (<code class="highlighter-rouge">lineargradient</code>), a smoothed line (<code class="highlighter-rouge">smooth!</code>) and label the axes (<code class="highlighter-rouge">xaxis!/yaxis!</code>):</p>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Define data</span>
-<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
-
-<span class="c">#Step 1: Choose a base chart type</span>
-<span class="n">ar</span> <span class="o">=</span> <span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">lineargradient</span><span class="x">(</span><span class="s">"purple"</span><span class="x">,</span> <span class="s">"cyan"</span><span class="x">))</span>
-
-<span class="c">#Step 2: Apply visualization mutating functions</span>
-<span class="n">smooth!</span><span class="x">(</span><span class="n">ar</span><span class="x">)</span>
-<span class="n">xaxis!</span><span class="x">(</span><span class="n">ar</span><span class="x">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Day of Week"</span><span class="x">)</span>
-<span class="n">yaxis!</span><span class="x">(</span><span class="n">ar</span><span class="x">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Daily High Temperature °C"</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Define data</span><br data-jekyll-commonmark-ghpages="" /><span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">#Step 1: Choose a base chart type</span><br data-jekyll-commonmark-ghpages="" /><span class="n">ar</span> <span class="o">=</span> <span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">lineargradient</span><span class="x">(</span><span class="s">"purple"</span><span class="x">,</span> <span class="s">"cyan"</span><span class="x">))</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">#Step 2: Apply visualization mutating functions</span><br data-jekyll-commonmark-ghpages="" /><span class="n">smooth!</span><span class="x">(</span><span class="n">ar</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">xaxis!</span><span class="x">(</span><span class="n">ar</span><span class="x">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Day of Week"</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">yaxis!</span><span class="x">(</span><span class="n">ar</span><span class="x">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Daily High Temperature °C"</span><span class="x">)</span></code></pre></figure>
 
 <div id="areaex" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -589,7 +579,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Aug 5, 2017 <br />
+ Site last generated: Dec 24, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

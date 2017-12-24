@@ -46,7 +46,7 @@ var roma = function(){
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="ECharts.jl" href="http://localhost:4000/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -523,28 +523,17 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span>
-<span class="n">scatter</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">)</span>
-<span class="n">scatter</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">)</span>
-
-<span class="c">#Dataframe methods</span>
-<span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span>
-<span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scatter</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scatter</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">#Dataframe methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">large</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span> <span class="c">#optimize rendering in presence of larger data</span>
-<span class="n">largeThreshold</span><span class="o">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c">#number of points considered "larger" data</span>
-<span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">large</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span> <span class="c">#optimize rendering in presence of larger data</span><br data-jekyll-commonmark-ghpages="" /><span class="n">largeThreshold</span><span class="o">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c">#number of points considered "larger" data</span><br data-jekyll-commonmark-ghpages="" /><span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">sc</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">sc</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">))</span></code></pre></figure>
 
 <div id="scatter1" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -560,8 +549,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="multiple-series">Multiple Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">sc2</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">hcat</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">)))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">sc2</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">hcat</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">),</span> <span class="n">rand</span><span class="x">(</span><span class="mi">30</span><span class="x">)))</span></code></pre></figure>
 
 <div id="scatter2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -577,9 +565,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="dataframe-with-group-argument">DataFrame with <code class="highlighter-rouge">group</code> argument</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><span class="x">,</span> <span class="n">RDatasets</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">dataset</span><span class="x">(</span><span class="s">"datasets"</span><span class="x">,</span> <span class="s">"mtcars"</span><span class="x">)</span>
-<span class="n">sgrp</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">:</span><span class="n">MPG</span><span class="x">,</span> <span class="x">:</span><span class="n">HP</span><span class="x">,</span> <span class="x">:</span><span class="n">Cyl</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><span class="x">,</span> <span class="n">RDatasets</span><br data-jekyll-commonmark-ghpages="" /><span class="n">df</span> <span class="o">=</span> <span class="n">dataset</span><span class="x">(</span><span class="s">"datasets"</span><span class="x">,</span> <span class="s">"mtcars"</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">sgrp</span> <span class="o">=</span> <span class="n">scatter</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">:</span><span class="n">MPG</span><span class="x">,</span> <span class="x">:</span><span class="n">HP</span><span class="x">,</span> <span class="x">:</span><span class="n">Cyl</span><span class="x">)</span></code></pre></figure>
 
 <div id="scatterdf" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -606,7 +592,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Aug 5, 2017 <br />
+ Site last generated: Dec 24, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

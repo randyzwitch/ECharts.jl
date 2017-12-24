@@ -46,7 +46,7 @@ var roma = function(){
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="ECharts.jl" href="http://localhost:4000/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -523,26 +523,17 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span>
-<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">)</span>
-<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">splitNumber</span><span class="o">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">showSymbol</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">splitNumber</span><span class="o">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">12</span><br data-jekyll-commonmark-ghpages="" /><span class="n">showSymbol</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span>
-<span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="x">,</span> <span class="n">radius</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span><br data-jekyll-commonmark-ghpages="" /><span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">p</span> <span class="o">=</span> <span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="x">,</span> <span class="n">radius</span><span class="x">)</span></code></pre></figure>
 
 <div id="polar1" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -558,12 +549,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="multiple-series">Multiple Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span>
-<span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
-<span class="n">radius2</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="n">radius</span><span class="x">,</span> <span class="n">radius2</span><span class="x">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span><br data-jekyll-commonmark-ghpages="" /><span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">radius2</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">p2</span> <span class="o">=</span> <span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="n">radius</span><span class="x">,</span> <span class="n">radius2</span><span class="x">))</span></code></pre></figure>
 
 <div id="polar2" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -590,7 +576,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Aug 5, 2017 <br />
+ Site last generated: Dec 24, 2017 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>
