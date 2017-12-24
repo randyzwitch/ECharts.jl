@@ -1,12 +1,14 @@
 language: julia
 os:
   - linux
-  - osx
 notifications:
   email: false
 julia:
   - 0.6
-  # - nightly
+  - nightly
+matrix:
+  allow_failures:
+  - julia: nightly
 before_install:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 script:
