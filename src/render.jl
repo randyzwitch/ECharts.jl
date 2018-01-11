@@ -21,7 +21,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-3.6.2\"
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-3.8.5\"
                       }
                     });
 
@@ -47,7 +47,7 @@ end
 #Register what a EChart is
 media(EChart, Media.Graphical)
 
-#Define how to render a VegaVisualization and where
+#Define how to render a EChart and where
 function Media.render(pane::Atom.PlotPane, ec::EChart)
 
     divid = "Echart" * randstring(3)
@@ -61,7 +61,7 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     width, height = Juno.plotsize()
 
     #Load JavaScript library via Blink API
-    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-3.6.2.js")
+    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-3.8.5.js")
 
         a =
         """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
