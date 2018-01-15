@@ -1,7 +1,7 @@
 #### Because charts are rendered in JavaScript, tests are checks for valid syntax
 #### Visual correctness will need to be done manually, mostly via docs
 
-using ECharts, DataFrames, RDatasets
+using ECharts, DataFrames, RDatasets, StatsBase, CSV
 using Base.Test
 
 #1: Homepage doc example
@@ -31,10 +31,10 @@ y2 = 3.7 .* y
 astep = area(x, hcat(y, y2), step = "middle")
 @test typeof(astep) == EChart
 
-x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])
-y = @data([28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15])
-g = @data([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1])
-df_merged = DataFrame(x = x, y = y, g = g)
+x = [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9]
+y = [28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15]
+g = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
+df_merged = DataFrame(hcat(x,y,g), [:x, :y, :g])
 adfg = area(df_merged, :x, :y, :g)
 @test typeof(adfg) == EChart
 
@@ -69,10 +69,10 @@ y = [11, 11, 15, 13, 12, 13, 10]
 bcsa = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], stack = [1,1,2])
 @test typeof(bcsa) == EChart
 
-x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])
-y = @data([28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15])
-g = @data([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1])
-df_merged = DataFrame(x = x, y = y, g = g)
+x = [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9]
+y = [28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15]
+g = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
+df_merged = DataFrame(hcat(x,y,g), [:x, :y, :g])
 bg = bar(df_merged, :x, :y, :g)
 @test typeof(bg) == EChart
 
@@ -268,7 +268,7 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 @test typeof(b) == EChart
 
 #18: streamgraph
-s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
+s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), types = [String, Float64, String])
 sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 @test typeof(sg) == EChart
 
