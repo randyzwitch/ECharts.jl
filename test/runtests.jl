@@ -1,7 +1,7 @@
 #### Because charts are rendered in JavaScript, tests are checks for valid syntax
 #### Visual correctness will need to be done manually, mostly via docs
 
-using ECharts, DataFrames, RDatasets, StatsBase, CSV
+using ECharts, DataFrames, RDatasets, StatsBase
 using Base.Test
 
 #1: Homepage doc example
@@ -268,7 +268,7 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 @test typeof(b) == EChart
 
 #18: streamgraph
-s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), types = [String, Float64, String], weakrefstrings = false)
+s_df = readtable(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"))
 sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 @test typeof(sg) == EChart
 
