@@ -3,7 +3,7 @@ __precompile__()
 module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom, DataFrames
-	using KernelDensity, Distributions
+	using KernelDensity, Distributions, Missings
 	import Base.print, Base.show
 
 	import JSON
@@ -95,6 +95,7 @@ module ECharts
 	    end
 	    return res
 	end
+	makevalidjson(x::Missing) = "-"
 	makevalidjson(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words

@@ -21,6 +21,8 @@ labels::Bool = true
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### DataFrame

@@ -24,6 +24,8 @@ largeThreshold::Int = 2000 #number of points considered "larger" data
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Single Series

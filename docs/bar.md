@@ -25,6 +25,8 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Single Series
@@ -157,9 +159,9 @@ bcsa = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], st
 
 {% highlight julia %}
 using ECharts, DataFrames
-x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])
-y = @data([28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15])
-g = @data([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1])
+x = [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9]
+y = [28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15]
+g = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
 df_merged = DataFrame(x = x, y = y, g = g)
 bg = bar(df_merged, :x, :y, :g)
 {% endhighlight %}

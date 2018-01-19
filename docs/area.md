@@ -31,6 +31,10 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
+## Missing Value Support
+
+Missing values are handled by substituting `missing` for `"-"` during the chart rendering process, as required by the ECharts JavaScript library. If you manipulate an `EChart` directly, you will not see the `"-"` within the data. If you want custom handling of `missing` values, you should do so prior to calling `area()`.
+
 ## Examples
 
 ### Single Series
@@ -102,9 +106,9 @@ astep = area(x, hcat(y, y2), step = "middle")
 ### DataFrame with `group` argument
 {% highlight julia %}
 using ECharts, DataFrames
-x = @data([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9])
-y = @data([28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15])
-g = @data([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1])
+x = [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9]
+y = [28, 43, 81, 19, 52, 24, 87, 17, 68, 49, 55, 91, 53, 87, 48, 49, 66, 27, 16, 15]
+g = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
 df_merged = DataFrame(x = x, y = y, g = g)
 adfg = area(df_merged, :x, :y, :g)
 {% endhighlight %}

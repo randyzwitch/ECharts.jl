@@ -20,6 +20,8 @@ horizontal::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Single Series (1-D Histogram)

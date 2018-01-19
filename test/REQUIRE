@@ -10,5 +10,6 @@ Atom 0.6.6
 DataFrames 0.11.4
 KernelDensity 0.4
 Distributions 0.15
+Missings 0.2.4
 #For tests
 RDatasets

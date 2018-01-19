@@ -27,7 +27,7 @@
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<script src="js/echarts-3.6.2.js"></script>
+<script src="js/echarts-3.8.5.js"></script>
 
 <script type="text/javascript">
 var roma = function(){
@@ -529,6 +529,8 @@ $('#toc').on('click', 'a', function() {
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
+<h2 id="missing-value-support">Missing Value Support</h2>
+
 <h2 id="examples">Examples</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">name</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Agricultural waste"</span><span class="x">,</span> <span class="s">"Bio-conversion"</span><span class="x">,</span> <span class="s">"Liquid"</span><span class="x">,</span> <span class="s">"Losses"</span><span class="x">,</span> <span class="s">"Solid"</span><span class="x">,</span> <span class="s">"Gas"</span><span class="x">,</span> <span class="s">"Biofuel imports"</span><span class="x">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="s">"Biomass imports"</span><span class="x">,</span> <span class="s">"Coal imports"</span><span class="x">,</span> <span class="s">"Coal"</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="n">source</span> <span class="o">=</span> <span class="x">[</span><span class="mi">0</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">7</span><span class="x">,</span> <span class="mi">8</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">target</span> <span class="o">=</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">9</span><span class="x">,</span> <span class="mi">9</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">value</span> <span class="o">=</span> <span class="x">[</span><span class="mf">124.729</span><span class="x">,</span> <span class="mf">0.597</span><span class="x">,</span> <span class="mf">26.862</span><span class="x">,</span> <span class="mf">280.322</span><span class="x">,</span> <span class="mf">81.144</span><span class="x">,</span> <span class="mi">35</span><span class="x">,</span> <span class="mi">35</span><span class="x">,</span> <span class="mf">11.606</span><span class="x">,</span> <span class="mf">63.965</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">s</span> <span class="o">=</span> <span class="n">sankey</span><span class="x">(</span><span class="n">name</span><span class="x">,</span> <span class="n">source</span><span class="x">,</span> <span class="n">target</span><span class="x">,</span> <span class="n">value</span><span class="x">)</span></code></pre></figure>
@@ -558,7 +560,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Dec 24, 2017 <br />
+ Site last generated: Jan 19, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

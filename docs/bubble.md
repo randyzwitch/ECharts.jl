@@ -27,6 +27,8 @@ bubblesize::Real = 50
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Single Series - Array

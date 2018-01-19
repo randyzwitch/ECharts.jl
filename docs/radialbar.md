@@ -25,6 +25,8 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Single Series

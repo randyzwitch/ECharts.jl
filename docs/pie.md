@@ -22,6 +22,8 @@ legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Pie Chart

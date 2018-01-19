@@ -21,6 +21,7 @@ port: 4000
 exclude:
   - .idea/
   - .gitignore
+  - vendor
 # these are the files and directories that jekyll will exclude from the build
 
 highlighter: rouge

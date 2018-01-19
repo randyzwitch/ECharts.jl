@@ -13,7 +13,6 @@ function area(x::AbstractVector, y::AbstractVector;
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested
-	# ndims(y) == 1? cols = 1: cols = size(y)[2]
 	fill!(ec, 1, fill)
 
 	return ec
@@ -33,7 +32,6 @@ function area(x::AbstractVector, y::AbstractArray;
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested
-	#ndims(y) == 1? cols = 1: cols = size(y)[2]
 	fill!(ec, size(y)[2], fill)
 
 	return ec

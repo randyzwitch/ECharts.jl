@@ -20,6 +20,8 @@ legend::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Multiple Series

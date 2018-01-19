@@ -16,6 +16,8 @@ colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"]
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
+## Missing Value Support
+
 ## Examples
 
 ### Default
