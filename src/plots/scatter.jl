@@ -1,5 +1,6 @@
 #Single series method
-function scatter(x::AbstractVector, y::AbstractVector;
+function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+				 y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = false,
 			scale::Bool = false,
@@ -20,7 +21,8 @@ function scatter(x::AbstractVector, y::AbstractVector;
 end
 
 #Single X, multiple Y. This is unlikier scenario
-function scatter(x::AbstractVector, y::AbstractArray;
+function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+				 y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = true,
 			scale::Bool = false,

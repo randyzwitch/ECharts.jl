@@ -1,5 +1,5 @@
 #single series
-function bar(x::AbstractVector, y::AbstractVector;
+function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,
@@ -11,7 +11,7 @@ function bar(x::AbstractVector, y::AbstractVector;
 end
 
 #multiple y
-function bar(x::AbstractVector, y::AbstractArray;
+function bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = true,

@@ -9,7 +9,7 @@ Pass in your values as you expect to see them on the chart, positive or negative
 
 ## Method Signatures
 {% highlight julia %}
-waterfall(x::AbstractVector, y::AbstractVector{T})
+waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}})
 {% endhighlight %}
 
 ## Optional Arguments
@@ -20,6 +20,8 @@ kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
 
 ## Missing Value Support
+
+Missing values are not supported in `waterfall()`; if there is no change in values between steps, use a value of `0` instead of `missing`.
 
 ## Examples
 

@@ -527,13 +527,15 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="n">T</span><span class="x">})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span> <span class="n">AbstractFloat</span><span class="x">,</span> <span class="n">Rational</span><span class="x">}})</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="missing-value-support">Missing Value Support</h2>
+
+<p>Missing values are not supported in <code class="highlighter-rouge">waterfall()</code>; if there is no change in values between steps, use a value of <code class="highlighter-rouge">0</code> instead of <code class="highlighter-rouge">missing</code>.</p>
 
 <h2 id="examples">Examples</h2>
 
@@ -566,7 +568,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jan 19, 2018 <br />
+ Site last generated: Jan 20, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

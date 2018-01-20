@@ -1,7 +1,11 @@
-function candlestick(dt::AbstractVector{String}, open::AbstractVector{T}, close::AbstractVector{T}, low::AbstractVector{T}, high::AbstractVector{T};
+function candlestick(dt::AbstractVector{String},
+                     open::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                     close::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                     low::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                     high::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
                      legend::Bool = false,
                      scale::Bool = true,
-                     kwargs...) where T <: Real
+                     kwargs...)
 
     #Put in array of array format
     fmtdata = []

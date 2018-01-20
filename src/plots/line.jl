@@ -1,5 +1,5 @@
 #array, single series
-function line(x::AbstractVector, y::AbstractVector;
+function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
 			legend::Bool = false,
@@ -11,7 +11,7 @@ function line(x::AbstractVector, y::AbstractVector;
 end
 
 #array, multiple series
-function line(x::AbstractVector, y::AbstractArray;
+function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
 			legend::Bool = true,

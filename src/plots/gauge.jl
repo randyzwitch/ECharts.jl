@@ -1,4 +1,4 @@
-function gauge(x::Real;
+function gauge(x::Union{Missing, Int, AbstractFloat, Rational};
                breakpoints::AbstractVector = [0.2, 0.8, 1],
                colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"],
                kwargs...)

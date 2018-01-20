@@ -1,4 +1,5 @@
-function polar(angle::AbstractVector, radius::AbstractVector;
+function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+               radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
             splitNumber::Int = 12,
             showSymbol::Bool = false,
             legend::Bool = false,
@@ -18,7 +19,8 @@ function polar(angle::AbstractVector, radius::AbstractVector;
 
 end
 
-function polar(angle::AbstractVector, radius::AbstractArray;
+function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+               radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
             splitNumber::Int = 12,
             showSymbol::Bool = false,
             legend::Bool = true,

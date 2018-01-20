@@ -1,6 +1,8 @@
-function streamgraph(x::AbstractVector{String}, y::AbstractVector{T}, group::AbstractVector;
+function streamgraph(x::AbstractVector{String},
+                    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                    group::AbstractVector;
           legend::Bool = false,
-          kwargs...) where T <: Real
+          kwargs...)
 
     ec = ECharts.newplot(kwargs, ec_charttype = "streamgraph")
 
@@ -18,9 +20,11 @@ function streamgraph(x::AbstractVector{String}, y::AbstractVector{T}, group::Abs
 
 end
 
-function streamgraph(x::AbstractVector{T}, y::AbstractVector{T}, group::AbstractVector;
+function streamgraph(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                     y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                     group::AbstractVector;
           legend::Bool = false,
-          kwargs...) where T <: Real
+          kwargs...)
 
     ec = ECharts.newplot(kwargs, ec_charttype = "streamgraph")
 

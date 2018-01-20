@@ -523,13 +523,11 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gauge</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">Real</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gauge</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="kt">Int</span><span class="x">,</span> <span class="n">AbstractFloat</span><span class="x">,</span> <span class="n">Rational</span><span class="x">})</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">breakpoints</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[</span><span class="mf">0.2</span><span class="x">,</span> <span class="mf">0.8</span><span class="x">,</span> <span class="mi">1</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">colors</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[</span><span class="s">"#91c7ae"</span><span class="x">,</span> <span class="s">"#63869e"</span><span class="x">,</span> <span class="s">"#c23531"</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
-
-<h2 id="missing-value-support">Missing Value Support</h2>
 
 <h2 id="examples">Examples</h2>
 
@@ -578,7 +576,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jan 19, 2018 <br />
+ Site last generated: Jan 20, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

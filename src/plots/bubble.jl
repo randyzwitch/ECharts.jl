@@ -1,5 +1,7 @@
 #Single series method
-function bubble(x::AbstractVector, y::AbstractVector, size::AbstractVector;
+function bubble(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+				y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+				size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 		legend::Bool = false,
 		scale::Bool = false,
 		large::Bool = true,

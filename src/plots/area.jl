@@ -1,6 +1,6 @@
 #These functions are nearly identical
 #Difference: legend for multiple series, stack by default
-function area(x::AbstractVector, y::AbstractVector;
+function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = nothing,
@@ -19,7 +19,7 @@ function area(x::AbstractVector, y::AbstractVector;
 
 end
 
-function area(x::AbstractVector, y::AbstractArray;
+function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = true,

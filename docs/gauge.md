@@ -6,7 +6,7 @@ permalink: /gauge
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-gauge(x::Real)
+gauge(x::Union{Missing, Int, AbstractFloat, Rational})
 {% endhighlight %}
 
 ## Optional Arguments
@@ -15,8 +15,6 @@ breakpoints::AbstractVector = [0.2, 0.8, 1]
 colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"]
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

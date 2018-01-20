@@ -1,5 +1,5 @@
 #single series
-function radialbar(x::AbstractVector, y::AbstractVector;
+function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,
@@ -13,7 +13,7 @@ function radialbar(x::AbstractVector, y::AbstractVector;
 end
 
 #multiple y
-function radialbar(x::AbstractVector, y::AbstractArray;
+function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = true,

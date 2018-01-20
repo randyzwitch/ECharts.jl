@@ -1,7 +1,11 @@
 #### Because charts are rendered in JavaScript, tests are checks for valid syntax
 #### Visual correctness will need to be done manually, mostly via docs
 
-using ECharts, DataFrames, RDatasets, StatsBase
+using RDatasets
+mtcars = dataset("datasets", "mtcars");
+diamonds = dataset("ggplot2", "diamonds");
+
+using ECharts, DataFrames, StatsBase, CSV
 using Base.Test
 
 #1: Homepage doc example
@@ -92,8 +96,7 @@ data = [
 b2 = box(data, horizontal = true)
 @test typeof(b2) == EChart
 
-df = dataset("datasets", "mtcars")
-bdf = box(df, :MPG, :Cyl)
+bdf = box(mtcars, :MPG, :Cyl)
 @test typeof(bdf) == EChart
 
 #5: candlestick
@@ -225,8 +228,7 @@ sc = scatter(rand(30), rand(30))
 sc2 = scatter(rand(30), hcat(rand(30), rand(30)))
 @test typeof(sc2) == EChart
 
-df = dataset("datasets", "mtcars")
-sgrp = scatter(df, :MPG, :HP, :Cyl)
+sgrp = scatter(mtcars, :MPG, :HP, :Cyl)
 @test typeof(sgrp) == EChart
 
 #14: xy
@@ -242,12 +244,11 @@ w = waterfall(x, y)
 @test typeof(w) == EChart
 
 #16: histogram
-df = dataset("ggplot2", "diamonds")
-h = fit(Histogram, df[:Price], closed = :left)
+h = fit(Histogram, diamonds[:Price], closed = :left)
 hs = histogram(h)
 @test typeof(hs) == EChart
 
-h2 = fit(Histogram, (df[:Price], df[:Carat]), closed = :left)
+h2 = fit(Histogram, (diamonds[:Price], diamonds[:Carat]), closed = :left)
 hs2 = histogram(h2)
 @test typeof(hs2) == EChart
 
@@ -268,28 +269,25 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 @test typeof(b) == EChart
 
 #18: streamgraph
-s_df = readtable(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"))
+s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), types=[String, Float64, String])
 sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 @test typeof(sg) == EChart
 
 #19: bubble
-df = dataset("datasets", "mtcars")
-sgrp = bubble(df, :MPG, :HP, :Disp)
+sgrp = bubble(mtcars, :MPG, :HP, :Disp)
 @test typeof(sgrp) == EChart
 
-sgrp2 = bubble(df[:MPG], df[:HP], df[:Disp])
+sgrp2 = bubble(mtcars[:MPG], mtcars[:HP], mtcars[:Disp])
 @test typeof(sgrp2) == EChart
 
-sgrp3 = bubble(df, :MPG, :HP, :Disp, :Cyl)
+sgrp3 = bubble(mtcars, :MPG, :HP, :Disp, :Cyl)
 @test typeof(sgrp3) == EChart
 
 #19: corrplot
-df = dataset("datasets", "mtcars")
-cplot = corrplot(df)
+cplot = corrplot(mtcars)
 @test typeof(cplot) == EChart
 
-df = dataset("datasets", "mtcars")
-df_num = df[[x <: Number for x in eltypes(df)]]
+df_num = mtcars[[x <: Number for x in eltypes(mtcars)]]
 c = cor(convert(Matrix, df_num))
 ccc = corrplot(c)
 @test typeof(ccc) == EChart
@@ -384,8 +382,7 @@ yaxis!(ar, name = "Daily High Temperature °C")
 @test typeof(ar) == EChart
 
 #8: text!
-df = dataset("datasets", "mtcars")
-sgrp = scatter(df, :MPG, :HP, :Cyl)
+sgrp = scatter(mtcars, :MPG, :HP, :Cyl)
 title!(sgrp, text = "Horsepower vs. Miles Per Gallon")
 text!(sgrp, subtext = "Source: mtcars dataset from R", left = "0%", bottom = "0%")
 @test typeof(sgrp) == EChart
@@ -408,8 +405,7 @@ toolbox!(a, chartTypes = ["bar", "line"])
 @test typeof(a) == EChart
 
 #11: xarea!/yarea!
-df = dataset("datasets", "mtcars")
-sgrp = scatter(df, :MPG, :HP, :Cyl)
+sgrp = scatter(mtcars, :MPG, :HP, :Cyl)
 xarea!(sgrp, 28, 33)
 xarea!(sgrp, 10, 14)
 @test typeof(sgrp) == EChart

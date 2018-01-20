@@ -1,7 +1,9 @@
-function radar(names::AbstractVector, values::AbstractVector, max::AbstractVector;
-	 				fill::Bool = false,
-					legend::Bool = false,
-					kwargs...)
+function radar(names::AbstractVector,
+			   values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+			   max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+	 			fill::Bool = false,
+				legend::Bool = false,
+				kwargs...)
 
 	#Validate arrays are same length
 	if size(names)[1] != size(values)[1]
@@ -24,10 +26,12 @@ function radar(names::AbstractVector, values::AbstractVector, max::AbstractVecto
 
 end
 
-function radar(names::AbstractVector, values::AbstractArray, max::AbstractVector;
-	 				fill::Union{Bool, AbstractVector} = false,
-					legend::Bool = true,
-					kwargs...)
+function radar(names::AbstractVector,
+			   values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2},
+			   max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+	 			fill::Union{Bool, AbstractVector} = false,
+				legend::Bool = true,
+				kwargs...)
 
 	# Call 1-D method to build base
 	ec = radar(names, values[:,1], max; kwargs...)

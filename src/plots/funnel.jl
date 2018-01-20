@@ -1,6 +1,6 @@
-function funnel(names::AbstractVector, values::AbstractVector{T};
+function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
  legend::Bool = false,
- kwargs...) where T <: Real
+ kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "funnel")
 
