@@ -7,8 +7,11 @@ permalink: /scatter
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-scatter(x::AbstractVector, y::AbstractVector)
-scatter(x::AbstractVector, y::AbstractArray)
+scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+
+scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
 
 #Dataframe methods
 scatter(df::AbstractDataFrame, x::Symbol, y::Symbol)
@@ -23,8 +26,6 @@ large::Bool = true #optimize rendering in presence of larger data
 largeThreshold::Int = 2000 #number of points considered "larger" data
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

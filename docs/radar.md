@@ -7,8 +7,10 @@ permalink: /radar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-radar(names::AbstractVector, values::AbstractVector, max::AbstractVector)
-radar(names::AbstractVector, values::AbstractArray, max::AbstractVector)
+radar(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2},
+    max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 {% endhighlight %}
 
 ## Optional Arguments
@@ -17,8 +19,6 @@ fill::Union{Bool, AbstractVector} = false
 legend::Bool = false
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

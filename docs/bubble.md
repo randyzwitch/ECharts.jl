@@ -9,7 +9,8 @@ permalink: /bubble
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-bubble(x::AbstractVector, y::AbstractVector, size::AbstractVector)
+bubble(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 
 #Dataframe methods
 bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol)
@@ -26,8 +27,6 @@ largeThreshold::Int = 2000 #number of points considered "larger" data
 bubblesize::Real = 50
 kwargs...(modifies top-level `EChart` fields)
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

@@ -8,8 +8,8 @@ permalink: /line
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-line(x::AbstractVector, y::AbstractVector)
-line(x::AbstractVector, y::AbstractArray)
+line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
 
 #DataFrame methods
 line(df::AbstractDataFrame, x::Symbol, y::Symbol)
@@ -23,8 +23,6 @@ legend::Bool = false
 scale::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

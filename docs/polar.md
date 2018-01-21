@@ -8,8 +8,8 @@ permalink: /polar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-polar(angle::AbstractVector, radius::AbstractVector)
-polar(angle::AbstractVector, radius::AbstractArray)
+polar(angle::AbstractVector, radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+polar(angle::AbstractVector, radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
 {% endhighlight %}
 
 ## Optional Arguments
@@ -19,8 +19,6 @@ showSymbol::Bool = false
 legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

@@ -8,8 +8,8 @@ permalink: /pie
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-pie(names::AbstractVector, values::AbstractVector)
-donut(names::AbstractVector, values::AbstractVector; radius = ["50%", "80%"])
+pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}; radius = ["50%", "80%"])
 {% endhighlight %}
 
 ## Optional Arguments
@@ -21,8 +21,6 @@ roseType::Union{AbstractString, Void} = nothing #choice of {"angle", "radius"}
 legend::Bool = false
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

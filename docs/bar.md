@@ -8,8 +8,8 @@ permalink: /bar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-bar(x::AbstractVector, y::AbstractVector)
-bar(x::AbstractVector, y::AbstractArray)
+bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
 
 #DataFrame methods
 bar(df::AbstractDataFrame, x::Symbol, y::Symbol)
@@ -24,8 +24,6 @@ legend::Bool = false
 scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

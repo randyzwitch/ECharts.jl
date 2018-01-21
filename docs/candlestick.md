@@ -8,8 +8,11 @@ Candlestick plots are financial plots showing the relationship between the open,
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-candlestick(dt::AbstractVector{String}, open::AbstractVector{T <: Real},
-close::AbstractVector{T <: Real}, low::AbstractVector{T <: Real}, high::AbstractVector{T <: Real})
+candlestick(dt::AbstractVector{String},
+    open::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    close::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    low::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    high::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 {% endhighlight %}
 
 ## Optional Arguments
@@ -18,8 +21,6 @@ legend::Bool = false
 scale::Bool = true
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 

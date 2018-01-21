@@ -31,10 +31,6 @@ scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
 
-## Missing Value Support
-
-Missing values are handled by substituting `missing` for `"-"` during the chart rendering process, as required by the ECharts JavaScript library. If you manipulate an `EChart` directly, you will not see the `"-"` within the data. If you want custom handling of `missing` values, you should do so prior to calling `area()`.
-
 ## Examples
 
 ### Single Series

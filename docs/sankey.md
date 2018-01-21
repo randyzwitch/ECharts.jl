@@ -15,8 +15,6 @@ sankey(name::AbstractVector{String}, source::AbstractVector{Int}, target::Abstra
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
-## Missing Value Support
-
 ## Examples
 {% highlight julia %}
 using ECharts

@@ -7,8 +7,8 @@ permalink: /radialbar
 
 ## Method Signatures
 {% highlight julia %}
-radialbar(x::AbstractVector, y::AbstractVector)
-radialbar(x::AbstractVector, y::AbstractArray)
+radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
 
 #DataFrame methods
 radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol)
@@ -24,8 +24,6 @@ legend::Bool = false
 scale::Bool = false
 kwargs... #modifies top-level EChart properties
 {% endhighlight %}
-
-## Missing Value Support
 
 ## Examples
 
