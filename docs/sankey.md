@@ -7,7 +7,10 @@ permalink: /sankey
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-sankey(name::AbstractVector{String}, source::AbstractVector{Int}, target::AbstractVector{Int}, value::AbstractVector{T <: Real};
+sankey(name::AbstractVector,
+    source::AbstractVector{<:Union{Missing, Int}},
+    target::AbstractVector{<:Union{Missing, Int}},
+    value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 {% endhighlight %}
 
 ## Optional Arguments
