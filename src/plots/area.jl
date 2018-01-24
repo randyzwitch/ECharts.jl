@@ -28,7 +28,10 @@ function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, Abstract
 			scale::Bool = false,
 			kwargs...)
 
-	ec = xy_plot(x, y; stack = stack, mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	#If there are missing values, set equal to zero so the graph stacks correctly
+	eltype(y) >: Missing? y_ = collect(Missings.replace(y,0)): y_ = deepcopy(y)
+
+	ec = xy_plot(x, y_; stack = stack, mark = mark, step = step, legend = legend, scale = scale, kwargs...)
 	ec.xAxis[1].boundaryGap = false
 
 	# Fill area if requested
@@ -68,7 +71,10 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
-			ec = xy_plot(df, x, y, group, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
+			#If there are missing values, set equal to zero so the graph stacks correctly
+			eltype(y) >: Missing? y_ = collect(Missings.replace(y,0)): y_ = deepcopy(y)
+
+			ec = xy_plot(df, x, y_, group, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
 
 			ec.xAxis[1].boundaryGap = false
 
