@@ -57,6 +57,8 @@ ar = area(x, y)
 
 The default when passed multiple series is to _stack_ the series, i.e. showing the individual series contribution to the whole. If you want to overlay each series relative to zero on the Y-axis, use `stack = false`.
 
+In order for the stacked charts to render properly, any `missing` values are __set to 0__ on render. If this is not the correct treatment, you need to remove `missing` values prior to calling `area()`.
+
 {% highlight julia %}
 using ECharts
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
