@@ -27,6 +27,8 @@ kwargs... #modifies top-level `EChart` fields
 
 ## Missing Value Support
 
+Passing `missing` values to `box()` will _remove_ them before calculating the summary statistics needed to generate the boxplot. If this is not what you intend, you should treat the `missing` values prior to plotting.
+
 ## Examples
 
 ### Single Series
