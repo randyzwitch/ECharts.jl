@@ -1,10 +1,10 @@
 #Array of Arrays: awkward as data structure, awkward code but works
-function box(data::Vector{Vector{T}};
+function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}};
  names::Union{AbstractVector, Void} = nothing,
  outliers::Bool = true,
  legend::Bool = false,
  horizontal::Bool = false,
- kwargs...) where T <: Real
+ kwargs...)
 
     names == nothing ? names = [string(x) for x in 1:length(data)] : names
     length(names) != length(data) ? error("Number of series names must equal number of data series.") : nothing
@@ -42,12 +42,12 @@ function box(data::Vector{Vector{T}};
 end
 
 #Single series
-box(data::AbstractVector{T};
+box(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
   names::String = "",
   outliers::Bool = true,
   legend::Bool = false,
   horizontal::Bool = false,
-  kwargs...) where {T <: Real} =
+  kwargs...) =
 
              box([data], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 

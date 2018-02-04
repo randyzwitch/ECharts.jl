@@ -95,7 +95,7 @@ module ECharts
 	    end
 	    return res
 	end
-	makevalidjson(x::Missing) = "-"
+	makevalidjson(x::Missing) = "-" #this is a backstop to a value of missing getting to render step. "-" represents missing in ECharts
 	makevalidjson(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words

@@ -42,12 +42,15 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	# Allow for convenience of using single string to represent same mark for all series values
 	typeof(mark) <: AbstractVector? nothing : mark = [mark for i in 1:length(x)]
 
+	#If there are missing values, set equal to zero so the graph stacks correctly
+	eltype(y) >: Missing? y_ = collect(Missings.replace(y,0)): y_ = deepcopy(y)
+
 	# Call 1-D method to build base
-	ec = xy_plot(x, y[:,1]; mark = mark[1], scale = scale, kwargs...)
+	ec = xy_plot(x, y_[:,1]; mark = mark[1], scale = scale, kwargs...)
 
 	# Append remaining Y data
-	for i in 2:size(y)[2]
-		push!(ec.series, Series(_type = mark[i], data = y[:,i]))
+	for i in 2:size(y_)[2]
+		push!(ec.series, Series(_type = mark[i], data = y_[:,i]))
 	end
 
 	#stack: this logic feels janky, but seems to work
@@ -113,6 +116,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			kwargs...)
 
 	#create grouped df
+	#This appears to handle missings gracefully via DataFrames package
 	pivotdf = unstack(df, x, group, y)
 
 	#Get number of groups

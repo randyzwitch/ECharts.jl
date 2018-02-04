@@ -59,16 +59,17 @@ function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
 end
 
-function boxplotstat(data::AbstractVector{T}) where T <: Real
+function boxplotstat(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 
+    data_ = collect(skipmissing(data))
     #Calculate stats
-    ss = summarystats(data)
+    ss = summarystats(data_)
     iqr15 = 1.5 * (ss.q75 - ss.q25)
     upperbound = ss.q75 + iqr15
     lowerbound = ss.q25 - iqr15
 
     #Calculate outliers for scatterplot
-    outliers = filter(x -> (x >= upperbound) || (x <= lowerbound), data)
+    outliers = filter(x -> (x >= upperbound) || (x <= lowerbound), data_)
 
     return BoxPlotStats([lowerbound, ss.q25, ss.median, ss.q75, upperbound], outliers)
 
