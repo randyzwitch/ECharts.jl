@@ -1,35 +1,31 @@
 """
-    area(x, y)
+    box(data)
 
-Creates an `EChart` where region below plotted line filled with color.
+Creates an `EChart` as a boxplot, optionally with outliers.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+box(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}})
+box(df::AbstractDataFrame, data::Symbol)
+box(df::AbstractDataFrame, data::Symbol, group::Symbol)
 ```
 
 ## Arguments
-* `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
-* `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
+* `names::Union{AbstractVector, Void} = nothing` : provide names for series
+* `outliers::Bool` : show outliers?
 * `legend::Bool` : display legend?
-* `scale::Bool = false` : show full Y-axis or truncated
+* `horizontal::Bool = false` : show horizontal? (default: vertical)
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
 
-Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
+Reasonable defaults set for different methods of `box`, such as displaying a legend when two or more series present.
 
 ## Examples
 ```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
+data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960]
+b = box(data)
 ```
 """
 function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}};

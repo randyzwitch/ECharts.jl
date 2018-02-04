@@ -1,35 +1,36 @@
 """
-    area(x, y)
+    bubble(x, y)
 
-Creates an `EChart` where region below plotted line filled with color.
+Creates an `EChart` scatterplot, with additional dimension represented by circle size.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+bubble(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol)
+bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
 ```
 
 ## Arguments
-* `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
-* `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
 * `legend::Bool` : display legend?
 * `scale::Bool = false` : show full Y-axis or truncated
+* `large::Bool = true` : minimize overplotting
+* `largeThreshold::Int = 2000` : number of points before overplotting optimization occurs
+* `bubblesize::Real = 50` : maximum size of bubbles (see notes)
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
 
-Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
+The displayed size of the bubble is normalized within the function, as the square root of the size values. Using the square root of the value maintains the proper visual perception of the difference. The overall circle size can be modified by the `bubblesize` keyword argument, which is roughly the area in pixels of the largest circle.
 
 ## Examples
 ```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
+srand(13579)
+xval = rand() .* (0:1000:30000)
+yval = 60 .+ (rand(31) * 20)
+sizeval = shuffle!(6000 .* (rand(31) * 50))
+sp = bubble(xval, yval, sizeval, scale = true)
 ```
 """
 function bubble(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
