@@ -1,3 +1,25 @@
+"""
+    gauge(x)
+
+Creates an `EChart` where a value is plotted as a needle indicating the value along some range.
+
+## Methods
+```julia
+gauge(x::Union{Missing, Int, AbstractFloat, Rational})
+```
+
+## Arguments
+* `breakpoints::AbstractVector = [0.2, 0.8, 1]` : percentage along gauge to switch indicator colors
+* `colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"]` : colors for breakpoints
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+## Examples
+```julia
+gg = gauge(27.64)
+```
+"""
 function gauge(x::Union{Missing, Int, AbstractFloat, Rational};
                breakpoints::AbstractVector = [0.2, 0.8, 1],
                colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"],

@@ -1,3 +1,29 @@
+"""
+    histogram(data)
+
+Creates an `EChart` where region below plotted line filled with color.
+
+## Methods
+```julia
+histogram(h::StatsBase.Histogram)
+```
+
+## Arguments
+* `legend::Bool = false` : display legend?
+* `horizontal::Bool = false` : show bars horizontally?
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+ar = area(x, y)
+```
+"""
 function histogram(h::StatsBase.Histogram;
                    legend::Bool = false,
                    horizontal::Bool = false,

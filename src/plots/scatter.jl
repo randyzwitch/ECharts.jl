@@ -1,4 +1,31 @@
-#Single series method
+"""
+    scatter(x, y)
+
+Creates an `EChart` where (x,y) tuples are plotted as dots.
+
+## Methods
+```julia
+scatter(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+scatter(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+scatter(df::AbstractDataFrame, x::Symbol, y::Symbol)
+scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+```
+
+## Arguments
+* `mark::Union{String, AbstractVector} = "scatter"` : how to display plotted points
+* `legend::Bool` : display legend?
+* `scale::Bool = false` : show full Y-axis or truncated
+* `large::Bool = true` : minimize overplotting
+* `largeThreshold::Int = 2000` : number of points before overplotting optimization occurs
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+## Examples
+```julia
+sc = scatter(rand(30), rand(30))
+```
+"""
 function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
 				 y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "scatter",

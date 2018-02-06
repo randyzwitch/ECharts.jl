@@ -1,3 +1,33 @@
+"""
+    radar(names, values)
+
+Creates an `EChart` where region inside plotted line optionally filled with color.
+
+## Methods
+```julia
+radar(names::AbstractVector,
+	  values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+	  max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radar(names::AbstractVector,
+	  values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2},
+	  max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+```
+
+## Arguments
+* `fill::Union{Bool, AbstractVector} = false` : fill area inside marks with color?
+* `legend::Bool` : display legend?
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+
+## Examples
+```julia
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+ar = area(x, y)
+```
+"""
 function radar(names::AbstractVector,
 			   values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
 			   max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};

@@ -1,3 +1,30 @@
+"""
+    heatmap(data)
+
+Creates an `EChart` heatmap.
+
+## Methods
+```julia
+heatmap(h::StatsBase.Histogram)
+```
+
+## Arguments
+* `legend::Bool = false` : display legend?
+* `show::Bool = true` : show slider denoting color range
+* `calculable::Bool = true` : allow user to slide endpoints to change data displayed
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+using RDatasets
+h2 = fit(Histogram, (df[:Price], df[:Carat]), closed = :left)
+hs2 = heatmap(h2)
+```
+"""
 function heatmap(h::StatsBase.Histogram;
                     legend::Bool = false,
                     show::Bool = true,
@@ -49,7 +76,7 @@ function heatmap(h::StatsBase.Histogram;
 
     #Show legend if requested, though doesn't make sense in this context
     legend ? legend!(ec) : nothing
-    
+
     return ec
 
 end

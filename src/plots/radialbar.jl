@@ -1,4 +1,32 @@
-#single series
+"""
+    radialbar(x, y)
+
+Creates an `EChart` where values plotted as a percentage of cirlce as rectangular columns.
+
+## Methods
+```julia
+radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol)
+radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+```
+
+## Arguments
+* `mark::Union{String, AbstractVector} = "bar"` : how to display plotted points
+* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
+* `legend::Bool` : display legend?
+* `scale::Bool = false` : show full Y-axis or truncated
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+## Examples
+```julia
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = radialbar(x, y)
+```
+"""
 function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
@@ -27,7 +55,7 @@ function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, Abs
 end
 
 # dataframe, single series
-function radialgradientbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,

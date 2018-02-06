@@ -1,4 +1,34 @@
-#single series
+"""
+    bar(x, y)
+
+Creates an `EChart` where values plotted vertically as rectangular columns.
+
+## Methods
+```julia
+bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+bar(df::AbstractDataFrame, x::Symbol, y::Symbol)
+bar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+```
+
+## Arguments
+* `mark::Union{String, AbstractVector} = "bar"` : how to display plotted points
+* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
+* `legend::Bool` : display legend?
+* `scale::Bool = false` : show full Y-axis or truncated
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `bar`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = bar(x, y)
+```
+"""
 function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,

@@ -1,4 +1,38 @@
-#Single series method
+"""
+    bubble(x, y)
+
+Creates an `EChart` scatterplot, with additional dimension represented by circle size.
+
+## Methods
+```julia
+bubble(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol)
+bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
+```
+
+## Arguments
+* `legend::Bool` : display legend?
+* `scale::Bool = false` : show full Y-axis or truncated
+* `large::Bool = true` : minimize overplotting
+* `largeThreshold::Int = 2000` : number of points before overplotting optimization occurs
+* `bubblesize::Real = 50` : maximum size of bubbles (see notes)
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+The displayed size of the bubble is normalized within the function, as the square root of the size values. Using the square root of the value maintains the proper visual perception of the difference. The overall circle size can be modified by the `bubblesize` keyword argument, which is roughly the area in pixels of the largest circle.
+
+## Examples
+```julia
+srand(13579)
+xval = rand() .* (0:1000:30000)
+yval = 60 .+ (rand(31) * 20)
+sizeval = shuffle!(6000 .* (rand(31) * 50))
+sp = bubble(xval, yval, sizeval, scale = true)
+```
+"""
 function bubble(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
 				y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
 				size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};

@@ -1,4 +1,33 @@
-#Array of Arrays: awkward as data structure, awkward code but works
+"""
+    box(data)
+
+Creates an `EChart` as a boxplot, optionally with outliers.
+
+## Methods
+```julia
+box(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}})
+box(df::AbstractDataFrame, data::Symbol)
+box(df::AbstractDataFrame, data::Symbol, group::Symbol)
+```
+
+## Arguments
+* `names::Union{AbstractVector, Void} = nothing` : provide names for series
+* `outliers::Bool` : show outliers?
+* `legend::Bool` : display legend?
+* `horizontal::Bool = false` : show horizontal? (default: vertical)
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `box`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960]
+b = box(data)
+```
+"""
 function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}};
  names::Union{AbstractVector, Void} = nothing,
  outliers::Bool = true,

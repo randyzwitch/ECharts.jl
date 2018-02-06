@@ -1,3 +1,34 @@
+"""
+    polar(angle, radius)
+
+Creates an `EChart` where region between points connected by a line, with polar coordinates.
+
+## Methods
+```julia
+polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+    radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+```
+
+## Arguments
+* `splitNumber::Int = 12` : number of splits shown in axis
+* `showSymbol::Bool = false` : show the dots as well as the line?
+* `legend::Bool` : display legend?
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `polar`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+t = 0:360
+angle = [a / 180 * pi for a in t]
+radius = [(sin(2t) * cos(2t)) for t in angle]
+p = polar(angle, radius)
+```
+"""
 function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
                radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
             splitNumber::Int = 12,

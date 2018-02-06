@@ -1,3 +1,29 @@
+"""
+    waterfall(x, y)
+
+Creates an `EChart` representing the increase/decrease between two consecutive points.
+
+## Methods
+```julia
+waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}})
+```
+
+## Arguments
+* `legend::Bool` : display legend?
+* `scale::Bool = false` : show full Y-axis or truncated
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
+
+## Examples
+```julia
+x = 1:5
+y = [2900, -1200, -300, -200, -900]
+w = waterfall(x, y)
+```
+"""
 function waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}};
  		legend::Bool = false,
  		scale::Bool = false,

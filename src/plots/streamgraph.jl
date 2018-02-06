@@ -1,3 +1,30 @@
+"""
+    streamgraph(x, y, group)
+
+Creates an `EChart` where region below plotted line filled with color.
+
+## Methods
+```julia
+streamgraph(x::AbstractVector{String},y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+            group::AbstractVector)
+streamgraph(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+            y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+            group::AbstractVector)
+streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+```
+
+## Arguments
+* `legend::Bool = false` : display legend?
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+## Examples
+```julia
+s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
+sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
+```
+"""
 function streamgraph(x::AbstractVector{String},
                     y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
                     group::AbstractVector;

@@ -1,3 +1,30 @@
+"""
+    corrplot(data)
+
+Creates an `EChart` showing pairwise correlations between columns of data.
+
+## Methods
+```julia
+corrplot(m::Matrix)
+corrplot(df::AbstractDataFrame)
+```
+
+## Arguments
+* `bubblesize::Int = 45` : size of bubbles
+* `layout::String = "lower"` : one of {"lower", "upper", nothing}
+* `kwargs` : varargs to set any field of resulting `EChart` struct
+
+## Notes
+
+`corrplot` does not currently support missing values. Users should call `completecases!()` when using a DataFrame, or manually fill missing values as appropriate.
+
+## Examples
+```julia
+using ECharts, DataFrames, RDatasets
+df = dataset("datasets", "mtcars")
+cplot = corrplot(df)
+```
+"""
 function corrplot(m::Matrix;
                   bubblesize::Int = 45,
                   layout::String = "lower",
