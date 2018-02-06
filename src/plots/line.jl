@@ -1,23 +1,20 @@
 """
-    area(x, y)
+    line(x, y)
 
-Creates an `EChart` where region below plotted line filled with color.
+Creates an `EChart` where region between points connected by a line.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+line(df::AbstractDataFrame, x::Symbol, y::Symbol)
+line(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
 
 ## Arguments
 * `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
 * `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
-* `legend::Bool` : display legend?
+* `legend::Bool = false` : display legend?
 * `scale::Bool = false` : show full Y-axis or truncated
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
@@ -29,7 +26,7 @@ Reasonable defaults set for different methods of `area`, such as displaying a le
 ```julia
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
+ll = line(x, y)
 ```
 """
 function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
