@@ -5,7 +5,7 @@ Creates an `EChart` representing the increase/decrease between two consecutive p
 
 ## Methods
 ```julia
-waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}})
+waterfall(x::AbstractVector, y::AbstractVector{<:Real})
 ```
 
 ## Arguments
@@ -24,7 +24,7 @@ y = [2900, -1200, -300, -200, -900]
 w = waterfall(x, y)
 ```
 """
-function waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}};
+function waterfall(x::AbstractVector, y::AbstractVector{<:Real};
  		legend::Bool = false,
  		scale::Bool = false,
  		kwargs...)

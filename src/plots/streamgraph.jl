@@ -5,10 +5,10 @@ Creates an `EChart` where region below plotted line filled with color.
 
 ## Methods
 ```julia
-streamgraph(x::AbstractVector{String},y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+streamgraph(x::AbstractVector{String},y::AbstractVector{<:Union{Missing, Real}},
             group::AbstractVector)
-streamgraph(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-            y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+streamgraph(x::AbstractVector{<:Union{Missing, Real}},
+            y::AbstractVector{<:Union{Missing, Real}},
             group::AbstractVector)
 streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
@@ -26,7 +26,7 @@ sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 ```
 """
 function streamgraph(x::AbstractVector{String},
-                    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+                    y::AbstractVector{<:Union{Missing, Real}},
                     group::AbstractVector;
           legend::Bool = false,
           kwargs...)
@@ -47,8 +47,8 @@ function streamgraph(x::AbstractVector{String},
 
 end
 
-function streamgraph(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-                     y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
+function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
+                     y::AbstractVector{<:Union{Missing, Real}},
                      group::AbstractVector;
           legend::Bool = false,
           kwargs...)

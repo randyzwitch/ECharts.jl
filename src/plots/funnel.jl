@@ -5,7 +5,7 @@ Creates an `EChart` funnel.
 
 ## Methods
 ```julia
-funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 ```
 
 ## Arguments
@@ -23,7 +23,7 @@ n = ["A", "B", "C", "D", "E"]
 fn = funnel(n, v)
 ```
 """
-function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
  legend::Bool = false,
  kwargs...)
 

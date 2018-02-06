@@ -5,7 +5,7 @@ Creates an `EChart` where a value is plotted as a needle indicating the value al
 
 ## Methods
 ```julia
-gauge(x::Union{Missing, Int, AbstractFloat, Rational})
+gauge(x::Union{Missing, Real})
 ```
 
 ## Arguments
@@ -20,7 +20,7 @@ gauge(x::Union{Missing, Int, AbstractFloat, Rational})
 gg = gauge(27.64)
 ```
 """
-function gauge(x::Union{Missing, Int, AbstractFloat, Rational};
+function gauge(x::Union{Missing, Real};
                breakpoints::AbstractVector = [0.2, 0.8, 1],
                colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"],
                kwargs...)

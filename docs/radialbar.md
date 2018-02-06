@@ -7,8 +7,8 @@ permalink: /radialbar
 
 ## Method Signatures
 {% highlight julia %}
-radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
+radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real}, 2})
 
 #DataFrame methods
 radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol)

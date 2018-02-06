@@ -6,7 +6,7 @@ Creates an `EChart` diagram displaying the path and frequencies between nodes.
 ## Methods
 ```julia
 sankey(names::AbstractVector, source::AbstractVector{<:Union{Missing, Int}},
-    target::AbstractVector{<:Union{Missing, Int}}, value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+    target::AbstractVector{<:Union{Missing, Int}}, value::AbstractVector{<:Union{Missing, Real}};
 ```
 
 ## Arguments
@@ -27,7 +27,7 @@ s = sankey(name, source, target, value)
 function sankey(names::AbstractVector,
                 source::AbstractVector{<:Union{Missing, Int}},
                 target::AbstractVector{<:Union{Missing, Int}},
-                value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+                value::AbstractVector{<:Union{Missing, Real}};
                 kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "sankey")

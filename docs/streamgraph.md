@@ -7,11 +7,8 @@ permalink: /streamgraph
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-streamgraph(x::AbstractVector{String},
-    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}, group::AbstractVector)
-
-streamgraph(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}, group::AbstractVector)
+streamgraph(x::AbstractVector{String}, y::AbstractVector{<:Union{Missing, Real}}, group::AbstractVector)
+streamgraph(x::AbstractVector{<:Union{Missing, Real}}, y::AbstractVector{<:Union{Missing, Real}}, group::AbstractVector)
 
 #DataFrame methods
 streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)

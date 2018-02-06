@@ -8,8 +8,8 @@ permalink: /line
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
+line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real}, 2})
 
 #DataFrame methods
 line(df::AbstractDataFrame, x::Symbol, y::Symbol)

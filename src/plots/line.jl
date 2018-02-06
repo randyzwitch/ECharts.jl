@@ -5,8 +5,8 @@ Creates an `EChart` where region between points connected by a line.
 
 ## Methods
 ```julia
-line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 line(df::AbstractDataFrame, x::Symbol, y::Symbol)
 line(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
@@ -29,7 +29,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 ll = line(x, y)
 ```
 """
-function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
 			legend::Bool = false,
@@ -41,7 +41,7 @@ function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, Abstrac
 end
 
 #array, multiple series
-function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Void} = nothing,
 			legend::Bool = true,

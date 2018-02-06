@@ -9,10 +9,10 @@ Candlestick plots are financial plots showing the relationship between the open,
 {% highlight julia %}
 #Array methods
 candlestick(dt::AbstractVector{String},
-    open::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    close::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    low::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    high::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+    open::AbstractVector{<:Union{Missing, Real}},
+    close::AbstractVector{<:Union{Missing, Real}},
+    low::AbstractVector{<:Union{Missing, Real}},
+    high::AbstractVector{<:Union{Missing, Real}})
 {% endhighlight %}
 
 ## Optional Arguments

@@ -9,7 +9,7 @@ Pass in your values as you expect to see them on the chart, positive or negative
 
 ## Method Signatures
 {% highlight julia %}
-waterfall(x::AbstractVector, y::AbstractVector{<:Union{Int, AbstractFloat, Rational}})
+waterfall(x::AbstractVector, y::AbstractVector{<:Real}})
 {% endhighlight %}
 
 ## Optional Arguments

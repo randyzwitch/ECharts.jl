@@ -5,7 +5,7 @@ Creates an `EChart` where each value is represented as circular portion of the w
 
 ## Methods
 ```julia
-pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 ```
 
 ## Arguments
@@ -25,7 +25,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 pp = pie(x, y)
 ```
 """
-pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
             selected::Union{AbstractVector, Void} = nothing,
             radius::Union{AbstractVector, String} = "80%",
             center::Union{AbstractVector, String}  = ["50%", "50%"],

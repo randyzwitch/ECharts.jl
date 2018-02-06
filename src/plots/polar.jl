@@ -5,10 +5,8 @@ Creates an `EChart` where region between points connected by a line, with polar 
 
 ## Methods
 ```julia
-polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+polar(angle::AbstractVector{<:Union{Missing, Real}}, radius::AbstractVector{<:Union{Missing, Real}})
+polar(angle::AbstractVector{<:Union{Missing, Real}},radius::AbstractArray{<:Union{Missing, Real},2})
 ```
 
 ## Arguments
@@ -29,8 +27,8 @@ radius = [(sin(2t) * cos(2t)) for t in angle]
 p = polar(angle, radius)
 ```
 """
-function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-               radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function polar(angle::AbstractVector{<:Union{Missing, Real}},
+               radius::AbstractVector{<:Union{Missing, Real}};
             splitNumber::Int = 12,
             showSymbol::Bool = false,
             legend::Bool = false,
@@ -50,8 +48,8 @@ function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Ration
 
 end
 
-function polar(angle::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-               radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function polar(angle::AbstractVector{<:Union{Missing, Real}},
+               radius::AbstractArray{<:Union{Missing, Real},2};
             splitNumber::Int = 12,
             showSymbol::Bool = false,
             legend::Bool = true,

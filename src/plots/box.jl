@@ -5,8 +5,8 @@ Creates an `EChart` as a boxplot, optionally with outliers.
 
 ## Methods
 ```julia
-box(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}})
+box(data::AbstractVector{<:Union{Missing, Real}})
+box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}})
 box(df::AbstractDataFrame, data::Symbol)
 box(df::AbstractDataFrame, data::Symbol, group::Symbol)
 ```
@@ -28,7 +28,7 @@ data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 
 b = box(data)
 ```
 """
-function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}}};
+function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
  names::Union{AbstractVector, Void} = nothing,
  outliers::Bool = true,
  legend::Bool = false,
@@ -71,7 +71,7 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Int, Abstrac
 end
 
 #Single series
-box(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+box(data::AbstractVector{<:Union{Missing, Real}};
   names::String = "",
   outliers::Bool = true,
   legend::Bool = false,

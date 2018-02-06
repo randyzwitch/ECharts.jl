@@ -6,10 +6,10 @@ Creates an `EChart` for visualizing financial prices of a security.
 ## Methods
 ```julia
 candlestick(dt::AbstractVector{String},
-            open::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-            close::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-            low::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-            high::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+            open::AbstractVector{<:Union{Missing, Real}},
+            close::AbstractVector{<:Union{Missing, Real}},
+            low::AbstractVector{<:Union{Missing, Real}},
+            high::AbstractVector{<:Union{Missing, Real}})
 ```
 
 ## Arguments
@@ -48,10 +48,10 @@ c = candlestick(dt, open_, close_, low_, high_)
 ```
 """
 function candlestick(dt::AbstractVector{String},
-                     open::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-                     close::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-                     low::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-                     high::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+                     open::AbstractVector{<:Union{Missing, Real}},
+                     close::AbstractVector{<:Union{Missing, Real}},
+                     low::AbstractVector{<:Union{Missing, Real}},
+                     high::AbstractVector{<:Union{Missing, Real}};
                      legend::Bool = false,
                      scale::Bool = true,
                      kwargs...)

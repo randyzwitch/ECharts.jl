@@ -5,8 +5,8 @@ Creates an `EChart` where values plotted vertically as rectangular columns.
 
 ## Methods
 ```julia
-bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 bar(df::AbstractDataFrame, x::Symbol, y::Symbol)
 bar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
@@ -29,7 +29,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 b = bar(x, y)
 ```
 """
-function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,
@@ -41,7 +41,7 @@ function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, Abstract
 end
 
 #multiple y
-function bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = true,

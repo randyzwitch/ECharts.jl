@@ -5,8 +5,8 @@ Creates an `EChart` where (x,y) tuples are plotted as dots.
 
 ## Methods
 ```julia
-scatter(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-scatter(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+scatter(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+scatter(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 scatter(df::AbstractDataFrame, x::Symbol, y::Symbol)
 scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
@@ -26,8 +26,8 @@ scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 sc = scatter(rand(30), rand(30))
 ```
 """
-function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-				 y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function scatter(x::AbstractVector{<:Union{Missing, Real}},
+				 y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = false,
 			scale::Bool = false,
@@ -48,8 +48,8 @@ function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational
 end
 
 #Single X, multiple Y. This is unlikier scenario
-function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-				 y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function scatter(x::AbstractVector{<:Union{Missing, Real}},
+				 y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = true,
 			scale::Bool = false,

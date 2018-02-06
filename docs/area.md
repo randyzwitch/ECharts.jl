@@ -8,8 +8,8 @@ permalink: /area
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-area(x::AbstractVector, y::AbstractVector)
-area(x::AbstractVector, y::AbstractArray)
+area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 
 #Dataframe methods
 area(df::AbstractDataFrame, x::Symbol, y::Symbol)
