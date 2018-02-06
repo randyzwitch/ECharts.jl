@@ -1,35 +1,29 @@
 """
-    area(x, y)
+    scatter(x, y)
 
-Creates an `EChart` where region below plotted line filled with color.
+Creates an `EChart` where (x,y) tuples are plotted as dots.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+scatter(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+scatter(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+scatter(df::AbstractDataFrame, x::Symbol, y::Symbol)
+scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
 
 ## Arguments
-* `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
-* `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
+* `mark::Union{String, AbstractVector} = "scatter"` : how to display plotted points
 * `legend::Bool` : display legend?
 * `scale::Bool = false` : show full Y-axis or truncated
+* `large::Bool = true` : minimize overplotting
+* `largeThreshold::Int = 2000` : number of points before overplotting optimization occurs
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
 
-Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
-
 ## Examples
 ```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
+sc = scatter(rand(30), rand(30))
 ```
 """
 function scatter(x::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},

@@ -1,45 +1,37 @@
 """
-    area(x, y)
+    sankey(names, source, target, value)
 
-Creates an `EChart` where region below plotted line filled with color.
+Creates an `EChart` diagram displaying the path and frequencies between nodes.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+sankey(names::AbstractVector, source::AbstractVector{<:Union{Missing, Int}},
+    target::AbstractVector{<:Union{Missing, Int}}, value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
 ```
 
 ## Arguments
-* `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
-* `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
-* `legend::Bool` : display legend?
-* `scale::Bool = false` : show full Y-axis or truncated
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
 
-Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
-
 ## Examples
 ```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
+name = ["Agricultural waste", "Bio-conversion", "Liquid", "Losses", "Solid", "Gas", "Biofuel imports",
+    "Biomass imports", "Coal imports", "Coal"]
+source = [0, 1, 1, 1, 1, 6, 7, 8, 10]
+target = [1, 2, 3, 4, 5, 2, 4, 9, 9]
+value = [124.729, 0.597, 26.862, 280.322, 81.144, 35, 35, 11.606, 63.965]
+s = sankey(name, source, target, value)
 ```
 """
-function sankey(name::AbstractVector,
+function sankey(names::AbstractVector,
                 source::AbstractVector{<:Union{Missing, Int}},
                 target::AbstractVector{<:Union{Missing, Int}},
                 value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
-                 kwargs...)
+                kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "sankey")
-    ec.series = [Series(name = "Series 1", _type = "sankey", layout = "none", data = arrayofdicts(name = name),
+    ec.series = [Series(name = "Series 1", _type = "sankey", layout = "none", data = arrayofdicts(name = names),
         links = arrayofdicts(source = source, target = target, value = value))]
 
     return ec

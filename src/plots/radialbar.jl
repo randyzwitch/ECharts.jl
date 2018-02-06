@@ -55,7 +55,7 @@ function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, Abs
 end
 
 # dataframe, single series
-function radialgradientbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,
