@@ -5,8 +5,8 @@ Creates an `EChart` where values plotted as a percentage of cirlce as rectangula
 
 ## Methods
 ```julia
-radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol)
 radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ```
@@ -27,7 +27,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 b = radialbar(x, y)
 ```
 """
-function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = false,
@@ -41,7 +41,7 @@ function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, Ab
 end
 
 #multiple y
-function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Void} = nothing,
 			legend::Bool = true,

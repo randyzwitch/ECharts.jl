@@ -8,8 +8,8 @@ permalink: /box
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-box(data::Vector{T <: Real})
-box(data::Vector{Vector{T <: Real}})
+box(data::AbstractVector{<:Union{Missing, Real}})
+box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}})
 
 #DataFrame methods
 box(df::AbstractDataFrame, data::Symbol)

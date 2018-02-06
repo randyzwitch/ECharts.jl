@@ -6,7 +6,7 @@ permalink: /gauge
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-gauge(x::Union{Missing, Int, AbstractFloat, Rational})
+gauge(x::Union{Missing, Real})
 {% endhighlight %}
 
 ## Optional Arguments

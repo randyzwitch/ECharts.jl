@@ -7,10 +7,10 @@ permalink: /radar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-radar(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2},
-    max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radar(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}},
+    max::AbstractVector{<:Union{Missing, Real}})
+radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Real}, 2},
+    max::AbstractVector{<:Union{Missing, Real}})
 {% endhighlight %}
 
 ## Optional Arguments

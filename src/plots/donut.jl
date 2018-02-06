@@ -5,7 +5,7 @@ Creates an `EChart` where each value is represented as circular portion of the w
 
 ## Methods
 ```julia
-donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 ```
 
 ## Arguments
@@ -26,7 +26,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 d = donut(x, y)
 ```
 """
-donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
             selected::Union{AbstractVector, Void} = nothing,
             radius::Union{AbstractVector, String} = ["50%", "80%"],
             center::Union{AbstractVector, String} = ["50%", "50%"],

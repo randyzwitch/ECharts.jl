@@ -5,8 +5,8 @@ Creates an `EChart` where region below plotted line filled with color.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
+area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
 area(df::AbstractDataFrame, x::Symbol, y::Symbol)
 area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 area(k::KernelDensity.UnivariateKDE)
@@ -32,7 +32,7 @@ y = [11, 11, 15, 13, 12, 13, 10]
 ar = area(x, y)
 ```
 """
-function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = nothing,
@@ -52,7 +52,7 @@ function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, Abstrac
 end
 
 #Basically same function as above, except automatically puts a legend when multiple series present
-function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2};
+function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Void} = true,

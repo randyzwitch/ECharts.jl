@@ -8,8 +8,8 @@ permalink: /bar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
+bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
+bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real}, 2})
 
 #DataFrame methods
 bar(df::AbstractDataFrame, x::Symbol, y::Symbol)

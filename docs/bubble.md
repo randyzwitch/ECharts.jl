@@ -9,8 +9,8 @@ permalink: /bubble
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-bubble(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-    size::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+bubble(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}},
+    size::AbstractVector{<:Union{Missing, Real}})
 
 #Dataframe methods
 bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol)

@@ -8,8 +8,8 @@ permalink: /polar
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-polar(angle::AbstractVector, radius::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-polar(angle::AbstractVector, radius::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational}, 2})
+polar(angle::AbstractVector, radius::AbstractVector{<:Union{Missing, Real}})
+polar(angle::AbstractVector, radius::AbstractArray{<:Union{Missing, Real}, 2})
 {% endhighlight %}
 
 ## Optional Arguments

@@ -5,12 +5,10 @@ Creates an `EChart` where region inside plotted line optionally filled with colo
 
 ## Methods
 ```julia
-radar(names::AbstractVector,
-	  values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-	  max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-radar(names::AbstractVector,
-	  values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2},
-	  max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+radar(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}},
+    max::AbstractVector{<:Union{Missing, Real}})
+radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Real},2},
+	max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 ```
 
 ## Arguments
@@ -29,8 +27,8 @@ ar = area(x, y)
 ```
 """
 function radar(names::AbstractVector,
-			   values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}},
-			   max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+			   values::AbstractVector{<:Union{Missing, Real}},
+			   max::AbstractVector{<:Union{Missing, Real}};
 	 			fill::Bool = false,
 				legend::Bool = false,
 				kwargs...)
@@ -57,8 +55,8 @@ function radar(names::AbstractVector,
 end
 
 function radar(names::AbstractVector,
-			   values::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2},
-			   max::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+			   values::AbstractArray{<:Union{Missing, Real},2},
+			   max::AbstractVector{<:Union{Missing, Real}};
 	 			fill::Union{Bool, AbstractVector} = false,
 				legend::Bool = true,
 				kwargs...)

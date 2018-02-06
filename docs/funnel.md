@@ -9,7 +9,7 @@ A funnel chart shows retention through a series of checkpoints. Note that by def
 ## Method Signatures
 {% highlight julia %}
 #Array methods
-funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
+funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 {% endhighlight %}
 
 ## Optional Arguments

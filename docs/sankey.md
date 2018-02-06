@@ -10,7 +10,7 @@ permalink: /sankey
 sankey(name::AbstractVector,
     source::AbstractVector{<:Union{Missing, Int}},
     target::AbstractVector{<:Union{Missing, Int}},
-    value::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}};
+    value::AbstractVector{<:Union{Missing, Real}};
 {% endhighlight %}
 
 ## Optional Arguments
