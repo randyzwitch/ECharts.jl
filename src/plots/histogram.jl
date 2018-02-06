@@ -1,24 +1,16 @@
 """
-    area(x, y)
+    histogram(data)
 
 Creates an `EChart` where region below plotted line filled with color.
 
 ## Methods
 ```julia
-area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
-area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Int, AbstractFloat, Rational},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
-area(k::KernelDensity.UnivariateKDE)
+histogram(h::StatsBase.Histogram)
 ```
 
 ## Arguments
-* `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
-* `fill::Union{Bool, AbstractVector} = true` : fill area below marks with color?
-* `stack::Union{Bool, AbstractVector, Void} = nothing` : stack (add together) when multple series present?
-* `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
-* `legend::Bool` : display legend?
-* `scale::Bool = false` : show full Y-axis or truncated
+* `legend::Bool = false` : display legend?
+* `horizontal::Bool = false` : show bars horizontally?
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
