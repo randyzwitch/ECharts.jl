@@ -73,16 +73,12 @@ end
     length::Union{Int,Void} = 5
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
-@with_kw mutable struct LabelOpts <: AbstractEChartType
+@with_kw mutable struct Label <: AbstractEChartType
     show::Union{Bool,Void} = nothing
     position::Union{String, Void} = nothing
     offset::Union{AbstractVector, Void} = nothing
     formatter::Union{String, JSFunction, Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
-end
-@with_kw mutable struct Label <: AbstractEChartType
-    normal::Union{LabelOpts,Void} = nothing
-    emphasis::Union{LabelOpts,Void} = nothing
 end
 @with_kw mutable struct ItemStyleOpts <: AbstractEChartType
     color::Union{String, JSFunction, Void} = nothing

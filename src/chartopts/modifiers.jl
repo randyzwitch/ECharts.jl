@@ -371,7 +371,7 @@ end
 
 function labels!(ec::EChart, series::Int; show::Bool = true, position::String = "insideTop")
 
-	ec.series[series].label = Label(normal = LabelOpts(show = show, position = position))
+	ec.series[series].label = Label(show = show, position = position)
 
     return ec
 
