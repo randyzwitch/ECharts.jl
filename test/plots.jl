@@ -5,7 +5,7 @@ using RDatasets
 mtcars = dataset("datasets", "mtcars");
 diamonds = dataset("ggplot2", "diamonds");
 
-using ECharts, DataFrames, StatsBase, CSV
+using ECharts, DataFrames, StatsBase, CSV, KernelDensity, Distributions
 using Base.Test
 
 #1: Homepage doc example
@@ -22,6 +22,10 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ar2 = area(x, y)
 @test typeof(ar2) == EChart
+
+df = DataFrame(x = x, y = y)
+@test typeof(area(df, :x, :y)) == EChart
+@test typeof(bar(df, :x, :y)) == EChart
 
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
@@ -41,6 +45,10 @@ g = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
 df_merged = DataFrame(hcat(x,y,g), [:x, :y, :g])
 adfg = area(df_merged, :x, :y, :g)
 @test typeof(adfg) == EChart
+
+x = rand(Beta(3.0, 2.0), 10)
+k = kde(x)
+@test typeof(area(k)) == EChart
 
 #3: bar
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
