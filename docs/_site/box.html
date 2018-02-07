@@ -27,7 +27,7 @@
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<script src="js/echarts-3.8.5.js"></script>
+<script src="js/echarts-4.0.2.js"></script>
 
 <script type="text/javascript">
 var roma = function(){
@@ -523,13 +523,15 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="o">::</span><span class="n">Vector</span><span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="n">Real</span><span class="x">})</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="o">::</span><span class="n">Vector</span><span class="x">{</span><span class="n">Vector</span><span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="n">Real</span><span class="x">}})</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">#DataFrame methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">data</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">data</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}})</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">data</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}}})</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">#DataFrame methods</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">data</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span><br data-jekyll-commonmark-ghpages="" /><span class="n">box</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">data</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">names</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span><br data-jekyll-commonmark-ghpages="" /><span class="n">outliers</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span><br data-jekyll-commonmark-ghpages="" /><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">horizontal</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span><br data-jekyll-commonmark-ghpages="" /><span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
 <h2 id="missing-value-support">Missing Value Support</h2>
+
+<p>Passing <code class="highlighter-rouge">missing</code> values to <code class="highlighter-rouge">box()</code> will <em>remove</em> them before calculating the summary statistics needed to generate the boxplot. If this is not what you intend, you should treat the <code class="highlighter-rouge">missing</code> values prior to plotting.</p>
 
 <h2 id="examples">Examples</h2>
 
@@ -594,7 +596,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jan 21, 2018 <br />
+ Site last generated: Feb 6, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>
