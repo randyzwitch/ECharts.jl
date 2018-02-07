@@ -853,6 +853,12 @@ end
     singleAxisIndex::Union{Number, Void} = nothing
 
 end
+@with_kw type Dataset <: AbstractEChartType
+    tbd::Any = nothing
+end
+@with_kw type Aria <: AbstractEChartType
+    tbd::Any = nothing
+end
 @with_kw type EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
     ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
@@ -872,6 +878,7 @@ end
     tooltip::Union{Tooltip,Void} = nothing
     axisPointer::Union{AxisPointer, Void} = nothing
     toolbox::Union{Toolbox,Void} = Toolbox()
+    brush::Union{Brush, Void} = nothing
     geo::Union{Geo,Void} = nothing
     parallel::Union{Parallel,Void} = nothing
     parallelAxis::Union{ParallelAxis,Void} = nothing
@@ -879,6 +886,8 @@ end
     timeline::Union{Timeline,Void} = nothing
     graphic::Union{Graphic,Void} = nothing
     calendar::Union{Calendar,Void} = nothing
+    dataset::Union{Dataset, Void} = nothing
+    aria::Union{Aria, Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
     color::Union{AbstractVector,JSFunction,Void} = nothing
     backgroundColor::Union{String,Void, JSFunction} = nothing
@@ -891,5 +900,8 @@ end
     animationDurationUpdate::Union{Int,Void} = nothing
     animationEasingUpdate::Union{String,Void} = nothing
     animationDelayUpdate::Union{Int,Void} = nothing
+    progressive::Any = nothing
+    blendMode::Any = nothing
+    hoverLayerThreshold::Any = nothing
     useUTC::Union{Bool, Void} = nothing
 end
