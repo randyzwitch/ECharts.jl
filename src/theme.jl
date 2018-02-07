@@ -1,6 +1,6 @@
 abstract type AbstractEChartType end
 
-@with_kw type Theme <: AbstractEChartType
+@with_kw mutable struct Theme <: AbstractEChartType
     color::Union{AbstractVector, Void} = nothing
     backgroundColor::Union{String, Void} = nothing
     textStyle::Union{Dict, Void} = nothing
