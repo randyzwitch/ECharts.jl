@@ -42,11 +42,9 @@ function waterfall(x::AbstractVector, y::AbstractVector{<:Real};
     top = abs.(y)
     push!(top, sum(y))
 
-    #Make bottom series transparent
-    trans = ItemStyleOpts(barBorderColor = "transparent", color = "transparent")
-
     ec = bar(labels, hcat(bottom, top), stack = true, legend = legend, scale = scale, kwargs...)
-    ec.series[1].itemStyle = ItemStyle(normal = trans, emphasis = trans )
+    #Make bottom series transparent
+    ec.series[1].itemStyle = trans = ItemStyle(barBorderColor = "transparent", color = "transparent")
 
     return ec
 end

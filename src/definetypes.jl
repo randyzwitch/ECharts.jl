@@ -2,18 +2,6 @@ mutable struct BoxPlotStats
     summary::AbstractVector
     outliers::AbstractVector
 end
-#type is recursive, this is a hack
-@with_kw mutable struct LineStyleOpts <: AbstractEChartType
-    color::Union{AbstractVector,String,Void} = nothing #"#333"
-    width::Union{Int,Void} = nothing #1
-    _type::Union{String,Void} = nothing #"solid"
-    shadowBlur::Union{Int,Void} = nothing #1
-    shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = nothing #0
-    shadowOffsetY::Union{Int,Void} = nothing #0
-    opacity::Union{Int,Void} = nothing
-    curveness::Union{AbstractFloat,Void} = nothing
-end
 @with_kw mutable struct LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String,Void} = nothing #"#333"
     width::Union{Int,Void} = nothing #1
@@ -24,8 +12,6 @@ end
     shadowOffsetY::Union{Int,Void} = nothing #0
     opacity::Union{Int,Void} = nothing
     curveness::Union{AbstractFloat,Void} = nothing
-    normal::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
-    emphasis::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
 end
 @with_kw mutable struct AreaStyle <: AbstractEChartType
     color::Union{AbstractVector,Void} = nothing
@@ -80,7 +66,7 @@ end
     formatter::Union{String, JSFunction, Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
 end
-@with_kw mutable struct ItemStyleOpts <: AbstractEChartType
+@with_kw mutable struct ItemStyle <: AbstractEChartType
     color::Union{String, JSFunction, Void} = nothing
     barBorderColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = nothing
@@ -90,10 +76,6 @@ end
     shadowOffsetX::Union{Int,Void} = nothing
     shadowOffsetY::Union{Int,Void} = nothing
     opacity::Union{Float64,Void} = nothing
-end
-@with_kw mutable struct ItemStyle <: AbstractEChartType
-    normal::Any = deepcopy(ItemStyleOpts())
-    emphasis::Any = nothing
 end
 @with_kw mutable struct IconStyleOpts <: AbstractEChartType
     color::Union{String,Void} = "adaptive"
@@ -107,8 +89,8 @@ end
     opacity::Union{Int,Void} = nothing
 end
 @with_kw mutable struct IconStyle <: AbstractEChartType
-    normal::Union{ItemStyleOpts,Void} = nothing
-    emphasis::Union{ItemStyleOpts,Void} = nothing
+    normal::Union{ItemStyle,Void} = nothing
+    emphasis::Union{ItemStyle,Void} = nothing
 end
 @with_kw mutable struct CrossStyle <: AbstractEChartType
     color::Union{String,Void} = "#555"

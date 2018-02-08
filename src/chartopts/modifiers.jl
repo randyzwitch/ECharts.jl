@@ -194,7 +194,7 @@ function yline!(ec::EChart, value::String; series::Int = 1, kwargs...)
     ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
-    push!(ec.series[series].markLine.data, Dict{Any, Any}("type" => value, "lineStyle" => LineStyle(normal = ECharts.LineStyleOpts())
+    push!(ec.series[series].markLine.data, Dict{Any, Any}("type" => value, "lineStyle" => LineStyle()
 		)
 	)
 
@@ -213,12 +213,12 @@ function yline!(ec::EChart, value::Real; series::Int = 1, kwargs...)
     ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
-    push!(ec.series[series].markLine.data, Dict("yAxis" => value, "lineStyle" => LineStyle(normal = ECharts.LineStyleOpts())
+    push!(ec.series[series].markLine.data, Dict("yAxis" => value, "lineStyle" => LineStyle()
 		)
 	)
 
 	for (k, v) in kwargs
-		setfield!(ec.series[series].markLine.data[end]["lineStyle"].normal, k, v)
+		setfield!(ec.series[series].markLine.data[end]["lineStyle"], k, v)
 	end
 
     return ec
@@ -232,12 +232,10 @@ function xline!(ec::EChart, value::Any; series::Int = 1, kwargs...)
     ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
-    push!(ec.series[series].markLine.data, Dict("xAxis" => value, "lineStyle" => LineStyle(normal = ECharts.LineStyleOpts())
-		)
-	)
+    push!(ec.series[series].markLine.data, Dict("xAxis" => value, "lineStyle" => LineStyle()))
 
 	for (k, v) in kwargs
-		setfield!(ec.series[series].markLine.data[end]["lineStyle"].normal, k, v)
+		setfield!(ec.series[series].markLine.data[end]["lineStyle"], k, v)
 	end
 
     return ec
@@ -254,7 +252,7 @@ function xarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 	push!(ec.series[series].markArea.data, [Dict("xAxis" => startval, "itemStyle" => ItemStyle()), Dict("xAxis" => endval)])
 
 	for (k, v) in kwargs
-		setfield!(ec.series[series].markArea.data[end][1]["itemStyle"].normal, k, v)
+		setfield!(ec.series[series].markArea.data[end][1]["itemStyle"], k, v)
 	end
 
     return ec
@@ -270,7 +268,7 @@ function yarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 	push!(ec.series[series].markArea.data, [Dict("yAxis" => startval, "itemStyle" => ItemStyle()), Dict("yAxis" => endval)])
 
 	for (k, v) in kwargs
-		setfield!(ec.series[series].markArea.data[end][1]["itemStyle"].normal, k, v)
+		setfield!(ec.series[series].markArea.data[end][1]["itemStyle"], k, v)
 	end
 
     return ec
