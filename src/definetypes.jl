@@ -3,13 +3,13 @@ mutable struct BoxPlotStats
     outliers::AbstractVector
 end
 @with_kw mutable struct LineStyle <: AbstractEChartType
-    color::Union{AbstractVector,String,Void} = nothing #"#333"
-    width::Union{Int,Void} = nothing #1
-    _type::Union{String,Void} = nothing #"solid"
-    shadowBlur::Union{Int,Void} = nothing #1
+    color::Union{AbstractVector,String,Void} = nothing
+    width::Union{Int,Void} = nothing
+    _type::Union{String,Void} = nothing
+    shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = nothing #0
-    shadowOffsetY::Union{Int,Void} = nothing #0
+    shadowOffsetX::Union{Int,Void} = nothing
+    shadowOffsetY::Union{Int,Void} = nothing
     opacity::Union{Int,Void} = nothing
     curveness::Union{AbstractFloat,Void} = nothing
 end
@@ -386,10 +386,10 @@ end
     polarIndex::Union{Int,Void} = 0
     startAngle::Union{Int,Void} = nothing
     clockwise::Union{Bool,Void} = true
-    _type::Union{String,Void} = nothing #"category"
+    _type::Union{String,Void} = nothing
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
-    min::Union{Int,String,Void} = nothing #"auto"
-    max::Union{Int,String,Void} = nothing #"auto"
+    min::Union{Int,String,Void} = nothing
+    max::Union{Int,String,Void} = nothing
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = nothing
     minInterval::Union{Int,Void} = 0
@@ -612,6 +612,12 @@ end
     yearLabel::Union{Dict, Void} = nothing
     silent::Union{Bool,Void} = nothing
 end
+@with_kw mutable struct Dataset <: AbstractEChartType
+    tbd::Any = nothing
+end
+@with_kw mutable struct Aria <: AbstractEChartType
+    tbd::Any = nothing
+end
 #Build label type?
 @with_kw mutable struct MarkPoint <: AbstractEChartType
     _symbol::Union{String, Void} = nothing
@@ -831,12 +837,6 @@ end
     singleAxisIndex::Union{Number, Void} = nothing
 
 end
-@with_kw mutable struct Dataset <: AbstractEChartType
-    tbd::Any = nothing
-end
-@with_kw mutable struct Aria <: AbstractEChartType
-    tbd::Any = nothing
-end
 @with_kw mutable struct EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
     ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
@@ -879,6 +879,7 @@ end
     animationEasingUpdate::Union{String,Void} = nothing
     animationDelayUpdate::Union{Int,Void} = nothing
     progressive::Any = nothing
+    progressiveThreshold::Any = nothing
     blendMode::Any = nothing
     hoverLayerThreshold::Any = nothing
     useUTC::Union{Bool, Void} = nothing
