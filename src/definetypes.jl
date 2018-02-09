@@ -400,6 +400,7 @@ end
     itemStyle::Union{ItemStyle,Void} = nothing
     checkpointStyle::Union{Dict,Void} = nothing
     controlStyle::Union{Dict,Void} = nothing
+    emphasis::Union{Dict,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
 end
 @with_kw mutable struct Polar <: AbstractEChartType
@@ -424,6 +425,7 @@ end
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -449,6 +451,7 @@ end
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = nothing
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -516,6 +519,7 @@ end
     backgroundColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = nothing
     borderWidth::Union{Int,Void} = nothing
+    color::Union{String,Void} = nothing
     textStyle::Union{TextStyle, Void} = nothing
     formatter::Union{String, JSFunction, Void} = nothing
     #piecewise
@@ -547,6 +551,7 @@ end
     selectedMode::Union{Bool,Void} = false
     label::Union{Label,Void} = nothing
     itemStyle::Union{ItemStyle,Void} = nothing
+    emphasis::Union{Dict, Void} = nothing
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
     left::Union{Int,String,Void} = "auto"
@@ -600,6 +605,7 @@ end
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -632,6 +638,7 @@ end
     scale::Union{Bool, Void} = nothing
     splitNumber::Union{Number, Void} = nothing
     minInterval::Union{Number, Void}  = nothing
+    maxInterval::Union{Number, Void}  = nothing
     interval::Union{Number, Void} = nothing
     logBase::Union{Number, Void} = nothing
     silent::Union{Bool, Void} = nothing
