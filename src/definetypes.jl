@@ -175,6 +175,7 @@ end
     extraCssText::Union{String,Void} = nothing
 end
 @with_kw mutable struct Legend <: AbstractEChartType
+    _type::Union{String,Void} = nothing
     show::Union{Bool,Void} = true
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
@@ -204,6 +205,17 @@ end
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = 0
     shadowOffsetY::Union{Int,Void} = 0
+    scrollDataIndex::Union{Int,Void} = nothing
+    pageButtonItemGap::Union{Int,Void} = nothing
+    pageButtonPosition::Union{Int,Void} = nothing
+    pageFormatter::Union{String,JSFunction,Void} = nothing
+    pageIcons::Union{Dict, Void} = nothing
+    pageIconColor::Union{String, Void} = nothing
+    pageIconInactiveColor::Union{String, Void} = nothing
+    pageIconSize::Union{Int, Void} = nothing
+    pageTextStyle::Union{TextStyle, Void} = nothing
+    animation::Union{Bool, Void} = nothing
+    animationDurationUpdate::Union{Int, Void} = nothing
 end
 @with_kw mutable struct Toolbox <: AbstractEChartType
     show::Union{Bool,Void} = false
