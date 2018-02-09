@@ -27,6 +27,18 @@ end
     fontWeight::Union{String,Void} = "normal"
     fontFamily::Union{String,Void} = "sans-serif"
     fontSize::Union{Int,Void} = 12
+    align::Union{String, Void} = nothing
+    verticalAlign::Union{String, Void} = nothing
+    lineHeight::Union{Int, Void} = nothing
+    width::Union{Int, String, Void} = nothing
+    height::Union{Int, String, Void} = nothing
+    textBorderColor::Union{String, Void} = nothing
+    textBorderWidth::Union{Int, Void} = nothing
+    textShadowColor::Union{String, Void} = nothing
+    textShadowBlur::Union{Int, Void} = nothing
+    textShadowOffsetX::Union{Int, Void} = nothing
+    textShadowOffsetY::Union{Int, Void} = nothing
+    rich::Union{Dict, Void} = nothing
 end
 @with_kw mutable struct SplitArea <: AbstractEChartType
     interval::Union{Int,String,Void} = "auto"
@@ -266,8 +278,8 @@ end
     link::Union{String,Void} = nothing
     target::Union{String,Void} = "blank"
     textStyle::Union{TextStyle,Void} = nothing
-    textAlign::Union{String,Void} = nothing
-    textBaseline::Union{String,Void} = nothing
+    # textAlign::Union{String,Void} = nothing
+    # textBaseline::Union{String,Void} = nothing
     subtext::Union{String,Void} = nothing
     sublink::Union{String,Void} = nothing
     subtarget::Union{String,Void} = "blank"
@@ -283,6 +295,7 @@ end
     backgroundColor::Union{String,Void, JSFunction} = nothing
     borderColor::Union{String,Void} = "transparent"
     borderWidth::Union{Int,Void} = 1
+    borderRadius::Union{Int,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = 0
@@ -613,10 +626,16 @@ end
     silent::Union{Bool,Void} = nothing
 end
 @with_kw mutable struct Dataset <: AbstractEChartType
-    tbd::Any = nothing
+    source::Union{Dict, Array, Void} = nothing
+    dimensions::Union{AbstractVector, Void} = nothing
+    sourceHeader::Union{Bool, Void} = nothing
 end
 @with_kw mutable struct Aria <: AbstractEChartType
-    tbd::Any = nothing
+    show::Union{Bool, Void} = nothing
+    description::Union{String, Void} = nothing
+    general::Union{Dict, Void} = nothing
+    series::Union{Dict, Void} = nothing
+    data::Union{Dict, Void} = nothing
 end
 #Build label type?
 @with_kw mutable struct MarkPoint <: AbstractEChartType
