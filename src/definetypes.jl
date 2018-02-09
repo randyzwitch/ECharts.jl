@@ -57,15 +57,46 @@ end
     rotate::Union{Int,Void} = 0
     margin::Union{Int,Void} = 8
     formatter::Union{String,Void, JSFunction} = "{value}"
-    textStyle::Union{TextStyle,Void} = nothing
+    showMinLabel::Union{Bool, Void} = nothing
+    showMaxLabel::Union{Bool, Void} = nothing
+    color::Union{String,JSFunction,Void} = nothing
+    fontStyle::Union{String, Void} = nothing
+    fontWeight::Union{String, Void} = nothing
+    fontFamily::Union{String, Void} = nothing
+    fontSize::Union{Int, Void} = nothing
+    align::Union{String, Void} = nothing
+    verticalAlign::Union{String, Void} = nothing
+    lineHeight::Union{Int, Void} = nothing
+    backgroundColor::Union{String, Void} = nothing
+    borderColor::Union{String, Void} = nothing
+    borderWidth::Union{Int, Void} = nothing
+    borderRadius::Union{Int, Void} = nothing
+    padding::Union{AbstractVector,Int, Void} = nothing
+    shadowColor::Union{String, Void} = nothing
+    shadowBlur::Union{Int, Void} = nothing
+    shadowOffsetX::Union{Int, Void} = nothing
+    shadowOffsetY::Union{Int, Void} = nothing
+    width::Union{Int, Void} = nothing
+    height::Union{Int, Void} = nothing
+    textBorderColor::Union{String, Void} = nothing
+    textBorderWidth::Union{Int, Void} = nothing
+    textShadowColor::Union{String, Void} = nothing
+    textShadowBlur::Union{Int, Void} = nothing
+    textShadowOffsetX::Union{Int, Void} = nothing
+    textShadowOffsetY::Union{Int, Void} = nothing
+    rich::Union{Dict, Void} = nothing
 end
 @with_kw mutable struct AxisLine <: AbstractEChartType
     show::Union{Bool,Void} = true
     onZero::Union{Bool,Void} = true
+    onZeroAxisIndex::Union{Int, Void} = nothing
+    symbol::Union{String, Void} = nothing
+    symbolSize::Union{AbstractVector, Void} = nothing
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
 @with_kw mutable struct AxisTick <: AbstractEChartType
     show::Union{Bool,Void} = true
+    alignWithLabel::Union{Bool, Void} = nothing
     interval::Union{Int,String,Void} = "auto"
     inside::Union{Bool,Void} = false
     length::Union{Int,Void} = 5
