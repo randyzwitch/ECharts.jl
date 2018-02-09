@@ -54,7 +54,7 @@ function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
     typeof(fill) == Bool? fill = [fill for i in 1:cols]: fill = fill
 
     for i in 1:cols
-        fill[i]? ec.series[i].areaStyle = ItemStyle(normal = AreaStyle()): nothing
+        fill[i]? ec.series[i].areaStyle = ItemStyle(): nothing
     end
 
 end

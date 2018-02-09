@@ -80,11 +80,11 @@ function corrplot(m::Matrix;
 
     #overlay labels. figure out what might be worth a keyword in method definition
     labels ?
-    ec.series[1].label = ECharts.Label(normal = ECharts.LabelOpts(show = true,
-                                                              position = "inside",
-                                                              formatter = JSFunction("""function (params) {return params.data[2].toFixed(2);}"""),
-                                                              textStyle = TextStyle(fontWeight = "bold", color = "black", fontSize = 14)
-                                                             )
+    ec.series[1].label = ECharts.Label(show = true,
+                                      position = "inside",
+                                      formatter = JSFunction("""function (params) {return params.data[2].toFixed(2);}"""),
+                                      textStyle = TextStyle(fontWeight = "bold", color = "black", fontSize = 14)
+                                                             
                                   ) : nothing
     ec
 

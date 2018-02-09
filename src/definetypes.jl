@@ -2,32 +2,18 @@ mutable struct BoxPlotStats
     summary::AbstractVector
     outliers::AbstractVector
 end
-#type is recursive, this is a hack
-@with_kw type LineStyleOpts <: AbstractEChartType
-    color::Union{AbstractVector,String,Void} = nothing #"#333"
-    width::Union{Int,Void} = nothing #1
-    _type::Union{String,Void} = nothing #"solid"
-    shadowBlur::Union{Int,Void} = nothing #1
+@with_kw mutable struct LineStyle <: AbstractEChartType
+    color::Union{AbstractVector,String,Void} = nothing
+    width::Union{Int,Void} = nothing
+    _type::Union{String,Void} = nothing
+    shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = nothing #0
-    shadowOffsetY::Union{Int,Void} = nothing #0
+    shadowOffsetX::Union{Int,Void} = nothing
+    shadowOffsetY::Union{Int,Void} = nothing
     opacity::Union{Int,Void} = nothing
     curveness::Union{AbstractFloat,Void} = nothing
 end
-@with_kw type LineStyle <: AbstractEChartType
-    color::Union{AbstractVector,String,Void} = nothing #"#333"
-    width::Union{Int,Void} = nothing #1
-    _type::Union{String,Void} = nothing #"solid"
-    shadowBlur::Union{Int,Void} = nothing #1
-    shadowColor::Union{String,Void} = nothing
-    shadowOffsetX::Union{Int,Void} = nothing #0
-    shadowOffsetY::Union{Int,Void} = nothing #0
-    opacity::Union{Int,Void} = nothing
-    curveness::Union{AbstractFloat,Void} = nothing
-    normal::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
-    emphasis::Union{LineStyleOpts, Void} = deepcopy(LineStyleOpts())
-end
-@with_kw type AreaStyle <: AbstractEChartType
+@with_kw mutable struct AreaStyle <: AbstractEChartType
     color::Union{AbstractVector,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
@@ -35,56 +21,95 @@ end
     shadowOffsetY::Union{Int,Void} = 0
     opacity::Union{Number,Void} = nothing
 end
-@with_kw type TextStyle <: AbstractEChartType
+@with_kw mutable struct TextStyle <: AbstractEChartType
     color::Union{String,Void} = "#000"
     fontStyle::Union{String,Void} = "normal"
     fontWeight::Union{String,Void} = "normal"
     fontFamily::Union{String,Void} = "sans-serif"
     fontSize::Union{Int,Void} = 12
+    align::Union{String, Void} = nothing
+    verticalAlign::Union{String, Void} = nothing
+    lineHeight::Union{Int, Void} = nothing
+    width::Union{Int, String, Void} = nothing
+    height::Union{Int, String, Void} = nothing
+    textBorderColor::Union{String, Void} = nothing
+    textBorderWidth::Union{Int, Void} = nothing
+    textShadowColor::Union{String, Void} = nothing
+    textShadowBlur::Union{Int, Void} = nothing
+    textShadowOffsetX::Union{Int, Void} = nothing
+    textShadowOffsetY::Union{Int, Void} = nothing
+    rich::Union{Dict, Void} = nothing
 end
-@with_kw type SplitArea <: AbstractEChartType
+@with_kw mutable struct SplitArea <: AbstractEChartType
     interval::Union{Int,String,Void} = "auto"
     show::Union{Bool,Void} = true
     areaStyle::Union{AreaStyle,Void} = nothing
 end
-@with_kw type SplitLine <: AbstractEChartType
+@with_kw mutable struct SplitLine <: AbstractEChartType
     show::Union{Bool,Void} = true
     interval::Union{Int,String,JSFunction,Void} = "auto"
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
-@with_kw type AxisLabel <: AbstractEChartType
+@with_kw mutable struct AxisLabel <: AbstractEChartType
     show::Union{Bool,Void} = true
     interval::Union{Int,String,Void} = "auto"
     inside::Union{Bool,Void} = false
     rotate::Union{Int,Void} = 0
     margin::Union{Int,Void} = 8
     formatter::Union{String,Void, JSFunction} = "{value}"
-    textStyle::Union{TextStyle,Void} = nothing
+    showMinLabel::Union{Bool, Void} = nothing
+    showMaxLabel::Union{Bool, Void} = nothing
+    color::Union{String,JSFunction,Void} = nothing
+    fontStyle::Union{String, Void} = nothing
+    fontWeight::Union{String, Void} = nothing
+    fontFamily::Union{String, Void} = nothing
+    fontSize::Union{Int, Void} = nothing
+    align::Union{String, Void} = nothing
+    verticalAlign::Union{String, Void} = nothing
+    lineHeight::Union{Int, Void} = nothing
+    backgroundColor::Union{String, Void} = nothing
+    borderColor::Union{String, Void} = nothing
+    borderWidth::Union{Int, Void} = nothing
+    borderRadius::Union{Int, Void} = nothing
+    padding::Union{AbstractVector,Int, Void} = nothing
+    shadowColor::Union{String, Void} = nothing
+    shadowBlur::Union{Int, Void} = nothing
+    shadowOffsetX::Union{Int, Void} = nothing
+    shadowOffsetY::Union{Int, Void} = nothing
+    width::Union{Int, Void} = nothing
+    height::Union{Int, Void} = nothing
+    textBorderColor::Union{String, Void} = nothing
+    textBorderWidth::Union{Int, Void} = nothing
+    textShadowColor::Union{String, Void} = nothing
+    textShadowBlur::Union{Int, Void} = nothing
+    textShadowOffsetX::Union{Int, Void} = nothing
+    textShadowOffsetY::Union{Int, Void} = nothing
+    rich::Union{Dict, Void} = nothing
 end
-@with_kw type AxisLine <: AbstractEChartType
+@with_kw mutable struct AxisLine <: AbstractEChartType
     show::Union{Bool,Void} = true
     onZero::Union{Bool,Void} = true
+    onZeroAxisIndex::Union{Int, Void} = nothing
+    symbol::Union{String, Void} = nothing
+    symbolSize::Union{AbstractVector, Void} = nothing
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
-@with_kw type AxisTick <: AbstractEChartType
+@with_kw mutable struct AxisTick <: AbstractEChartType
     show::Union{Bool,Void} = true
+    alignWithLabel::Union{Bool, Void} = nothing
     interval::Union{Int,String,Void} = "auto"
     inside::Union{Bool,Void} = false
     length::Union{Int,Void} = 5
     lineStyle::Union{LineStyle,Void} = LineStyle()
 end
-@with_kw type LabelOpts <: AbstractEChartType
+@with_kw mutable struct Label <: AbstractEChartType
     show::Union{Bool,Void} = nothing
     position::Union{String, Void} = nothing
     offset::Union{AbstractVector, Void} = nothing
     formatter::Union{String, JSFunction, Void} = nothing
     textStyle::Union{TextStyle,Void} = nothing
 end
-@with_kw type Label <: AbstractEChartType
-    normal::Union{LabelOpts,Void} = nothing
-    emphasis::Union{LabelOpts,Void} = nothing
-end
-@with_kw type ItemStyleOpts <: AbstractEChartType
+@with_kw mutable struct ItemStyle <: AbstractEChartType
     color::Union{String, JSFunction, Void} = nothing
     barBorderColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = nothing
@@ -95,11 +120,7 @@ end
     shadowOffsetY::Union{Int,Void} = nothing
     opacity::Union{Float64,Void} = nothing
 end
-@with_kw type ItemStyle <: AbstractEChartType
-    normal::Any = deepcopy(ItemStyleOpts())
-    emphasis::Any = nothing
-end
-@with_kw type IconStyleOpts <: AbstractEChartType
+@with_kw mutable struct IconStyleOpts <: AbstractEChartType
     color::Union{String,Void} = "adaptive"
     borderColor::Union{String,Void} = "#666"
     borderWidth::Union{Int,Void} = 1
@@ -110,11 +131,11 @@ end
     shadowOffsetY::Union{Int,Void} = 0
     opacity::Union{Int,Void} = nothing
 end
-@with_kw type IconStyle <: AbstractEChartType
-    normal::Union{ItemStyleOpts,Void} = nothing
-    emphasis::Union{ItemStyleOpts,Void} = nothing
+@with_kw mutable struct IconStyle <: AbstractEChartType
+    normal::Union{ItemStyle,Void} = nothing
+    emphasis::Union{ItemStyle,Void} = nothing
 end
-@with_kw type CrossStyle <: AbstractEChartType
+@with_kw mutable struct CrossStyle <: AbstractEChartType
     color::Union{String,Void} = "#555"
     width::Union{Int,Void} = 1
     _type::Union{String,Void} = "dashed"
@@ -125,7 +146,7 @@ end
     opacity::Union{Number,Void} = 0
     textStyle::Union{TextStyle,Void} = nothing
 end
-@with_kw type ShadowStyle <: AbstractEChartType
+@with_kw mutable struct ShadowStyle <: AbstractEChartType
     color::Union{String,Void} = "rgba(150,150,150,0.5)"
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
@@ -133,7 +154,7 @@ end
     shadowOffsetY::Union{Int,Void} = 0
     opacity::Union{Number,Void} = 0
 end
-@with_kw type AxisPointerLabel <: AbstractEChartType
+@with_kw mutable struct AxisPointerLabel <: AbstractEChartType
     show::Union{Bool, Void} = false
     precision::Union{String, Number, Void} = "auto"
     formatter::Union{String, JSFunction, Void} = nothing
@@ -148,7 +169,7 @@ end
     shadowOffsetX::Union{Number, Void} = nothing
     shadowOffsetY::Union{Number, Void} = nothing
 end
-@with_kw type AxisPointer <: AbstractEChartType
+@with_kw mutable struct AxisPointer <: AbstractEChartType
     show::Union{Bool,Void} = false
     _type::Union{String,Void} = "line"
     snap::Union{Bool,Void} = nothing
@@ -163,7 +184,7 @@ end
     link::Union{AbstractVector, Any} = nothing
     triggerOn::Union{String, Void} = nothing
 end
-@with_kw type Tooltip <: AbstractEChartType
+@with_kw mutable struct Tooltip <: AbstractEChartType
     show::Union{Bool,Void} = false
     trigger::Union{String,Void} = "item"
     axisPointer::Union{AxisPointer,Void} = nothing
@@ -184,7 +205,8 @@ end
     textStyle::Union{TextStyle,Void} = "#fff"
     extraCssText::Union{String,Void} = nothing
 end
-@with_kw type Legend <: AbstractEChartType
+@with_kw mutable struct Legend <: AbstractEChartType
+    _type::Union{String,Void} = nothing
     show::Union{Bool,Void} = true
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
@@ -214,8 +236,19 @@ end
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = 0
     shadowOffsetY::Union{Int,Void} = 0
+    scrollDataIndex::Union{Int,Void} = nothing
+    pageButtonItemGap::Union{Int,Void} = nothing
+    pageButtonPosition::Union{Int,Void} = nothing
+    pageFormatter::Union{String,JSFunction,Void} = nothing
+    pageIcons::Union{Dict, Void} = nothing
+    pageIconColor::Union{String, Void} = nothing
+    pageIconInactiveColor::Union{String, Void} = nothing
+    pageIconSize::Union{Int, Void} = nothing
+    pageTextStyle::Union{TextStyle, Void} = nothing
+    animation::Union{Bool, Void} = nothing
+    animationDurationUpdate::Union{Int, Void} = nothing
 end
-@with_kw type Toolbox <: AbstractEChartType
+@with_kw mutable struct Toolbox <: AbstractEChartType
     show::Union{Bool,Void} = false
     orient::Union{String,Void} = "vertical"
     itemSize::Union{Number,Void} = 15
@@ -232,7 +265,7 @@ end
     width::Union{Number,String,Void} = "auto"
     height::Union{Number,String,Void} = "auto"
 end
-@with_kw type Brush <: AbstractEChartType
+@with_kw mutable struct Brush <: AbstractEChartType
     toolbox::Union{AbstractArray, Void} = nothing
     brushLink::Union{AbstractArray, String, Void} = nothing
     seriesIndex::Union{AbstractArray, Number, String, Void} = nothing
@@ -250,7 +283,7 @@ end
     outOfBrush::Union{Dict, Void} = nothing
     z::Union{Int, Void} = nothing
 end
-@with_kw type Axis <: AbstractEChartType
+@with_kw mutable struct Axis <: AbstractEChartType
     show::Union{Bool, Void} = nothing
     gridIndex::Union{Int,Void} = 0
     position::Union{String,Void} = nothing
@@ -282,14 +315,14 @@ end
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 0
 end
-@with_kw type Title <: AbstractEChartType
+@with_kw mutable struct Title <: AbstractEChartType
     show::Union{Bool,Void} = true
     text::Union{String,Void} = nothing
     link::Union{String,Void} = nothing
     target::Union{String,Void} = "blank"
     textStyle::Union{TextStyle,Void} = nothing
-    textAlign::Union{String,Void} = nothing
-    textBaseline::Union{String,Void} = nothing
+    # textAlign::Union{String,Void} = nothing
+    # textBaseline::Union{String,Void} = nothing
     subtext::Union{String,Void} = nothing
     sublink::Union{String,Void} = nothing
     subtarget::Union{String,Void} = "blank"
@@ -305,12 +338,13 @@ end
     backgroundColor::Union{String,Void, JSFunction} = nothing
     borderColor::Union{String,Void} = "transparent"
     borderWidth::Union{Int,Void} = 1
+    borderRadius::Union{Int,Void} = nothing
     shadowBlur::Union{Int,Void} = nothing
     shadowColor::Union{String,Void} = nothing
     shadowOffsetX::Union{Int,Void} = 0
     shadowOffsetY::Union{Int,Void} = 0
 end
-@with_kw type Grid <: AbstractEChartType
+@with_kw mutable struct Grid <: AbstractEChartType
     show::Bool = false
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
@@ -331,13 +365,13 @@ end
     tooltip::Union{Tooltip, Void} = nothing
 end
 #This needs work, documentation not clear about what to implement
-@with_kw type DataZoom <: AbstractEChartType
+@with_kw mutable struct DataZoom <: AbstractEChartType
     _type::Union{String,Void} = nothing
     show::Bool = false
     start::Union{Number,Void} = nothing
     _end::Union{Number,Void} = nothing
 end
-@with_kw type Timeline <: AbstractEChartType
+@with_kw mutable struct Timeline <: AbstractEChartType
     show::Union{Bool,Void} = true
     _type::Union{String,Void} = "slider"
     axisType::Union{String,Void} = "time"
@@ -366,16 +400,17 @@ end
     itemStyle::Union{ItemStyle,Void} = nothing
     checkpointStyle::Union{Dict,Void} = nothing
     controlStyle::Union{Dict,Void} = nothing
+    emphasis::Union{Dict,Void} = nothing
     data::Union{AbstractVector,Void} = nothing
 end
-@with_kw type Polar <: AbstractEChartType
+@with_kw mutable struct Polar <: AbstractEChartType
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
     center::Union{Array{String,1},Void} = String["50%","50%"]
     radius::Union{AbstractVector,Void} = nothing
     tooltip::Union{Tooltip, Void} = nothing
 end
-@with_kw type RadiusAxis <: AbstractEChartType
+@with_kw mutable struct RadiusAxis <: AbstractEChartType
     polarIndex::Union{Int,Void} = 0
     _type::Union{String,Void} = "value"
     name::Union{String,Void} = nothing
@@ -390,6 +425,7 @@ end
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -404,17 +440,18 @@ end
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
 end
-@with_kw type AngleAxis <: AbstractEChartType
+@with_kw mutable struct AngleAxis <: AbstractEChartType
     polarIndex::Union{Int,Void} = 0
     startAngle::Union{Int,Void} = nothing
     clockwise::Union{Bool,Void} = true
-    _type::Union{String,Void} = nothing #"category"
+    _type::Union{String,Void} = nothing
     boundaryGap::Union{AbstractVector,Bool,Void} = nothing
-    min::Union{Int,String,Void} = nothing #"auto"
-    max::Union{Int,String,Void} = nothing #"auto"
+    min::Union{Int,String,Void} = nothing
+    max::Union{Int,String,Void} = nothing
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = nothing
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -429,7 +466,7 @@ end
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
 end
-@with_kw type Radar <: AbstractEChartType
+@with_kw mutable struct Radar <: AbstractEChartType
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
     center::Union{Array{String,1},Void} = String["50%","50%"]
@@ -449,7 +486,7 @@ end
     splitArea::Union{SplitArea,Void} = nothing
     indicator::Union{AbstractVector,Void} = nothing
 end
-@with_kw type VisualMap <: AbstractEChartType
+@with_kw mutable struct VisualMap <: AbstractEChartType
     #continuous
     _type::Union{String,Void} = nothing
     min::Union{Real,Void} = nothing
@@ -482,6 +519,7 @@ end
     backgroundColor::Union{String,Void} = nothing
     borderColor::Union{String,Void} = nothing
     borderWidth::Union{Int,Void} = nothing
+    color::Union{String,Void} = nothing
     textStyle::Union{TextStyle, Void} = nothing
     formatter::Union{String, JSFunction, Void} = nothing
     #piecewise
@@ -496,11 +534,11 @@ end
     itemSymbol::Union{String, Void} = nothing
 
 end
-@with_kw type ScaleLimit <: AbstractEChartType
+@with_kw mutable struct ScaleLimit <: AbstractEChartType
     min::Union{Int,Void} = nothing
     max::Union{Int,Void} = nothing
 end
-@with_kw type Geo <: AbstractEChartType
+@with_kw mutable struct Geo <: AbstractEChartType
     show::Union{Bool,Void} = true
     map::Union{String,Void} = nothing
     roam::Union{Bool,Void} = false
@@ -513,6 +551,7 @@ end
     selectedMode::Union{Bool,Void} = false
     label::Union{Label,Void} = nothing
     itemStyle::Union{ItemStyle,Void} = nothing
+    emphasis::Union{Dict, Void} = nothing
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
     left::Union{Int,String,Void} = "auto"
@@ -524,7 +563,7 @@ end
     regions::Union{AbstractVector,Void} = nothing
     silent::Union{Bool,Void} = false
 end
-@with_kw type Parallel <: AbstractEChartType
+@with_kw mutable struct Parallel <: AbstractEChartType
     zlevel::Union{Int,Void} = 0
     z::Union{Int,Void} = 2
     left::Union{Int,String,Void} = "auto"
@@ -541,14 +580,14 @@ end
     axisExpandTriggerOn::Union{String, Void} = nothing
     parallelAxisDefault::Union{Dict,Void} = nothing
 end
-@with_kw type AreaSelectStyle <: AbstractEChartType
+@with_kw mutable struct AreaSelectStyle <: AbstractEChartType
     width::Union{Int,Void} = 20
     borderWidth::Union{Int,Void} = 1
     borderColor::Union{String,Void} = "rgba(160,197,232)"
     color::Union{String,Void} = "rgba(160,197,232)"
     opacity::Union{Number,Void} = 0.3
 end
-@with_kw type ParallelAxis <: AbstractEChartType
+@with_kw mutable struct ParallelAxis <: AbstractEChartType
     dim::Union{Int,Void} = nothing
     parallelIndex::Union{Int,Void} = 0
     realtime::Union{Bool,Void} = nothing
@@ -566,6 +605,7 @@ end
     scale::Union{Bool,Void} = false
     splitNumber::Union{Int,Void} = 5
     minInterval::Union{Int,Void} = 0
+    maxInterval::Union{Int,Void} = nothing
     interval::Union{Int,Void} = nothing
     logBase::Union{Int,Void} = nothing
     silent::Union{Bool,Void} = true
@@ -575,7 +615,7 @@ end
     axisLabel::Union{AxisLabel,Void} = nothing
     data::Union{Dict,Void} = nothing
 end
-@with_kw type SingleAxis <: AbstractEChartType
+@with_kw mutable struct SingleAxis <: AbstractEChartType
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
     left::Union{String, Number, Void} = nothing
@@ -598,6 +638,7 @@ end
     scale::Union{Bool, Void} = nothing
     splitNumber::Union{Number, Void} = nothing
     minInterval::Union{Number, Void}  = nothing
+    maxInterval::Union{Number, Void}  = nothing
     interval::Union{Number, Void} = nothing
     logBase::Union{Number, Void} = nothing
     silent::Union{Bool, Void} = nothing
@@ -612,10 +653,10 @@ end
     tooltip::Union{Tooltip, Void} = nothing
 end
 #Needs to be fleshed out, might not be possible due to $action fieldname
-@with_kw type Graphic <: AbstractEChartType
+@with_kw mutable struct Graphic <: AbstractEChartType
     tbd::Any = nothing
 end
-@with_kw type Calendar <: AbstractEChartType
+@with_kw mutable struct Calendar <: AbstractEChartType
     zlevel::Union{Int,Void} = nothing
     z::Union{Int,Void} = nothing
     left::Union{String, Number, Void} = nothing
@@ -634,8 +675,20 @@ end
     yearLabel::Union{Dict, Void} = nothing
     silent::Union{Bool,Void} = nothing
 end
+@with_kw mutable struct Dataset <: AbstractEChartType
+    source::Union{Dict, Array, Void} = nothing
+    dimensions::Union{AbstractVector, Void} = nothing
+    sourceHeader::Union{Bool, Void} = nothing
+end
+@with_kw mutable struct Aria <: AbstractEChartType
+    show::Union{Bool, Void} = nothing
+    description::Union{String, Void} = nothing
+    general::Union{Dict, Void} = nothing
+    series::Union{Dict, Void} = nothing
+    data::Union{Dict, Void} = nothing
+end
 #Build label type?
-@with_kw type MarkPoint <: AbstractEChartType
+@with_kw mutable struct MarkPoint <: AbstractEChartType
     _symbol::Union{String, Void} = nothing
     symbolSize::Union{Int, AbstractVector, JSFunction, Void} = nothing
     symbolRotate::Union{Int, Void} = nothing
@@ -653,7 +706,7 @@ end
     animationEasingUpdate::Union{String, Void} = nothing
     animationDelayUpdate::Union{Int, Void} = nothing
 end
-@with_kw type MarkLine <: AbstractEChartType
+@with_kw mutable struct MarkLine <: AbstractEChartType
     silent::Union{Bool, Void} = nothing
     _symbol::Union{String, Void} = nothing
     symbolSize::Union{Int, AbstractVector, JSFunction, Void} = nothing
@@ -670,7 +723,7 @@ end
     animationEasingUpdate::Union{String, Void} = nothing
     animationDelayUpdate::Union{Int, Void} = nothing
 end
-@with_kw type MarkArea <: AbstractEChartType
+@with_kw mutable struct MarkArea <: AbstractEChartType
     silent::Union{Bool, Void} = nothing
     itemStyle::Union{ItemStyle, Void} = nothing
     data::Union{AbstractVector, Void} = Any[]
@@ -685,7 +738,7 @@ end
 end
 #Need to validate for all types
 #Make individual series types like echarts.js?
-@with_kw type Series <: AbstractEChartType
+@with_kw mutable struct Series <: AbstractEChartType
     #line
     _type::Union{String,Void} = nothing
     name::Union{String,Void} = nothing
@@ -853,7 +906,7 @@ end
     singleAxisIndex::Union{Number, Void} = nothing
 
 end
-@with_kw type EChart <: AbstractEChartType
+@with_kw mutable struct EChart <: AbstractEChartType
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
     ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
     ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
@@ -872,6 +925,7 @@ end
     tooltip::Union{Tooltip,Void} = nothing
     axisPointer::Union{AxisPointer, Void} = nothing
     toolbox::Union{Toolbox,Void} = Toolbox()
+    brush::Union{Brush, Void} = nothing
     geo::Union{Geo,Void} = nothing
     parallel::Union{Parallel,Void} = nothing
     parallelAxis::Union{ParallelAxis,Void} = nothing
@@ -879,6 +933,8 @@ end
     timeline::Union{Timeline,Void} = nothing
     graphic::Union{Graphic,Void} = nothing
     calendar::Union{Calendar,Void} = nothing
+    dataset::Union{Dataset, Void} = nothing
+    aria::Union{Aria, Void} = nothing
     series::Union{Array{Series,1},Void} = nothing
     color::Union{AbstractVector,JSFunction,Void} = nothing
     backgroundColor::Union{String,Void, JSFunction} = nothing
@@ -891,5 +947,9 @@ end
     animationDurationUpdate::Union{Int,Void} = nothing
     animationEasingUpdate::Union{String,Void} = nothing
     animationDelayUpdate::Union{Int,Void} = nothing
+    progressive::Any = nothing
+    progressiveThreshold::Any = nothing
+    blendMode::Any = nothing
+    hoverLayerThreshold::Any = nothing
     useUTC::Union{Bool, Void} = nothing
 end
