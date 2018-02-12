@@ -104,7 +104,7 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group
 
 			#Append remaining series, put symbolSize
 			for i in 2:numgroups
-				push!(ec.series, Series(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y], subdf[i][size])))
+				push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y], subdf[i][size])))
 
 				ec.series[i].symbolSize = ec.series[1].symbolSize
 			end

@@ -65,7 +65,7 @@ function candlestick(dt::AbstractVector{String},
     ec = newplot(kwargs, ec_charttype = "candlestick")
     ec.xAxis = [Axis(_type = "category", data = dt, scale = true, boundaryGap = true)]
     ec.yAxis = [Axis(scale = scale)]
-    ec.series = [Series(name = "Series 1", _type = "candlestick", data = fmtdata)]
+    ec.series = [CandleStickSeries(name = "Series 1", data = fmtdata)]
 
     #Add legend if requested
     legend? legend!(ec) : nothing

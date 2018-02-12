@@ -29,11 +29,7 @@ function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, R
 
     ec = newplot(kwargs, ec_charttype = "funnel")
 
-    ec.series = [Series(name = "Series 1",
-                        _type = "funnel",
-                        data =  arrayofdicts(value = values, name = names)
-                       )
-                ]
+    ec.series = [FunnelSeries(name = "Series 1", data =  arrayofdicts(value = values, name = names))]
 
     #Add legend if requested
     legend? legend!(ec) : nothing

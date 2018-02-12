@@ -62,7 +62,7 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 
 	#Append remaining series
 	for i in 2:size(y)[2]
-		push!(ec.series, Series(_type = "scatter", data = arrayofarray(x, y[:,i])))
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(x, y[:,i])))
 	end
 
 	seriesnames!(ec)
@@ -125,7 +125,7 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 
 	#Append remaining series
 	for i in 2:numgroups
-		push!(ec.series, Series(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y])))
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y])))
 	end
 
 	#Add series names based on levels of grouped df

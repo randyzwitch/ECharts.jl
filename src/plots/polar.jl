@@ -39,7 +39,7 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
     ec.polar = [Polar()]
     ec.angleAxis = AngleAxis(_type = "value", splitNumber = splitNumber)
     ec.radiusAxis = RadiusAxis(min = 0)
-    ec.series = [Series(name = "Series 1", coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = arrayofarray(radius,angle))]
+    ec.series = [XYSeries(name = "Series 1", coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = arrayofarray(radius,angle))]
 
     #Add legend if requested
     legend? legend!(ec) : nothing
@@ -60,7 +60,7 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
 
     #Append remaining series
 	for i in 2:size(radius)[2]
-		push!(ec.series, Series(coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = arrayofarray(radius[:,i],angle)))
+		push!(ec.series, XYSeries(coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = arrayofarray(radius[:,i],angle)))
 	end
 
     #Add seriesnames for legend

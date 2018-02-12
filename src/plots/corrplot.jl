@@ -64,7 +64,7 @@ function corrplot(m::Matrix;
     ec.xAxis = [Axis(data = 1:length(original_names), _type = "category")]
     ec.yAxis = [Axis(data = 1:length(original_names), _type = "category", inverse = true)]
 
-    ec.series = [Series(data = arrayofarray(df_melt[:variable], df_melt[:rownames], df_melt[:value]),
+    ec.series = [XYSeries(data = arrayofarray(df_melt[:variable], df_melt[:rownames], df_melt[:value]),
                         _type = "scatter",
                         symbolSize = JSFunction("""function (data) {return $bubblesize * Math.sqrt(Math.abs(data[2]))}""")
                         )
@@ -84,7 +84,7 @@ function corrplot(m::Matrix;
                                       position = "inside",
                                       formatter = JSFunction("""function (params) {return params.data[2].toFixed(2);}"""),
                                       textStyle = TextStyle(fontWeight = "bold", color = "black", fontSize = 14)
-                                                             
+
                                   ) : nothing
     ec
 

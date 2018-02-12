@@ -61,7 +61,7 @@ function heatmap(h::StatsBase.Histogram;
     ec = ECharts.newplot(kwargs, ec_charttype = "heatmap")
     ec.yAxis = [Axis(_type = "category", data = ylabels)]
     ec.xAxis = [Axis(_type = "category", data = xlabels)]
-    ec.series = [Series(name = "heatmap", _type = "heatmap", data = data)]
+    ec.series = [HeatmapSeries(name = "heatmap", data = data)]
 
     minval, maxval = extrema(h.weights)
 

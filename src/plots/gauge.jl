@@ -29,7 +29,7 @@ function gauge(x::Union{Missing, Real};
 
     ec = newplot(kwargs, ec_charttype = "gauge")
 
-    ec.series = [Series(name = "Series 1",
+    ec.series = [GaugeSeries(name = "Series 1",
                         _type = "gauge",
                         data = [Dict("value" => x)],
                         axisLine = AxisLine(lineStyle = LineStyle(width = 10, color = [[b,c] for (b,c) in zip(breakpoints, colors)]))
