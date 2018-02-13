@@ -34,7 +34,7 @@ function corrplot(m::Matrix;
                   kwargs...)
 
     #Validate input, since cor in StatsBase returns plain Matrix
-    !issymmetric(m) ? error("Matrix needs to be symmetric for a corrplot") : nothing
+    size(m)[1] != size(m)[2] ? error("Matrix needs to be square for a corrplot") : nothing
 
     #Copy to avoid mutating
     m_ = m
