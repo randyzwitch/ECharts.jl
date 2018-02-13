@@ -1,4 +1,5 @@
 abstract type AbstractEChartType end
+abstract type AbstractEChartSeries <: AbstractEChartType end
 
 @with_kw mutable struct Theme <: AbstractEChartType
     color::Union{AbstractVector, Void} = nothing

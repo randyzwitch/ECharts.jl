@@ -46,7 +46,7 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
     ec.xAxis = [Axis(_type = "category", data = names, boundaryGap = true)]
     ec.yAxis = [Axis(_type = "value", scale = true)]
 
-    ec.series = [Series(name = "boxplot", _type = "boxplot", data = seriesdata)]
+    ec.series = [BoxPlotSeries(name = "boxplot", _type = "boxplot", data = seriesdata)]
 
     if outliers
         #Format outliers to ECharts nested array format
@@ -58,7 +58,8 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
                 end
             end
         end
-        push!(ec.series, Series(name = "outliers", _type = "scatter", data = outliers))
+        #hack to call this BoxPlotSeries, since the data fields are the same
+        push!(ec.series, BoxPlotSeries(name = "outliers", _type = "scatter", data = outliers))
     end
 
     #Add legend if requested

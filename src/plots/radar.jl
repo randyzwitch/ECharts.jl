@@ -27,11 +27,11 @@ ar = area(x, y)
 ```
 """
 function radar(names::AbstractVector,
-			   values::AbstractVector{<:Union{Missing, Real}},
-			   max::AbstractVector{<:Union{Missing, Real}};
-	 			fill::Bool = false,
-				legend::Bool = false,
-				kwargs...)
+			values::AbstractVector{<:Union{Missing, Real}},
+			max::AbstractVector{<:Union{Missing, Real}};
+            fill::Bool = false,
+			legend::Bool = false,
+			kwargs...)
 
 	#Validate arrays are same length
 	if size(names)[1] != size(values)[1]
@@ -42,7 +42,7 @@ function radar(names::AbstractVector,
 
 	ec.radar = [Radar(indicator = arrayofdicts(name = names, max = max))]
 
-	ec.series = [Series(name = "Series 1", _type = "radar", data = [Dict{Any, Any}("value" => values)])]
+	ec.series = [RadarSeries(name = "Series 1", data = [Dict{Any, Any}("value" => values)])]
 
 	# Fill area if requested
 	fill!(ec, 1, fill)
@@ -66,7 +66,7 @@ function radar(names::AbstractVector,
 
 	# Append remaining Y data
 	for i in 2:size(values)[2]
-		push!(ec.series, Series(_type = "radar", data = [Dict{Any, Any}("value" => values[:,i])]))
+		push!(ec.series, RadarSeries(data = [Dict{Any, Any}("value" => values[:,i])]))
 	end
 
 	# Fill area if requested

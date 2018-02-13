@@ -31,7 +31,7 @@ function sankey(names::AbstractVector,
                 kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "sankey")
-    ec.series = [Series(name = "Series 1", _type = "sankey", layout = "none", data = arrayofdicts(name = names),
+    ec.series = [SankeySeries(name = "Series 1", layout = "none", data = arrayofdicts(name = names),
         links = arrayofdicts(source = source, target = target, value = value))]
 
     return ec

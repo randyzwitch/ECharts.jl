@@ -14,7 +14,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
 
     data_fmt = arrayofdicts(value = values, name = names, selected = selected)
 
-    ec.series = [Series(name = "Series 1", _type = "pie", radius = radius, center = center, data = data_fmt, roseType = roseType)]
+    ec.series = [PieSeries(name = "Series 1", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 
     #Add legend if requested
     legend? legend!(ec) : nothing

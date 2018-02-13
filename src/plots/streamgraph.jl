@@ -38,7 +38,7 @@ function streamgraph(x::AbstractVector{String},
     #Character value would represent dates
     ec.singleAxis = ECharts.SingleAxis(_type = "time")
 
-    ec.series = [Series(_type = "themeRiver", data = data)]
+    ec.series = [ThemeRiverSeries(data = data)]
 
     #need to modify legend!
     legend? legend!(ec) : nothing
@@ -60,7 +60,7 @@ function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
     #Character value would represent dates
     ec.singleAxis = ECharts.SingleAxis()
 
-    ec.series = [Series(_type = "themeRiver", data = data)]
+    ec.series = [ThemeRiverSeries(data = data)]
 
     #need to modify legend!
     legend? legend!(ec) : nothing

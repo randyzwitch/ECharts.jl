@@ -18,7 +18,7 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 	#General visualization defaults
 	ec.xAxis = [Axis(_type = "category", data = x)]
 	ec.yAxis = [Axis(_type = "value", nameGap = 50, scale = scale)] #Add some padding for later if name added
-	ec.series = [Series(name = "Series 1", _type = mark, data = y, step = step)]
+	ec.series = [XYSeries(name = "Series 1", _type = mark, data = y, step = step)]
 
 	#Make plot horizontal
 	horizontal? flip!(ec): nothing
@@ -50,7 +50,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 
 	# Append remaining Y data
 	for i in 2:size(y_)[2]
-		push!(ec.series, Series(_type = mark[i], data = y_[:,i]))
+		push!(ec.series, XYSeries(_type = mark[i], data = y_[:,i]))
 	end
 
 	#stack: this logic feels janky, but seems to work

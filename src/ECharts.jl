@@ -17,6 +17,7 @@ module ECharts
 	export colorpalettes
 
 	export EChart
+	export PieSeries, RadarSeries, FunnelSeries
 	export Title, Axis, Series, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
