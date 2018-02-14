@@ -29,7 +29,7 @@ seriesnames!(bm, ["Pink Series", "Blue Series", "Tan Series"])
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("seriesn"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("seriesn"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(

@@ -10,7 +10,7 @@ In particular, ECharts.jl provides:
 
 * A series of Julia composite types representing ECharts visualization primitives
 * High-level functions for quickly creating visualizations such as bar charts, area charts, line charts and others
-* Support for ColorBrewer color scales via the [ColorBrewer.jl](https://github.com/timothyrenner/ColorBrewer.jl) package and other fun themes via the [NoveltyColors.jl](https://github.com/randyzwitch/NoveltyColors.jl) package, for visually stunning color schemes
+* Support for ColorBrewer color scales via the [ColorBrewer.jl](https://github.com/timothyrenner/ColorBrewer.jl) package and other fun colors via the [NoveltyColors.jl](https://github.com/randyzwitch/NoveltyColors.jl) package, for visually stunning color schemes
 
 ## Motivation
 
@@ -19,7 +19,7 @@ The idea behind the API of ECharts.jl is _simplicity_; while it is possible to b
 * A minimum of required arguments to create a chart (i.e. usually, only data are required), with common optional arguments defined based on the chart type
 * Sensible/opinionated defaults, such as a legend only being shown when two or more series plotted
 * Integrated [`missing`](https://github.com/JuliaData/Missings.jl) value support (see chart docs for implementation details)
-* Tight integration with the [echarts4](https://ecomfe.github.io/echarts-doc/public/en/index.html) JavaScript library, which provides rich interactivity (i.e. sliders, hover, toolbox) as default
+* Tight integration with the [echarts4](https://ecomfe.github.io/echarts-doc/public/en/index.html) JavaScript library, which provides rich interactivity (i.e. sliders, hover, toolbox, themes) as default
 
 ## Workflow
 
@@ -47,7 +47,7 @@ yaxis!(ar, name = "Daily High Temperature °C")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("areaex"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("areaex"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(

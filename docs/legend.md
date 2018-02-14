@@ -55,7 +55,7 @@ bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], stac
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("nolegend"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("nolegend"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -72,7 +72,7 @@ legend!(bm)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("haslegend"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("haslegend"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(

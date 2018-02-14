@@ -25,7 +25,7 @@ bmf = bar(x, hcat(0.95 .* y, 1.25 .* y, y), mark = ["line", "bar", "bar"])
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barline"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barline"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(

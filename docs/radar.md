@@ -36,7 +36,7 @@ r = radar(names, values, max)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("radar1"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("radar1"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -59,7 +59,7 @@ r2 = radar(names, hcat(values, values2), max)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("radar2"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("radar2"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -82,7 +82,7 @@ r3 = radar(names, hcat(values, values2), max, fill = [false, true])
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("radar3"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("radar3"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(

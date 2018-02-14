@@ -42,7 +42,7 @@ b = box(data)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("boxp"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("boxp"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -68,7 +68,7 @@ b = box(data, horizontal = true)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplot"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplot"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -88,7 +88,7 @@ bdf = box(df, :MPG, :Cyl)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("boxdf"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("boxdf"), roma());
 
     // Load data into the ECharts instance
     myChart.setOption(
