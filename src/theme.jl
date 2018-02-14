@@ -84,3 +84,6 @@ const vintage = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/
 const walden = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/walden.json")))
 const westeros = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/westeros.json")))
 const wonderland = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/wonderland.json")))
+
+#custom themes
+const grayscale = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/grayscale.json")))
