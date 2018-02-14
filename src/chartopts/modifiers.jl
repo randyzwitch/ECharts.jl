@@ -384,3 +384,8 @@ function labels!(ec::EChart; show::Bool = true, position::String = "insideTop")
 	return ec
 
 end
+
+function theme!(ec::EChart, theme::Theme)
+	ec.theme = theme
+	return ec
+end

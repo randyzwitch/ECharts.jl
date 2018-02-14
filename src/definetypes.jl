@@ -1379,7 +1379,7 @@ end
     ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
     ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
     ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
-    theme::Theme = defaulttheme() #required for chart to render
+    theme::Theme = roma #required for chart to render
     title::Union{Vector{Title},Void} = [Title()]
     legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
     grid::Union{Array{Grid},Void} = [Grid()]
