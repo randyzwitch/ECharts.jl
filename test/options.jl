@@ -181,3 +181,6 @@ jitter!(a, 1, pctxrange = 0.1, pctyrange = 0.05)
 sm = scatter(1:30, hcat(rand(30), rand(30)))
 jitter!(sm)
 @test typeof(sm) == EChart
+
+#17: theme!
+@test typeof(theme!(sm, ECharts.vintage)) == EChart
