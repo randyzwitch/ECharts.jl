@@ -148,6 +148,10 @@ entries:
       url: /text
       output: web
 
+    - title: theme!
+      url: /theme
+      output: web
+
     - title: title!
       url: /title
       output: web

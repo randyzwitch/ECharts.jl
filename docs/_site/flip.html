@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/customstyles.css">
 <link rel="stylesheet" href="css/theme-blue.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="js/jquery.navgoco.min.js"></script>
 
@@ -30,11 +30,9 @@
 <script src="js/echarts-4.0.2.js"></script>
 
 <script type="text/javascript">
-var roma = function(){
-
-     return('{"color":["#e01f54","#001852","#f5e8c8","#b8d2c7","#c6b38e","#a4d8c2","#f3d999","#d3758f","#dcc392","#2e4783","#82b6e9","#ff6347","#a092f1","#0a915d","#eaf889","#6699FF","#ff6666","#3cb371","#d5b158","#38b6b6"],"backgroundColor":"rgba(0,0,0,0)","textStyle":{},"title":{"textStyle":{"color":"#333333"},"subtextStyle":{"color":"#aaaaaa"}},"line":{"symbolSize":4,"itemStyle":{"normal":{"borderWidth":1}},"smooth":false,"symbol":"emptyCircle","lineStyle":{"normal":{"width":2}}},"radar":{"symbolSize":4,"itemStyle":{"normal":{"borderWidth":1}},"smooth":false,"symbol":"emptyCircle","lineStyle":{"normal":{"width":2}}},"bar":{"itemStyle":{"normal":{"barBorderColor":"#ccc","barBorderWidth":0},"emphasis":{"barBorderColor":"#ccc","barBorderWidth":0}}},"pie":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"scatter":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"boxplot":{"itemStyle":{"normal":{"borderWidth":1},"emphasis":{"borderWidth":2}}},"parallel":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"sankey":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"funnel":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"gauge":{"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"},"emphasis":{"borderWidth":0,"borderColor":"#ccc"}}},"candlestick":{"itemStyle":{"normal":{"borderColor0":"#b8d2c7","color":"#e01f54","borderColor":"#f5e8c8","borderWidth":1,"color0":"#001852"}}},"graph":{"label":{"normal":{"textStyle":{"color":"#eeeeee"}}},"symbolSize":4,"itemStyle":{"normal":{"borderWidth":0,"borderColor":"#ccc"}},"smooth":false,"symbol":"emptyCircle","color":["#e01f54","#001852","#f5e8c8","#b8d2c7","#c6b38e","#a4d8c2","#f3d999","#d3758f","#dcc392","#2e4783","#82b6e9","#ff6347","#a092f1","#0a915d","#eaf889","#6699FF","#ff6666","#3cb371","#d5b158","#38b6b6"],"lineStyle":{"normal":{"color":"#aaaaaa","width":1}}},"map":{"label":{"normal":{"textStyle":{"color":"#000000"}},"emphasis":{"textStyle":{"color":"rgb(100,0,0)"}}},"itemStyle":{"normal":{"borderColor":"#444444","borderWidth":0.5,"areaColor":"#eeeeee"},"emphasis":{"borderColor":"#444444","borderWidth":1,"areaColor":"rgba(255,215,0,0.8)"}}},"geo":{"label":{"normal":{"textStyle":{"color":"#000000"}},"emphasis":{"textStyle":{"color":"rgb(100,0,0)"}}},"itemStyle":{"normal":{"borderColor":"#444444","borderWidth":0.5,"areaColor":"#eeeeee"},"emphasis":{"borderColor":"#444444","borderWidth":1,"areaColor":"rgba(255,215,0,0.8)"}}},"categoryAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":false,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"valueAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"logAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"timeAxis":{"axisLine":{"show":true,"lineStyle":{"color":"#333"}},"axisLabel":{"textStyle":{"color":"#333"},"show":true},"splitLine":{"show":true,"lineStyle":{"color":["#ccc"]}},"splitArea":{"areaStyle":{"color":["rgba(250,250,250,0.3)","rgba(200,200,200,0.3)"]},"show":false},"axisTick":{"show":true,"lineStyle":{"color":"#333"}}},"toolbox":{"iconStyle":{"normal":{"borderColor":"#999999"},"emphasis":{"borderColor":"#666666"}}},"legend":{"textStyle":{"color":"#333333"}},"tooltip":{"axisPointer":{"crossStyle":{"color":"#cccccc","width":1},"lineStyle":{"color":"#cccccc","width":1}}},"timeline":{"label":{"normal":{"textStyle":{"color":"#293c55"}},"emphasis":{"textStyle":{"color":"#293c55"}}},"controlStyle":{"normal":{"color":"#293c55","borderColor":"#293c55","borderWidth":0.5},"emphasis":{"color":"#293c55","borderColor":"#293c55","borderWidth":0.5}},"checkpointStyle":{"color":"#e43c59","borderColor":"rgba(194,53,49,0.5)"},"itemStyle":{"normal":{"color":"#293c55","borderWidth":1},"emphasis":{"color":"#a9334c"}},"lineStyle":{"color":"#293c55","width":1}},"visualMap":{"color":["#e01f54","#e7dbc3"]},"dataZoom":{"dataBackgroundColor":"rgba(47,69,84,0.3)","textStyle":{"color":"#333333"},"handleSize":"100%","handleColor":"#a7b7cc","fillerColor":"rgba(167,183,204,0.4)","backgroundColor":"rgba(47,69,84,0)"},"markPoint":{"label":{"normal":{"textStyle":{"color":"#eeeeee"}},"emphasis":{"textStyle":{"color":"#eeeeee"}}}}}');
-
-}
+//Theme for each chart to take, default in Julia
+var roma = $.getJSON("/themes/roma.json");
+var purplepassion = $.getJSON("/themes/purple-passion.json");
 </script>
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -424,6 +422,13 @@ var roma = function(){
             
             
             
+            <li><a href="theme">theme!</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="title">title!</a></li>
             
             
@@ -535,7 +540,10 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="examples">Examples</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><br data-jekyll-commonmark-ghpages="" /><span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span><br data-jekyll-commonmark-ghpages="" /><span class="n">bm</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="n">y</span><span class="x">),</span> <span class="n">color</span> <span class="o">=</span> <span class="x">[</span><span class="s">"red"</span><span class="x">,</span> <span class="s">"gray"</span><span class="x">,</span> <span class="s">"blue"</span><span class="x">],</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
+<span class="n">bm</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="n">y</span><span class="x">),</span> <span class="n">color</span> <span class="o">=</span> <span class="x">[</span><span class="s">"red"</span><span class="x">,</span> <span class="s">"gray"</span><span class="x">,</span> <span class="s">"blue"</span><span class="x">],</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></figure>
 
 <div id="barplot3" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -570,7 +578,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Feb 6, 2018 <br />
+ Site last generated: Feb 16, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

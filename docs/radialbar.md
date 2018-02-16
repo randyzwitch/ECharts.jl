@@ -39,7 +39,7 @@ b = radialbar(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rad"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("rad"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -59,7 +59,7 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rad2"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("rad2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

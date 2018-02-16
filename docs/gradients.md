@@ -42,7 +42,7 @@ yaxis!(ar, name = "Daily High Temperature °C")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("lgradient"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("lgradient"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -62,7 +62,7 @@ smooth!(ar)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("lgradient2"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("lgradient2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -80,7 +80,7 @@ pp = pie(["all"], [1], color = radialgradient("red", "purple"))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rgradient"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("rgradient"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -99,7 +99,7 @@ pp2 = pie(["all"], [1], color = radialgradient("red", "purple", x = 0.25, y = 0.
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rgradient2"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("rgradient2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

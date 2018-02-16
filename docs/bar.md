@@ -39,7 +39,7 @@ b = bar(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplot"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplot"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -59,7 +59,7 @@ bc = bar(x, y, color = "green")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplotb"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplotb"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -80,7 +80,7 @@ bch = bar(x, y, color = "lightgray", horizontal = true)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barploth"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barploth"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -100,7 +100,7 @@ bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplotc"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplotc"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -121,7 +121,7 @@ bcs = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], sta
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplotbcs"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplotbcs"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -145,7 +145,7 @@ bcsa = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], st
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("barplotbcsa"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("barplotbcsa"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -168,7 +168,7 @@ bg = bar(df_merged, :x, :y, :g)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("bardf"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("bardf"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

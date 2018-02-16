@@ -35,7 +35,7 @@ fn = funnel(n, v)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("funnelp"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("funnelp"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

@@ -55,7 +55,7 @@ c = candlestick(dt, open_, close_, low_, high_)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("candle"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("candle"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

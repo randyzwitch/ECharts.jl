@@ -35,7 +35,7 @@ colorscheme!(r, ("acw", "JapaneseGarden"))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("color1"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("color1"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

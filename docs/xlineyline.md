@@ -44,7 +44,7 @@ xline!(as, "Tuesday")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("lines"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("lines"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

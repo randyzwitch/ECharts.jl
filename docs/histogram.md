@@ -36,7 +36,7 @@ hs = histogram(h)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("hist1d"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("hist1d"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -55,7 +55,7 @@ hs2 = histogram(h2)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("hist2d"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("hist2d"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

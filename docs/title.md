@@ -57,7 +57,7 @@ title!(a, text = "Bar Plot Title", subtext = "Secondary Title")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("title_ex"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("title_ex"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

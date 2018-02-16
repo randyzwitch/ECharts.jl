@@ -35,7 +35,7 @@ p = polar(angle, radius)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("polar1"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("polar1"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -58,7 +58,7 @@ p2 = polar(angle, hcat(radius, radius2))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("polar2"), JSON.parse(roma()));
+    var myChart = echarts.init(document.getElementById("polar2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
