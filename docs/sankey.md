@@ -34,7 +34,7 @@ s = sankey(name, source, target, value)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("sankey1"), roma());
+    var myChart = echarts.init(document.getElementById("sankey1"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

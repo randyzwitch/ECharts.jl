@@ -64,7 +64,7 @@ yaxis!(l, _type = "log", scale = true)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("logscale"), roma());
+    var myChart = echarts.init(document.getElementById("logscale"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -85,7 +85,7 @@ yaxis!(l, _type = "log", scale = true, formatter = "{value} kg")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("fmat"), roma());
+    var myChart = echarts.init(document.getElementById("fmat"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

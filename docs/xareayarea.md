@@ -44,7 +44,7 @@ xarea!(sgrp, 10, 14)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("logscale"), roma());
+    var myChart = echarts.init(document.getElementById("logscale"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -61,7 +61,7 @@ yarea!(sgrp, 100, 150, series = 2)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("fmat"), roma());
+    var myChart = echarts.init(document.getElementById("fmat"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

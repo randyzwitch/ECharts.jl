@@ -60,7 +60,7 @@ text!(sgrp, subtext = "Source: mtcars dataset from R", left = "0%", bottom = "0%
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("text_ex"), roma());
+    var myChart = echarts.init(document.getElementById("text_ex"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -79,7 +79,7 @@ text!(sgrp, 2, sublink = "https://stat.ethz.ch/R-manual/R-devel/library/datasets
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("text_ex2"), roma());
+    var myChart = echarts.init(document.getElementById("text_ex2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(

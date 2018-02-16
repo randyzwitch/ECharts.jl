@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/customstyles.css">
 <link rel="stylesheet" href="css/theme-blue.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="js/jquery.navgoco.min.js"></script>
 
@@ -30,9 +30,8 @@
 <script src="js/echarts-4.0.2.js"></script>
 
 <script type="text/javascript">
-var roma = function(){
-    return $.getJSON("/themes/roma.json")
-}
+//Theme for each chart to take, default in Julia
+var roma = $.getJSON("/themes/roma.json")
 </script>
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -548,7 +547,7 @@ $('#toc').on('click', 'a', function() {
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatter1"), roma());
+    var myChart = echarts.init(document.getElementById("scatter1"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -565,7 +564,7 @@ $('#toc').on('click', 'a', function() {
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatter2"), roma());
+    var myChart = echarts.init(document.getElementById("scatter2"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -583,7 +582,7 @@ $('#toc').on('click', 'a', function() {
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatterdf"), roma());
+    var myChart = echarts.init(document.getElementById("scatterdf"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -604,7 +603,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Feb 14, 2018 <br />
+ Site last generated: Feb 16, 2018 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

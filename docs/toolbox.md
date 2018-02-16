@@ -33,7 +33,7 @@ toolbox!(a, chartTypes = ["bar", "line"])
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("toolb"), roma());
+    var myChart = echarts.init(document.getElementById("toolb"), roma);
 
     // Load data into the ECharts instance
     myChart.setOption(
