@@ -76,7 +76,6 @@ const essos = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/t
 const halloween = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/halloween.json")))
 const infographic = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/infographic.json")))
 const macarons = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/macarons.json")))
-const roma = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/roma.json")))
 const purplepassion = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/purple-passion.json")))
 const roma = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/roma.json")))
 const shine = Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/shine.json")))

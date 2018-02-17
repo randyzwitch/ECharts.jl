@@ -25,11 +25,15 @@ fn = funnel(n, v)
 """
 function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
  legend::Bool = false,
+ sort::String = "descending",
  kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "funnel")
 
-    ec.series = [FunnelSeries(name = "Series 1", data =  arrayofdicts(value = values, name = names))]
+    ec.series = [FunnelSeries(name = "Series 1",
+                            data =  arrayofdicts(value = values, name = names),
+                            sort = sort
+                            )]
 
     #Add legend if requested
     legend? legend!(ec) : nothing
