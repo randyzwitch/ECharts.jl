@@ -531,7 +531,7 @@ $('#toc').on('click', 'a', function() {
     
 
 
-  <p>A funnel chart shows retention through a series of checkpoints. Note that by definition, the width of a step is constrained to be no more than the value in the step before it; note that the ECharts library will <strong>SORT</strong> the data by <code class="highlighter-rouge">values</code> so that each point is descending and align <code class="highlighter-rouge">names</code> accordingly. Pass the data into the function in correct order to ensure ties are accounted for correctly.</p>
+  <p>A funnel chart shows retention through a series of checkpoints.</p>
 
 <h2 id="method-signatures">Method Signatures</h2>
 
@@ -541,13 +541,12 @@ $('#toc').on('click', 'a', function() {
 <h2 id="optional-arguments">Optional Arguments</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">sort</span><span class="o">::</span><span class="kt">String</span> <span class="o">=</span> <span class="s">"descending"</span>
 <span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
-
-<p>This example demonstrates the <em>auto-sorting</em> behavior as described above.</p>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
 <span class="n">v</span> <span class="o">=</span> <span class="x">[</span><span class="mi">100</span><span class="x">,</span><span class="mi">60</span><span class="x">,</span><span class="mi">80</span><span class="x">,</span><span class="mi">70</span><span class="x">,</span><span class="mi">50</span><span class="x">]</span>

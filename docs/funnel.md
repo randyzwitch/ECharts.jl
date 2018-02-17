@@ -4,7 +4,7 @@ sidebar: mydoc_sidebar
 permalink: /funnel
 ---
 
-A funnel chart shows retention through a series of checkpoints. Note that by definition, the width of a step is constrained to be no more than the value in the step before it; note that the ECharts library will **SORT** the data by `values` so that each point is descending and align `names` accordingly. Pass the data into the function in correct order to ensure ties are accounted for correctly.
+A funnel chart shows retention through a series of checkpoints.
 
 ## Method Signatures
 {% highlight julia %}
@@ -15,14 +15,13 @@ funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 ## Optional Arguments
 {% highlight julia %}
 legend::Bool = false
+sort::String = "descending"
 kwargs... #modifies top-level `EChart` fields
 {% endhighlight %}
 
 ## Examples
 
 ### Single Series
-
-This example demonstrates the _auto-sorting_ behavior as described above.
 
 {% highlight julia %}
 using ECharts
