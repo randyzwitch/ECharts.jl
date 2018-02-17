@@ -34,7 +34,7 @@ sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("sgraph"), roma);
+    var myChart = echarts.init(document.getElementById("sgraph"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

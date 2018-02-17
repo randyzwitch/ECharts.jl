@@ -36,7 +36,7 @@ sc = scatter(rand(30), rand(30))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatter1"), roma);
+    var myChart = echarts.init(document.getElementById("scatter1"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -54,7 +54,7 @@ sc2 = scatter(rand(30), hcat(rand(30), rand(30)))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatter2"), roma);
+    var myChart = echarts.init(document.getElementById("scatter2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -73,7 +73,7 @@ sgrp = scatter(df, :MPG, :HP, :Cyl)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("scatterdf"), roma);
+    var myChart = echarts.init(document.getElementById("scatterdf"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

@@ -45,7 +45,7 @@ sp = bubble(xval, yval, sizeval, scale = true)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("bubble1"), roma);
+    var myChart = echarts.init(document.getElementById("bubble1"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -64,7 +64,7 @@ sgrp = bubble(df, :MPG, :HP, :Disp)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("bubble2"), roma);
+    var myChart = echarts.init(document.getElementById("bubble2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -83,7 +83,7 @@ bgrp = bubble(df, :MPG, :HP, :Disp, :Cyl)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("bubble3"), roma);
+    var myChart = echarts.init(document.getElementById("bubble3"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

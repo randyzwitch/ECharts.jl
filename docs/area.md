@@ -45,7 +45,7 @@ ar = area(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("areaplot"), roma);
+    var myChart = echarts.init(document.getElementById("areaplot"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -71,7 +71,7 @@ as = area(x, hcat(y, y2))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("areaplot2"), roma);
+    var myChart = echarts.init(document.getElementById("areaplot2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -93,7 +93,7 @@ astep = area(x, hcat(y, y2), step = "middle")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("areaplot3"), roma);
+    var myChart = echarts.init(document.getElementById("areaplot3"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -115,7 +115,7 @@ adfg = area(df_merged, :x, :y, :g)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("adfg"), roma);
+    var myChart = echarts.init(document.getElementById("adfg"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -143,7 +143,7 @@ a = area(k)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("dens"), roma);
+    var myChart = echarts.init(document.getElementById("dens"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

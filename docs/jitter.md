@@ -32,7 +32,7 @@ a = scatter(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("baseline2"), roma);
+    var myChart = echarts.init(document.getElementById("baseline2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -55,7 +55,7 @@ jitter!(a)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("baseline3"), roma);
+    var myChart = echarts.init(document.getElementById("baseline3"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -78,7 +78,7 @@ jitter!(a, pctxrange = 0.1, pctyrange = 0.05)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("baseline4"), roma);
+    var myChart = echarts.init(document.getElementById("baseline4"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

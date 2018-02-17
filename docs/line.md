@@ -38,7 +38,7 @@ l = line(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("linep"), roma);
+    var myChart = echarts.init(document.getElementById("linep"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -58,7 +58,7 @@ ls = line(x, y, step = "end")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("linep2"), roma);
+    var myChart = echarts.init(document.getElementById("linep2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -79,7 +79,7 @@ l2s = line(x, hcat(y, y2))
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("linep3"), roma);
+    var myChart = echarts.init(document.getElementById("linep3"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -101,7 +101,7 @@ ldf = line(df_merged, :x, :y, :g)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("linedf"), roma);
+    var myChart = echarts.init(document.getElementById("linedf"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

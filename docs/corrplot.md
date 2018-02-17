@@ -36,7 +36,7 @@ cplot = corrplot(df)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("cplot"), roma);
+    var myChart = echarts.init(document.getElementById("cplot"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -65,7 +65,7 @@ ccc = corrplot(c)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("cplot2"), roma);
+    var myChart = echarts.init(document.getElementById("cplot2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

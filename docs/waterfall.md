@@ -37,7 +37,7 @@ w = waterfall(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("waterf"), roma);
+    var myChart = echarts.init(document.getElementById("waterf"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

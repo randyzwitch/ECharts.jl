@@ -30,7 +30,7 @@ radial!(b)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rad"), roma);
+    var myChart = echarts.init(document.getElementById("rad"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -51,7 +51,7 @@ radial!(b)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rad2"), roma);
+    var myChart = echarts.init(document.getElementById("rad2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

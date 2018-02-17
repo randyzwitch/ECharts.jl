@@ -28,7 +28,7 @@ gg = gauge(27.64)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("gaugep"), roma);
+    var myChart = echarts.init(document.getElementById("gaugep"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -47,7 +47,7 @@ gg2 = gauge(27.64, colors = ["lightgreen", "lightblue","red"], breakpoints = [.4
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("gaugep2"), roma);
+    var myChart = echarts.init(document.getElementById("gaugep2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

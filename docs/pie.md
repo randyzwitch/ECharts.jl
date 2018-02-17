@@ -36,7 +36,7 @@ p = pie(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("pie1"), roma);
+    var myChart = echarts.init(document.getElementById("pie1"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -58,7 +58,7 @@ pe = pie(names, values, selected = explode)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("pie2"), roma);
+    var myChart = echarts.init(document.getElementById("pie2"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -79,7 +79,7 @@ d = donut(x, y)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("donut1"), roma);
+    var myChart = echarts.init(document.getElementById("donut1"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -100,7 +100,7 @@ rose = pie(names, values, roseType = "angle")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rose1"), roma);
+    var myChart = echarts.init(document.getElementById("rose1"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
@@ -121,7 +121,7 @@ radiusd = donut(names, values, roseType = "radius")
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("rosed"), roma);
+    var myChart = echarts.init(document.getElementById("rosed"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(

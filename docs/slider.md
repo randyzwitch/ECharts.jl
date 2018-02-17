@@ -46,7 +46,7 @@ slider!(c)
 <script type="text/javascript">
 
     // Initialize after dom ready
-    var myChart = echarts.init(document.getElementById("slide"), roma);
+    var myChart = echarts.init(document.getElementById("slide"), JSON.parse(roma()));
 
     // Load data into the ECharts instance
     myChart.setOption(
