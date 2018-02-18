@@ -1376,9 +1376,11 @@ end
     largeThreshold::Union{Int, Void} = nothing
 end
 @with_kw mutable struct EChart <: AbstractEChartType
-    ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
-    ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
-    ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
+    #fields prefixed with ec_ are ECharts.jl internal, no effect on echarts.js
+    ec_width::Int = 800
+    ec_height::Int = 400
+    ec_renderer::String = "canvas" #svg
+    ec_charttype::Union{String,Void} = nothing
     theme::Theme = roma #required for chart to render
     title::Union{Vector{Title},Void} = [Title()]
     legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
