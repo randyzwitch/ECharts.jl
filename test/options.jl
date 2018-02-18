@@ -185,4 +185,4 @@ jitter!(sm)
 #17: theme!
 @test typeof(theme!(sm, ECharts.vintage)) == EChart
 
-@test typeof(Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "themes/chalk.json")))) == Theme
+@test typeof(Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "docs/js/themes/chalk.json")))) == Theme
