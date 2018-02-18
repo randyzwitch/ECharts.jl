@@ -9,6 +9,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
     option = json(makevalidjson(ec))
     width = ec.ec_width
     height = ec.ec_height
+    renderer = ec.ec_renderer
     theme = json(makevalidjson(ec.theme))
 
         display("text/html", """
@@ -32,7 +33,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
                         var obj = JSON.parse('$theme');
 
                         // Initialize after dom ready
-                        var myChart = echarts.init(document.getElementById(\"$divid\"), obj);
+                        var myChart = echarts.init(document.getElementById(\"$divid\"), obj, {renderer: '$renderer'});
 
                         // Load data into the ECharts instance
                         myChart.setOption($option);
@@ -54,6 +55,8 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     option = json(makevalidjson(ec))
     theme = json(makevalidjson(ec.theme))
 
+    renderer = ec.ec_renderer
+
     #Make new window
     w = Juno.Atom.blinkplot()
 
@@ -70,7 +73,7 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
             var obj = JSON.parse('$theme');
 
             // Initialize after dom ready
-            var myChart = echarts.init(document.getElementById("$divid"), obj);
+            var myChart = echarts.init(document.getElementById("$divid"), obj, {renderer: '$renderer'});
 
             // Load data into the ECharts instance
             myChart.setOption($option);
