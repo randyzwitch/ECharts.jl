@@ -104,6 +104,10 @@ entries:
     output: web
     folderitems:
 
+    - title: aria!
+      url: /aria
+      output: web
+
     - title: colorscheme!
       url: /colorscheme
       output: web
