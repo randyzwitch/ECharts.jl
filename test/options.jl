@@ -14,6 +14,8 @@ v = [100,60,80,70,50]
 n = ["A", "B", "C", "D", "E"]
 fn = funnel(n, v)
 colorscheme!(fn,  ("acw", "VitaminC"), reversePalette = true)
+colorscheme!(fn, "purple")
+colorscheme!(fn, ["purple", "yellow"])
 @test typeof(fn) == EChart
 
 #2: flip!
@@ -21,6 +23,8 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 bm = bar(x, hcat(0.95 .* y, 1.25 .* y, y), color = ["red", "gray", "blue"], stack = true)
 flip!(bm)
+@test typeof(bm) == EChart
+flip!(bm, rotatedims = true)
 @test typeof(bm) == EChart
 
 #3: lineargradient
@@ -83,6 +87,8 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 ar = area(x, y, color = lineargradient("purple", "cyan"))
 smooth!(ar)
+smooth!(ar, 1)
+smooth!(ar, [1])
 xaxis!(ar, name = "Day of Week")
 yaxis!(ar, name = "Daily High Temperature °C")
 @test typeof(ar) == EChart
