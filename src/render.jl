@@ -43,6 +43,11 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
                           myChart.resize();
                         };
 
+                        //Make div resizeable within notebook
+                        //jQuery( function() {
+                        //    jQuery( '#' + "$divid").resizable();
+                        //} );
+
                     }); //echarts require end
 
                 </script>
