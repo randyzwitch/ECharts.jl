@@ -38,6 +38,11 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
                         // Load data into the ECharts instance
                         myChart.setOption($option);
 
+                        //Allow chart to resize when window does
+                        window.onresize = function() {
+                          myChart.resize();
+                        };
+
                     }); //echarts require end
 
                 </script>
@@ -60,25 +65,28 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     #Make new window
     w = Juno.Atom.blinkplot()
 
-    #Get window size
-    width, height = Juno.plotsize()
-
     #Load JavaScript library via Blink API
     load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-4.0.2.js")
 
-        a =
-        """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
-        <script type="text/javascript">
+    a =
+    """<div id="$divid" style="height:95%;width:95%;"></div>
+    <script type="text/javascript">
 
-            var obj = JSON.parse('$theme');
+        var obj = JSON.parse('$theme');
 
-            // Initialize after dom ready
-            var myChart = echarts.init(document.getElementById("$divid"), obj, {renderer: '$renderer'});
+        // Initialize after dom ready
+        var myChart = echarts.init(document.getElementById("$divid"), obj, {renderer: '$renderer'});
 
-            // Load data into the ECharts instance
-            myChart.setOption($option);
-        </script>
-        """
+        // Load data into the ECharts instance
+        myChart.setOption($option);
+
+        //Allow chart to resize when window does
+        window.onresize = function() {
+          myChart.resize();
+        };
+
+    </script>
+    """
 
     body!(w, a)
 
