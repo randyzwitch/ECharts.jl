@@ -58,8 +58,23 @@ module ECharts
 
 	#Visualization mutating functions
 	include("chartopts/utilities.jl")
-	include("chartopts/modifiers.jl")
-	include("chartopts/js_to_julia.jl")
+	include("chartopts/seriesnames.jl")
+	include("chartopts/xyaxis.jl")
+	include("chartopts/gridlines.jl")
+	include("chartopts/colorscheme.jl")
+	include("chartopts/titletext.jl")
+	include("chartopts/smooth.jl")
+	include("chartopts/toolbox.jl")
+	include("chartopts/legend.jl")
+	include("chartopts/xyline.jl")
+	include("chartopts/xyarea.jl")
+	include("chartopts/flip.jl")
+	include("chartopts/slider.jl")
+	include("chartopts/labels.jl")
+	include("chartopts/jitter.jl")
+	include("chartopts/theme.jl")
+	include("chartopts/radial.jl")
+	include("chartopts/gradients.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
