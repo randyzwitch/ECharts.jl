@@ -1,3 +1,4 @@
+#using colorpalettes
 function colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}; reversePalette::Bool = false)
 
     reversePalette == true?
@@ -17,6 +18,7 @@ function colorscheme!(ec::EChart, palette::Union{AbstractString, JSFunction})
 
 end
 
+#For passing vector of colors
 function colorscheme!(ec::EChart, palette::AbstractVector; reversePalette::Bool = false)
 
     reversePalette == true? ec.color  = reverse(collect(palette)) : ec.color  = collect(palette)
