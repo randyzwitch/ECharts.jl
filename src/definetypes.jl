@@ -185,7 +185,7 @@ end
     triggerOn::Union{String, Void} = nothing
 end
 @with_kw mutable struct Tooltip <: AbstractEChartType
-    show::Union{Bool,Void} = false
+    show::Union{Bool,Void} = true
     trigger::Union{String,Void} = "item"
     axisPointer::Union{AxisPointer,Void} = nothing
     showContent::Union{Bool,Void} = true

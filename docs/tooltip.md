@@ -1,23 +1,37 @@
 ---
-title: toolbox!
+title: tooltip!
 sidebar: mydoc_sidebar
-permalink: /toolbox
+permalink: /tooltip
 ---
 
-toolbox! provides interactive functionality in the style of many popular analytics dashboards. toolbox! options allow for users to access raw data, change between compatible graph types (flip between bar and line, etc.) and provides a means for downloading static PNG images.
+tooltip! allows for information to be displayed on the chart when users hover over a data element. This is enabled by default on all ECharts, but can be disabled by setting `show` to `false`.
 
 ## Method Signatures
 {% highlight julia %}
-toolbox!(ec::EChart)
+tooltip!(ec::EChart)
 {% endhighlight %}
 
 ## Optional Arguments
 {% highlight julia %}
-show::Bool = true
-restore::Bool = true
-dataView::Bool = true
-saveAsImage::Bool = true
-chartTypes::AbstractVector = []
+show::Union{Bool,Void} = true
+trigger::Union{String,Void} = "item"
+axisPointer::Union{AxisPointer,Void} = nothing
+showContent::Union{Bool,Void} = true
+alwaysShowContent::Union{Bool,Void} = false
+triggerOn::Union{String,Void} = "mousemove"
+showDelay::Union{Int,Void} = 0
+hideDelay::Union{Int,Void} = 100
+enterable::Union{Bool,Void} = true
+confine::Union{Bool,Void} = false
+transitionDuration::Union{Number,Void} = 0.4
+position::Union{AbstractVector,String,Void} = nothing
+formatter::Union{String,Void, JSFunction} = nothing
+backgroundColor::Union{String,Void, JSFunction} = "rgba(50,50,50,0.7)"
+borderColor::Union{String,Void} = "#333"
+borderWidth::Union{Int,Void} = 0
+padding::Union{Int,Void} = 5
+textStyle::Union{TextStyle,Void} = nothing
+extraCssText::Union{String,Void} = nothing
 {% endhighlight %}
 
 ## Examples

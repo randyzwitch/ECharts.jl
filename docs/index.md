@@ -17,7 +17,7 @@ In particular, ECharts.jl provides:
 The idea behind the API of ECharts.jl is _simplicity_; while it is possible to build complex graphics in ECharts.jl, the goal of this package is to provide a means of creating common visualizations with a minimum of configuration and syntax. This is achieved through:
 
 * A minimum of required arguments to create a chart (i.e. usually, only data are required), with common optional arguments defined based on the chart type
-* Sensible/opinionated defaults, such as a legend only being shown when two or more series plotted
+* Sensible/opinionated defaults, such as a legend only being shown when two or more series plotted and tooltip-on-hover enabled automatically.
 * Integrated [`missing`](https://github.com/JuliaData/Missings.jl) value support (see chart docs for implementation details)
 * Tight integration with the [echarts4](https://ecomfe.github.io/echarts-doc/public/en/index.html) JavaScript library, which provides rich interactivity (i.e. sliders, hover, toolbox, themes) as default
 
