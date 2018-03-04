@@ -14,9 +14,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
         display("text/html", """
 
-              <body>
-                <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
-              </body>
+                <figure id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></figure>
 
                 <script type=\"text/javascript\">
 
@@ -68,13 +66,20 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     renderer = ec.ec_renderer
 
     #Make new window
-    w = Juno.Atom.blinkplot()
+    if Juno.isactive()
+        w = Juno.Atom.blinkplot()
+    else
+        w = Blink.Window()
+    end
+
+    #Block until the window created
+    wait(w.content)
 
     #Load JavaScript library via Blink API
-    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-4.0.2.js")
+    load!(w, joinpath(dirname(@__FILE__), "..", "docs/js/echarts-4.0.2.js"))
 
     a =
-    """<div id="$divid" style="height:95%;width:95%;"></div>
+    """<figure id="$divid" style="height:95%;width:95%;"></figure>
     <script type="text/javascript">
 
         var obj = JSON.parse('$theme');
