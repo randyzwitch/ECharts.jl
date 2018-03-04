@@ -8,9 +8,9 @@ The [ECharts.jl](https://github.com/randyzwitch/ECharts.jl) package provides a J
 
 In particular, ECharts.jl provides:
 
-* A series of Julia composite types representing ECharts visualization primitives
 * High-level functions for quickly creating visualizations such as bar charts, area charts, line charts and others
 * Support for ColorBrewer color scales via the [ColorBrewer.jl](https://github.com/timothyrenner/ColorBrewer.jl) package and other fun colors via the [NoveltyColors.jl](https://github.com/randyzwitch/NoveltyColors.jl) package, for visually stunning color schemes
+* Inline output via [IJulia (Jupyter Notebook)](https://github.com/JuliaLang/IJulia.jl) and [Juno](https://junolab.github.io/), and REPL support via [Blink.jl](https://github.com/JunoLab/Blink.jl)
 
 ## Motivation
 
