@@ -70,10 +70,9 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
         w = Juno.Atom.blinkplot()
     else
         w = Blink.Window()
+        #Block until the window created
+        wait(w.content)
     end
-
-    #Block until the window created
-    wait(w.content)
 
     #Load JavaScript library via Blink API
     load!(w, joinpath(dirname(@__FILE__), "..", "docs/js/echarts-4.0.2.js"))
