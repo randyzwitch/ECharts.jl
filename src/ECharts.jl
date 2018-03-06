@@ -17,7 +17,9 @@ module ECharts
 	export colorpalettes
 
 	export EChart
-	export PieSeries, RadarSeries, FunnelSeries
+	export BoxPlotSeries, CandleStickSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
+	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
+	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
 	export Title, Axis, Series, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
