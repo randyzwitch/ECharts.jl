@@ -11,6 +11,7 @@ streamgraph(x::AbstractVector{<:Union{Missing, Real}},
             y::AbstractVector{<:Union{Missing, Real}},
             group::AbstractVector)
 streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+streamgraph(x::AbstractVector{<:Dates.TimeType},y::AbstractVector{<:Union{Missing, Real}},             group::AbstractVector)
 ```
 
 ## Arguments
@@ -72,3 +73,9 @@ end
 streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
             legend::Bool = false,
             kwargs...) = streamgraph(df[x], df[y], df[group]; legend = legend, kwargs...)
+
+streamgraph(x::AbstractVector{<:Dates.TimeType},
+            y::AbstractVector{<:Union{Missing, Real}},
+            group::AbstractVector;
+            legend::Bool = false,
+            kwargs...) = streamgraph(x, y, group; legend = legend, kwargs...)
