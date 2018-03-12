@@ -17,7 +17,9 @@ module ECharts
 	export colorpalettes
 
 	export EChart
-	export PieSeries, RadarSeries, FunnelSeries
+	export BoxPlotSeries, CandleStickSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
+	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
+	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
 	export Title, Axis, Series, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
@@ -33,7 +35,11 @@ module ECharts
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
+<<<<<<< HEAD
 	export radial!, jitter!, labels!, theme!, aria!
+=======
+	export radial!, jitter!, labels!, theme!, tooltip!
+>>>>>>> master
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
@@ -58,8 +64,24 @@ module ECharts
 
 	#Visualization mutating functions
 	include("chartopts/utilities.jl")
-	include("chartopts/modifiers.jl")
-	include("chartopts/js_to_julia.jl")
+	include("chartopts/seriesnames.jl")
+	include("chartopts/xyaxis.jl")
+	include("chartopts/gridlines.jl")
+	include("chartopts/colorscheme.jl")
+	include("chartopts/titletext.jl")
+	include("chartopts/smooth.jl")
+	include("chartopts/toolbox.jl")
+	include("chartopts/tooltip.jl")
+	include("chartopts/legend.jl")
+	include("chartopts/xyline.jl")
+	include("chartopts/xyarea.jl")
+	include("chartopts/flip.jl")
+	include("chartopts/slider.jl")
+	include("chartopts/labels.jl")
+	include("chartopts/jitter.jl")
+	include("chartopts/theme.jl")
+	include("chartopts/radial.jl")
+	include("chartopts/gradients.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")

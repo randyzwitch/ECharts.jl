@@ -9,13 +9,12 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
     option = json(makevalidjson(ec))
     width = ec.ec_width
     height = ec.ec_height
+    renderer = ec.ec_renderer
     theme = json(makevalidjson(ec.theme))
 
         display("text/html", """
 
-              <body>
-                <div id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></div>
-              </body>
+                <figure id=\"$divid\" style=\"height:$(height)px;width:$(width)px;\"></figure>
 
                 <script type=\"text/javascript\">
 
@@ -32,10 +31,20 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
                         var obj = JSON.parse('$theme');
 
                         // Initialize after dom ready
-                        var myChart = echarts.init(document.getElementById(\"$divid\"), obj);
+                        var myChart = echarts.init(document.getElementById(\"$divid\"), obj, {renderer: '$renderer'});
 
                         // Load data into the ECharts instance
                         myChart.setOption($option);
+
+                        //Allow chart to resize when window does
+                        window.onresize = function() {
+                          myChart.resize();
+                        };
+
+                        //Make div resizeable within notebook
+                        //jQuery( function() {
+                        //    jQuery( '#' + "$divid").resizable();
+                        //} );
 
                     }); //echarts require end
 
@@ -54,28 +63,39 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     option = json(makevalidjson(ec))
     theme = json(makevalidjson(ec.theme))
 
-    #Make new window
-    w = Juno.Atom.blinkplot()
+    renderer = ec.ec_renderer
 
-    #Get window size
-    width, height = Juno.plotsize()
+    #Make new window
+    if Juno.isactive()
+        w = Juno.Atom.blinkplot()
+    else
+        w = Blink.Window()
+        #Block until the window created
+        wait(w.content)
+    end
 
     #Load JavaScript library via Blink API
-    load!(w, "https://randyzwitch.github.io/ECharts.jl/js/echarts-4.0.2.js")
+    load!(w, joinpath(dirname(@__FILE__), "..", "docs/js/echarts-4.0.2.js"))
 
-        a =
-        """<div id="$divid" style="height:$(height)px;width:$(width)px;"></div>
-        <script type="text/javascript">
+    a =
+    """<figure id="$divid" style="height:95%;width:95%;"></figure>
+    <script type="text/javascript">
 
-            var obj = JSON.parse('$theme');
+        var obj = JSON.parse('$theme');
 
-            // Initialize after dom ready
-            var myChart = echarts.init(document.getElementById("$divid"), obj);
+        // Initialize after dom ready
+        var myChart = echarts.init(document.getElementById("$divid"), obj, {renderer: '$renderer'});
 
-            // Load data into the ECharts instance
-            myChart.setOption($option);
-        </script>
-        """
+        // Load data into the ECharts instance
+        myChart.setOption($option);
+
+        //Allow chart to resize when window does
+        window.onresize = function() {
+          myChart.resize();
+        };
+
+    </script>
+    """
 
     body!(w, a)
 

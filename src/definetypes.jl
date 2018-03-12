@@ -185,7 +185,7 @@ end
     triggerOn::Union{String, Void} = nothing
 end
 @with_kw mutable struct Tooltip <: AbstractEChartType
-    show::Union{Bool,Void} = false
+    show::Union{Bool,Void} = true
     trigger::Union{String,Void} = "item"
     axisPointer::Union{AxisPointer,Void} = nothing
     showContent::Union{Bool,Void} = true
@@ -202,7 +202,7 @@ end
     borderColor::Union{String,Void} = "#333"
     borderWidth::Union{Int,Void} = 0
     padding::Union{Int,Void} = 5
-    textStyle::Union{TextStyle,Void} = "#fff"
+    textStyle::Union{TextStyle,Void} = nothing
     extraCssText::Union{String,Void} = nothing
 end
 @with_kw mutable struct Legend <: AbstractEChartType
@@ -1376,9 +1376,11 @@ end
     largeThreshold::Union{Int, Void} = nothing
 end
 @with_kw mutable struct EChart <: AbstractEChartType
-    ec_width::Int = 800  #ECharts.jl internal, no effect on echarts.js
-    ec_height::Int = 400  #ECharts.jl internal, no effect on echarts.js
-    ec_charttype::Union{String,Void} = nothing  #ECharts.jl internal, no effect on echarts.js
+    #fields prefixed with ec_ are ECharts.jl internal, no effect on echarts.js
+    ec_width::Int = 800
+    ec_height::Int = 400
+    ec_renderer::String = "canvas" #svg
+    ec_charttype::Union{String,Void} = nothing
     theme::Theme = roma #required for chart to render
     title::Union{Vector{Title},Void} = [Title()]
     legend::Union{Legend,Void} = nothing   #Already has legend! defined, need to modify legend! if change default here
@@ -1391,7 +1393,7 @@ end
     radar::Union{Vector{Radar},Void} = nothing
     dataZoom::Union{Vector{DataZoom},Void} = nothing
     visualMap::Union{VisualMap,Void} = nothing  #typedef needs to be filled out
-    tooltip::Union{Tooltip,Void} = nothing
+    tooltip::Union{Tooltip,Void} = Tooltip()
     axisPointer::Union{AxisPointer, Void} = nothing
     toolbox::Union{Toolbox,Void} = Toolbox()
     brush::Union{Brush, Void} = nothing

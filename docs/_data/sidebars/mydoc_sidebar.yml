@@ -164,6 +164,10 @@ entries:
       url: /toolbox
       output: web
 
+    - title: tooltip!
+      url: /tooltip
+      output: web
+
     - title: xarea!/yarea!
       url: /xareayarea
       output: web
