@@ -679,7 +679,7 @@ end
     sourceHeader::Union{Bool, Void} = nothing
 end
 @with_kw mutable struct Aria <: AbstractEChartType
-    show::Union{Bool, Void} = nothing
+    show::Union{Bool, Void} = true
     description::Union{String, Void} = nothing
     general::Union{Dict, Void} = nothing
     series::Union{Dict, Void} = nothing
@@ -1405,7 +1405,7 @@ end
     graphic::Union{Graphic,Void} = nothing
     calendar::Union{Calendar,Void} = nothing
     dataset::Union{Dataset, Void} = nothing
-    aria::Union{Aria, Void} = nothing
+    aria::Union{Aria, Void} = Aria()
     series::Union{AbstractVector{<:AbstractEChartSeries},Void} = nothing
     color::Union{AbstractVector,JSFunction,Void} = nothing
     backgroundColor::Union{String,Void, JSFunction} = nothing
