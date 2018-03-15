@@ -35,7 +35,7 @@ module ECharts
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
-	export radial!, jitter!, labels!, theme!, tooltip!
+	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
 	#This is a package local function, it is NOT overloading JSON.json
 	#Define custom JSON serialization rule
@@ -78,6 +78,7 @@ module ECharts
 	include("chartopts/theme.jl")
 	include("chartopts/radial.jl")
 	include("chartopts/gradients.jl")
+	include("chartopts/aria.jl")
 
 	#Plots
 	include("plots/xy_plot.jl")
