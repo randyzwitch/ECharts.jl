@@ -99,7 +99,7 @@ function corrplot(df::AbstractDataFrame;
                   kwargs...)
 
     #get numeric columns from df, call cor from StatsBase
-    df_num = df[[x <: Number for x in eltypes(df)]]
+    df_num = df[[x <: Union{Missing, Number} for x in eltypes(df)]]
     c = cor(convert(Matrix, df_num))
 
     ec = corrplot(c, bubblesize = bubblesize, layout = layout, labels = labels, ec_height = ec_height, ec_width = ec_width, kwargs...)
