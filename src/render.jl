@@ -20,7 +20,7 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 
                     require.config({
                       paths: {
-                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-4.0.2\"
+                        echarts: \"https://randyzwitch.github.io/ECharts.jl/js/echarts-4.0.4\"
                       }
                     });
 
@@ -75,7 +75,7 @@ function Media.render(pane::Atom.PlotPane, ec::EChart)
     end
 
     #Load JavaScript library via Blink API
-    load!(w, joinpath(dirname(@__FILE__), "..", "docs/js/echarts-4.0.2.js"))
+    load!(w, joinpath(dirname(@__FILE__), "..", "docs/js/echarts-4.0.4.js"))
 
     a =
     """<figure id="$divid" style="height:95%;width:95%;"></figure>
