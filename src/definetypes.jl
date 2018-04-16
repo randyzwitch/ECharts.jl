@@ -1277,7 +1277,7 @@ end
     label::Union{Label, Void} = nothing
     lineStyle::Union{LineStyle, Void} = nothing
     emphasis::Union{ItemStyle, Void} = nothing
-    data::Union{Dict, Void} = nothing
+    data::Union{AbstractVector, Void} = nothing
     tooltip::Union{Tooltip, Void} = nothing
 end
 @with_kw mutable struct EffectScatterSeries <: AbstractEChartSeries
