@@ -92,6 +92,14 @@ entries:
       url: /streamgraph
       output: web
 
+    - title: sunburst
+      url: /sunburst
+      output: web
+
+    - title: treemap
+      url: /treemap
+      output: web
+
     - title: x/y combination plots
       url: /xycomboplots
       output: web
