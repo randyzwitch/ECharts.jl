@@ -6,7 +6,7 @@ mtcars = dataset("datasets", "mtcars");
 diamonds = dataset("ggplot2", "diamonds");
 
 using ECharts, DataFrames, StatsBase, CSV, KernelDensity, Distributions
-using Base.Test
+using Test
 
 #1: Homepage doc example
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]

@@ -67,7 +67,7 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 
 	seriesnames!(ec)
 
-	legend == true? legend!(ec) : nothing
+	legend == true ? legend!(ec) : nothing
 
 	#Enable optimization for lots of data
 	[x.large = large for x in ec.series]
@@ -91,7 +91,7 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 	ec = scatter(df[x], df[y]; mark = mark, legend = legend, scale = scale, kwargs...)
 
 	#Add legend if desired
-	legend == true? legend!(ec) : nothing
+	legend == true ? legend!(ec) : nothing
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
@@ -132,7 +132,7 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 	seriesnames!(ec, [unique(subdf[x][group])[1] for x in 1:numgroups])
 
 	#Add legend if desired
-	legend == true? legend!(ec) : nothing
+	legend == true ? legend!(ec) : nothing
 
 	#Enable optimization for lots of data
 	[x.large = large for x in ec.series]
