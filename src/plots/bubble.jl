@@ -113,7 +113,7 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group
 			seriesnames!(ec, [unique(subdf[x][group])[1] for x in 1:numgroups])
 
 			#Add legend if desired
-			legend == true? legend!(ec) : nothing
+			legend == true ? legend!(ec) : nothing
 
 			#Enable optimization for lots of data
 			[x.large = large for x in ec.series]

@@ -63,9 +63,9 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
     end
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
-    horizontal? flip!(ec) : nothing
+    horizontal ? flip!(ec) : nothing
 
     return ec
 

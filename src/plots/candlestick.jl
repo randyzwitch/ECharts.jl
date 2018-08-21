@@ -66,7 +66,7 @@ function candlestick(dt::AbstractVector{String},
     ec.series = [CandleStickSeries(name = "Series 1", data = fmtdata)]
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 
