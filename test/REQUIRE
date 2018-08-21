@@ -1,4 +1,4 @@
-julia 0.6
+julia 0.7-alpha
 StatsBase 0.19.5
 JSON 0.16.4
 Parameters 0.8.1
@@ -14,3 +14,4 @@ Missings 0.2.4
 #For tests
 RDatasets
 CSV 0.2.1
+RData
