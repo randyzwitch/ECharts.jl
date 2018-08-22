@@ -42,7 +42,7 @@ function streamgraph(x::AbstractVector{String},
     ec.series = [ThemeRiverSeries(data = data)]
 
     #need to modify legend!
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 
@@ -64,7 +64,7 @@ function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
     ec.series = [ThemeRiverSeries(data = data)]
 
     #need to modify legend!
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 

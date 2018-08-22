@@ -2,7 +2,7 @@
 function seriesnames!(ec::EChart)
 
     for (i, x) in enumerate(ec.series)
-        x.name == nothing? x.name = "Series $i": nothing
+        x.name == nothing ? x.name = "Series $i" : nothing
     end
 
     return ec
@@ -11,7 +11,7 @@ end
 
 function seriesnames!(ec::EChart, names::AbstractVector{String})
 
-    length(ec.series) != length(names) ? error("Names not equal to number of Series"): nothing
+    length(ec.series) != length(names) ? error("Names not equal to number of Series") : nothing
 
     for i in 1:length(ec.series)
         ec.series[i].name = names[i]

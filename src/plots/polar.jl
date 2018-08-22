@@ -42,7 +42,7 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
     ec.series = [XYSeries(name = "Series 1", coordinateSystem = "polar", _type = "line", showSymbol = showSymbol, data = arrayofarray(radius,angle))]
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 
@@ -67,7 +67,7 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
     seriesnames!(ec)
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 

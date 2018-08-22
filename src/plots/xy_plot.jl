@@ -21,10 +21,10 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 	ec.series = [XYSeries(name = "Series 1", _type = mark, data = y, step = step)]
 
 	#Make plot horizontal
-	horizontal? flip!(ec): nothing
+	horizontal ? flip!(ec) : nothing
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -40,10 +40,10 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
-	typeof(mark) <: AbstractVector? nothing : mark = [mark for i in 1:length(x)]
+	typeof(mark) <: AbstractVector ? nothing : mark = [mark for i in 1:length(x)]
 
 	#If there are missing values, set equal to zero so the graph stacks correctly
-	eltype(y) >: Missing? y_ = collect(Missings.replace(y,0)): y_ = deepcopy(y)
+	eltype(y) >: Missing ? y_ = collect(Missings.replace(y,0)) : y_ = deepcopy(y)
 
 	# Call 1-D method to build base
 	ec = xy_plot(x, y_[:,1]; mark = mark[1], scale = scale, kwargs...)
@@ -66,16 +66,16 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	end
 
 	#step
-	step != nothing ? [x.step = step for x in ec.series]: nothing
+	step != nothing ? [x.step = step for x in ec.series] : nothing
 
 	#Make plot horizontal
-	horizontal? flip!(ec): nothing
+	horizontal ? flip!(ec) : nothing
 
 	# Add default names to series
 	seriesnames!(ec)
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -99,7 +99,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 	yaxis!(ec, name = string(y))
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -129,7 +129,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 	yaxis!(ec, name = string(y))
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	#Add series names
 	seriesnames!(ec, names(pivotdf)[2:end])

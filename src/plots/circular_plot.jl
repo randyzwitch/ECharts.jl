@@ -17,7 +17,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
     ec.series = [PieSeries(name = "Series 1", radius = radius, center = center, data = data_fmt, roseType = roseType)]
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 
