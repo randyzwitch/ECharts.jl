@@ -4,10 +4,10 @@ module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom, DataFrames
 	using Dates
-	using KernelDensity, Distributions, Missings
+	using KernelDensity, Distributions, Missings, LinearAlgebra
 	import Base.print, Base.show
 
-	import JSON
+	#import JSON
 	using JSON.StructuralContext
 	using JSON.Serializations.CommonSerialization
 

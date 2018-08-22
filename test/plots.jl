@@ -7,6 +7,7 @@ diamonds = dataset("ggplot2", "diamonds");
 
 using ECharts, DataFrames, StatsBase, CSV, KernelDensity, Distributions
 using Test
+using JSON
 
 #1: Homepage doc example
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
