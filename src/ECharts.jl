@@ -5,12 +5,11 @@ module ECharts
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom, DataFrames
 	using Dates, Random
 	using KernelDensity, Distributions, Missings
-	import Base.print, Base.show
+	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
 
 	#import JSON
-	using JSON.StructuralContext
-	using JSON.Serializations.CommonSerialization
+	import JSON: StructuralContext, Serializations.CommonSerialization
 
 	export print
 
@@ -125,7 +124,7 @@ module ECharts
 	function makevalidjson(x::AbstractEChartType)
 	    res = Dict()
 
-	    for f in fieldnames(x)
+	    for f in fieldnames(typeof(x))
 	        if getfield(x, f) != nothing
 	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)) : res[string(f)] = makevalidjson(getfield(x, f))
 	        end
