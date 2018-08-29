@@ -25,7 +25,7 @@ The displayed size of the bubble is normalized within the function, as the squar
 
 ## Examples
 ```julia
-srand(13579)
+Random.seed!(13579)
 xval = rand() .* (0:1000:30000)
 yval = 60 .+ (rand(31) * 20)
 sizeval = shuffle!(6000 .* (rand(31) * 50))
