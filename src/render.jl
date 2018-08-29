@@ -54,10 +54,11 @@ function show(io::IO, ::MIME"text/html", ec::EChart)
 end
 
 #Register what a EChart is
-media(EChart, Media.Graphical)
+#media(EChart, Media.Graphical)
 
 #Define how to render a EChart and where
-function Media.render(pane::Atom.PlotPane, ec::EChart)
+#function Media.render(pane::Atom.PlotPane, ec::EChart)
+function Base.show(io::IO, ::MIME"application/juno+plotpane", ec::EChart)
 
     divid = "Echart" * randstring(3)
     option = json(makevalidjson(ec))

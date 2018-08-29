@@ -1,8 +1,8 @@
 function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
-            selected::Union{AbstractVector, Void} = nothing,
-            radius::Union{AbstractVector, String, Void} = "80%",
-            center::Union{AbstractVector, String, Void} = ["50%", "50%"],
-            roseType::Union{String, Void} = nothing, # roseType = {"angle", "radius"}
+            selected::Union{AbstractVector, Nothing} = nothing,
+            radius::Union{AbstractVector, String, Nothing} = "80%",
+            center::Union{AbstractVector, String, Nothing} = ["50%", "50%"],
+            roseType::Union{String, Nothing} = nothing, # roseType = {"angle", "radius"}
             legend::Bool = false,
             kwargs...
             )

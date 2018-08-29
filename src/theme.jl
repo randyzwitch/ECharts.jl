@@ -2,35 +2,35 @@ abstract type AbstractEChartType end
 abstract type AbstractEChartSeries <: AbstractEChartType end
 
 @with_kw mutable struct Theme <: AbstractEChartType
-    color::Union{AbstractVector, Void} = nothing
-    backgroundColor::Union{String, Void} = nothing
-    textStyle::Union{Dict, Void} = nothing
-    title::Union{Dict, Void} = nothing
-    line::Union{Dict, Void} = nothing
-    radar::Union{Dict, Void} = nothing
-    bar::Union{Dict, Void} = nothing
-    pie::Union{Dict, Void} = nothing
-    scatter::Union{Dict, Void} = nothing
-    boxplot::Union{Dict, Void} = nothing
-    parallel::Union{Dict, Void} = nothing
-    sankey::Union{Dict, Void} = nothing
-    funnel::Union{Dict, Void} = nothing
-    gauge::Union{Dict, Void} = nothing
-    candlestick::Union{Dict, Void} = nothing
-    graph::Union{Dict, Void} = nothing
-    map::Union{Dict, Void} = nothing
-    geo::Union{Dict, Void} = nothing
-    categoryAxis::Union{Dict, Void} = nothing
-    valueAxis::Union{Dict, Void} = nothing
-    logAxis::Union{Dict, Void} = nothing
-    timeAxis::Union{Dict, Void} = nothing
-    toolbox::Union{Dict, Void} = nothing
-    legend::Union{Dict, Void} = nothing
-    tooltip::Union{Dict, Void} = nothing
-    timeline::Union{Dict, Void} = nothing
-    visualMap::Union{Dict, Void} = nothing
-    dataZoom::Union{Dict, Void} = nothing
-    markPoint::Union{Dict, Void} = nothing
+    color::Union{AbstractVector, Nothing} = nothing
+    backgroundColor::Union{String, Nothing} = nothing
+    textStyle::Union{Dict, Nothing} = nothing
+    title::Union{Dict, Nothing} = nothing
+    line::Union{Dict, Nothing} = nothing
+    radar::Union{Dict, Nothing} = nothing
+    bar::Union{Dict, Nothing} = nothing
+    pie::Union{Dict, Nothing} = nothing
+    scatter::Union{Dict, Nothing} = nothing
+    boxplot::Union{Dict, Nothing} = nothing
+    parallel::Union{Dict, Nothing} = nothing
+    sankey::Union{Dict, Nothing} = nothing
+    funnel::Union{Dict, Nothing} = nothing
+    gauge::Union{Dict, Nothing} = nothing
+    candlestick::Union{Dict, Nothing} = nothing
+    graph::Union{Dict, Nothing} = nothing
+    map::Union{Dict, Nothing} = nothing
+    geo::Union{Dict, Nothing} = nothing
+    categoryAxis::Union{Dict, Nothing} = nothing
+    valueAxis::Union{Dict, Nothing} = nothing
+    logAxis::Union{Dict, Nothing} = nothing
+    timeAxis::Union{Dict, Nothing} = nothing
+    toolbox::Union{Dict, Nothing} = nothing
+    legend::Union{Dict, Nothing} = nothing
+    tooltip::Union{Dict, Nothing} = nothing
+    timeline::Union{Dict, Nothing} = nothing
+    visualMap::Union{Dict, Nothing} = nothing
+    dataZoom::Union{Dict, Nothing} = nothing
+    markPoint::Union{Dict, Nothing} = nothing
 end
 
 function Theme(x::Dict)

@@ -1,5 +1,9 @@
+#New for 0.7, splat changed syntax.
+#TODO: Merge with newplot method below
+newplot(itr::Base.Iterators.Pairs, args...; kwargs...) = newplot(collect(itr), args...; kwargs...)
+
 #Common code across all plots
-function newplot(kwargs::Vector{T}; ec_charttype::Union{String, Void} = nothing) where T
+function newplot(kwargs::Vector{T}; ec_charttype::Union{String, Nothing} = nothing) where T
 
     #Create new chart
     ec = deepcopy(EChart(ec_charttype = ec_charttype))

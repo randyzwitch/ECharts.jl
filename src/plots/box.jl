@@ -29,7 +29,7 @@ b = box(data)
 ```
 """
 function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
- names::Union{AbstractVector, Void} = nothing,
+ names::Union{AbstractVector, Nothing} = nothing,
  outliers::Bool = true,
  legend::Bool = false,
  horizontal::Bool = false,
@@ -83,7 +83,7 @@ box(data::AbstractVector{<:Union{Missing, Real}};
 
 #df with group arguments
 function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
-         names::Union{AbstractVector, Void} = nothing,
+         names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
          legend::Bool = false,
          horizontal::Bool = false,
@@ -112,7 +112,7 @@ end
 
 #df
 function box(df::AbstractDataFrame, data::Symbol;
-         names::Union{AbstractVector, Void} = nothing,
+         names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
          legend::Bool = false,
          horizontal::Bool = false,

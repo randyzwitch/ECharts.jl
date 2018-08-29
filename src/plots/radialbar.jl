@@ -29,7 +29,7 @@ b = radialbar(x, y)
 """
 function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -43,7 +43,7 @@ end
 #multiple y
 function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
@@ -57,7 +57,7 @@ end
 # dataframe, single series
 function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -71,7 +71,7 @@ end
 # dataframe, group argument
 function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)

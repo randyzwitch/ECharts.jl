@@ -31,7 +31,7 @@ ll = line(x, y)
 """
 function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
-			step::Union{String, Void} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -43,7 +43,7 @@ end
 #array, multiple series
 function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
-			step::Union{String, Void} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
@@ -55,7 +55,7 @@ end
 #DataFrame, single series
 function line(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
-			step::Union{String, Void} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -67,7 +67,7 @@ end
 #DataFrame with group argument
 function line(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
-			step::Union{String, Void} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)

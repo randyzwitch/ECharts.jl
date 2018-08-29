@@ -27,10 +27,10 @@ d = donut(x, y)
 ```
 """
 donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
-            selected::Union{AbstractVector, Void} = nothing,
+            selected::Union{AbstractVector, Nothing} = nothing,
             radius::Union{AbstractVector, String} = ["50%", "80%"],
             center::Union{AbstractVector, String} = ["50%", "50%"],
-            roseType::Union{String, Void} = nothing,
+            roseType::Union{String, Nothing} = nothing,
             legend::Bool = false,
             kwargs...
             ) =

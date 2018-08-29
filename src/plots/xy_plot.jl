@@ -1,8 +1,8 @@
 #Generic plot interface for all plots needing X-Y axis with a single series
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
+			step::Union{String, Nothing} = nothing,
 			horizontal::Bool = false,
 			legend::Bool = false,
 			scale::Bool = false,
@@ -32,8 +32,8 @@ end
 
 function xy_plot(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing,
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
+			step::Union{String, Nothing} = nothing,
 			horizontal::Bool = false,
 			legend::Bool = true,
 			scale::Bool = false,
@@ -84,8 +84,8 @@ end
 #dataframe, single series
 function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::String = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
+			step::Union{String, Nothing} = nothing,
 			horizontal::Bool = false,
 			legend::Bool = false,
 			scale::Bool = false,
@@ -108,8 +108,8 @@ end
 #dataframe, multiple series
 function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::String = "bar",
-			stack::Union{Bool, AbstractVector, Void} = nothing, #No op, here since other functions dispatch here
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
+			step::Union{String, Nothing} = nothing,
 			horizontal::Bool = false,
 			legend::Bool = true,
 			scale::Bool = false,
