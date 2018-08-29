@@ -6,3 +6,5 @@ Codecov: [![codecov](https://codecov.io/gh/randyzwitch/ECharts.jl/branch/master/
 
 
 Documentation: [http://randyzwitch.com/ECharts.jl/](http://randyzwitch.com/ECharts.jl/)
+
+8/28/2018: Currently, Julia supports 0.7, but only through Jupyter Notebook. Supporting Juno, the REPL and other environments planned.
