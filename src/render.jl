@@ -29,21 +29,17 @@ function createscope(ec::EChart)
     return scope
 end
 
-# function WebIO.render(ec::EChart)
-#
-#     scope = createscope(ec)
-#     WebIO.render(scope)
-#
-# end
+#Makes EChart into a DOM node
+function WebIO.render(ec::EChart)
+
+    scope = createscope(ec)
+    WebIO.render(scope)
+
+end
 
 #Jupyter notebook method
 #doesn't work with JupyterLab unless extension installed (not verified)
-function Base.show(io::IO, mm::MIME"text/html", ec::EChart)
-
-    scope = createscope(ec)
-    show(io, mm, scope)
-
-end
+Base.show(io::IO, mm::MIME"text/html", ec::EChart) = Base.show(io, mm, WebIO.render(ec))
 
 #REPL method
 function Base.display(::REPL.REPLDisplay, ec::EChart)
@@ -53,3 +49,7 @@ function Base.display(::REPL.REPLDisplay, ec::EChart)
     Blink.body!(w, scope)
 
 end
+
+#Juno method
+
+#VSCode method
