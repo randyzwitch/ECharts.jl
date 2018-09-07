@@ -1,8 +1,8 @@
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Juno, Blink, Atom
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase #, Juno, Blink, Atom
 	using Dates, Random, REPL, DataFrames, WebIO, JSExpr
-	using KernelDensity, Distributions, Missings
+	using KernelDensity, Distributions
 	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
 
