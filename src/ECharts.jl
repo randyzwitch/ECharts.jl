@@ -1,6 +1,6 @@
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase #, Juno, Blink, Atom
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
 	using Dates, Random, REPL, DataFrames, WebIO, JSExpr
 	using KernelDensity, Distributions
 	import Base: print, show
