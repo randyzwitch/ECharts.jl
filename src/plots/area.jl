@@ -35,8 +35,8 @@ ar = area(x, y)
 function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
-			stack::Union{Bool, AbstractVector, Void} = nothing,
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -55,8 +55,8 @@ end
 function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
-			stack::Union{Bool, AbstractVector, Void} = true,
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = true,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
@@ -75,8 +75,8 @@ end
 function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
-			stack::Union{Bool, AbstractVector, Void} = nothing,
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = nothing,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
@@ -95,8 +95,8 @@ end
 function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
-			stack::Union{Bool, AbstractVector, Void} = true,
-			step::Union{String, Void} = nothing,
+			stack::Union{Bool, AbstractVector, Nothing} = true,
+			step::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
@@ -114,8 +114,8 @@ end
 function area(k::KernelDensity.UnivariateKDE;
 				mark::Union{String, AbstractVector} = "line",
 				fill::Union{Bool, AbstractVector} = true,
-				stack::Union{Bool, AbstractVector, Void} = nothing,
-				step::Union{String, Void} = nothing,
+				stack::Union{Bool, AbstractVector, Nothing} = nothing,
+				step::Union{String, Nothing} = nothing,
 				legend::Bool = false,
 				scale::Bool = false,
 				kwargs...)

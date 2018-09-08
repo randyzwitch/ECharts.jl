@@ -36,7 +36,7 @@ function funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, R
                             )]
 
     #Add legend if requested
-    legend? legend!(ec) : nothing
+    legend ? legend!(ec) : nothing
 
     return ec
 

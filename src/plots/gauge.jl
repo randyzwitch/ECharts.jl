@@ -25,7 +25,7 @@ function gauge(x::Union{Missing, Real};
                colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"],
                kwargs...)
 
-    length(breakpoints) != length(colors)? error("breakpoints and colors vectors need to have the same length."): nothing
+    length(breakpoints) != length(colors) ? error("breakpoints and colors vectors need to have the same length.") : nothing
 
     ec = newplot(kwargs, ec_charttype = "gauge")
 

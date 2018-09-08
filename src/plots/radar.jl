@@ -48,7 +48,7 @@ function radar(names::AbstractVector,
 	fill!(ec, 1, fill)
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -71,14 +71,14 @@ function radar(names::AbstractVector,
 
 	# Fill area if requested
 	# This is smelly
-	typeof(fill) == Bool? fill = [fill for i in 1:size(values)[2]]: fill = fill
+	typeof(fill) == Bool ? fill = [fill for i in 1:size(values)[2]] : fill = fill
 	cols = length(fill)
 	fill!(ec, cols, fill)
 
 	seriesnames!(ec)
 
 	#Add legend if requested
-	legend? legend!(ec) : nothing
+	legend ? legend!(ec) : nothing
 
 	return ec
 

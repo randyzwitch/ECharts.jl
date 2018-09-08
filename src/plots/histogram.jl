@@ -44,10 +44,10 @@ function histogram(h::StatsBase.Histogram;
         ec.series[1].barCategoryGap = "1%"
 
         #Make plot horizontal
-        horizontal? flip!(ec): nothing
+        horizontal ? flip!(ec) : nothing
 
         #Add legend if requested
-        legend? legend!(ec) : nothing
+        legend ? legend!(ec) : nothing
 
         return ec
 

@@ -1,6 +1,6 @@
 #Merge methods together using metaprogramming?
 function xgridlines!(ec::EChart; show::Bool = true,
-								 interval::Union{Int, String, JSFunction, Void} = "auto",
+								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
 								 kwargs...)
 
 	#Set if not present
@@ -18,7 +18,7 @@ function xgridlines!(ec::EChart; show::Bool = true,
 end
 
 function ygridlines!(ec::EChart; show::Bool = true,
-								 interval::Union{Int, String, JSFunction, Void} = "auto",
+								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
 								 kwargs...)
 
 	#Set if not present
