@@ -50,12 +50,12 @@ function corrplot(m::Matrix;
     cor_df = DataFrame(m_)
     original_names = names(cor_df)
     names!(cor_df, [Symbol(x) for x in 1:length(names(cor_df))])
-    cor_df[:rownames] = names(cor_df)
+    cor_df[!, :rownames] = names(cor_df)
     df_melt = melt(cor_df, [:rownames])
 
     #convert to numeric, fixes weird echarts api requiring numeric series in order to rename
-    df_melt[:variable] = [parse(Int, string(x)) - 1 for x in df_melt[:variable]]
-    df_melt[:rownames] = [parse(Int, string(x)) - 1 for x in df_melt[:rownames]]
+    df_melt[!, :variable] = [parse(Int, string(x)) - 1 for x in df_melt[!, :variable]]
+    df_melt[!, :rownames] = [parse(Int, string(x)) - 1 for x in df_melt[!, :rownames]]
 
     #plot
     ec = newplot(kwargs, ec_charttype = "corrplot")
@@ -64,7 +64,7 @@ function corrplot(m::Matrix;
     ec.xAxis = [Axis(data = 1:length(original_names), _type = "category")]
     ec.yAxis = [Axis(data = 1:length(original_names), _type = "category", inverse = true)]
 
-    ec.series = [XYSeries(data = arrayofarray(df_melt[:variable], df_melt[:rownames], df_melt[:value]),
+    ec.series = [XYSeries(data = arrayofarray(df_melt[!, :variable], df_melt[!, :rownames], df_melt[!, :value]),
                         _type = "scatter",
                         symbolSize = JSFunction("""function (data) {return $bubblesize * Math.sqrt(Math.abs(data[2]))}""")
                         )
@@ -99,7 +99,7 @@ function corrplot(df::AbstractDataFrame;
                   kwargs...)
 
     #get numeric columns from df, call cor from StatsBase
-    df_num = df[[x <: Union{Missing, Number} for x in eltypes(df)]]
+    df_num = df[!, [x <: Union{Missing, Number} for x in eltypes(df)]]
     c = cor(convert(Matrix, df_num))
 
     ec = corrplot(c, bubblesize = bubblesize, layout = layout, labels = labels, ec_height = ec_height, ec_width = ec_width, kwargs...)
