@@ -1256,6 +1256,13 @@ end
 end
 @with_kw mutable struct TreeSeries <: AbstractEChartSeries
     _type::String = "tree"
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Merge in master
+>>>>>>> Stashed changes
     name::Union{String, Nothing} = nothing
     zlevel::Union{Int, Nothing} = nothing
     z::Union{Int, Nothing} = nothing
@@ -1279,6 +1286,37 @@ end
     emphasis::Union{ItemStyle, Nothing} = nothing
     data::Union{Dict, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+    name::Union{String, Void} = nothing
+    zlevel::Union{Int, Void} = nothing
+    z::Union{Int, Void} = nothing
+    left::Union{String, Void} = nothing
+    top::Union{String, Void} = nothing
+    right::Union{String, Void} = nothing
+    bottom::Union{String, Void} = nothing
+    width::Union{Int, String, Void} = nothing
+    height::Union{Int, String, Void} = nothing
+    layout::Union{String, Void} = nothing
+    orient::Union{String, Void} = nothing
+    symbol::Union{String, Void} = nothing
+    symbolSize::Union{Int, Void} = nothing
+    symbolRotate::Union{Int, Void} = nothing
+    symbolOffset::Union{AbstractVector, Void} = nothing
+    expandAndCollapse::Union{Bool, Void} = nothing
+    initialTreeDepth::Union{Int, Void} = nothing
+    itemStyle::Union{ItemStyle, Void} = nothing
+    label::Union{Label, Void} = nothing
+    lineStyle::Union{LineStyle, Void} = nothing
+    emphasis::Union{ItemStyle, Void} = nothing
+    data::Union{AbstractVector, Void} = nothing
+    tooltip::Union{Tooltip, Void} = nothing
+>>>>>>> Basic functionality
+=======
+>>>>>>> Merge in master
+>>>>>>> Stashed changes
 end
 @with_kw mutable struct EffectScatterSeries <: AbstractEChartSeries
     _type::String = "effectScatter"
