@@ -1,7 +1,17 @@
 environment:
   matrix:
+<<<<<<< Updated upstream
   - julia_version: 0.7
   - julia_version: 1
+=======
+<<<<<<< HEAD
+  - julia_version: 1
+  - julia_version: 1.1
+=======
+  - julia_version: 0.7
+  - julia_version: 1
+>>>>>>> Merge in master
+>>>>>>> Stashed changes
   - julia_version: nightly
 
 platform:

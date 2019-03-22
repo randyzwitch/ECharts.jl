@@ -11,6 +11,10 @@ Distributions 0.16.3
 WebIO 0.3.2
 JSExpr 0.3.1
 #For tests
+<<<<<<< HEAD
 RDatasets 0.6.1
+=======
+RDatasets 0.4.0
+>>>>>>> Merge in master
 CSV 0.3.1
 RData 0.5.0

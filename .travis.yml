@@ -4,8 +4,18 @@ os:
 notifications:
   email: false
 julia:
+<<<<<<< Updated upstream
   - 0.7
   - 1.0
+=======
+<<<<<<< HEAD
+  - 1.0
+  - 1.1
+=======
+  - 0.7
+  - 1.0
+>>>>>>> Merge in master
+>>>>>>> Stashed changes
   - nightly
 matrix:
   allow_failures:
