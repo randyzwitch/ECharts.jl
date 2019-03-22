@@ -4,15 +4,7 @@ print(x::EChart) = print(json(makevalidjson(x)))
 #WebIO Scope/dom
 function createscope(ec::EChart)
     deps = [
-<<<<<<< Updated upstream
-        "echarts" => joinpath(@__DIR__, "..", "docs", "js", "echarts-4.0.4.js")
-=======
-<<<<<<< HEAD
         "echarts" => joinpath(@__DIR__, "..", "docs", "js", "echarts-4.2.1.js")
-=======
-        "echarts" => joinpath(@__DIR__, "..", "docs", "js", "echarts-4.0.4.js")
->>>>>>> Merge in master
->>>>>>> Stashed changes
     ]
 
     # set up web io scope. We need to tell it about our dependencies and then
