@@ -71,7 +71,7 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 		kwargs...)
 
 		#Not currently handling NAs
-		ec = bubble(df[x], df[y], df[size],
+		ec = bubble(df[!, x], df[!, y], df[!, size],
 					legend = legend,
 					scale = scale,
 					large = large,
@@ -104,13 +104,13 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group
 
 			#Append remaining series, put symbolSize
 			for i in 2:numgroups
-				push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y], subdf[i][size])))
+				push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][!, x], subdf[i][!, y], subdf[i][!, size])))
 
 				ec.series[i].symbolSize = ec.series[1].symbolSize
 			end
 
 			#Add series names based on levels of grouped df
-			seriesnames!(ec, [unique(subdf[x][group])[1] for x in 1:numgroups])
+			seriesnames!(ec, [unique(subdf[x][!, group])[1] for x in 1:numgroups])
 
 			#Add legend if desired
 			legend == true ? legend!(ec) : nothing

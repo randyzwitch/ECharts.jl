@@ -96,10 +96,10 @@ function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
     numgroups = length(subdf)
 
     #Get names
-    names == nothing ? names = [unique(subdf[x][group])[1] for x in 1:numgroups] : names = names
+    names == nothing ? names = [unique(subdf[x][!, group])[1] for x in 1:numgroups] : names = names
 
     #Convert to array of array for existing method
-    arrayarray = [convert(Array, subdf[x][data]) for x in 1:numgroups]
+    arrayarray = [convert(Array, subdf[x][!, data]) for x in 1:numgroups]
 
     ec = box(arrayarray, names = names, outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 

@@ -253,11 +253,11 @@ w = waterfall(x, y)
 @test typeof(w) == EChart
 
 #16: histogram
-h = fit(Histogram, diamonds[:Price], closed = :left)
+h = fit(Histogram, diamonds.Price, closed = :left)
 hs = histogram(h)
 @test typeof(hs) == EChart
 
-h2 = fit(Histogram, (diamonds[:Price], diamonds[:Carat]), closed = :left)
+h2 = fit(Histogram, (diamonds.Price, diamonds.Carat), closed = :left)
 hs2 = histogram(h2)
 @test typeof(hs2) == EChart
 
@@ -279,14 +279,14 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 
 #18: streamgraph
 s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), types=[String, Float64, String])
-sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
+sg = streamgraph(s_df.date, s_df.value, s_df.key, legend = true)
 @test typeof(sg) == EChart
 
 #19: bubble
 sgrp = bubble(mtcars, :MPG, :HP, :Disp)
 @test typeof(sgrp) == EChart
 
-sgrp2 = bubble(mtcars[:MPG], mtcars[:HP], mtcars[:Disp])
+sgrp2 = bubble(mtcars.MPG, mtcars.HP, mtcars.Disp)
 @test typeof(sgrp2) == EChart
 
 sgrp3 = bubble(mtcars, :MPG, :HP, :Disp, :Cyl)
@@ -296,7 +296,7 @@ sgrp3 = bubble(mtcars, :MPG, :HP, :Disp, :Cyl)
 cplot = corrplot(mtcars)
 @test typeof(cplot) == EChart
 
-df_num = mtcars[[x <: Union{Number, Missing} for x in eltypes(mtcars)]]
+df_num = mtcars[!, [x <: Union{Number, Missing} for x in eltypes(mtcars)]]
 c = cor(convert(Matrix, df_num))
 ccc = corrplot(c)
 @test typeof(ccc) == EChart
