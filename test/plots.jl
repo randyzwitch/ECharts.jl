@@ -296,7 +296,7 @@ sgrp3 = bubble(mtcars, :MPG, :HP, :Disp, :Cyl)
 cplot = corrplot(mtcars)
 @test typeof(cplot) == EChart
 
-df_num = mtcars[[x <: Union{Number, Missing} for x in eltypes(mtcars)]]
+df_num = mtcars[!, [x <: Union{Number, Missing} for x in eltypes(mtcars)]]
 c = cor(convert(Matrix, df_num))
 ccc = corrplot(c)
 @test typeof(ccc) == EChart
