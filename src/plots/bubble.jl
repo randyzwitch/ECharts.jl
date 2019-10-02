@@ -71,7 +71,7 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 		kwargs...)
 
 		#Not currently handling NAs
-		ec = bubble(df[x], df[y], df[size],
+		ec = bubble(df[!, x], df[!, y], df[!, size],
 					legend = legend,
 					scale = scale,
 					large = large,
