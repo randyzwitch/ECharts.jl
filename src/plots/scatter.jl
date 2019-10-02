@@ -88,7 +88,7 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 
 	#Initialize with single series
-	ec = scatter(df[x], df[y]; mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = scatter(df[!, x], df[!, y]; mark = mark, legend = legend, scale = scale, kwargs...)
 
 	#Add legend if desired
 	legend == true ? legend!(ec) : nothing
@@ -125,11 +125,11 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 
 	#Append remaining series
 	for i in 2:numgroups
-		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][x], subdf[i][y])))
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][!, x], subdf[i][!, y])))
 	end
 
 	#Add series names based on levels of grouped df
-	seriesnames!(ec, [unique(subdf[x][group])[1] for x in 1:numgroups])
+	seriesnames!(ec, [unique(subdf[x][!, group])[1] for x in 1:numgroups])
 
 	#Add legend if desired
 	legend == true ? legend!(ec) : nothing
