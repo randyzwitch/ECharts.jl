@@ -4,7 +4,7 @@ print(x::EChart) = print(json(makevalidjson(x)))
 #WebIO Scope/dom
 function createscope(ec::EChart)
     deps = [
-        "echarts" => joinpath(@__DIR__, "..", "docs", "js", "echarts-4.2.1.js")
+        "echarts" => joinpath(@__DIR__, "..", "docs", "js", "echarts.min.js")
     ]
 
     # set up web io scope. We need to tell it about our dependencies and then
