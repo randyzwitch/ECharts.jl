@@ -553,16 +553,16 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">restore</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">dataView</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">saveAsImage</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">chartTypes</span><span class="o">::</span><span class="n">AbstractVector</span> <span class="o">=</span> <span class="x">[]</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">show</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">restore</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">dataView</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">saveAsImage</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">chartTypes</span><span class="o">::</span><span class="kt">AbstractVector</span> <span class="o">=</span> <span class="x">[]</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">20</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">20</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">.+</span> <span class="mi">5</span><span class="n">x</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
 <span class="n">toolbox!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="x">[</span><span class="s">"bar"</span><span class="x">,</span> <span class="s">"line"</span><span class="x">])</span></code></pre></figure>
@@ -591,7 +591,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Oct 2, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

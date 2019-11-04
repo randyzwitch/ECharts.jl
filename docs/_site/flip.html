@@ -545,9 +545,9 @@ $('#toc').on('click', 'a', function() {
     
 
 
-  <p>This function is the underlying code behind the <code class="highlighter-rouge">horizontal</code> keyword for all x/y charts. Calling <code class="highlighter-rouge">flip!</code> directly is useful for interactive use, where you have a chart and think it might look better with the inverse orientation.</p>
+  <p>This function is the underlying code behind the <code class="language-plaintext highlighter-rouge">horizontal</code> keyword for all x/y charts. Calling <code class="language-plaintext highlighter-rouge">flip!</code> directly is useful for interactive use, where you have a chart and think it might look better with the inverse orientation.</p>
 
-<p>Due to the properties of a scatterplot (i.e. points, x-axis/y-axis are numeric, no “orientation” per se), flip! has no affect; should you wish to change the ‘orientation’ of the series of a scatterplot, just switch the series’ in the call to <code class="highlighter-rouge">scatter</code> (i.e. <code class="highlighter-rouge">scatter(x,y) =&gt; scatter(y,x)</code>).</p>
+<p>Due to the properties of a scatterplot (i.e. points, x-axis/y-axis are numeric, no “orientation” per se), flip! has no affect; should you wish to change the ‘orientation’ of the series of a scatterplot, just switch the series’ in the call to <code class="language-plaintext highlighter-rouge">scatter</code> (i.e. <code class="language-plaintext highlighter-rouge">scatter(x,y) =&gt; scatter(y,x)</code>).</p>
 
 <h2 id="method-signatures">Method Signatures</h2>
 
@@ -555,14 +555,14 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">rotatedims</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">rotatedims</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
-<span class="n">bm</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="n">y</span><span class="x">),</span> <span class="n">color</span> <span class="o">=</span> <span class="x">[</span><span class="s">"red"</span><span class="x">,</span> <span class="s">"gray"</span><span class="x">,</span> <span class="s">"blue"</span><span class="x">],</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">true</span><span class="x">)</span></code></pre></figure>
+<span class="n">bm</span> <span class="o">=</span> <span class="n">bar</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">hcat</span><span class="x">(</span><span class="mf">0.95</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="mf">1.25</span> <span class="o">.*</span> <span class="n">y</span><span class="x">,</span> <span class="n">y</span><span class="x">),</span> <span class="n">color</span> <span class="o">=</span> <span class="x">[</span><span class="s">"red"</span><span class="x">,</span> <span class="s">"gray"</span><span class="x">,</span> <span class="s">"blue"</span><span class="x">],</span> <span class="n">stack</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span></code></pre></figure>
 
 <div id="barplot3" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -601,7 +601,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Oct 2, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

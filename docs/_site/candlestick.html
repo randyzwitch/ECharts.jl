@@ -550,29 +550,29 @@ $('#toc').on('click', 'a', function() {
 <h2 id="method-signatures">Method Signatures</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span>
-<span class="n">candlestick</span><span class="x">(</span><span class="n">dt</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="kt">String</span><span class="x">},</span>
-    <span class="n">open</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">close</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">low</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">high</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}})</span>
+<span class="n">candlestick</span><span class="x">(</span><span class="n">dt</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="kt">String</span><span class="x">},</span>
+    <span class="n">open</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">close</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">low</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">high</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}})</span>
 
-<span class="n">candlestick</span><span class="x">(</span><span class="n">dt</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Dates</span><span class="o">.</span><span class="n">TimeType</span><span class="x">},</span>
-    <span class="n">open</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">close</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">low</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}},</span>
-    <span class="n">high</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}})</span></code></pre></figure>
+<span class="n">candlestick</span><span class="x">(</span><span class="n">dt</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Dates</span><span class="o">.</span><span class="kt">TimeType</span><span class="x">},</span>
+    <span class="n">open</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">close</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">low</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}},</span>
+    <span class="n">high</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}})</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">true</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">true</span>
 <span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="x">[</span><span class="s">"2016/08/26"</span><span class="x">,</span> <span class="s">"2016/08/29"</span><span class="x">,</span> <span class="s">"2016/08/30"</span><span class="x">,</span> <span class="s">"2016/08/31"</span><span class="x">,</span> <span class="s">"2016/09/01"</span><span class="x">,</span> <span class="s">"2016/09/02"</span><span class="x">,</span>
 <span class="s">"2016/09/06"</span><span class="x">,</span> <span class="s">"2016/09/07"</span><span class="x">,</span> <span class="s">"2016/09/08"</span><span class="x">,</span> <span class="s">"2016/09/09"</span><span class="x">,</span> <span class="s">"2016/09/12"</span><span class="x">,</span> <span class="s">"2016/09/13"</span><span class="x">,</span>
 <span class="s">"2016/09/14"</span><span class="x">,</span> <span class="s">"2016/09/15"</span><span class="x">,</span> <span class="s">"2016/09/16"</span><span class="x">,</span> <span class="s">"2016/09/19"</span><span class="x">,</span> <span class="s">"2016/09/20"</span><span class="x">,</span> <span class="s">"2016/09/21"</span><span class="x">,</span>
@@ -620,7 +620,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Oct 2, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>
