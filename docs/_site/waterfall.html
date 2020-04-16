@@ -27,7 +27,7 @@
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<script src="js/echarts-4.0.4.js"></script>
+<script src="js/echarts.min.js"></script>
 
 <script type="text/javascript">
 //Theme for each chart to take, default in Julia
@@ -327,20 +327,6 @@ var purplepassion = function(){
             
             
             
-            <li><a href="sunburst">sunburst</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="treemap">treemap</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="xycomboplots">x/y combination plots</a></li>
             
             
@@ -559,30 +545,30 @@ $('#toc').on('click', 'a', function() {
     
 
 
-  <p>This function is just a convenience function around the <code class="highlighter-rouge">bar</code> function with <code class="highlighter-rouge">stacked = true</code> and the offset series color set as <code class="highlighter-rouge">transparent</code> in order to give the waterfall chart effect.</p>
+  <p>This function is just a convenience function around the <code class="language-plaintext highlighter-rouge">bar</code> function with <code class="language-plaintext highlighter-rouge">stacked = true</code> and the offset series color set as <code class="language-plaintext highlighter-rouge">transparent</code> in order to give the waterfall chart effect.</p>
 
 <p>Pass in your values as you expect to see them on the chart, positive or negative and in order. The function will do the offset calculations and the total calculation and automatically add them to the chart.</p>
 
 <h2 id="method-signatures">Method Signatures</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Real</span><span class="x">}})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">}})</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
 <span class="n">kwargs</span><span class="o">...</span><span class="x">(</span><span class="n">modifies</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="sb">`EChart`</span> <span class="n">fields</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="missing-value-support">Missing Value Support</h2>
 
-<p>Missing values are not supported in <code class="highlighter-rouge">waterfall()</code>; if there is no change in values between steps, use a value of <code class="highlighter-rouge">0</code> instead of <code class="highlighter-rouge">missing</code>.</p>
+<p>Missing values are not supported in <code class="language-plaintext highlighter-rouge">waterfall()</code>; if there is no change in values between steps, use a value of <code class="language-plaintext highlighter-rouge">0</code> instead of <code class="language-plaintext highlighter-rouge">missing</code>.</p>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="x">:</span><span class="mi">5</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2900</span><span class="x">,</span> <span class="o">-</span><span class="mi">1200</span><span class="x">,</span> <span class="o">-</span><span class="mi">300</span><span class="x">,</span> <span class="o">-</span><span class="mi">200</span><span class="x">,</span> <span class="o">-</span><span class="mi">900</span><span class="x">]</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">waterfall</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></figure>
 
@@ -610,7 +596,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Mar 22, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

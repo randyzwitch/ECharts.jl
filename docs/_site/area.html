@@ -27,7 +27,7 @@
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<script src="js/echarts-4.0.4.js"></script>
+<script src="js/echarts.min.js"></script>
 
 <script type="text/javascript">
 //Theme for each chart to take, default in Julia
@@ -327,20 +327,6 @@ var purplepassion = function(){
             
             
             
-            <li><a href="sunburst">sunburst</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="treemap">treemap</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="xycomboplots">x/y combination plots</a></li>
             
             
@@ -562,31 +548,31 @@ $('#toc').on('click', 'a', function() {
   <h2 id="method-signatures">Method Signatures</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span>
-<span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}})</span>
-<span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">},</span><span class="mi">2</span><span class="x">})</span>
+<span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}})</span>
+<span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">},</span><span class="mi">2</span><span class="x">})</span>
 
 <span class="c">#Dataframe methods</span>
-<span class="n">area</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span>
-<span class="n">area</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="n">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="n">Symbol</span><span class="x">)</span>
+<span class="n">area</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="kt">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">Symbol</span><span class="x">)</span>
+<span class="n">area</span><span class="x">(</span><span class="n">df</span><span class="o">::</span><span class="n">AbstractDataFrame</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="kt">Symbol</span><span class="x">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">Symbol</span><span class="x">,</span> <span class="n">group</span><span class="o">::</span><span class="kt">Symbol</span><span class="x">)</span>
 
 <span class="c">#Other methods</span>
 <span class="n">area</span><span class="x">(</span><span class="n">k</span><span class="o">::</span><span class="n">KernelDensity</span><span class="o">.</span><span class="n">UnivariateKDE</span><span class="x">)</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">mark</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span> <span class="n">AbstractVector</span><span class="x">}</span> <span class="o">=</span> <span class="s">"line"</span>
-<span class="n">fill</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">AbstractVector</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">stack</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">step</span><span class="o">::</span><span class="n">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="n">nothing</span> <span class="c">#choice of {"start", "middle", "end"}</span>
-<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">mark</span><span class="o">::</span><span class="kt">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span> <span class="kt">AbstractVector</span><span class="x">}</span> <span class="o">=</span> <span class="s">"line"</span>
+<span class="n">fill</span><span class="o">::</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="kt">AbstractVector</span><span class="x">}</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">stack</span><span class="o">::</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Bool</span><span class="x">,</span> <span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">step</span><span class="o">::</span><span class="kt">Union</span><span class="x">{</span><span class="kt">String</span><span class="x">,</span> <span class="n">Void</span><span class="x">}</span> <span class="o">=</span> <span class="nb">nothing</span> <span class="c">#choice of {"start", "middle", "end"}</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="n">scale</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
 <span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level EChart properties</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
 <span class="n">ar</span> <span class="o">=</span> <span class="n">area</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></pre></figure>
@@ -605,11 +591,11 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="multiple-series-stacked-area">Multiple Series (Stacked Area)</h3>
 
-<p>The default when passed multiple series is to <em>stack</em> the series, i.e. showing the individual series contribution to the whole. If you want to overlay each series relative to zero on the Y-axis, use <code class="highlighter-rouge">stack = false</code>.</p>
+<p>The default when passed multiple series is to <em>stack</em> the series, i.e. showing the individual series contribution to the whole. If you want to overlay each series relative to zero on the Y-axis, use <code class="language-plaintext highlighter-rouge">stack = false</code>.</p>
 
-<p>In order for the stacked charts to render properly, any <code class="highlighter-rouge">missing</code> values are <strong>set to 0</strong> on render. If this is not the correct treatment, you need to remove <code class="highlighter-rouge">missing</code> values prior to calling <code class="highlighter-rouge">area()</code>.</p>
+<p>In order for the stacked charts to render properly, any <code class="language-plaintext highlighter-rouge">missing</code> values are <strong>set to 0</strong> on render. If this is not the correct treatment, you need to remove <code class="language-plaintext highlighter-rouge">missing</code> values prior to calling <code class="language-plaintext highlighter-rouge">area()</code>.</p>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="mf">3.7</span> <span class="o">.*</span> <span class="n">y</span>
@@ -629,7 +615,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="step-chart">Step Chart</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="s">"Monday"</span><span class="x">,</span><span class="s">"Tuesday"</span><span class="x">,</span><span class="s">"Wednesday"</span><span class="x">,</span><span class="s">"Thursday"</span><span class="x">,</span><span class="s">"Friday"</span><span class="x">,</span><span class="s">"Saturday"</span><span class="x">,</span><span class="s">"Sunday"</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">11</span><span class="x">,</span> <span class="mi">11</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="mf">3.7</span> <span class="o">.*</span> <span class="n">y</span>
@@ -647,14 +633,14 @@ $('#toc').on('click', 'a', function() {
         );
 </script>
 
-<h3 id="dataframe-with-group-argument">DataFrame with <code class="highlighter-rouge">group</code> argument</h3>
+<h3 id="dataframe-with-group-argument">DataFrame with <code class="language-plaintext highlighter-rouge">group</code> argument</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span><span class="x">,</span> <span class="n">DataFrames</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span><span class="x">,</span> <span class="n">DataFrames</span>
 <span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="mi">0</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">2</span><span class="x">,</span><span class="mi">3</span><span class="x">,</span><span class="mi">4</span><span class="x">,</span><span class="mi">5</span><span class="x">,</span><span class="mi">6</span><span class="x">,</span><span class="mi">7</span><span class="x">,</span><span class="mi">8</span><span class="x">,</span><span class="mi">9</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">2</span><span class="x">,</span><span class="mi">3</span><span class="x">,</span><span class="mi">4</span><span class="x">,</span><span class="mi">5</span><span class="x">,</span><span class="mi">6</span><span class="x">,</span><span class="mi">7</span><span class="x">,</span><span class="mi">8</span><span class="x">,</span><span class="mi">9</span><span class="x">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">28</span><span class="x">,</span> <span class="mi">43</span><span class="x">,</span> <span class="mi">81</span><span class="x">,</span> <span class="mi">19</span><span class="x">,</span> <span class="mi">52</span><span class="x">,</span> <span class="mi">24</span><span class="x">,</span> <span class="mi">87</span><span class="x">,</span> <span class="mi">17</span><span class="x">,</span> <span class="mi">68</span><span class="x">,</span> <span class="mi">49</span><span class="x">,</span> <span class="mi">55</span><span class="x">,</span> <span class="mi">91</span><span class="x">,</span> <span class="mi">53</span><span class="x">,</span> <span class="mi">87</span><span class="x">,</span> <span class="mi">48</span><span class="x">,</span> <span class="mi">49</span><span class="x">,</span> <span class="mi">66</span><span class="x">,</span> <span class="mi">27</span><span class="x">,</span> <span class="mi">16</span><span class="x">,</span> <span class="mi">15</span><span class="x">]</span>
 <span class="n">g</span> <span class="o">=</span> <span class="x">[</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">,</span><span class="mi">1</span><span class="x">]</span>
 <span class="n">df_merged</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="x">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="x">)</span>
-<span class="n">adfg</span> <span class="o">=</span> <span class="n">area</span><span class="x">(</span><span class="n">df_merged</span><span class="x">,</span> <span class="x">:</span><span class="n">x</span><span class="x">,</span> <span class="x">:</span><span class="n">y</span><span class="x">,</span> <span class="x">:</span><span class="n">g</span><span class="x">)</span></code></pre></figure>
+<span class="n">adfg</span> <span class="o">=</span> <span class="n">area</span><span class="x">(</span><span class="n">df_merged</span><span class="x">,</span> <span class="o">:</span><span class="n">x</span><span class="x">,</span> <span class="o">:</span><span class="n">y</span><span class="x">,</span> <span class="o">:</span><span class="n">g</span><span class="x">)</span></code></pre></figure>
 
 <div id="adfg" style="height:400px;width:800px;"></div>
 <script type="text/javascript">
@@ -670,8 +656,8 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="univariatekde">UnivariateKDE</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">using</span> <span class="n">KernelDensity</span><span class="x">,</span> <span class="n">Distributions</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="k">using</span> <span class="n">KernelDensity</span><span class="x">,</span> <span class="n">Distributions</span>
 
 <span class="c">#Set seed for repeatability</span>
 <span class="n">srand</span><span class="x">(</span><span class="mi">1234</span><span class="x">)</span>
@@ -707,7 +693,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Mar 22, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>

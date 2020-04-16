@@ -27,7 +27,7 @@
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<script src="js/echarts-4.0.4.js"></script>
+<script src="js/echarts.min.js"></script>
 
 <script type="text/javascript">
 //Theme for each chart to take, default in Julia
@@ -327,20 +327,6 @@ var purplepassion = function(){
             
             
             
-            <li><a href="sunburst">sunburst</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="treemap">treemap</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="xycomboplots">x/y combination plots</a></li>
             
             
@@ -562,22 +548,22 @@ $('#toc').on('click', 'a', function() {
   <h2 id="method-signatures">Method Signatures</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="c">#Array methods</span>
-<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">}})</span>
-<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="n">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="n">AbstractArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="n">Union</span><span class="x">{</span><span class="n">Missing</span><span class="x">,</span> <span class="n">Real</span><span class="x">},</span> <span class="mi">2</span><span class="x">})</span></code></pre></figure>
+<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">}})</span>
+<span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">,</span> <span class="n">radius</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">Missing</span><span class="x">,</span> <span class="kt">Real</span><span class="x">},</span> <span class="mi">2</span><span class="x">})</span></code></pre></figure>
 
 <h2 id="optional-arguments">Optional Arguments</h2>
 
 <figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">splitNumber</span><span class="o">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">showSymbol</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">showSymbol</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="n">legend</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="nb">false</span>
 <span class="n">kwargs</span><span class="o">...</span> <span class="c">#modifies top-level `EChart` fields</span></code></pre></figure>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="single-series">Single Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mi">360</span>
 <span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">polar</span><span class="x">(</span><span class="n">angle</span><span class="x">,</span> <span class="n">radius</span><span class="x">)</span></code></pre></figure>
@@ -595,8 +581,8 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="multiple-series">Multiple Series</h3>
 
-<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">using</span> <span class="n">ECharts</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="x">:</span><span class="mi">360</span>
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">ECharts</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mi">360</span>
 <span class="n">angle</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="nb">pi</span> <span class="k">for</span> <span class="n">a</span> <span class="k">in</span> <span class="n">t</span><span class="x">]</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mi">2</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
 <span class="n">radius2</span> <span class="o">=</span> <span class="x">[(</span><span class="n">sin</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">)</span> <span class="o">*</span> <span class="n">cos</span><span class="x">(</span><span class="mf">2.5</span><span class="n">t</span><span class="x">))</span> <span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">angle</span><span class="x">]</span>
@@ -626,7 +612,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Mar 22, 2019 <br />
+ Site last generated: Nov 4, 2019 <br />
 This project is maintained by <a href="https://github.com/randyzwitch/ECharts.jl">randyzwitch</a>
                 </div>
             </div>
