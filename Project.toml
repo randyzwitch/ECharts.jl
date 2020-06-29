@@ -24,7 +24,7 @@ WebIO = "0f1e0344-ec1d-5b48-a673-e5cf874b6c29"
 [compat]
 Blink = "~0.12.0"
 ColorBrewer = "≥ 0.4.0"
-DataFrames = "~0.20.0"
+DataFrames = "~0.21.0"
 Distributions = "~0.21.0"
 HTTP = "~0.8.0"
 JSExpr = "~0.5.0"
