@@ -6,12 +6,12 @@ module ECharts
 	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
 
-	#import JSON
+	# import JSON
 	import JSON: StructuralContext, Serializations.CommonSerialization
 
 	export print
 
-	#Create base color library
+	# Create base color library
 	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 	export colorpalettes
 
@@ -36,8 +36,8 @@ module ECharts
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
-	#This is a package local function, it is NOT overloading JSON.json
-	#Define custom JSON serialization rule
+	# This is a package local function, it is NOT overloading JSON.json
+	# Define custom JSON serialization rule
 	struct JSSerialization <: CommonSerialization end
 	struct JSFunction
 		data::String
@@ -50,14 +50,14 @@ module ECharts
 	end
 
 	json(x) = sprint(JSON.show_json, JSSerialization(), x)
-	#end custom JSON serialization rule
+	# end custom JSON serialization rule
 
-	#Primitives - in order of descending dependency within files
+	# Primitives - in order of descending dependency within files
 	include("theme.jl")
 	include("definetypes.jl")
 	include("render.jl")
 
-	#Visualization mutating functions
+	# Visualization mutating functions
 	include("chartopts/utilities.jl")
 	include("chartopts/seriesnames.jl")
 	include("chartopts/xyaxis.jl")
@@ -79,7 +79,7 @@ module ECharts
 	include("chartopts/gradients.jl")
 	include("chartopts/aria.jl")
 
-	#Plots
+	# Plots
 	include("plots/xy_plot.jl")
 	include("plots/bar.jl")
 	include("plots/radialbar.jl")
@@ -114,7 +114,7 @@ module ECharts
 	    end
 	    return res
 	end
-	makevalidjson(x::Missing) = "-" #this is a backstop to a value of missing getting to render step. "-" represents missing in ECharts
+	makevalidjson(x::Missing) = "-" # this is a backstop to a value of missing getting to render step. "-" represents missing in ECharts
 	makevalidjson(x::Any) = x
 
 	# By convention, using single underscore at beginning to get around reserved words

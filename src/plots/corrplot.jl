@@ -49,9 +49,9 @@ function corrplot(m::Matrix;
     #convert back to df, melt to pass to arrayofarray
     cor_df = DataFrame(m_)
     original_names = names(cor_df)
-    names!(cor_df, [Symbol(x) for x in 1:length(names(cor_df))])
+    rename!(cor_df, [Symbol(x) for x in 1:length(names(cor_df))])
     cor_df[!, :rownames] = names(cor_df)
-    df_melt = melt(cor_df, [:rownames])
+    df_melt = stack(cor_df, Not([:rownames]))
 
     #convert to numeric, fixes weird echarts api requiring numeric series in order to rename
     df_melt[!, :variable] = [parse(Int, string(x)) - 1 for x in df_melt[!, :variable]]
@@ -99,7 +99,7 @@ function corrplot(df::AbstractDataFrame;
                   kwargs...)
 
     #get numeric columns from df, call cor from StatsBase
-    df_num = df[!, [x <: Union{Missing, Number} for x in eltypes(df)]]
+    df_num = df[!, [x <: Union{Missing, Number} for x in eltype.(eachcol(df))]]
     c = cor(convert(Matrix, df_num))
 
     ec = corrplot(c, bubblesize = bubblesize, layout = layout, labels = labels, ec_height = ec_height, ec_width = ec_width, kwargs...)
