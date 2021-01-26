@@ -68,7 +68,11 @@ value = [124.729, 0.597, 26.862, 280.322, 81.144, 35, 35, 11.606, 63.965]
 s = sankey(name, source, target, value)
 ```
 
-Using the second method mentioned above--as per http://sankeymatic.com/build/'s convention--you can have a datafile (call it `input.txt`) that looks like
+Using the second method mentioned above--as per http://sankeymatic.com/build/'s convention--you can have a datafile (call it `input.txt`), where each line has the information
+```
+SOURCE [AMOUNT] TARGET
+```
+In this case.  `SOURCE` and `TARGET` are both `String`s, where `AMOUNT` is a `Real`.  For example:
 ```
 Wages [2000] Budget
 Interest [25] Budget

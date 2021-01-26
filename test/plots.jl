@@ -230,6 +230,9 @@ value = [124.729, 0.597, 26.862, 280.322, 81.144, 35, 35, 11.606, 63.965]
 s = sankey(name, source, target, value)
 @test typeof(s) == EChart
 
+s2 = sankey(joinpath(dirname(@__DIR__), "exampledata", "sankey.txt"))
+@test typeof(s) == EChart
+
 #13: scatter
 sc = scatter(rand(30), rand(30))
 @test typeof(sc) == EChart
