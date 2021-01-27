@@ -1,0 +1,8 @@
+Wages [2000] Budget
+Interest [25] Budget
+Budget [500] Taxes
+Budget [450] Housing
+Budget [310] Food
+Budget [205] Transportation
+Budget [400] Health Care
+Budget [160] Other Necessities
