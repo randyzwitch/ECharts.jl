@@ -122,7 +122,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 	#Get number of groups
 	numgroups = size(pivotdf, 2)
 
-	ec = xy_plot(pivotdf.x, convert(Matrix, pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(pivotdf.x, Matrix(pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
