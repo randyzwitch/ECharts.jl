@@ -281,7 +281,7 @@ b = radialbar(x, hcat(0.95 .* y, 1.25 .* y,y), stack = [1,1,2])
 @test typeof(b) == EChart
 
 #18: streamgraph
-s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), types=[String, Float64, String])
+s_df = CSV.read(joinpath(dirname(@__FILE__), "..", "exampledata/streamdata.csv"), DataFrame, types=[String, Float64, String])
 sg = streamgraph(s_df.date, s_df.value, s_df.key, legend = true)
 @test typeof(sg) == EChart
 
@@ -300,6 +300,6 @@ cplot = corrplot(mtcars)
 @test typeof(cplot) == EChart
 
 df_num = mtcars[!, [x <: Union{Number, Missing} for x in eltype.(eachcol(mtcars))]]
-c = cor(convert(Matrix, df_num))
+c = cor(Matrix(df_num))
 ccc = corrplot(c)
 @test typeof(ccc) == EChart
