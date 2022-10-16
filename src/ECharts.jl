@@ -30,7 +30,7 @@ module ECharts
 	export radar, funnel
 	export pie, donut, gauge, polar
 	export histogram, heatmap, streamgraph, bubble
-	export corrplot
+	export corrplot, tree, treemap, sunburst
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -102,6 +102,9 @@ module ECharts
 	include("plots/streamgraph.jl")
 	include("plots/bubble.jl")
 	include("plots/corrplot.jl")
+	include("plots/tree.jl")
+	include("plots/treemap.jl")
+	include("plots/sunburst.jl")
 
 	# From JMW originally
 	makevalidjson(s::Symbol) = string(s)
