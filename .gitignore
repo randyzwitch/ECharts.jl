@@ -5,3 +5,4 @@
 .DS_Store
 docs/vendor/*
 .vscode
+Manifest.toml
