@@ -33,11 +33,5 @@ end
 #Jupyter notebook method
 Base.show(io::IO, ::MIME"text/html", ec::EChart) = write(io, _echarts_html(ec))
 
-#REPL method
-function Base.display(::REPL.REPLDisplay, ec::EChart)
-    w = Blink.Window()
-    Blink.loadhtml(w, _echarts_html(ec))
-end
-
 #VSCode method - displays chart inline in the VSCode plot panel (requires Julia VSCode extension)
 Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart) = write(io, _echarts_html(ec))

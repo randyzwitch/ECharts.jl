@@ -1,13 +1,10 @@
 module ECharts
 
-	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
-	using Dates, Random, REPL, DataFrames
-	using KernelDensity, Distributions
+	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
+	using Dates, Random, DataFrames
+	using KernelDensity
 	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
-
-	# import JSON
-	import JSON: StructuralContext, Serializations.CommonSerialization
 
 	export print
 
@@ -36,21 +33,12 @@ module ECharts
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
-	# This is a package local function, it is NOT overloading JSON.json
-	# Define custom JSON serialization rule
-	struct JSSerialization <: CommonSerialization end
+	# JSFunction wraps a raw JavaScript string to be emitted verbatim (unquoted) in JSON output
 	struct JSFunction
 		data::String
 	end
 
-	function JSON.show_json(io::StructuralContext, ::JSSerialization, f::JSFunction)
-		for line in split(f.data, '\n')
-			Base.print(io, line)
-		end
-	end
-
-	json(x) = sprint(JSON.show_json, JSSerialization(), x)
-	# end custom JSON serialization rule
+	json(x) = JSON.json(x)
 
 	# Primitives - in order of descending dependency within files
 	include("theme.jl")
@@ -104,6 +92,7 @@ module ECharts
 	include("plots/corrplot.jl")
 
 	# From JMW originally
+	makevalidjson(f::JSFunction) = JSON.JSONText(f.data)
 	makevalidjson(s::Symbol) = string(s)
 	makevalidjson(v::Vector) = [makevalidjson(v_i) for v_i in v]
 

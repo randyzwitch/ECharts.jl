@@ -39,7 +39,7 @@ end
 Constructs a `Theme` from a `Dict`, as produced by parsing an ECharts JSON theme file.
 Keys not present in the dict default to `nothing`.
 """
-function Theme(x::Dict)
+function Theme(x::AbstractDict)
 
     Theme(
     color = get(x, "color", nothing),
