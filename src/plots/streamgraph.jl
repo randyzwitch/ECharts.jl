@@ -78,4 +78,4 @@ streamgraph(x::AbstractVector{<:Dates.TimeType},
             y::AbstractVector{<:Union{Missing, Real}},
             group::AbstractVector;
             legend::Bool = false,
-            kwargs...) = streamgraph(x, y, group; legend = legend, kwargs...)
+            kwargs...) = streamgraph(string.(x), y, group; legend = legend, kwargs...)
