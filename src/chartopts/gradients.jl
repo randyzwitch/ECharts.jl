@@ -1,3 +1,28 @@
+"""
+    lineargradient(color1, color2)
+
+Creates a linear gradient `JSFunction` for use with `colorscheme!` or other color arguments.
+The gradient transitions from `color1` at offset 0 to `color2` at offset 1.
+
+## Methods
+```julia
+lineargradient(color1::String, color2::String; x0, y0, x2, y2)
+```
+
+## Arguments
+* `color1::String` : starting color (CSS color string)
+* `color2::String` : ending color (CSS color string)
+* `x0::Number = 0` : x coordinate of gradient start (0–1)
+* `y0::Number = 0` : y coordinate of gradient start (0–1)
+* `x2::Number = 0` : x coordinate of gradient end (0–1)
+* `y2::Number = 1` : y coordinate of gradient end (0–1)
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+colorscheme!(b, lineargradient("#e96c5b", "#47a0d5"))
+```
+"""
 function lineargradient(color1::String, color2::String;
                         x0::Number = 0,
                         y0::Number = 0,
@@ -8,6 +33,30 @@ function lineargradient(color1::String, color2::String;
 
 end
 
+"""
+    radialgradient(color1, color2)
+
+Creates a radial gradient `JSFunction` for use with `colorscheme!` or other color arguments.
+The gradient transitions from `color1` at offset 0 to `color2` at offset 1.
+
+## Methods
+```julia
+radialgradient(color1::String, color2::String; x, y, r)
+```
+
+## Arguments
+* `color1::String` : starting color at center (CSS color string)
+* `color2::String` : ending color at edge (CSS color string)
+* `x::Number = 0.5` : x coordinate of gradient center (0–1)
+* `y::Number = 0.5` : y coordinate of gradient center (0–1)
+* `r::Number = 0.5` : radius of gradient (0–1)
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+colorscheme!(b, radialgradient("#e96c5b", "#47a0d5"))
+```
+"""
 function radialgradient(color1::String,
                         color2::String;
                         x::Number = 0.5,

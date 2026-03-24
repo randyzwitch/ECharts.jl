@@ -1,3 +1,22 @@
+"""
+    radial!(ec)
+
+Converts an XY plot to a radial (polar) coordinate system. Only works with charts that
+have categorical values in `xAxis.data`.
+
+## Methods
+```julia
+radial!(ec::EChart)
+```
+
+## Examples
+```julia
+x = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+y = [11, 11, 15, 13, 12, 13, 10]
+b = bar(x, y)
+radial!(b)
+```
+"""
 #Convert xyplots to radial, only works with plots having values for xAxis.data
 function radial!(ec::EChart)
     ec.polar = ECharts.Polar()
