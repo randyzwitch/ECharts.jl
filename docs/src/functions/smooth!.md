@@ -1,0 +1,5 @@
+# smooth!
+
+```@docs
+smooth!
+```

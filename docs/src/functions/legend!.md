@@ -1,0 +1,5 @@
+# legend!
+
+```@docs
+legend!
+```

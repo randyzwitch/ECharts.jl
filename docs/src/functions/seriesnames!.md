@@ -1,0 +1,5 @@
+# seriesnames!
+
+```@docs
+seriesnames!
+```

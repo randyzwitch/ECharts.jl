@@ -1,0 +1,5 @@
+# slider!
+
+```@docs
+slider!
+```
