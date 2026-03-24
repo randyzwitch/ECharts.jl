@@ -99,7 +99,7 @@ function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
     names == nothing ? names = [unique(subdf[x][!, group])[1] for x in 1:numgroups] : names = names
 
     #Convert to array of array for existing method
-    arrayarray = [convert(Array, subdf[x][!, data]) for x in 1:numgroups]
+    arrayarray = [Vector(subdf[x][!, data]) for x in 1:numgroups]
 
     ec = box(arrayarray, names = names, outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
@@ -118,7 +118,7 @@ function box(df::AbstractDataFrame, data::Symbol;
          horizontal::Bool = false,
          kwargs...)
 
-         converteddf = convert(Array, df[data])
+         converteddf = Vector(df[!, data])
          ec = box([converteddf], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
          yaxis!(ec, name = string(data))

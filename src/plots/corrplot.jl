@@ -47,7 +47,7 @@ function corrplot(m::Matrix;
     end
 
     #convert back to df, melt to pass to arrayofarray
-    cor_df = DataFrame(m_)
+    cor_df = DataFrame(m_, :auto)
     original_names = names(cor_df)
     rename!(cor_df, [Symbol(x) for x in 1:length(names(cor_df))])
     cor_df[!, :rownames] = names(cor_df)

@@ -43,7 +43,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	typeof(mark) <: AbstractVector ? nothing : mark = [mark for i in 1:length(x)]
 
 	#If there are missing values, set equal to zero so the graph stacks correctly
-	eltype(y) >: Missing ? y_ = collect(Missings.replace(y,0)) : y_ = deepcopy(y)
+	eltype(y) >: Missing ? y_ = coalesce.(y, 0) : y_ = deepcopy(y)
 
 	# Call 1-D method to build base
 	ec = xy_plot(x, y_[:,1]; mark = mark[1], scale = scale, kwargs...)
@@ -92,7 +92,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			kwargs...)
 
 	#Intialize for single series
-	ec = xy_plot(df.x, df.y, mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(df[!, x], df[!, y], mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
@@ -122,7 +122,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 	#Get number of groups
 	numgroups = size(pivotdf, 2)
 
-	ec = xy_plot(pivotdf.x, Matrix(pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(pivotdf[!, x], Matrix(pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
