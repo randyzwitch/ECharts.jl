@@ -33,7 +33,13 @@ function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 
 end
 
-#array, multiple series
+"""
+    line(x, y)
+
+Creates an `EChart` line chart from a 2-D array `y`, where each column is a separate series.
+Legend is displayed by default when multiple series are present.
+See the primary `line` method for full argument documentation.
+"""
 function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
@@ -45,7 +51,12 @@ function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 
 end
 
-#DataFrame, single series
+"""
+    line(df, x, y)
+
+Creates an `EChart` line chart from a single column `y` in DataFrame `df` against column `x`.
+See the primary `line` method for full argument documentation.
+"""
 function line(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
@@ -57,7 +68,13 @@ function line(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 end
 
-#DataFrame with group argument
+"""
+    line(df, x, y, group)
+
+Creates an `EChart` line chart from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `line` method for full argument documentation.
+"""
 function line(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,

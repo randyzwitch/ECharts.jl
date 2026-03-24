@@ -42,7 +42,13 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 
 end
 
-#Single X, multiple Y. This is unlikier scenario
+"""
+    scatter(x, y)
+
+Creates an `EChart` scatter plot from a 2-D array `y`, where each column is a separate series
+sharing the same `x` values. Legend is displayed by default when multiple series are present.
+See the primary `scatter` method for full argument documentation.
+"""
 function scatter(x::AbstractVector{<:Union{Missing, Real}},
 				 y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "scatter",
@@ -72,7 +78,13 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 
 end
 
-#dataframe, single series
+"""
+    scatter(df, x, y)
+
+Creates an `EChart` scatter plot from columns `x` and `y` in DataFrame `df`.
+Axis labels are set automatically from column names.
+See the primary `scatter` method for full argument documentation.
+"""
 function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = false,
@@ -100,7 +112,13 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 end
 
-#dataframe with group: uses single series df method
+"""
+    scatter(df, x, y, group)
+
+Creates an `EChart` scatter plot from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `scatter` method for full argument documentation.
+"""
 function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = true,

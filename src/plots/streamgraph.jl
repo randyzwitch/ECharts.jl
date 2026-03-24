@@ -42,6 +42,12 @@ function streamgraph(x::AbstractVector{String},
 
 end
 
+"""
+    streamgraph(x, y, group)
+
+Creates an `EChart` streamgraph (theme river) with a numeric x-axis.
+See the primary `streamgraph` method for full argument documentation.
+"""
 function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
                      y::AbstractVector{<:Union{Missing, Real}},
                      group::AbstractVector;

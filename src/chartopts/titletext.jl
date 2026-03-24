@@ -58,7 +58,12 @@ function text!(ec::EChart; kwargs...)
 
 end
 
-#Modify a piece of text in place
+"""
+    text!(ec, series)
+
+Modifies the `Title` object at index `series` in `ec` in place.
+See the primary `text!` method for full argument documentation.
+"""
 function text!(ec::EChart, series::Int; kwargs...)
 
 	for (k, v) in kwargs

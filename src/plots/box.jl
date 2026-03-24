@@ -65,7 +65,12 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
 
 end
 
-#Single series
+"""
+    box(data)
+
+Creates an `EChart` boxplot from a single numeric vector.
+See the primary `box` method for full argument documentation.
+"""
 box(data::AbstractVector{<:Union{Missing, Real}};
   names::String = "",
   outliers::Bool = true,
@@ -75,7 +80,12 @@ box(data::AbstractVector{<:Union{Missing, Real}};
 
              box([data], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
-#df with group arguments
+"""
+    box(df, data, group)
+
+Creates an `EChart` boxplot from DataFrame `df`, with one box per level of the `group` column.
+See the primary `box` method for full argument documentation.
+"""
 function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
@@ -104,7 +114,12 @@ function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
 
 end
 
-#df
+"""
+    box(df, data)
+
+Creates an `EChart` boxplot from a single column `data` in DataFrame `df`.
+See the primary `box` method for full argument documentation.
+"""
 function box(df::AbstractDataFrame, data::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,

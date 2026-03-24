@@ -33,7 +33,13 @@ function bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 
 end
 
-#multiple y
+"""
+    bar(x, y)
+
+Creates an `EChart` bar chart from a 2-D array `y`, where each column is a separate series.
+Legend is displayed by default when multiple series are present.
+See the primary `bar` method for full argument documentation.
+"""
 function bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -45,7 +51,12 @@ function bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 
 end
 
-# dataframe, single series
+"""
+    bar(df, x, y)
+
+Creates an `EChart` bar chart from a single column `y` in DataFrame `df` against column `x`.
+See the primary `bar` method for full argument documentation.
+"""
 function bar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -57,7 +68,13 @@ function bar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 end
 
-# dataframe, group argument
+"""
+    bar(df, x, y, group)
+
+Creates an `EChart` bar chart from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `bar` method for full argument documentation.
+"""
 function bar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,

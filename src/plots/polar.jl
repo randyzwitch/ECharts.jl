@@ -40,6 +40,13 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
 
 end
 
+"""
+    polar(angle, radius)
+
+Creates an `EChart` polar line chart from a 2-D array `radius`, where each column is a
+separate series. Legend is displayed by default when multiple series are present.
+See the primary `polar` method for full argument documentation.
+"""
 function polar(angle::AbstractVector{<:Union{Missing, Real}},
                radius::AbstractArray{<:Union{Missing, Real},2};
             splitNumber::Int = 12,

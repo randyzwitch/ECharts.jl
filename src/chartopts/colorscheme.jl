@@ -35,7 +35,13 @@ function colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}; reversePal
 
 end
 
-#This is for string literals and gradients, so reversePalette doesn't make sense as argument
+"""
+    colorscheme!(ec, palette)
+
+Sets the color of all series in `ec` to a single color string or gradient `JSFunction`.
+`reversePalette` is not applicable for this method.
+See the primary `colorscheme!` method for full argument documentation.
+"""
 function colorscheme!(ec::EChart, palette::Union{AbstractString, JSFunction})
 
     ec.color = [palette]
@@ -44,7 +50,12 @@ function colorscheme!(ec::EChart, palette::Union{AbstractString, JSFunction})
 
 end
 
-#For passing vector of colors
+"""
+    colorscheme!(ec, palette)
+
+Sets the color palette of `ec` from an explicit vector of color strings.
+See the primary `colorscheme!` method for full argument documentation.
+"""
 function colorscheme!(ec::EChart, palette::AbstractVector; reversePalette::Bool = false)
 
     reversePalette == true ? ec.color  = reverse(collect(palette)) : ec.color  = collect(palette)

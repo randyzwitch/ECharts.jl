@@ -33,7 +33,13 @@ function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 	 return ec
 end
 
-#multiple y
+"""
+    radialbar(x, y)
+
+Creates an `EChart` radial bar chart from a 2-D array `y`, where each column is a separate series.
+Legend is displayed by default when multiple series are present.
+See the primary `radialbar` method for full argument documentation.
+"""
 function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -47,7 +53,12 @@ function radialbar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2}
 	 return ec
 end
 
-# dataframe, single series
+"""
+    radialbar(df, x, y)
+
+Creates an `EChart` radial bar chart from a single column `y` in DataFrame `df` against column `x`.
+See the primary `radialbar` method for full argument documentation.
+"""
 function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -61,7 +72,13 @@ function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol;
 	 return ec
 end
 
-# dataframe, group argument
+"""
+    radialbar(df, x, y, group)
+
+Creates an `EChart` radial bar chart from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `radialbar` method for full argument documentation.
+"""
 function radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,

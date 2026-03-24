@@ -52,7 +52,13 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 
 end
 
-#dataframe, single series
+"""
+    bubble(df, x, y, size)
+
+Creates an `EChart` bubble chart from DataFrame `df`, using columns `x`, `y`, and `size`.
+Axis labels are set automatically from column names.
+See the primary `bubble` method for full argument documentation.
+"""
 function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 		legend::Bool = false,
 		scale::Bool = false,
@@ -76,7 +82,13 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 
 end
 
-#dataframe with group: uses single series df method
+"""
+    bubble(df, x, y, size, group)
+
+Creates an `EChart` bubble chart from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `bubble` method for full argument documentation.
+"""
 function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
 			legend::Bool = true,
 			scale::Bool = false,

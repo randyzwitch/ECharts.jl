@@ -42,7 +42,12 @@ function yline!(ec::EChart, value::String; series::Int = 1, kwargs...)
 
 end
 
-#arbitrary number line
+"""
+    yline!(ec, value)
+
+Adds a horizontal marker line at a specific numeric y-axis `value` to `ec`.
+See the primary `yline!` method for full argument documentation.
+"""
 function yline!(ec::EChart, value::Real; series::Int = 1, kwargs...)
 
 	#Defensive; empty markLine already added by default to every chart

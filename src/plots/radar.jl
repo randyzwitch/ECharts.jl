@@ -46,6 +46,13 @@ function radar(names::AbstractVector,
 
 end
 
+"""
+    radar(names, values, max)
+
+Creates an `EChart` radar chart from a 2-D array `values`, where each column is a separate
+series. Legend is displayed by default when multiple series are present.
+See the primary `radar` method for full argument documentation.
+"""
 function radar(names::AbstractVector,
 			   values::AbstractArray{<:Union{Missing, Real},2},
 			   max::AbstractVector{<:Union{Missing, Real}};
