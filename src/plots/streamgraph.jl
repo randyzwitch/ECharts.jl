@@ -19,12 +19,6 @@ streamgraph(x::AbstractVector{<:Dates.TimeType},y::AbstractVector{<:Union{Missin
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
-sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
-```
 """
 function streamgraph(x::AbstractVector{String},
                     y::AbstractVector{<:Union{Missing, Real}},

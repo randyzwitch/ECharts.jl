@@ -22,15 +22,6 @@ bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
 ## Notes
 
 The displayed size of the bubble is normalized within the function, as the square root of the size values. Using the square root of the value maintains the proper visual perception of the difference. The overall circle size can be modified by the `bubblesize` keyword argument, which is roughly the area in pixels of the largest circle.
-
-## Examples
-```julia
-Random.seed!(13579)
-xval = rand() .* (0:1000:30000)
-yval = 60 .+ (rand(31) * 20)
-sizeval = shuffle!(6000 .* (rand(31) * 50))
-sp = bubble(xval, yval, sizeval, scale = true)
-```
 """
 function bubble(x::AbstractVector{<:Union{Missing, Real}},
 				y::AbstractVector{<:Union{Missing, Real}},

@@ -20,11 +20,6 @@ scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-sc = scatter(rand(30), rand(30))
-```
 """
 function scatter(x::AbstractVector{<:Union{Missing, Real}},
 				 y::AbstractVector{<:Union{Missing, Real}};

@@ -21,13 +21,6 @@ line(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 ## Notes
 
 Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ll = line(x, y)
-```
 """
 function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",

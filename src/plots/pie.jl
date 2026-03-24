@@ -17,13 +17,6 @@ pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-pp = pie(x, y)
-```
 """
 pie(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}};
             selected::Union{AbstractVector, Nothing} = nothing,

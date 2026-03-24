@@ -17,13 +17,6 @@ heatmap(h::StatsBase.Histogram)
 ## Notes
 
 Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
-
-## Examples
-```julia
-using RDatasets
-h2 = fit(Histogram, (df[:Price], df[:Carat]), closed = :left)
-hs2 = heatmap(h2)
-```
 """
 function heatmap(h::StatsBase.Histogram;
                     legend::Bool = false,

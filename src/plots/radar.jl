@@ -17,14 +17,6 @@ radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Real},2},
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
-```
 """
 function radar(names::AbstractVector,
 			values::AbstractVector{<:Union{Missing, Real}},

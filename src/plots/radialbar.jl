@@ -19,13 +19,6 @@ radialbar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-b = radialbar(x, y)
-```
 """
 function radialbar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "bar",
