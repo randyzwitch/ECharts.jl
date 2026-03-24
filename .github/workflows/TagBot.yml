@@ -5,6 +5,8 @@ on:
 jobs:
   TagBot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: JuliaRegistries/TagBot@v1
         with:
