@@ -4,7 +4,7 @@
 
 A Julia wrapper around the [Apache ECharts](https://echarts.apache.org/) JavaScript visualization library, designed to make interactive charts easy to create with minimal code.
 
-**Documentation:** [http://randyzwitch.com/ECharts.jl/](http://randyzwitch.com/ECharts.jl/)
+**Documentation:** [https://randyzwitch.com/ECharts.jl/](http://randyzwitch.com/ECharts.jl/)
 
 ## Why ECharts.jl?
 
