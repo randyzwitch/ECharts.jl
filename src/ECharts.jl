@@ -1,7 +1,7 @@
 module ECharts
 
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase, Blink
-	using Dates, Random, REPL, DataFrames, WebIO, JSExpr
+	using Dates, Random, REPL, DataFrames
 	using KernelDensity, Distributions
 	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
