@@ -12,7 +12,7 @@ module ECharts
 	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 	export colorpalettes
 
-	export EChart
+	export EChart, EChartRaw, echart, @echart
 	export BoxPlotSeries, CandleStickSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
 	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
 	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
