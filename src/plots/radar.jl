@@ -17,14 +17,6 @@ radar(names::AbstractVector, values::AbstractArray{<:Union{Missing, Real},2},
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
-```
 """
 function radar(names::AbstractVector,
 			values::AbstractVector{<:Union{Missing, Real}},
@@ -54,6 +46,13 @@ function radar(names::AbstractVector,
 
 end
 
+"""
+    radar(names, values, max)
+
+Creates an `EChart` radar chart from a 2-D array `values`, where each column is a separate
+series. Legend is displayed by default when multiple series are present.
+See the primary `radar` method for full argument documentation.
+"""
 function radar(names::AbstractVector,
 			   values::AbstractArray{<:Union{Missing, Real},2},
 			   max::AbstractVector{<:Union{Missing, Real}};

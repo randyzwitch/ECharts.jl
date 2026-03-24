@@ -60,6 +60,12 @@ function jitter!(ec::EChart, series::Int; pctxrange::Real = 0.05, pctyrange::Rea
     return ec
 end
 
+"""
+    jitter!(ec)
+
+Applies random jitter to all series in `ec`.
+See the primary `jitter!` method for full argument documentation.
+"""
 function jitter!(ec::EChart; pctxrange::Real = 0.05, pctyrange::Real = 0)
 
 	for n in 1:length(ec.series)

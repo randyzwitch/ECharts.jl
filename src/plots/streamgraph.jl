@@ -19,12 +19,6 @@ streamgraph(x::AbstractVector{<:Dates.TimeType},y::AbstractVector{<:Union{Missin
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-s_df = readtable(Pkg.dir("ECharts", "exampledata/streamdata.csv"))
-sg = streamgraph(s_df[:date], s_df[:value], s_df[:key], legend = true)
-```
 """
 function streamgraph(x::AbstractVector{String},
                     y::AbstractVector{<:Union{Missing, Real}},
@@ -48,6 +42,12 @@ function streamgraph(x::AbstractVector{String},
 
 end
 
+"""
+    streamgraph(x, y, group)
+
+Creates an `EChart` streamgraph (theme river) with a numeric x-axis.
+See the primary `streamgraph` method for full argument documentation.
+"""
 function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
                      y::AbstractVector{<:Union{Missing, Real}},
                      group::AbstractVector;

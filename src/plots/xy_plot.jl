@@ -1,4 +1,18 @@
-#Generic plot interface for all plots needing X-Y axis with a single series
+"""
+    xy_plot(x, y)
+
+Internal generic interface for building a single-series `EChart` with Cartesian (x-y) axes.
+Higher-level functions such as `bar`, `line`, and `area` dispatch to this method.
+
+## Arguments
+* `mark::String = "bar"` : series type (e.g. `"bar"`, `"line"`, `"scatter"`)
+* `stack::Union{Bool, AbstractVector, Nothing} = nothing` : stack series?
+* `step::Union{String, Nothing} = nothing` : step line style; one of `"start"`, `"end"`, `"middle"`
+* `horizontal::Bool = false` : flip axes to produce a horizontal chart
+* `legend::Bool = false` : display legend?
+* `scale::Bool = false` : truncate y-axis to data range?
+* `kwargs` : additional fields passed to the `EChart` struct
+"""
 function xy_plot(x::AbstractVector, y::AbstractVector;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
@@ -30,6 +44,13 @@ function xy_plot(x::AbstractVector, y::AbstractVector;
 
 end
 
+"""
+    xy_plot(x, y)
+
+Internal generic interface for building a multi-series `EChart` from a 2-D array `y`,
+where each column becomes a separate series. Higher-level functions dispatch to this method.
+See the primary `xy_plot` method for full argument documentation.
+"""
 function xy_plot(x::AbstractVector, y::AbstractArray;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -81,7 +102,13 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 
 end
 
-#dataframe, single series
+"""
+    xy_plot(df, x, y)
+
+Internal generic interface for building a single-series `EChart` from DataFrame `df`.
+Axis labels are set automatically from column names.
+See the primary `xy_plot` method for full argument documentation.
+"""
 function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
@@ -105,7 +132,13 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 end
 
-#dataframe, multiple series
+"""
+    xy_plot(df, x, y, group)
+
+Internal generic interface for building a multi-series `EChart` from DataFrame `df`,
+pivoting `y` values by the `group` column. Axis labels and series names are set automatically.
+See the primary `xy_plot` method for full argument documentation.
+"""
 function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here

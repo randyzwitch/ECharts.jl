@@ -18,14 +18,6 @@ polar(angle::AbstractVector{<:Union{Missing, Real}},radius::AbstractArray{<:Unio
 ## Notes
 
 Reasonable defaults set for different methods of `polar`, such as displaying a legend when two or more series present.
-
-## Examples
-```julia
-t = 0:360
-angle = [a / 180 * pi for a in t]
-radius = [(sin(2t) * cos(2t)) for t in angle]
-p = polar(angle, radius)
-```
 """
 function polar(angle::AbstractVector{<:Union{Missing, Real}},
                radius::AbstractVector{<:Union{Missing, Real}};
@@ -48,6 +40,13 @@ function polar(angle::AbstractVector{<:Union{Missing, Real}},
 
 end
 
+"""
+    polar(angle, radius)
+
+Creates an `EChart` polar line chart from a 2-D array `radius`, where each column is a
+separate series. Legend is displayed by default when multiple series are present.
+See the primary `polar` method for full argument documentation.
+"""
 function polar(angle::AbstractVector{<:Union{Missing, Real}},
                radius::AbstractArray{<:Union{Missing, Real},2};
             splitNumber::Int = 12,

@@ -22,15 +22,6 @@ bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
 ## Notes
 
 The displayed size of the bubble is normalized within the function, as the square root of the size values. Using the square root of the value maintains the proper visual perception of the difference. The overall circle size can be modified by the `bubblesize` keyword argument, which is roughly the area in pixels of the largest circle.
-
-## Examples
-```julia
-Random.seed!(13579)
-xval = rand() .* (0:1000:30000)
-yval = 60 .+ (rand(31) * 20)
-sizeval = shuffle!(6000 .* (rand(31) * 50))
-sp = bubble(xval, yval, sizeval, scale = true)
-```
 """
 function bubble(x::AbstractVector{<:Union{Missing, Real}},
 				y::AbstractVector{<:Union{Missing, Real}},
@@ -61,7 +52,13 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 
 end
 
-#dataframe, single series
+"""
+    bubble(df, x, y, size)
+
+Creates an `EChart` bubble chart from DataFrame `df`, using columns `x`, `y`, and `size`.
+Axis labels are set automatically from column names.
+See the primary `bubble` method for full argument documentation.
+"""
 function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 		legend::Bool = false,
 		scale::Bool = false,
@@ -85,7 +82,13 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 
 end
 
-#dataframe with group: uses single series df method
+"""
+    bubble(df, x, y, size, group)
+
+Creates an `EChart` bubble chart from DataFrame `df`, grouping series by the `group` column.
+Legend is displayed by default when a group is provided.
+See the primary `bubble` method for full argument documentation.
+"""
 function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
 			legend::Bool = true,
 			scale::Bool = false,

@@ -34,7 +34,12 @@ function smooth!(ec::EChart; smooth::Bool = true)
 
 end
 
-#Single series
+"""
+    smooth!(ec, series)
+
+Enables or disables line smoothing for a single series at index `series` in `ec`.
+See the primary `smooth!` method for full argument documentation.
+"""
 function smooth!(ec::EChart, series::Int; smooth::Bool = true)
 
 	ec.series[series].smooth = smooth
@@ -43,7 +48,12 @@ function smooth!(ec::EChart, series::Int; smooth::Bool = true)
 
 end
 
-#Specified Series in Array
+"""
+    smooth!(ec, series)
+
+Enables or disables line smoothing for the series at each index in the `series` vector.
+See the primary `smooth!` method for full argument documentation.
+"""
 function smooth!(ec::EChart, series::Vector{Int}; smooth::Bool = true)
 
 	[smooth!(ec, x, smooth = smooth) for x in series]

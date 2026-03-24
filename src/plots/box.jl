@@ -21,12 +21,6 @@ box(df::AbstractDataFrame, data::Symbol, group::Symbol)
 ## Notes
 
 Reasonable defaults set for different methods of `box`, such as displaying a legend when two or more series present.
-
-## Examples
-```julia
-data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960]
-b = box(data)
-```
 """
 function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
  names::Union{AbstractVector, Nothing} = nothing,
@@ -71,7 +65,12 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
 
 end
 
-#Single series
+"""
+    box(data)
+
+Creates an `EChart` boxplot from a single numeric vector.
+See the primary `box` method for full argument documentation.
+"""
 box(data::AbstractVector{<:Union{Missing, Real}};
   names::String = "",
   outliers::Bool = true,
@@ -81,7 +80,12 @@ box(data::AbstractVector{<:Union{Missing, Real}};
 
              box([data], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
-#df with group arguments
+"""
+    box(df, data, group)
+
+Creates an `EChart` boxplot from DataFrame `df`, with one box per level of the `group` column.
+See the primary `box` method for full argument documentation.
+"""
 function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
@@ -110,7 +114,12 @@ function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
 
 end
 
-#df
+"""
+    box(df, data)
+
+Creates an `EChart` boxplot from a single column `data` in DataFrame `df`.
+See the primary `box` method for full argument documentation.
+"""
 function box(df::AbstractDataFrame, data::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,

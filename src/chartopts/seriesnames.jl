@@ -34,6 +34,13 @@ function seriesnames!(ec::EChart)
 
 end
 
+"""
+    seriesnames!(ec, names)
+
+Assigns the provided `String` vector as series names in `ec` and updates the legend data.
+The length of `names` must equal the number of series.
+See the primary `seriesnames!` method for full argument documentation.
+"""
 function seriesnames!(ec::EChart, names::AbstractVector{String})
 
     length(ec.series) != length(names) ? error("Names not equal to number of Series") : nothing

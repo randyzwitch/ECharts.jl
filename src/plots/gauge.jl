@@ -14,11 +14,6 @@ gauge(x::Union{Missing, Real})
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
-
-## Examples
-```julia
-gg = gauge(27.64)
-```
 """
 function gauge(x::Union{Missing, Real};
                breakpoints::AbstractVector = [0.2, 0.8, 1],

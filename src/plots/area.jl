@@ -24,13 +24,6 @@ area(k::KernelDensity.UnivariateKDE)
 ## Notes
 
 Reasonable defaults set for different methods of `area`, such as displaying a legend when two or more series present.
-
-## Examples
-```julia
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-ar = area(x, y)
-```
 """
 function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
@@ -51,7 +44,13 @@ function area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 
 end
 
-#Basically same function as above, except automatically puts a legend when multiple series present
+"""
+    area(x, y)
+
+Creates an `EChart` area chart from a 2-D array `y`, where each column is a separate series.
+Legend is displayed by default when multiple series are present.
+See the primary `area` method for full argument documentation.
+"""
 function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
@@ -71,7 +70,12 @@ function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 
 end
 
-#dataframe, single series
+"""
+    area(df, x, y)
+
+Creates an `EChart` area chart from a single column `y` in DataFrame `df` against column `x`.
+See the primary `area` method for full argument documentation.
+"""
 function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
@@ -91,7 +95,13 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
 
 end
 
-#dataframe, group argument
+"""
+    area(df, x, y, group)
+
+Creates an `EChart` area chart from DataFrame `df`, grouping series by the `group` column.
+Stacking and legend are enabled by default when a group is provided.
+See the primary `area` method for full argument documentation.
+"""
 function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
@@ -111,6 +121,13 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 
 end
 
+"""
+    area(k)
+
+Creates an `EChart` area chart from a `KernelDensity.UnivariateKDE` object, plotting the
+estimated density curve.
+See the primary `area` method for full argument documentation.
+"""
 function area(k::KernelDensity.UnivariateKDE;
 				mark::Union{String, AbstractVector} = "line",
 				fill::Union{Bool, AbstractVector} = true,
