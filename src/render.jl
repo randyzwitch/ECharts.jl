@@ -11,7 +11,7 @@ function _echarts_html(ec::EChart)
     return """
     <div id="$(chart_id)" style="width:$(ec.ec_width)px;height:$(ec.ec_height)px;"></div>
     <script>
-    $(echarts_js)
+    if (typeof echarts === 'undefined') { $(echarts_js) }
     (function() {
         var dom = document.getElementById('$(chart_id)');
         var myChart = echarts.init(dom, $(theme), {renderer: '$(ec.ec_renderer)'});
@@ -28,7 +28,7 @@ Base.show(io::IO, ::MIME"text/html", ec::EChart) = write(io, _echarts_html(ec))
 #REPL method
 function Base.display(::REPL.REPLDisplay, ec::EChart)
     w = Blink.Window()
-    Blink.loadhtml!(w, _echarts_html(ec))
+    Blink.loadhtml(w, _echarts_html(ec))
 end
 
 #VSCode method - displays chart inline in the VSCode plot panel (requires Julia VSCode extension)
