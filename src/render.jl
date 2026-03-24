@@ -3,15 +3,23 @@ print(x::EChart) = print(json(makevalidjson(x)))
 
 #Shared helper: produces self-contained HTML with echarts.min.js inlined
 function _echarts_html(ec::EChart)
-    echarts_js = read(joinpath(@__DIR__, "..", "docs", "js", "echarts.min.js"), String)
     option = json(makevalidjson(ec))
     theme = json(makevalidjson(ec.theme))
     chart_id = "echarts_" * string(rand(UInt32))
 
+    # When ECHARTS_DOCS_BUILD is set, echarts.min.js is loaded as a page asset
+    # by Documenter.jl — skip inlining it to avoid bloating the output.
+    echarts_loader = if get(ENV, "ECHARTS_DOCS_BUILD", "false") == "true"
+        ""
+    else
+        echarts_js = read(joinpath(@__DIR__, "echarts.min.js"), String)
+        "if (typeof echarts === 'undefined') { $(echarts_js) }"
+    end
+
     return """
     <div id="$(chart_id)" style="width:$(ec.ec_width)px;height:$(ec.ec_height)px;"></div>
     <script>
-    if (typeof echarts === 'undefined') { $(echarts_js) }
+    $(echarts_loader)
     (function() {
         var dom = document.getElementById('$(chart_id)');
         var myChart = echarts.init(dom, $(theme), {renderer: '$(ec.ec_renderer)'});
