@@ -11,7 +11,7 @@ function _echarts_html(ec::EChart)
     return """
     <div id="$(chart_id)" style="width:$(ec.ec_width)px;height:$(ec.ec_height)px;"></div>
     <script>
-    $(echarts_js)
+    if (typeof echarts === 'undefined') { $(echarts_js) }
     (function() {
         var dom = document.getElementById('$(chart_id)');
         var myChart = echarts.init(dom, $(theme), {renderer: '$(ec.ec_renderer)'});
