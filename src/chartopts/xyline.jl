@@ -27,7 +27,7 @@ yline!(b, 3.0, color = "red")
 function yline!(ec::EChart, value::String; series::Int = 1, kwargs...)
 
 	#Defensive; empty markLine already added by default to every chart
-    ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
+    isnothing(ec.series[series].markLine) ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
     push!(ec.series[series].markLine.data, Dict{Any, Any}("type" => value, "lineStyle" => LineStyle()
@@ -46,7 +46,7 @@ end
 function yline!(ec::EChart, value::Real; series::Int = 1, kwargs...)
 
 	#Defensive; empty markLine already added by default to every chart
-    ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
+    isnothing(ec.series[series].markLine) ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
     push!(ec.series[series].markLine.data, Dict("yAxis" => value, "lineStyle" => LineStyle()
@@ -86,7 +86,7 @@ xline!(b, "B")
 function xline!(ec::EChart, value::Any; series::Int = 1, kwargs...)
 
 	#Defensive; empty markLine already added by default to every chart
-    ec.series[series].markLine == nothing ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
+    isnothing(ec.series[series].markLine) ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing
 
 	#push data onto []
     push!(ec.series[series].markLine.data, Dict("xAxis" => value, "lineStyle" => LineStyle()))

@@ -54,7 +54,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	end
 
 	#stack: this logic feels janky, but seems to work
-	if stack != nothing
+	if !isnothing(stack)
 		if stack == true
 			[x.stack = 1 for x in ec.series]
 		elseif typeof(stack) <: AbstractVector
@@ -66,7 +66,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	end
 
 	#step
-	step != nothing ? [x.step = step for x in ec.series] : nothing
+	!isnothing(step) ? [x.step = step for x in ec.series] : nothing
 
 	#Make plot horizontal
 	horizontal ? flip!(ec) : nothing

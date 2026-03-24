@@ -24,7 +24,7 @@ xarea!(b, "B", "D", color = "rgba(200,200,200,0.4)")
 function xarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 
 	#set if not exists
-    ec.series[series].markArea == nothing ? ec.series[series].markArea = MarkArea() : nothing
+    isnothing(ec.series[series].markArea) ? ec.series[series].markArea = MarkArea() : nothing
 
 	#set endpoints
 	push!(ec.series[series].markArea.data, [Dict("xAxis" => startval, "itemStyle" => ItemStyle()), Dict("xAxis" => endval)])
@@ -62,7 +62,7 @@ yarea!(b, 1.5, 2.5, color = "rgba(200,200,200,0.4)")
 function yarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 
 	#set if not exists
-    ec.series[series].markArea == nothing ? ec.series[series].markArea = MarkArea() : nothing
+    isnothing(ec.series[series].markArea) ? ec.series[series].markArea = MarkArea() : nothing
 
 	#set endpoints
 	push!(ec.series[series].markArea.data, [Dict("yAxis" => startval, "itemStyle" => ItemStyle()), Dict("yAxis" => endval)])

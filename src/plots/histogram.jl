@@ -56,7 +56,7 @@ function histogram(h::StatsBase.Histogram;
         return ec
 
     else
-        DimensionMismatch("No more than two dimensions can be plotted")
+        throw(DimensionMismatch("No more than two dimensions can be plotted"))
     end
 
 end

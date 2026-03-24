@@ -35,7 +35,7 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
  horizontal::Bool = false,
  kwargs...)
 
-    names == nothing ? names = [string(x) for x in 1:length(data)] : names
+    isnothing(names) ? names = [string(x) for x in 1:length(data)] : names
     length(names) != length(data) ? error("Number of series names must equal number of data series.") : nothing
 
     dataprep = [boxplotstat(x) for x in data]
@@ -96,7 +96,7 @@ function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
     numgroups = length(subdf)
 
     #Get names
-    names == nothing ? names = [unique(subdf[x][!, group])[1] for x in 1:numgroups] : names = names
+    isnothing(names) ? names = [unique(subdf[x][!, group])[1] for x in 1:numgroups] : nothing
 
     #Convert to array of array for existing method
     arrayarray = [Vector(subdf[x][!, data]) for x in 1:numgroups]

@@ -27,7 +27,7 @@ seriesnames!(b, ["Series One", "Series Two"])
 function seriesnames!(ec::EChart)
 
     for (i, x) in enumerate(ec.series)
-        x.name == nothing ? x.name = "Series $i" : nothing
+        isnothing(x.name) ? x.name = "Series $i" : nothing
     end
 
     return ec
