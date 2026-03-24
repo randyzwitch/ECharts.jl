@@ -1,3 +1,22 @@
+"""
+    flip!(ec)
+
+Flips the x and y axes of an `EChart`. Currently only works for XY plots; scatter and boxplot support is limited.
+
+## Methods
+```julia
+flip!(ec::EChart; rotatedims)
+```
+
+## Arguments
+* `rotatedims::Bool = false` : also swap the chart width and height to preserve aspect ratio
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+flip!(b)
+```
+"""
 #Flip x and y axis. Currently only works for XY plots
 #Doesn't work for scatter, boxplot brittle
 function flip!(ec::EChart; rotatedims::Bool = false)

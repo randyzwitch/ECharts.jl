@@ -1,3 +1,24 @@
+"""
+    xgridlines!(ec)
+
+Configures the x-axis grid lines for an `EChart`.
+
+## Methods
+```julia
+xgridlines!(ec::EChart; show, interval, kwargs...)
+```
+
+## Arguments
+* `show::Bool = true` : display grid lines
+* `interval::Union{Int, String, JSFunction, Nothing} = "auto"` : interval between grid lines
+* `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+xgridlines!(b, show = false)
+```
+"""
 #Merge methods together using metaprogramming?
 function xgridlines!(ec::EChart; show::Bool = true,
 								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
@@ -17,6 +38,27 @@ function xgridlines!(ec::EChart; show::Bool = true,
 
 end
 
+"""
+    ygridlines!(ec)
+
+Configures the y-axis grid lines for an `EChart`.
+
+## Methods
+```julia
+ygridlines!(ec::EChart; show, interval, kwargs...)
+```
+
+## Arguments
+* `show::Bool = true` : display grid lines
+* `interval::Union{Int, String, JSFunction, Nothing} = "auto"` : interval between grid lines
+* `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+ygridlines!(b, show = false)
+```
+"""
 function ygridlines!(ec::EChart; show::Bool = true,
 								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
 								 kwargs...)

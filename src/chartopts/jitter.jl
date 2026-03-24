@@ -1,3 +1,31 @@
+"""
+    jitter!(ec)
+
+Adds random jitter to data points in an `EChart` to reduce overplotting.
+The jitter amount is a random percentage of the data range, following the range method
+from Chambers, Cleveland, Kleiner, and Tukey (1983).
+
+## Methods
+```julia
+jitter!(ec::EChart, series::Int; pctxrange, pctyrange)
+jitter!(ec::EChart; pctxrange, pctyrange)
+```
+
+## Arguments
+* `series::Int` : index of the series to jitter (single-series method only)
+* `pctxrange::Real = 0.05` : maximum jitter as a fraction of the x data range
+* `pctyrange::Real = 0` : maximum jitter as a fraction of the y data range
+
+## Notes
+
+When called without a `series` argument, jitter is applied to all series.
+
+## Examples
+```julia
+s = scatter([1,1,2,2,3], [1,1,2,2,3])
+jitter!(s)
+```
+"""
 function jitter!(ec::EChart, series::Int; pctxrange::Real = 0.05, pctyrange::Real = 0)
 
     #http://blogs.sas.com/content/iml/2011/07/05/jittering-to-prevent-overplotting-in-statistical-graphics.html

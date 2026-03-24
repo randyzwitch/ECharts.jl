@@ -1,3 +1,30 @@
+"""
+    smooth!(ec)
+
+Enables or disables line smoothing for series in an `EChart`.
+
+## Methods
+```julia
+smooth!(ec::EChart; smooth)
+smooth!(ec::EChart, series::Int; smooth)
+smooth!(ec::EChart, series::Vector{Int}; smooth)
+```
+
+## Arguments
+* `series::Int` : index of a single series to smooth
+* `series::Vector{Int}` : indices of multiple series to smooth
+* `smooth::Bool = true` : enable smoothing
+
+## Notes
+
+When called without a `series` argument, smoothing is applied to all series.
+
+## Examples
+```julia
+l = line(["A","B","C","D"], [1,4,2,5])
+smooth!(l)
+```
+"""
 #All series by default
 function smooth!(ec::EChart; smooth::Bool = true)
 

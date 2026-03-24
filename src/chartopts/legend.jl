@@ -1,3 +1,29 @@
+"""
+    legend!(ec)
+
+Adds or modifies the legend for an `EChart`. Series names are populated automatically
+based on the chart type. Additional legend properties can be set via `kwargs`.
+
+## Methods
+```julia
+legend!(ec::EChart; kwargs...)
+```
+
+## Arguments
+* `kwargs` : any field of the `Legend` struct (e.g. `orient`, `top`, `left`, `right`)
+
+## Notes
+
+Does not work as expected for sankey and gauge chart types.
+
+## Examples
+```julia
+x = ["A","B","C"]
+y = [1 2; 3 4; 5 6]
+b = bar(x, y)
+legend!(b, orient = "vertical", left = "right")
+```
+"""
 # Works, but doesn't make sense for: sankey, gauge
 function legend!(ec::EChart; kwargs...)
 

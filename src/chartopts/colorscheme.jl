@@ -1,3 +1,29 @@
+"""
+    colorscheme!(ec, palette)
+
+Sets the color palette for an `EChart`.
+
+## Methods
+```julia
+colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}; reversePalette)
+colorscheme!(ec::EChart, palette::Union{AbstractString, JSFunction})
+colorscheme!(ec::EChart, palette::AbstractVector; reversePalette)
+```
+
+## Arguments
+* `palette::Tuple{AbstractString,Any}` : named palette tuple, e.g. `("Tableau", 10)`
+* `palette::Union{AbstractString, JSFunction}` : single color string or gradient
+* `palette::AbstractVector` : vector of color strings
+* `reversePalette::Bool = false` : reverse the color order (not applicable to single-color method)
+
+## Examples
+```julia
+b = bar(["A","B","C"], [1,2,3])
+colorscheme!(b, ("Tableau", 10))
+
+colorscheme!(b, ["#ff0000", "#00ff00", "#0000ff"])
+```
+"""
 #using colorpalettes
 function colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}; reversePalette::Bool = false)
 
