@@ -3,7 +3,7 @@
 newplot(itr::Base.Iterators.Pairs, args...; kwargs...) = newplot(collect(itr), args...; kwargs...)
 
 #Common code across all plots
-function newplot(kwargs::Vector{T}; ec_charttype::Union{String, Nothing} = nothing) where T
+function newplot(kwargs::AbstractVector; ec_charttype::Union{String, Nothing} = nothing)
 
     #Create new chart
     ec = deepcopy(EChart(ec_charttype = ec_charttype))
@@ -44,7 +44,7 @@ arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[x,y,z] f
 
 #Common kwargs code for all plots
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js
-function kwargs!(ec::EChart, kwargs::Vector{T}) where T
+function kwargs!(ec::EChart, kwargs::AbstractVector)
 
 	for (k, v) in kwargs
         k == :color && typeof(v) in [String, JSFunction] ? setfield!(ec, k, [v]) : setfield!(ec, k, v)
@@ -55,7 +55,7 @@ end
 # Fill area inside areaStyle
 function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
-    typeof(fill) == Bool ? fill = [fill for i in 1:cols] : fill = fill
+    fill isa Bool ? fill = [fill for i in 1:cols] : nothing
 
     for i in 1:cols
         fill[i] ? ec.series[i].areaStyle = ItemStyle() : nothing

@@ -71,7 +71,7 @@ function radar(names::AbstractVector,
 
 	# Fill area if requested
 	# This is smelly
-	typeof(fill) == Bool ? fill = [fill for i in 1:size(values)[2]] : fill = fill
+	fill isa Bool ? fill = [fill for i in 1:size(values)[2]] : nothing
 	cols = length(fill)
 	fill!(ec, cols, fill)
 

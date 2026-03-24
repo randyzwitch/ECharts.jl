@@ -25,7 +25,7 @@ function yaxis!(ec::EChart; formatter::Union{String, JSFunction, Nothing} = noth
 	end
 
 	#Apply axis label format if present
-	formatter != nothing ? ec.yAxis[1].axisLabel.formatter = formatter : nothing
+	!isnothing(formatter) ? ec.yAxis[1].axisLabel.formatter = formatter : nothing
 
 	return ec
 
@@ -58,7 +58,7 @@ function xaxis!(ec::EChart; formatter::Union{String, JSFunction, Nothing} = noth
 	end
 
 	#Apply axis label format if present
-	formatter != nothing ? ec.xAxis[1].axisLabel.formatter = formatter : nothing
+	!isnothing(formatter) ? ec.xAxis[1].axisLabel.formatter = formatter : nothing
 
 	return ec
 

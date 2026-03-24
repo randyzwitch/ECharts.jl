@@ -25,7 +25,7 @@ function xgridlines!(ec::EChart; show::Bool = true,
 								 kwargs...)
 
 	#Set if not present
-    ec.xAxis[1].splitLine == nothing ? ec.xAxis[1].splitLine = SplitLine() : nothing
+    isnothing(ec.xAxis[1].splitLine) ? ec.xAxis[1].splitLine = SplitLine() : nothing
 
 	#Set top-level properties
     ec.xAxis[1].splitLine.show = show
@@ -64,7 +64,7 @@ function ygridlines!(ec::EChart; show::Bool = true,
 								 kwargs...)
 
 	#Set if not present
-    ec.yAxis[1].splitLine == nothing ? ec.yAxis[1].splitLine = SplitLine() : nothing
+    isnothing(ec.yAxis[1].splitLine) ? ec.yAxis[1].splitLine = SplitLine() : nothing
 
 	#Set top-level properties
     ec.yAxis[1].splitLine.show = show

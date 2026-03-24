@@ -123,7 +123,7 @@ module ECharts
 	    res = Dict()
 
 	    for f in fieldnames(typeof(x))
-	        if getfield(x, f) != nothing
+	        if !isnothing(getfield(x, f))
 	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)) : res[string(f)] = makevalidjson(getfield(x, f))
 	        end
 	    end

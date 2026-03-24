@@ -8,7 +8,7 @@ function circular_plot(names::AbstractVector = [], values::AbstractVector = [];
             )
 
     # Set default to false if not passed by user
-    selected == nothing ? selected = [false for x in 1:length(values)] : selected = selected
+    isnothing(selected) ? selected = [false for x in 1:length(values)] : selected = selected
 
     ec = newplot(kwargs, ec_charttype = "circular")
 
