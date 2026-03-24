@@ -70,6 +70,7 @@ Charts render automatically based on the environment:
 |---|---|
 | [VS Code](https://www.julia-vscode.org/) (Julia extension) | Inline in the plot panel |
 | [IJulia / Jupyter Notebook & JupyterLab](https://github.com/JuliaLang/IJulia.jl) | Inline in the notebook cell |
+| [Pluto.jl](https://github.com/fonsp/Pluto.jl) | Inline in the notebook cell |
 | Julia REPL | Opens in a [Blink.jl](https://github.com/JunoLab/Blink.jl) browser window |
 
 No configuration required — displaying a chart is as simple as evaluating an `EChart` value in any of these environments.
