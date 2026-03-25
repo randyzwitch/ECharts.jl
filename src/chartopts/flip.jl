@@ -17,6 +17,7 @@ flip!(ec::EChart; rotatedims)
 b = bar(["A","B","C"], [1,2,3])
 flip!(b)
 ```
+
 """
 function flip!(ec::EChart; rotatedims::Bool = false)
     #Flip x and y axis. Currently only works for XY plots
