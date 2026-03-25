@@ -9,7 +9,8 @@ Pages = ["charts/area.md", "charts/bar.md", "charts/box.md", "charts/bubble.md",
          "charts/heatmap.md", "charts/histogram.md", "charts/line.md",
          "charts/pie.md", "charts/polar.md", "charts/radar.md",
          "charts/radialbar.md", "charts/sankey.md", "charts/scatter.md",
-         "charts/streamgraph.md", "charts/waterfall.md"]
+         "charts/streamgraph.md", "charts/waterfall.md",
+         "charts/xy_plot.md"]
 ```
 
 ## Modifier Functions

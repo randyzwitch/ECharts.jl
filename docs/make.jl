@@ -52,6 +52,7 @@ makedocs(
             "charts/scatter.md",
             "charts/streamgraph.md",
             "charts/waterfall.md",
+            "charts/xy_plot.md",
         ],
         "Modifier Functions" => [
             "functions/aria!.md",
