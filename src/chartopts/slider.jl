@@ -22,21 +22,6 @@ datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterM
 ## Notes
 
 Call `datazoom!` multiple times to add controls for both the x and y axes.
-
-## Examples
-```julia
-b = bar(["A","B","C","D","E"], [1,2,3,4,5])
-datazoom!(b)
-
-# Start zoomed into the first 50% of data
-datazoom!(b, start = 0, end_ = 50)
-
-# Attach to y-axis with vertical slider
-datazoom!(b, yAxisIndex = 0, orient = "vertical")
-
-# Inside zoom (mouse-scroll), locked to pan only
-datazoom!(b, type = "inside", zoomLock = true, throttle = 100)
-```
 """
 function datazoom!(ec::EChart;
                    type::String = "slider",
