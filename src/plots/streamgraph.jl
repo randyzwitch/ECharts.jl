@@ -10,7 +10,7 @@ streamgraph(x::AbstractVector{String},y::AbstractVector{<:Union{Missing, Real}},
 streamgraph(x::AbstractVector{<:Union{Missing, Real}},
             y::AbstractVector{<:Union{Missing, Real}},
             group::AbstractVector)
-streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+streamgraph(df, x::Symbol, y::Symbol, group::Symbol)
 streamgraph(x::AbstractVector{<:Dates.TimeType},y::AbstractVector{<:Union{Missing, Real}},             group::AbstractVector)
 ```
 
@@ -70,9 +70,12 @@ function streamgraph(x::AbstractVector{<:Union{Missing, Real}},
 
 end
 
-streamgraph(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+function streamgraph(df, x::Symbol, y::Symbol, group::Symbol;
             legend::Bool = false,
-            kwargs...) = streamgraph(df[x], df[y], df[group]; legend = legend, kwargs...)
+            kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    streamgraph(_table_col(df, x), _table_col(df, y), _table_col(df, group); legend = legend, kwargs...)
+end
 
 streamgraph(x::AbstractVector{<:Dates.TimeType},
             y::AbstractVector{<:Union{Missing, Real}},

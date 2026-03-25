@@ -7,8 +7,8 @@ Creates an `EChart` as a boxplot, optionally with outliers.
 ```julia
 box(data::AbstractVector{<:Union{Missing, Real}})
 box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}})
-box(df::AbstractDataFrame, data::Symbol)
-box(df::AbstractDataFrame, data::Symbol, group::Symbol)
+box(df, data::Symbol)
+box(df, data::Symbol, group::Symbol)
 ```
 
 ## Arguments
@@ -83,27 +83,28 @@ box(data::AbstractVector{<:Union{Missing, Real}};
 """
     box(df, data, group)
 
-Creates an `EChart` boxplot from DataFrame `df`, with one box per level of the `group` column.
+Creates an `EChart` boxplot from table `df`, with one box per level of the `group` column.
 See the primary `box` method for full argument documentation.
 """
-function box(df::AbstractDataFrame, data::Symbol, group::Symbol;
+function box(df, data::Symbol, group::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
          legend::Bool = false,
          horizontal::Bool = false,
          kwargs...)
 
-    #Create grouped df
-    subdf = groupby(df, group)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-    #Get number of groups
-    numgroups = length(subdf)
+    #Create grouped data
+    groups = _table_groupby(df, group)
+    numgroups = length(groups)
+    datacol = _table_col(df, data)
 
     #Get names
-    isnothing(names) ? names = [unique(subdf[x][!, group])[1] for x in 1:numgroups] : nothing
+    isnothing(names) ? names = [string(groups[i][1]) for i in 1:numgroups] : nothing
 
     #Convert to array of array for existing method
-    arrayarray = [Vector(subdf[x][!, data]) for x in 1:numgroups]
+    arrayarray = [datacol[groups[i][2]] for i in 1:numgroups]
 
     ec = box(arrayarray, names = names, outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
@@ -117,17 +118,18 @@ end
 """
     box(df, data)
 
-Creates an `EChart` boxplot from a single column `data` in DataFrame `df`.
+Creates an `EChart` boxplot from a single column `data` in table `df`.
 See the primary `box` method for full argument documentation.
 """
-function box(df::AbstractDataFrame, data::Symbol;
+function box(df, data::Symbol;
          names::Union{AbstractVector, Nothing} = nothing,
          outliers::Bool = true,
          legend::Bool = false,
          horizontal::Bool = false,
          kwargs...)
 
-         converteddf = Vector(df[!, data])
+         Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+         converteddf = _table_col(df, data)
          ec = box([converteddf], names = [names], outliers = outliers, legend = legend, horizontal = horizontal, kwargs...)
 
          yaxis!(ec, name = string(data))

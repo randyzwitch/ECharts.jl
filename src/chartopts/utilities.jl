@@ -63,6 +63,34 @@ function fill!(ec::EChart, cols::Int, fill::Union{Bool, Vector})
 
 end
 
+# Tables.jl helpers for table-accepting methods
+
+_table_col(table, col::Symbol) = collect(Tables.getcolumn(Tables.columns(table), col))
+
+_table_colnames(table) = [string(n) for n in Tables.columnnames(Tables.columns(table))]
+
+function _table_groupby(table, group::Symbol)
+    groupcol = _table_col(table, group)
+    groupvals = unique(groupcol)
+    return [(gval, findall(==(gval), groupcol)) for gval in groupvals]
+end
+
+function _table_unstack(table, x::Symbol, group::Symbol, y::Symbol)
+    xcol = _table_col(table, x)
+    groupcol = _table_col(table, group)
+    ycol = _table_col(table, y)
+    xvals = unique(xcol)
+    groupvals = unique(groupcol)
+    T = eltype(ycol)
+    m = Matrix{Union{T, Missing}}(missing, length(xvals), length(groupvals))
+    xidx = Dict(v => i for (i, v) in enumerate(xvals))
+    gidx = Dict(v => i for (i, v) in enumerate(groupvals))
+    for i in eachindex(xcol)
+        m[xidx[xcol[i]], gidx[groupcol[i]]] = ycol[i]
+    end
+    return xvals, m, [string(g) for g in groupvals]
+end
+
 function boxplotstat(data::AbstractVector{<:Union{Missing, Int, AbstractFloat, Rational}})
 
     data_ = collect(skipmissing(data))

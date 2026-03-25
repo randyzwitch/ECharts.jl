@@ -7,8 +7,8 @@ Creates an `EChart` where region below plotted line filled with color.
 ```julia
 area(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
 area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
-area(df::AbstractDataFrame, x::Symbol, y::Symbol)
-area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+area(df, x::Symbol, y::Symbol)
+area(df, x::Symbol, y::Symbol, group::Symbol)
 area(k::KernelDensity.UnivariateKDE)
 ```
 
@@ -47,8 +47,7 @@ end
 """
     area(x, y)
 
-Creates an `EChart` area chart from a 2-D array `y`, where each column is a separate series.
-Legend is displayed by default when multiple series are present.
+Creates an `EChart` area chart with multiple y series sharing the same x values, where each column of `y` is a separate series. Stacking and legend are enabled by default.
 See the primary `area` method for full argument documentation.
 """
 function area(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
@@ -73,10 +72,10 @@ end
 """
     area(df, x, y)
 
-Creates an `EChart` area chart from a single column `y` in DataFrame `df` against column `x`.
+Creates an `EChart` area chart from a single column `y` in table `df` against column `x`.
 See the primary `area` method for full argument documentation.
 """
-function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function area(df, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
@@ -85,6 +84,7 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
+			Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 			ec = xy_plot(df, x, y, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
 
 			ec.xAxis[1].boundaryGap = false
@@ -98,11 +98,11 @@ end
 """
     area(df, x, y, group)
 
-Creates an `EChart` area chart from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` area chart from table `df`, grouping series by the `group` column.
 Stacking and legend are enabled by default when a group is provided.
 See the primary `area` method for full argument documentation.
 """
-function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+function area(df, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			fill::Union{Bool, AbstractVector} = true,
 			stack::Union{Bool, AbstractVector, Nothing} = true,
@@ -111,6 +111,7 @@ function area(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
+			Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 			ec = xy_plot(df, x, y, group, mark = mark, stack = stack, step = step, legend = legend, scale = scale, kwargs...)
 
 			ec.xAxis[1].boundaryGap = false

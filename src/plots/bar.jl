@@ -7,8 +7,8 @@ Creates an `EChart` where values plotted vertically as rectangular columns.
 ```julia
 bar(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
 bar(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
-bar(df::AbstractDataFrame, x::Symbol, y::Symbol)
-bar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+bar(df, x::Symbol, y::Symbol)
+bar(df, x::Symbol, y::Symbol, group::Symbol)
 ```
 
 ## Arguments
@@ -54,16 +54,17 @@ end
 """
     bar(df, x, y)
 
-Creates an `EChart` bar chart from a single column `y` in DataFrame `df` against column `x`.
+Creates an `EChart` bar chart from a single column `y` in table `df` against column `x`.
 See the primary `bar` method for full argument documentation.
 """
-function bar(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function bar(df, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
 
+	 Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 	 return xy_plot(df, x, y; mark = mark, stack = stack, legend = legend, scale = scale, kwargs...)
 
 end
@@ -71,17 +72,18 @@ end
 """
     bar(df, x, y, group)
 
-Creates an `EChart` bar chart from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` bar chart from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `bar` method for full argument documentation.
 """
-function bar(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+function bar(df, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
 
+	 Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 	 return xy_plot(df, x, y, group; mark = mark, stack = stack, legend = legend, scale = scale, kwargs...)
 
 end

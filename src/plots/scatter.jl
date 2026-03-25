@@ -7,8 +7,8 @@ Creates an `EChart` where (x,y) tuples are plotted as dots.
 ```julia
 scatter(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}})
 scatter(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2})
-scatter(df::AbstractDataFrame, x::Symbol, y::Symbol)
-scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol)
+scatter(df, x::Symbol, y::Symbol)
+scatter(df, x::Symbol, y::Symbol, group::Symbol)
 ```
 
 ## Arguments
@@ -35,8 +35,10 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 	ec.xAxis[1].data = nothing #This is necessary to re-use xy_plot, deletes data since scatter uses arrayofarray
 
 	#Enable optimization for lots of data
-	[x.large = large for x in ec.series]
-	[x.largeThreshold = largeThreshold for x in ec.series]
+	for s in ec.series
+		s.large = large
+		s.largeThreshold = largeThreshold
+	end
 
 	return ec
 
@@ -71,8 +73,10 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 	legend == true ? legend!(ec) : nothing
 
 	#Enable optimization for lots of data
-	[x.large = large for x in ec.series]
-	[x.largeThreshold = largeThreshold for x in ec.series]
+	for s in ec.series
+		s.large = large
+		s.largeThreshold = largeThreshold
+	end
 
 	return ec
 
@@ -81,11 +85,11 @@ end
 """
     scatter(df, x, y)
 
-Creates an `EChart` scatter plot from columns `x` and `y` in DataFrame `df`.
+Creates an `EChart` scatter plot from columns `x` and `y` in table `df`.
 Axis labels are set automatically from column names.
 See the primary `scatter` method for full argument documentation.
 """
-function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function scatter(df, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = false,
 			scale::Bool = false,
@@ -93,9 +97,10 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			largeThreshold::Int = 2000,
 			kwargs...)
 
+	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
 	#Initialize with single series
-	ec = scatter(df[!, x], df[!, y]; mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = scatter(_table_col(df, x), _table_col(df, y); mark = mark, legend = legend, scale = scale, kwargs...)
 
 	#Add legend if desired
 	legend == true ? legend!(ec) : nothing
@@ -105,8 +110,10 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol;
 	yaxis!(ec, name = string(y))
 
 	#Enable optimization for lots of data
-	[x.large = large for x in ec.series]
-	[x.largeThreshold = largeThreshold for x in ec.series]
+	for s in ec.series
+		s.large = large
+		s.largeThreshold = largeThreshold
+	end
 
 	return ec
 
@@ -115,11 +122,11 @@ end
 """
     scatter(df, x, y, group)
 
-Creates an `EChart` scatter plot from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` scatter plot from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `scatter` method for full argument documentation.
 """
-function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+function scatter(df, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "scatter",
 			legend::Bool = true,
 			scale::Bool = false,
@@ -127,29 +134,35 @@ function scatter(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			largeThreshold::Int = 2000,
 			kwargs...)
 
-	#Create grouped df
-	subdf = groupby(df, group)
+	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-	#Get number of groups
-	numgroups = length(subdf)
+	#Create grouped data
+	groups = _table_groupby(df, group)
+	numgroups = length(groups)
+	xcol = _table_col(df, x)
+	ycol = _table_col(df, y)
 
 	#Initialize with single series
-	ec = scatter(subdf[1], x, y; mark = mark, legend = legend, scale = scale, kwargs...)
+	_, idx1 = groups[1]
+	ec = scatter(xcol[idx1], ycol[idx1]; mark = mark, legend = legend, scale = scale, kwargs...)
 
 	#Append remaining series
 	for i in 2:numgroups
-		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][!, x], subdf[i][!, y])))
+		_, idxi = groups[i]
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(xcol[idxi], ycol[idxi])))
 	end
 
-	#Add series names based on levels of grouped df
-	seriesnames!(ec, [unique(subdf[x][!, group])[1] for x in 1:numgroups])
+	#Add series names based on levels of grouped data
+	seriesnames!(ec, [string(groups[i][1]) for i in 1:numgroups])
 
 	#Add legend if desired
 	legend == true ? legend!(ec) : nothing
 
 	#Enable optimization for lots of data
-	[x.large = large for x in ec.series]
-	[x.largeThreshold = largeThreshold for x in ec.series]
+	for s in ec.series
+		s.large = large
+		s.largeThreshold = largeThreshold
+	end
 
 	return ec
 
