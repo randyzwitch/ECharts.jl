@@ -37,7 +37,7 @@ module ECharts
 	export histogram, heatmap, streamgraph, bubble
 	export corrplot
 
-	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, smooth!
+	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, slider!, inside!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
