@@ -56,7 +56,7 @@ end
 """
     radialbar(df, x, y)
 
-Creates an `EChart` radial bar chart from a single column `y` in DataFrame `df` against column `x`.
+Creates an `EChart` radial bar chart from a single column `y` in table `df` against column `x`.
 See the primary `radialbar` method for full argument documentation.
 """
 function radialbar(df, x::Symbol, y::Symbol;
@@ -76,7 +76,7 @@ end
 """
     radialbar(df, x, y, group)
 
-Creates an `EChart` radial bar chart from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` radial bar chart from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `radialbar` method for full argument documentation.
 """

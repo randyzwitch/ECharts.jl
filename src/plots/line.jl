@@ -54,7 +54,7 @@ end
 """
     line(df, x, y)
 
-Creates an `EChart` line chart from a single column `y` in DataFrame `df` against column `x`.
+Creates an `EChart` line chart from a single column `y` in table `df` against column `x`.
 See the primary `line` method for full argument documentation.
 """
 function line(df, x::Symbol, y::Symbol;
@@ -72,7 +72,7 @@ end
 """
     line(df, x, y, group)
 
-Creates an `EChart` line chart from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` line chart from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `line` method for full argument documentation.
 """

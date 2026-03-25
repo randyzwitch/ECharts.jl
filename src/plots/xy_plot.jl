@@ -105,7 +105,7 @@ end
 """
     xy_plot(df, x, y)
 
-Internal generic interface for building a single-series `EChart` from DataFrame `df`.
+Internal generic interface for building a single-series `EChart` from a Tables.jl-compatible table `df`.
 Axis labels are set automatically from column names.
 See the primary `xy_plot` method for full argument documentation.
 """
@@ -137,7 +137,7 @@ end
 """
     xy_plot(df, x, y, group)
 
-Internal generic interface for building a multi-series `EChart` from DataFrame `df`,
+Internal generic interface for building a multi-series `EChart` from a Tables.jl-compatible table `df`,
 pivoting `y` values by the `group` column. Axis labels and series names are set automatically.
 See the primary `xy_plot` method for full argument documentation.
 """

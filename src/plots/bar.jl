@@ -54,7 +54,7 @@ end
 """
     bar(df, x, y)
 
-Creates an `EChart` bar chart from a single column `y` in DataFrame `df` against column `x`.
+Creates an `EChart` bar chart from a single column `y` in table `df` against column `x`.
 See the primary `bar` method for full argument documentation.
 """
 function bar(df, x::Symbol, y::Symbol;
@@ -72,7 +72,7 @@ end
 """
     bar(df, x, y, group)
 
-Creates an `EChart` bar chart from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` bar chart from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `bar` method for full argument documentation.
 """

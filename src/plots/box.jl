@@ -83,7 +83,7 @@ box(data::AbstractVector{<:Union{Missing, Real}};
 """
     box(df, data, group)
 
-Creates an `EChart` boxplot from DataFrame `df`, with one box per level of the `group` column.
+Creates an `EChart` boxplot from table `df`, with one box per level of the `group` column.
 See the primary `box` method for full argument documentation.
 """
 function box(df, data::Symbol, group::Symbol;
@@ -118,7 +118,7 @@ end
 """
     box(df, data)
 
-Creates an `EChart` boxplot from a single column `data` in DataFrame `df`.
+Creates an `EChart` boxplot from a single column `data` in table `df`.
 See the primary `box` method for full argument documentation.
 """
 function box(df, data::Symbol;

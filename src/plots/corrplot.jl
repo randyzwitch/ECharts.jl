@@ -16,7 +16,7 @@ corrplot(df)
 
 ## Notes
 
-`corrplot` does not currently support missing values. Users should call `completecases!()` when using a DataFrame, or manually fill missing values as appropriate.
+`corrplot` does not currently support missing values. Users should call `completecases!()` when using a table, or manually fill missing values as appropriate.
 """
 function corrplot(m::Matrix;
                   bubblesize::Int = 45,

@@ -85,7 +85,7 @@ end
 """
     scatter(df, x, y)
 
-Creates an `EChart` scatter plot from columns `x` and `y` in DataFrame `df`.
+Creates an `EChart` scatter plot from columns `x` and `y` in table `df`.
 Axis labels are set automatically from column names.
 See the primary `scatter` method for full argument documentation.
 """
@@ -122,7 +122,7 @@ end
 """
     scatter(df, x, y, group)
 
-Creates an `EChart` scatter plot from DataFrame `df`, grouping series by the `group` column.
+Creates an `EChart` scatter plot from table `df`, grouping series by the `group` column.
 Legend is displayed by default when a group is provided.
 See the primary `scatter` method for full argument documentation.
 """
