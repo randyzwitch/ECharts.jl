@@ -1,12 +1,12 @@
 {
   "name": "echarts-jl-validate",
   "version": "1.0.0",
-  "description": "Validate ECharts.jl JSON fixtures against real ECharts v5",
+  "description": "Validate ECharts.jl JSON fixtures against real ECharts v6",
   "scripts": {
     "test": "node validate.js"
   },
   "dependencies": {
-    "echarts": "^5.0.0",
+    "echarts": "^6.0.0",
     "jsdom": "^24.0.0"
   }
 }

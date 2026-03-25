@@ -6,13 +6,13 @@ Testing for ECharts.jl has two distinct layers:
 
 1. **Julia tests** (`runtests.jl`, `plots.jl`, `options.jl`, `render.jl`) — standard Julia `@test` coverage for chart construction, option setting, and rendering output.
 
-2. **JavaScript validation** — verifies that the JSON produced by Julia structs is actually accepted as valid by Apache ECharts v5 itself. This catches things the Julia type system cannot: deprecated field names, wrong value types for a given field, and structural issues that only manifest at runtime in the browser.
+2. **JavaScript validation** — verifies that the JSON produced by Julia structs is actually accepted as valid by Apache ECharts v6 itself. This catches things the Julia type system cannot: deprecated field names, wrong value types for a given field, and structural issues that only manifest at runtime in the browser.
 
 ## Why JS validation?
 
-ECharts does not throw on invalid options — it logs warnings via `console.warn`. A chart with a deprecated field (e.g., `barBorderColor`, renamed to `borderColor` in v5) will silently render incorrectly. The only reliable way to catch these issues is to feed the JSON to a real ECharts instance and intercept those warnings.
+ECharts does not throw on invalid options — it logs warnings via `console.warn`. A chart with a deprecated field (e.g., `barBorderColor`, renamed to `borderColor` in v5/v6) will silently render incorrectly. The only reliable way to catch these issues is to feed the JSON to a real ECharts instance and intercept those warnings.
 
-This suite was built when upgrading ECharts.jl to v5, and is most useful when:
+This suite was built when upgrading ECharts.jl to v5/v6, and is most useful when:
 - Updating to a new ECharts JS version (field renames, deprecations)
 - Adding or modifying Julia struct definitions in `src/definetypes.jl`
 - Debugging why a chart looks wrong in the browser
@@ -37,7 +37,7 @@ julia --project=test test/generate_type_fixtures.jl
 # 2. Install JS deps (once)
 cd test/js && npm install
 
-# 3. Validate fixtures against ECharts v5
+# 3. Validate fixtures against ECharts v6
 cd test/js && npm test
 ```
 
