@@ -192,3 +192,25 @@ jitter!(sm)
 @test typeof(theme!(sm, ECharts.vintage)) == EChart
 
 @test typeof(Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "src/themes/chalk.json")))) == Theme
+
+#18: labels!
+b = bar(["A","B","C"], [1,2,3])
+labels!(b)
+@test typeof(b) == EChart
+
+labels!(b, show = true, position = "top")
+@test typeof(b) == EChart
+
+labels!(b, color = "#fff", fontSize = 14, fontWeight = "bold")
+@test typeof(b) == EChart
+
+labels!(b, rotate = 45)
+@test typeof(b) == EChart
+
+labels!(b, formatter = "{c:.2f}")
+@test typeof(b) == EChart
+
+# single-series overload
+bm = bar(["A","B","C"], hcat([1,2,3], [4,5,6]))
+labels!(bm, 1, color = "red", fontSize = 12)
+@test typeof(bm) == EChart
