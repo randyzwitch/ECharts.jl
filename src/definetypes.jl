@@ -2,6 +2,12 @@ mutable struct BoxPlotStats
     summary::AbstractVector
     outliers::AbstractVector
 end
+"""
+    LineStyle
+
+ECharts line style configuration (color, width, dash type, opacity, etc.).
+Set fields directly on a chart's nested struct or pass as a keyword argument where supported.
+"""
 @with_kw mutable struct LineStyle <: AbstractEChartType
     color::Union{AbstractVector,String, Nothing} = nothing
     width::Union{Int, Nothing} = nothing
@@ -13,6 +19,11 @@ end
     opacity::Union{Int, Nothing} = nothing
     curveness::Union{AbstractFloat, Nothing} = nothing
 end
+"""
+    AreaStyle
+
+ECharts area fill style configuration (color, shadow, opacity, etc.).
+"""
 @with_kw mutable struct AreaStyle <: AbstractEChartType
     color::Union{AbstractVector, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
@@ -21,6 +32,11 @@ end
     shadowOffsetY::Union{Int, Nothing} = 0
     opacity::Union{Number, Nothing} = nothing
 end
+"""
+    TextStyle
+
+ECharts text style configuration (font family, size, weight, color, etc.).
+"""
 @with_kw mutable struct TextStyle <: AbstractEChartType
     color::Union{String, Nothing} = "#000"
     fontStyle::Union{String, Nothing} = "normal"
@@ -40,16 +56,31 @@ end
     textShadowOffsetY::Union{Int, Nothing} = nothing
     rich::Union{Dict, Nothing} = nothing
 end
+"""
+    SplitArea
+
+ECharts split area configuration (alternating background bands between axis ticks).
+"""
 @with_kw mutable struct SplitArea <: AbstractEChartType
     interval::Union{Int,String, Nothing} = "auto"
     show::Union{Bool, Nothing} = true
     areaStyle::Union{AreaStyle, Nothing} = nothing
 end
+"""
+    SplitLine
+
+ECharts split line configuration (grid lines drawn at axis ticks).
+"""
 @with_kw mutable struct SplitLine <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     interval::Union{Int,String,JSFunction, Nothing} = "auto"
     lineStyle::Union{LineStyle, Nothing} = LineStyle()
 end
+"""
+    AxisLabel
+
+ECharts axis tick label configuration (show, rotation, format, font, etc.).
+"""
 @with_kw mutable struct AxisLabel <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     interval::Union{Int,String, Nothing} = "auto"
@@ -86,6 +117,11 @@ end
     textShadowOffsetY::Union{Int, Nothing} = nothing
     rich::Union{Dict, Nothing} = nothing
 end
+"""
+    AxisLine
+
+ECharts axis line configuration (visibility, arrow symbols, line style, etc.).
+"""
 @with_kw mutable struct AxisLine <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     onZero::Union{Bool, Nothing} = true
@@ -94,6 +130,11 @@ end
     symbolSize::Union{AbstractVector, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = LineStyle()
 end
+"""
+    AxisTick
+
+ECharts axis tick mark configuration (visibility, alignment, length, line style, etc.).
+"""
 @with_kw mutable struct AxisTick <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     alignWithLabel::Union{Bool, Nothing} = nothing
@@ -109,6 +150,11 @@ end
     formatter::Union{String, JSFunction, Nothing} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
 end
+"""
+    ItemStyle
+
+ECharts item (data point) style configuration (color, border, shadow, opacity, etc.).
+"""
 @with_kw mutable struct ItemStyle <: AbstractEChartType
     color::Union{String, JSFunction, Nothing} = nothing
     barBorderColor::Union{String, Nothing} = nothing
@@ -184,6 +230,12 @@ end
     link::Union{AbstractVector, Any} = nothing
     triggerOn::Union{String, Nothing} = nothing
 end
+"""
+    Tooltip
+
+ECharts tooltip configuration (trigger mode, formatter, styling, etc.).
+See also [`tooltip!`](@ref).
+"""
 @with_kw mutable struct Tooltip <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     trigger::Union{String, Nothing} = "item"
@@ -205,6 +257,12 @@ end
     textStyle::Union{TextStyle, Nothing} = nothing
     extraCssText::Union{String, Nothing} = nothing
 end
+"""
+    Legend
+
+ECharts legend configuration (visibility, position, item styling, etc.).
+See also [`legend!`](@ref).
+"""
 @with_kw mutable struct Legend <: AbstractEChartType
     _type::Union{String, Nothing} = nothing
     show::Union{Bool, Nothing} = true
@@ -248,6 +306,13 @@ end
     animation::Union{Bool, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
 end
+"""
+    Toolbox
+
+ECharts toolbox (interactive toolbar) configuration, including save-as-image,
+data view, zoom, and restore buttons.
+See also [`toolbox!`](@ref).
+"""
 @with_kw mutable struct Toolbox <: AbstractEChartType
     show::Union{Bool, Nothing} = false
     orient::Union{String, Nothing} = "vertical"
@@ -283,6 +348,13 @@ end
     outOfBrush::Union{Dict, Nothing} = nothing
     z::Union{Int, Nothing} = nothing
 end
+"""
+    Axis
+
+ECharts axis configuration (type, name, tick/label/line styling, scale, etc.).
+Used for both x- and y-axes via `EChart.xAxis` and `EChart.yAxis`.
+See also [`xaxis!`](@ref), [`yaxis!`](@ref).
+"""
 @with_kw mutable struct Axis <: AbstractEChartType
     show::Union{Bool, Nothing} = nothing
     gridIndex::Union{Int, Nothing} = 0
@@ -315,6 +387,12 @@ end
     zlevel::Union{Int, Nothing} = 0
     z::Union{Int, Nothing} = 0
 end
+"""
+    Title
+
+ECharts chart title configuration (main text, subtitle, position, styling, etc.).
+See also [`title!`](@ref).
+"""
 @with_kw mutable struct Title <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     text::Union{String, Nothing} = nothing
@@ -342,6 +420,11 @@ end
     shadowOffsetX::Union{Int, Nothing} = 0
     shadowOffsetY::Union{Int, Nothing} = 0
 end
+"""
+    Grid
+
+ECharts grid (plot area) configuration (position, size, background, border, etc.).
+"""
 @with_kw mutable struct Grid <: AbstractEChartType
     show::Bool = false
     zlevel::Union{Int, Nothing} = nothing
@@ -363,12 +446,23 @@ end
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 #This needs work, documentation not clear about what to implement
+"""
+    DataZoom
+
+ECharts data zoom configuration for interactive axis range selection.
+See also [`slider!`](@ref).
+"""
 @with_kw mutable struct DataZoom <: AbstractEChartType
     _type::Union{String, Nothing} = nothing
     show::Bool = false
     start::Union{Number, Nothing} = nothing
     _end::Union{Number, Nothing} = nothing
 end
+"""
+    Timeline
+
+ECharts timeline component configuration for animated, stepped chart sequences.
+"""
 @with_kw mutable struct Timeline <: AbstractEChartType
     show::Union{Bool, Nothing} = true
     _type::Union{String, Nothing} = "slider"
@@ -484,6 +578,12 @@ end
     splitArea::Union{SplitArea, Nothing} = nothing
     indicator::Union{AbstractVector, Nothing} = nothing
 end
+"""
+    VisualMap
+
+ECharts visual map component configuration for mapping data values to visual encodings
+(color, size, etc.) via a continuous or piecewise legend.
+"""
 @with_kw mutable struct VisualMap <: AbstractEChartType
     #continuous
     _type::Union{String, Nothing} = nothing
@@ -685,6 +785,12 @@ end
     series::Union{Dict, Nothing} = nothing
     data::Union{Dict, Nothing} = nothing
 end
+"""
+    MarkPoint
+
+ECharts mark point annotation configuration (symbol, size, label, style, etc.)
+for highlighting specific data points on a series.
+"""
 @with_kw mutable struct MarkPoint <: AbstractEChartType
     _symbol::Union{String, Nothing} = nothing
     symbolSize::Union{Int, AbstractVector, JSFunction, Nothing} = nothing
@@ -703,6 +809,12 @@ end
     animationEasingUpdate::Union{String, Nothing} = nothing
     animationDelayUpdate::Union{Int, Nothing} = nothing
 end
+"""
+    MarkLine
+
+ECharts mark line annotation configuration for drawing reference lines
+(e.g. average, min, max) across a series.
+"""
 @with_kw mutable struct MarkLine <: AbstractEChartType
     silent::Union{Bool, Nothing} = nothing
     _symbol::Union{String, Nothing} = nothing
@@ -720,6 +832,11 @@ end
     animationEasingUpdate::Union{String, Nothing} = nothing
     animationDelayUpdate::Union{Int, Nothing} = nothing
 end
+"""
+    MarkArea
+
+ECharts mark area annotation configuration for shading rectangular regions of a chart.
+"""
 @with_kw mutable struct MarkArea <: AbstractEChartType
     silent::Union{Bool, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
@@ -735,6 +852,11 @@ end
 end
 #Need to validate for all types
 #Make individual series types like echarts.js?
+"""
+    PieSeries
+
+ECharts series configuration for pie and donut charts.
+"""
 @with_kw mutable struct PieSeries <: AbstractEChartSeries
     _type::String = "pie"
     name::Union{String, Nothing} = nothing
@@ -776,6 +898,11 @@ end
     animationDelayUpdate::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    RadarSeries
+
+ECharts series configuration for radar (spider/web) charts.
+"""
 @with_kw mutable struct RadarSeries <: AbstractEChartSeries
     _type::String = "radar"
     name::Union{String, Nothing} = nothing
@@ -803,6 +930,11 @@ end
     animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    BoxPlotSeries
+
+ECharts series configuration for box (box-and-whisker) plots.
+"""
 @with_kw mutable struct BoxPlotSeries <: AbstractEChartSeries
     _type::String = "boxplot"
     coordinateSystem::String = "cartesian2d"
@@ -829,6 +961,11 @@ end
     animationDelay::Union{Int, JSFunction, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    ThemeRiverSeries
+
+ECharts series configuration for theme river (streamgraph) charts.
+"""
 @with_kw mutable struct ThemeRiverSeries <: AbstractEChartSeries
     _type::String = "themeRiver"
     zlevel::Union{Int, Nothing} = nothing
@@ -848,6 +985,11 @@ end
     data::Union{AbstractVector, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    PictorialBarSeries
+
+ECharts series configuration for pictorial bar charts (bars shaped like custom symbols).
+"""
 @with_kw mutable struct PictorialBarSeries <: AbstractEChartSeries
     _type::String = "pictorialBar"
     name::Union{String, Nothing} = nothing
@@ -893,6 +1035,11 @@ end
     animationEasingUpdate::Union{Dict, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    GaugeSeries
+
+ECharts series configuration for gauge (dial/speedometer) charts.
+"""
 @with_kw mutable struct GaugeSeries <: AbstractEChartSeries
     _type::String = "gauge"
     name::Union{String, Nothing} = nothing
@@ -927,6 +1074,11 @@ end
     tooltip::Union{Tooltip, Nothing} = nothing
     data::Union{AbstractArray, Nothing} = nothing
 end
+"""
+    FunnelSeries
+
+ECharts series configuration for funnel charts.
+"""
 @with_kw mutable struct FunnelSeries <: AbstractEChartSeries
     _type::String = "funnel"
     name::Union{String, Nothing} = nothing
@@ -959,6 +1111,11 @@ end
     animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    SankeySeries
+
+ECharts series configuration for Sankey flow diagrams.
+"""
 @with_kw mutable struct SankeySeries <: AbstractEChartSeries
     _type::String = "sankey"
     name::Union{String, Nothing} = nothing
@@ -993,6 +1150,11 @@ end
     animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    GraphSeries
+
+ECharts series configuration for graph / network relationship charts.
+"""
 @with_kw mutable struct GraphSeries <: AbstractEChartSeries
     _type::String = "graph"
     name::Union{String, Nothing} = nothing
@@ -1050,6 +1212,11 @@ end
     animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    LinesSeries
+
+ECharts series configuration for geographic line (route) charts.
+"""
 @with_kw mutable struct LinesSeries <: AbstractEChartSeries
     _type::String = "lines"
     name::Union{String, Nothing} = nothing
@@ -1082,6 +1249,11 @@ end
     animationEasingUpdate::Union{Dict, Nothing} = nothing
     animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
 end
+"""
+    ParallelSeries
+
+ECharts series configuration for parallel coordinates charts.
+"""
 @with_kw mutable struct ParallelSeries <: AbstractEChartSeries
     _type::String = "parallel"
     coordinateSystem::Union{String, Nothing} = nothing
@@ -1105,6 +1277,11 @@ end
     animationEasingUpdate::Union{String, Nothing} = nothing
     animationDelayUpdate::Union{Int, Nothing} = nothing
 end
+"""
+    MapSeries
+
+ECharts series configuration for geographic map choropleth charts.
+"""
 @with_kw mutable struct MapSeries <: AbstractEChartSeries
     _type::String = "map"
     name::Union{String, Nothing} = nothing
@@ -1140,6 +1317,11 @@ end
     silent::Union{Bool, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    HeatmapSeries
+
+ECharts series configuration for heatmap charts.
+"""
 @with_kw mutable struct HeatmapSeries <: AbstractEChartSeries
     _type::String = "heatmap"
     name::Union{String, Nothing} = nothing
@@ -1163,6 +1345,11 @@ end
     silent::Union{Bool, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    CandleStickSeries
+
+ECharts series configuration for candlestick (OHLC) financial charts.
+"""
 @with_kw mutable struct CandleStickSeries <: AbstractEChartSeries
     _type::String = "candlestick"
     coordinateSystem::Union{String, Nothing} = nothing
@@ -1191,6 +1378,11 @@ end
     animationDelay::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    SunburstSeries
+
+ECharts series configuration for sunburst (multi-level pie) charts.
+"""
 @with_kw mutable struct SunburstSeries <: AbstractEChartSeries
     _type::String = "sunburst"
     zlevel::Union{Int, Nothing} = nothing
@@ -1217,6 +1409,11 @@ end
     animationEasingUpdate::Union{String, Nothing} = nothing
     animationDelayUpdate::Union{Int, Nothing} = nothing
 end
+"""
+    TreemapSeries
+
+ECharts series configuration for treemap (nested rectangle) charts.
+"""
 @with_kw mutable struct TreemapSeries <: AbstractEChartSeries
     _type::String = "treemap"
     zlevel::Union{Int, Nothing} = nothing
@@ -1254,6 +1451,11 @@ end
     animationDelay::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    TreeSeries
+
+ECharts series configuration for tree (hierarchy) charts.
+"""
 @with_kw mutable struct TreeSeries <: AbstractEChartSeries
     _type::String = "tree"
     name::Union{String, Nothing} = nothing
@@ -1280,6 +1482,11 @@ end
     data::Union{Dict, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    EffectScatterSeries
+
+ECharts series configuration for effect scatter charts (scatter with ripple animation).
+"""
 @with_kw mutable struct EffectScatterSeries <: AbstractEChartSeries
     _type::String = "effectScatter"
     name::Union{String, Nothing} = nothing
@@ -1322,6 +1529,13 @@ end
     animationDelayUpdate::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
+"""
+    XYSeries
+
+ECharts series configuration for Cartesian (x-y axis) chart types: bar, line, scatter, area, etc.
+This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scatter`](@ref),
+[`area`](@ref), and related functions.
+"""
 @with_kw mutable struct XYSeries <: AbstractEChartSeries
     #line
     _type::Union{String, Nothing} = nothing
@@ -1375,6 +1589,24 @@ end
     large::Union{Bool, Nothing} = nothing
     largeThreshold::Union{Int, Nothing} = nothing
 end
+"""
+    EChart
+
+The main chart struct returned by all ECharts.jl chart constructors (e.g. [`bar`](@ref),
+[`line`](@ref), [`scatter`](@ref)).
+
+Fields prefixed with `ec_` are ECharts.jl-internal and do not affect the JavaScript output:
+- `ec_width` / `ec_height` : canvas size in pixels (default 800 × 400)
+- `ec_renderer` : `"canvas"` (default) or `"svg"`
+- `ec_charttype` : internal label for the chart type
+- `theme` : the [`Theme`](@ref) applied at render time
+
+All other fields map directly to Apache ECharts option keys (`title`, `xAxis`, `yAxis`,
+`series`, `legend`, etc.) and can be mutated after construction for fine-grained control.
+
+See the [Apache ECharts documentation](https://echarts.apache.org/en/option.html) for field
+details.
+"""
 @with_kw mutable struct EChart <: AbstractEChartType
     #fields prefixed with ec_ are ECharts.jl internal, no effect on echarts.js
     ec_width::Int = 800

@@ -19,7 +19,6 @@ b = bar(["A","B","C"], [1,2,3])
 xgridlines!(b, show = false)
 ```
 """
-#Merge methods together using metaprogramming?
 function xgridlines!(ec::EChart; show::Bool = true,
 								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
 								 kwargs...)

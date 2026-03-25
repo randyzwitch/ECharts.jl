@@ -87,8 +87,8 @@ b = bar(["A","B","C","D"], [1,4,2,5])
 xline!(b, "B")
 ```
 """
-#arbitrary line: need to confirm that the xAxis line can only be xAxis => value, not min/max/average
 function xline!(ec::EChart, value::Any; series::Int = 1, kwargs...)
+	#arbitrary line: need to confirm that the xAxis line can only be xAxis => value, not min/max/average
 
 	#Defensive; empty markLine already added by default to every chart
     isnothing(ec.series[series].markLine) ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing

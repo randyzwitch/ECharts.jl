@@ -38,6 +38,7 @@ makedocs(
             "charts/candlestick.md",
             "charts/corrplot.md",
             "charts/donut.md",
+            "charts/echart_raw.md",
             "charts/funnel.md",
             "charts/gauge.md",
             "charts/heatmap.md",
@@ -51,6 +52,7 @@ makedocs(
             "charts/scatter.md",
             "charts/streamgraph.md",
             "charts/waterfall.md",
+            "charts/xy_plot.md",
         ],
         "Modifier Functions" => [
             "functions/aria!.md",
@@ -75,6 +77,7 @@ makedocs(
             "functions/xgridlines!_ygridlines!.md",
             "functions/xline!_yline!.md",
         ],
+        "Types" => "types.md",
         "API Reference" => "api.md",
     ],
     checkdocs = :exports,
