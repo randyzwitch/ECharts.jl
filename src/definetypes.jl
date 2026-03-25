@@ -448,18 +448,23 @@ ECharts grid (plot area) configuration (position, size, background, border, etc.
     shadowOffsetY::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
-#This needs work, documentation not clear about what to implement
 """
     DataZoom
 
-ECharts data zoom configuration for interactive axis range selection.
-See also [`slider!`](@ref).
+ECharts data zoom configuration for interactive axis range selection (slider or inside/scroll).
+See also [`datazoom!`](@ref).
 """
 @with_kw mutable struct DataZoom <: AbstractEChartType
     _type::Union{String, Nothing} = nothing
-    show::Bool = false
+    show::Union{Bool, Nothing} = nothing
     start::Union{Number, Nothing} = nothing
     _end::Union{Number, Nothing} = nothing
+    xAxisIndex::Union{Int, AbstractVector, Nothing} = nothing
+    yAxisIndex::Union{Int, AbstractVector, Nothing} = nothing
+    orient::Union{String, Nothing} = nothing
+    filterMode::Union{String, Nothing} = nothing
+    zoomLock::Union{Bool, Nothing} = nothing
+    throttle::Union{Int, Nothing} = nothing
 end
 """
     Timeline
