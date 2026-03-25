@@ -23,8 +23,8 @@ b = bar(x, y)
 seriesnames!(b, ["Series One", "Series Two"])
 ```
 """
-#Automatically name series, so that downstream functions like legend which use names have one
 function seriesnames!(ec::EChart)
+    #Automatically name series, so that downstream functions like legend which use names have one
 
     for (i, x) in enumerate(ec.series)
         isnothing(x.name) ? x.name = "Series $i" : nothing

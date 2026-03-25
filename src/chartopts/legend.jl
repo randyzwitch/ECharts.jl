@@ -24,8 +24,8 @@ b = bar(x, y)
 legend!(b, orient = "vertical", left = "right")
 ```
 """
-# Works, but doesn't make sense for: sankey, gauge
 function legend!(ec::EChart; kwargs...)
+	# Works, but doesn't make sense for: sankey, gauge
 
 	#Define data upfront for the most common cases
 	#This currently clobbers, should this be a check for nothing instead of clobber?

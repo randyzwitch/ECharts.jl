@@ -22,7 +22,6 @@ b = bar(["A","B","C"], [1,2,3])
 toolbox!(b, chartTypes = ["line", "bar"])
 ```
 """
-# Assumes Toolbox already exists in EChart, which is true by composite type definition
 function toolbox!(ec::EChart; 	show::Bool = true,
 								#mark::Bool = true,
 								restore::Bool = true,
@@ -30,6 +29,7 @@ function toolbox!(ec::EChart; 	show::Bool = true,
 								saveAsImage::Bool = true,
 								chartTypes::AbstractVector = []
 								)
+	# Assumes Toolbox already exists in EChart, which is true by composite type definition
 
 	chartlookup = Dict(	"line" => "Line",
 						"bar" => "Bar",

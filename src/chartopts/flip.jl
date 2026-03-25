@@ -17,9 +17,9 @@ b = bar(["A","B","C"], [1,2,3])
 flip!(b)
 ```
 """
-#Flip x and y axis. Currently only works for XY plots
-#Doesn't work for scatter, boxplot brittle
 function flip!(ec::EChart; rotatedims::Bool = false)
+    #Flip x and y axis. Currently only works for XY plots
+    #Doesn't work for scatter, boxplot brittle
 
     ec.xAxis, ec.yAxis = ec.yAxis, ec.xAxis
 
