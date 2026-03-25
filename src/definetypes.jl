@@ -148,6 +148,10 @@ end
     position::Union{String, Nothing} = nothing
     offset::Union{AbstractVector, Nothing} = nothing
     formatter::Union{String, JSON.JSONText, Nothing} = nothing
+    color::Union{String, Nothing} = nothing
+    rotate::Union{Number, Nothing} = nothing
+    fontSize::Union{Int, Nothing} = nothing
+    fontWeight::Union{String, Nothing} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
 end
 """
