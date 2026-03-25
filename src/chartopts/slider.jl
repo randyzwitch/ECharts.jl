@@ -1,102 +1,61 @@
 """
-    slider!(ec)
+    datazoom!(ec)
 
-Adds a DataZoom slider to an `EChart`, allowing the user to pan and zoom along an axis.
+Adds a DataZoom control to an `EChart` for panning and zooming along an axis.
 
 ## Methods
 ```julia
-slider!(ec::EChart; start, end_, xAxisIndex, yAxisIndex, orient, filterMode)
+datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterMode, zoomLock, throttle)
 ```
 
 ## Arguments
+* `type::String = "slider"` : `"slider"` for a visible drag handle below/beside the chart; `"inside"` for mouse-scroll and touch zoom/pan directly on the chart body
 * `start::Number = 0` : initial start of the visible range as a percentage (0–100)
 * `end_::Number = 100` : initial end of the visible range as a percentage (0–100)
-* `xAxisIndex::Union{Int,Nothing} = nothing` : x-axis index to attach the slider to
-* `yAxisIndex::Union{Int,Nothing} = nothing` : y-axis index to attach the slider to
-* `orient::Union{String,Nothing} = nothing` : `"horizontal"` or `"vertical"`; inferred from axis if omitted
+* `xAxisIndex::Union{Int,Nothing} = nothing` : x-axis index to attach the zoom to
+* `yAxisIndex::Union{Int,Nothing} = nothing` : y-axis index to attach the zoom to
+* `orient::Union{String,Nothing} = nothing` : `"horizontal"` or `"vertical"`; inferred from axis if omitted (slider only)
 * `filterMode::String = "filter"` : how out-of-range data is handled: `"filter"`, `"weakFilter"`, `"empty"`, or `"none"`
+* `zoomLock::Union{Bool,Nothing} = nothing` : lock zoom ratio so scrolling only pans (inside only)
+* `throttle::Union{Int,Nothing} = nothing` : throttle the zoom/pan events in milliseconds (inside only)
 
 ## Notes
 
-Call `slider!` multiple times to add sliders for both the x and y axes.
+Call `datazoom!` multiple times to add controls for both the x and y axes.
 
 ## Examples
 ```julia
 b = bar(["A","B","C","D","E"], [1,2,3,4,5])
-slider!(b)
+datazoom!(b)
 
 # Start zoomed into the first 50% of data
-slider!(b, start = 0, end_ = 50)
+datazoom!(b, start = 0, end_ = 50)
 
-# Attach to y-axis
-slider!(b, yAxisIndex = 0, orient = "vertical")
+# Attach to y-axis with vertical slider
+datazoom!(b, yAxisIndex = 0, orient = "vertical")
+
+# Inside zoom (mouse-scroll), locked to pan only
+datazoom!(b, type = "inside", zoomLock = true, throttle = 100)
 ```
 """
-function slider!(ec::EChart;
-                 start::Number = 0,
-                 end_::Number = 100,
-                 xAxisIndex::Union{Int,Nothing} = nothing,
-                 yAxisIndex::Union{Int,Nothing} = nothing,
-                 orient::Union{String,Nothing} = nothing,
-                 filterMode::String = "filter")
+function datazoom!(ec::EChart;
+                   type::String = "slider",
+                   start::Number = 0,
+                   end_::Number = 100,
+                   xAxisIndex::Union{Int,Nothing} = nothing,
+                   yAxisIndex::Union{Int,Nothing} = nothing,
+                   orient::Union{String,Nothing} = nothing,
+                   filterMode::String = "filter",
+                   zoomLock::Union{Bool,Nothing} = nothing,
+                   throttle::Union{Int,Nothing} = nothing)
 
-    dz = DataZoom(_type = "slider",
-                  show = true,
+    dz = DataZoom(_type = type,
+                  show = type == "slider" ? true : nothing,
                   start = start,
                   _end = end_,
                   xAxisIndex = xAxisIndex,
                   yAxisIndex = yAxisIndex,
                   orient = orient,
-                  filterMode = filterMode)
-
-    isnothing(ec.dataZoom) ? ec.dataZoom = [dz] : push!(ec.dataZoom, dz)
-
-    return ec
-
-end
-
-"""
-    inside!(ec)
-
-Adds an inside DataZoom to an `EChart`, enabling mouse-scroll and touch zoom/pan directly on the chart.
-
-## Methods
-```julia
-inside!(ec::EChart; start, end_, xAxisIndex, yAxisIndex, filterMode, zoomLock, throttle)
-```
-
-## Arguments
-* `start::Number = 0` : initial start of the visible range as a percentage (0–100)
-* `end_::Number = 100` : initial end of the visible range as a percentage (0–100)
-* `xAxisIndex::Union{Int,Nothing} = nothing` : x-axis index to attach the zoom to
-* `yAxisIndex::Union{Int,Nothing} = nothing` : y-axis index to attach the zoom to
-* `filterMode::String = "filter"` : how out-of-range data is handled: `"filter"`, `"weakFilter"`, `"empty"`, or `"none"`
-* `zoomLock::Union{Bool,Nothing} = nothing` : lock zoom ratio so scrolling only pans
-* `throttle::Union{Int,Nothing} = nothing` : throttle the zoom/pan events in milliseconds
-
-## Examples
-```julia
-b = bar(["A","B","C","D","E"], [1,2,3,4,5])
-inside!(b)
-
-# Lock to panning only (no zoom), with throttle
-inside!(b, zoomLock = true, throttle = 100)
-```
-"""
-function inside!(ec::EChart;
-                 start::Number = 0,
-                 end_::Number = 100,
-                 xAxisIndex::Union{Int,Nothing} = nothing,
-                 yAxisIndex::Union{Int,Nothing} = nothing,
-                 filterMode::String = "filter",
-                 zoomLock::Union{Bool,Nothing} = nothing,
-                 throttle::Union{Int,Nothing} = nothing)
-
-    dz = DataZoom(_type = "inside",
-                  start = start,
-                  _end = end_,
-                  xAxisIndex = xAxisIndex,
-                  yAxisIndex = yAxisIndex,
                   filterMode = filterMode,
                   zoomLock = zoomLock,
                   throttle = throttle)

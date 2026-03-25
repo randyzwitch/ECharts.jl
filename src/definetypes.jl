@@ -452,7 +452,7 @@ end
     DataZoom
 
 ECharts data zoom configuration for interactive axis range selection (slider or inside/scroll).
-See also [`slider!`](@ref) and [`inside!`](@ref).
+See also [`datazoom!`](@ref).
 """
 @with_kw mutable struct DataZoom <: AbstractEChartType
     _type::Union{String, Nothing} = nothing

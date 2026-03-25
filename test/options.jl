@@ -81,7 +81,7 @@ bm = bar(x, hcat(0.95 .* y, 1.25 .* y,y))
 seriesnames!(bm, ["Pink Series", "Blue Series", "Tan Series"])
 @test typeof(bm) == EChart
 
-#6: slider!
+#6: datazoom!
 dt = ["2016/08/26", "2016/08/29", "2016/08/30", "2016/08/31", "2016/09/01", "2016/09/02",
 "2016/09/06", "2016/09/07", "2016/09/08", "2016/09/09", "2016/09/12", "2016/09/13",
 "2016/09/14", "2016/09/15", "2016/09/16", "2016/09/19", "2016/09/20", "2016/09/21",
@@ -104,7 +104,18 @@ low_ = [12.3400, 12.3800, 12.4300, 12.4800, 12.3500, 12.4600, 12.4300, 12.6200, 
 12.1200, 12.0000]
 
 c = candlestick(dt, open_, close_, low_, high_)
-slider!(c)
+datazoom!(c)
+@test typeof(c) == EChart
+
+# inside type
+b = bar(["A","B","C","D","E"], [1,2,3,4,5])
+datazoom!(b, type = "inside")
+@test typeof(b) == EChart
+
+# params: start/end, axis index, inside-specific
+datazoom!(c, start = 0, end_ = 50)
+@test typeof(c) == EChart
+datazoom!(c, type = "inside", zoomLock = true, throttle = 100)
 @test typeof(c) == EChart
 
 #7: smooth!
