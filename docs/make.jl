@@ -7,6 +7,7 @@ ENV["ECHARTS_DOCS_BUILD"] = "true"
 # Wrap echarts.min.js so it doesn't conflict with Documenter's RequireJS.
 # Echarts detects `define` and tries to register as an anonymous AMD module,
 # which RequireJS rejects. Hiding `define` during load prevents this.
+mkpath(joinpath(@__DIR__, "src/assets"))
 let echarts_src = read(joinpath(@__DIR__, "../src/echarts.min.js"), String)
     wrapped = """
 (function() {

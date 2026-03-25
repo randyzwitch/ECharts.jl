@@ -37,7 +37,7 @@ function waterfall(x::AbstractVector, y::AbstractVector{<:Real};
 
     ec = bar(labels, hcat(bottom, top), stack = true, legend = legend, scale = scale, kwargs...)
     #Make bottom series transparent
-    ec.series[1].itemStyle = trans = ItemStyle(barBorderColor = "transparent", color = "transparent")
+    ec.series[1].itemStyle = trans = ItemStyle(borderColor = "transparent", color = "transparent")
 
     return ec
 end
