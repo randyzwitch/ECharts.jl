@@ -1,8 +1,9 @@
 """
     flip!(ec)
 
-Flips the x and y axes of an `EChart`. Currently only works for XY plots; scatter support is limited.
+Flips the x and y axes of an `EChart`. Works for XY plots and box plots.
 Box plots with outliers are handled correctly regardless of series order.
+Standalone scatter charts are not supported.
 
 ## Methods
 ```julia
