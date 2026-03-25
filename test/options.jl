@@ -27,6 +27,31 @@ flip!(bm)
 flip!(bm, rotatedims = true)
 @test typeof(bm) == EChart
 
+# flip! on boxplot without outliers
+bx_no_outliers = box([1,2,3,4,5,6,7,8,9,10], outliers = false)
+flip!(bx_no_outliers)
+@test typeof(bx_no_outliers) == EChart
+
+# flip! on boxplot with outliers: outlier coords should be swapped [name, val] -> [val, name]
+box_data = [850,740,900,1070,930,850,950,980,980,880,1000,980,930,650,760,810,1000,1000,960,960]
+bx = box(box_data)
+outlier_series = filter(s -> hasproperty(s, :_type) && s._type == "scatter", bx.series)
+@test length(outlier_series) == 1
+orig_outliers = deepcopy(outlier_series[1].data)
+@test length(orig_outliers) > 0  # data actually has outliers
+flip!(bx)
+flipped_outliers = filter(s -> hasproperty(s, :_type) && s._type == "scatter", bx.series)[1].data
+@test all(flipped_outliers[i] == [orig_outliers[i][2], orig_outliers[i][1]] for i in eachindex(orig_outliers))
+
+# flip! on multi-series boxplot with outliers (tests robustness to series order)
+bx_multi = box([[850,740,900,1070,930,850,950,980,980,880,1000,980,930,650,760,810,1000,1000,960,960],
+                [960,940,960,940,880,800,850,880,900,840,830,790,810,880,880,830,800,790,760,800]])
+outlier_series_multi = filter(s -> hasproperty(s, :_type) && s._type == "scatter", bx_multi.series)
+orig_multi = deepcopy(outlier_series_multi[1].data)
+flip!(bx_multi)
+flipped_multi = filter(s -> hasproperty(s, :_type) && s._type == "scatter", bx_multi.series)[1].data
+@test all(flipped_multi[i] == [orig_multi[i][2], orig_multi[i][1]] for i in eachindex(orig_multi))
+
 #3: lineargradient
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
@@ -116,6 +141,18 @@ a = bar(x, y)
 toolbox!(a, chartTypes = ["bar", "line"])
 @test typeof(a) == EChart
 
+toolbox!(a, dataZoom = true)
+@test typeof(a) == EChart
+
+toolbox!(a, orient = "horizontal")
+@test typeof(a) == EChart
+
+toolbox!(a, left = "5%", top = "5%", right = nothing, bottom = nothing)
+@test typeof(a) == EChart
+
+toolbox!(a, right = "10%", bottom = "10%")
+@test typeof(a) == EChart
+
 #11: xarea!/yarea!
 sgrp = scatter(mtcars, :MPG, :HP, :Cyl)
 xarea!(sgrp, 28, 33)
@@ -192,3 +229,50 @@ jitter!(sm)
 @test typeof(theme!(sm, ECharts.vintage)) == EChart
 
 @test typeof(Theme(JSON.parsefile(joinpath(dirname(@__FILE__), "..", "src/themes/chalk.json")))) == Theme
+
+#18: labels!
+b = bar(["A","B","C"], [1,2,3])
+labels!(b)
+@test typeof(b) == EChart
+
+labels!(b, show = true, position = "top")
+@test typeof(b) == EChart
+
+labels!(b, color = "#fff", fontSize = 14, fontWeight = "bold")
+@test typeof(b) == EChart
+
+labels!(b, rotate = 45)
+@test typeof(b) == EChart
+
+labels!(b, formatter = "{c:.2f}")
+@test typeof(b) == EChart
+
+# single-series overload
+bm = bar(["A","B","C"], hcat([1,2,3], [4,5,6]))
+labels!(bm, 1, color = "red", fontSize = 12)
+@test typeof(bm) == EChart
+
+#19: tooltip!
+b = bar(["A","B","C"], [1,2,3])
+tooltip!(b)
+@test typeof(b) == EChart
+@test b.tooltip.trigger == "axis"       # auto-selected for bar (Cartesian)
+
+p = pie(["A","B","C"], [1,2,3])
+tooltip!(p)
+@test typeof(p) == EChart
+@test p.tooltip.trigger == "item"       # auto-selected for pie (non-Cartesian)
+
+# explicit trigger override
+tooltip!(b, trigger = "item")
+@test b.tooltip.trigger == "item"
+
+# optional params
+tooltip!(b, formatter = "{b}: {c} units", backgroundColor = "rgba(0,0,0,0.8)", padding = 10)
+@test b.tooltip.formatter == "{b}: {c} units"
+@test b.tooltip.backgroundColor == "rgba(0,0,0,0.8)"
+@test b.tooltip.padding == 10
+
+# kwargs forwarded to Tooltip struct
+tooltip!(b, confine = true)
+@test b.tooltip.confine == true
