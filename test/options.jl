@@ -141,6 +141,18 @@ a = bar(x, y)
 toolbox!(a, chartTypes = ["bar", "line"])
 @test typeof(a) == EChart
 
+toolbox!(a, dataZoom = true)
+@test typeof(a) == EChart
+
+toolbox!(a, orient = "horizontal")
+@test typeof(a) == EChart
+
+toolbox!(a, left = "5%", top = "5%", right = nothing, bottom = nothing)
+@test typeof(a) == EChart
+
+toolbox!(a, right = "10%", bottom = "10%")
+@test typeof(a) == EChart
+
 #11: xarea!/yarea!
 sgrp = scatter(mtcars, :MPG, :HP, :Cyl)
 xarea!(sgrp, 28, 33)
