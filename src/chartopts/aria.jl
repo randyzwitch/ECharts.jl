@@ -5,15 +5,16 @@ Adds or modifies [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibili
 
 ## Methods
 ```julia
-aria!(ec::EChart; show, description, general, series, data)
+aria!(ec::EChart; enabled, description, general, series, data, decal)
 ```
 
 ## Arguments
-* `show::Bool = true` : enable ARIA
+* `enabled::Bool = true` : enable ARIA
 * `description::Union{String, Nothing} = nothing` : custom description for screen readers
-* `general::Union{Dict, Nothing} = nothing` : general ARIA configuration dict
-* `series::Union{Dict, Nothing} = nothing` : per-series ARIA configuration dict
-* `data::Union{Dict, Nothing} = nothing` : per-data ARIA configuration dict
+* `general::Union{Dict, Nothing} = nothing` : general ARIA label configuration dict
+* `series::Union{Dict, Nothing} = nothing` : per-series ARIA label configuration dict
+* `data::Union{Dict, Nothing} = nothing` : per-data ARIA label configuration dict
+* `decal::Union{Dict, Nothing} = nothing` : decal pattern configuration dict (v5+)
 
 ## Examples
 ```julia
@@ -21,9 +22,19 @@ b = bar(["A","B","C"], [1,2,3])
 aria!(b)
 ```
 """
-function aria!(ec::EChart; show::Bool = true, description::Union{String, Nothing} = nothing, general::Union{Dict, Nothing} = nothing, series::Union{Dict, Nothing} = nothing, data::Union{Dict, Nothing} = nothing)
+function aria!(ec::EChart; enabled::Bool = true, description::Union{String, Nothing} = nothing,
+               general::Union{Dict, Nothing} = nothing, series::Union{Dict, Nothing} = nothing,
+               data::Union{Dict, Nothing} = nothing, decal::Union{Dict, Nothing} = nothing)
 
-    ec.aria = Aria(show = show, description = description, general = general, series = series, data = data)
+    label_config = Dict{String,Any}()
+    description !== nothing && (label_config["description"] = description)
+    general !== nothing && (label_config["general"] = general)
+    series !== nothing && (label_config["series"] = series)
+    data !== nothing && (label_config["data"] = data)
+
+    ec.aria = Aria(enabled = enabled,
+                   label = isempty(label_config) ? nothing : label_config,
+                   decal = decal)
     return ec
 
 end

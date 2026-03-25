@@ -1,1 +1,0 @@
-var DOCUMENTER_VERSIONS = ["dev"];

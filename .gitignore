@@ -4,5 +4,7 @@
 
 .DS_Store
 docs/vendor/*
+docs/build/
+docs/src/assets/echarts.min.js
 .vscode
 Manifest.toml
