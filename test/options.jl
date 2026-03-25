@@ -251,3 +251,28 @@ labels!(b, formatter = "{c:.2f}")
 bm = bar(["A","B","C"], hcat([1,2,3], [4,5,6]))
 labels!(bm, 1, color = "red", fontSize = 12)
 @test typeof(bm) == EChart
+
+#19: tooltip!
+b = bar(["A","B","C"], [1,2,3])
+tooltip!(b)
+@test typeof(b) == EChart
+@test b.tooltip.trigger == "axis"       # auto-selected for bar (Cartesian)
+
+p = pie(["A","B","C"], [1,2,3])
+tooltip!(p)
+@test typeof(p) == EChart
+@test p.tooltip.trigger == "item"       # auto-selected for pie (non-Cartesian)
+
+# explicit trigger override
+tooltip!(b, trigger = "item")
+@test b.tooltip.trigger == "item"
+
+# optional params
+tooltip!(b, formatter = "{b}: {c} units", backgroundColor = "rgba(0,0,0,0.8)", padding = 10)
+@test b.tooltip.formatter == "{b}: {c} units"
+@test b.tooltip.backgroundColor == "rgba(0,0,0,0.8)"
+@test b.tooltip.padding == 10
+
+# kwargs forwarded to Tooltip struct
+tooltip!(b, confine = true)
+@test b.tooltip.confine == true
