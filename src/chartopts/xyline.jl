@@ -23,8 +23,8 @@ yline!(b, "average")
 yline!(b, 3.0, color = "red")
 ```
 """
-# echarts built-in for average, min, max
 function yline!(ec::EChart, value::String; series::Int = 1, kwargs...)
+	# echarts built-in for average, min, max
 
 	#Defensive; empty markLine already added by default to every chart
     isnothing(ec.series[series].markLine) ? ec.series[series].markLine = deepcopy(MarkLine()) : nothing

@@ -18,8 +18,7 @@ b = bar(["A","B","C"], [1,2,3])
 title!(b, text = "My Chart", subtext = "subtitle here")
 ```
 """
-#By convention from definetypes.jl, make title! update the first Title object in array
-title!(ec::EChart; kwargs...) = text!(ec, 1; kwargs...)
+title!(ec::EChart; kwargs...) = text!(ec, 1; kwargs...) # By convention from definetypes.jl, make title! update the first Title object in array
 
 """
     text!(ec)
@@ -43,8 +42,8 @@ b = bar(["A","B","C"], [1,2,3])
 text!(b, text = "Subtitle", top = "bottom", left = "center")
 ```
 """
-#Push on to end of ec.title array
 function text!(ec::EChart; kwargs...)
+	#Push on to end of ec.title array
 
 	temp = Title()
 

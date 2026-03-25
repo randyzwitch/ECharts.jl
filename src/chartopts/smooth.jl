@@ -25,8 +25,8 @@ l = line(["A","B","C","D"], [1,4,2,5])
 smooth!(l)
 ```
 """
-#All series by default
 function smooth!(ec::EChart; smooth::Bool = true)
+	#All series by default
 
 	[x.smooth = smooth for x in ec.series]
 

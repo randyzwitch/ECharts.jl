@@ -20,8 +20,8 @@ b = bar(["A","B","C","D","E"], [1,2,3,4,5])
 xarea!(b, "B", "D", color = "rgba(200,200,200,0.4)")
 ```
 """
-#Merge methods together using metaprogramming?
 function xarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
+	#Merge methods together using metaprogramming?
 
 	#set if not exists
     isnothing(ec.series[series].markArea) ? ec.series[series].markArea = MarkArea() : nothing

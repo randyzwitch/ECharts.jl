@@ -7,7 +7,7 @@ colorscheme!
 ```@example
 using ECharts
 b = bar(["A","B","C"], [1,2,3])
-colorscheme!(b, ("Tableau", 10))
+colorscheme!(b, ("Set1", 9))
 ```
 
 ```@example
