@@ -8,14 +8,15 @@ outdir = joinpath(@__DIR__, "fixtures")
 mkpath(outdir)
 
 function save_fixture(name, chart)
+    json_str = ECharts.json(ECharts.makevalidjson(chart))
     try
-        json_str = ECharts.json(ECharts.makevalidjson(chart))
-        JSON.parse(json_str)  # skip fixtures that contain raw JSFunction output
-        write(joinpath(outdir, "$name.json"), json_str)
-        println("  saved $name.json")
-    catch e
-        println("  skipped $name ($(typeof(e)))")
+        JSON.parse(json_str)  # throws if output contains raw JSFunction (not valid JSON)
+    catch
+        println("  skipped $name.json (contains JSFunction — not valid JSON)")
+        return
     end
+    write(joinpath(outdir, "$name.json"), json_str)
+    println("  saved $name.json")
 end
 
 charts = Pair{String,EChart}[]

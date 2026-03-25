@@ -157,7 +157,6 @@ ECharts item (data point) style configuration (color, border, shadow, opacity, e
 """
 @with_kw mutable struct ItemStyle <: AbstractEChartType
     color::Union{String, JSFunction, Nothing} = nothing
-    barBorderColor::Union{String, Nothing} = nothing
     borderColor::Union{String, Nothing} = nothing
     borderWidth::Union{Int, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
