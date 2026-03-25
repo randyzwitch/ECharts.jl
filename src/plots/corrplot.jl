@@ -59,7 +59,7 @@ function corrplot(m::Matrix;
 
     ec.series = [XYSeries(data = arrayofarray(melt_variable, melt_rownames, melt_value),
                         _type = "scatter",
-                        symbolSize = JSFunction("""function (data) {return $bubblesize * Math.sqrt(Math.abs(data[2]))}""")
+                        symbolSize = JSON.JSONText("""function (data) {return $bubblesize * Math.sqrt(Math.abs(data[2]))}""")
                         )
                 ]
 
@@ -75,7 +75,7 @@ function corrplot(m::Matrix;
     labels ?
     ec.series[1].label = ECharts.Label(show = true,
                                       position = "inside",
-                                      formatter = JSFunction("""function (params) {return params.data[2].toFixed(2);}"""),
+                                      formatter = JSON.JSONText("""function (params) {return params.data[2].toFixed(2);}"""),
                                       textStyle = TextStyle(fontWeight = "bold", color = "black", fontSize = 14)
 
                                   ) : nothing

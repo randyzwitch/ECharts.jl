@@ -1,8 +1,4 @@
-@test ECharts.json("hello") == "\"hello\""
-@test ECharts.makevalidjson(:hello) == "hello"
-@test ECharts.makevalidjson([:hello, :world]) == ["hello", "world"]
-@test ECharts.makevalidjson(missing) == "-"
-@test ECharts.makevalidjson(4//7) == 4//7
+@test JSON.json("hello") == "\"hello\""
 
 # echart() / EChartRaw
 let valid_json = """{"xAxis":{"type":"category","data":["Mon","Tue"]},"yAxis":{"type":"value"},"series":[{"data":[820,932],"type":"bar"}]}"""

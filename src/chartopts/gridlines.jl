@@ -10,7 +10,7 @@ xgridlines!(ec::EChart; show, interval, kwargs...)
 
 ## Arguments
 * `show::Bool = true` : display grid lines
-* `interval::Union{Int, String, JSFunction, Nothing} = "auto"` : interval between grid lines
+* `interval::Union{Int, String, JSON.JSONText, Nothing} = "auto"` : interval between grid lines
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
 ## Examples
@@ -20,7 +20,7 @@ xgridlines!(b, show = false)
 ```
 """
 function xgridlines!(ec::EChart; show::Bool = true,
-								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
+								 interval::Union{Int, String, JSON.JSONText, Nothing} = "auto",
 								 kwargs...)
 
 	#Set if not present
@@ -49,7 +49,7 @@ ygridlines!(ec::EChart; show, interval, kwargs...)
 
 ## Arguments
 * `show::Bool = true` : display grid lines
-* `interval::Union{Int, String, JSFunction, Nothing} = "auto"` : interval between grid lines
+* `interval::Union{Int, String, JSON.JSONText, Nothing} = "auto"` : interval between grid lines
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
 ## Examples
@@ -59,7 +59,7 @@ ygridlines!(b, show = false)
 ```
 """
 function ygridlines!(ec::EChart; show::Bool = true,
-								 interval::Union{Int, String, JSFunction, Nothing} = "auto",
+								 interval::Union{Int, String, JSON.JSONText, Nothing} = "auto",
 								 kwargs...)
 
 	#Set if not present

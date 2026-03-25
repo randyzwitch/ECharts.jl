@@ -47,7 +47,7 @@ arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[x,y,z] f
 function kwargs!(ec::EChart, kwargs::AbstractVector)
 
 	for (k, v) in kwargs
-        k == :color && typeof(v) in [String, JSFunction] ? setfield!(ec, k, [v]) : setfield!(ec, k, v)
+        k == :color && typeof(v) in [String, Dict] ? setfield!(ec, k, [v]) : setfield!(ec, k, v)
     end
 
 end

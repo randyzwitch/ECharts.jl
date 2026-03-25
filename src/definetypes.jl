@@ -73,7 +73,7 @@ ECharts split line configuration (grid lines drawn at axis ticks).
 """
 @with_kw mutable struct SplitLine <: AbstractEChartType
     show::Union{Bool, Nothing} = true
-    interval::Union{Int,String,JSFunction, Nothing} = "auto"
+    interval::Union{Int,String,JSON.JSONText, Nothing} = "auto"
     lineStyle::Union{LineStyle, Nothing} = LineStyle()
 end
 """
@@ -87,10 +87,10 @@ ECharts axis tick label configuration (show, rotation, format, font, etc.).
     inside::Union{Bool, Nothing} = false
     rotate::Union{Int, Nothing} = 0
     margin::Union{Int, Nothing} = 8
-    formatter::Union{String, Nothing, JSFunction} = "{value}"
+    formatter::Union{String, Nothing, JSON.JSONText} = "{value}"
     showMinLabel::Union{Bool, Nothing} = nothing
     showMaxLabel::Union{Bool, Nothing} = nothing
-    color::Union{String,JSFunction, Nothing} = nothing
+    color::Union{String, Dict, Nothing} = nothing
     fontStyle::Union{String, Nothing} = nothing
     fontWeight::Union{String, Nothing} = nothing
     fontFamily::Union{String, Nothing} = nothing
@@ -147,7 +147,7 @@ end
     show::Union{Bool, Nothing} = nothing
     position::Union{String, Nothing} = nothing
     offset::Union{AbstractVector, Nothing} = nothing
-    formatter::Union{String, JSFunction, Nothing} = nothing
+    formatter::Union{String, JSON.JSONText, Nothing} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
 end
 """
@@ -156,7 +156,7 @@ end
 ECharts item (data point) style configuration (color, border, shadow, opacity, etc.).
 """
 @with_kw mutable struct ItemStyle <: AbstractEChartType
-    color::Union{String, JSFunction, Nothing} = nothing
+    color::Union{String, Dict, Nothing} = nothing
     borderColor::Union{String, Nothing} = nothing
     borderWidth::Union{Int, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
@@ -202,7 +202,7 @@ end
 @with_kw mutable struct AxisPointerLabel <: AbstractEChartType
     show::Union{Bool, Nothing} = false
     precision::Union{String, Number, Nothing} = "auto"
-    formatter::Union{String, JSFunction, Nothing} = nothing
+    formatter::Union{String, JSON.JSONText, Nothing} = nothing
     margin::Union{Bool, Number, Nothing} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
     padding::Union{String, AbstractVector, Nothing} = 5
@@ -210,7 +210,7 @@ end
     borderColor::Union{String, Nothing} = nothing
     borderWidth::Union{String, Number, Nothing} = nothing
     shadowBlur::Union{Number, Nothing} = nothing
-    shadowColor::Union{String, JSFunction, Nothing} = nothing
+    shadowColor::Union{String, JSON.JSONText, Nothing} = nothing
     shadowOffsetX::Union{Number, Nothing} = nothing
     shadowOffsetY::Union{Number, Nothing} = nothing
 end
@@ -248,8 +248,8 @@ See also [`tooltip!`](@ref).
     confine::Union{Bool, Nothing} = false
     transitionDuration::Union{Number, Nothing} = 0.4
     position::Union{AbstractVector,String, Nothing} = nothing
-    formatter::Union{String, Nothing, JSFunction} = nothing
-    backgroundColor::Union{String, Nothing, JSFunction} = "rgba(50,50,50,0.7)"
+    formatter::Union{String, Nothing, JSON.JSONText} = nothing
+    backgroundColor::Union{String, Nothing, JSON.JSONText} = "rgba(50,50,50,0.7)"
     borderColor::Union{String, Nothing} = "#333"
     borderWidth::Union{Int, Nothing} = 0
     padding::Union{Int, Nothing} = 5
@@ -279,7 +279,7 @@ See also [`legend!`](@ref).
     itemGap::Union{Int, Nothing} = 10
     itemWidth::Union{Int, Nothing} = 25
     itemHeight::Union{Int, Nothing} = 14
-    formatter::Union{String, Nothing, JSFunction} = nothing
+    formatter::Union{String, Nothing, JSON.JSONText} = nothing
     selectedMode::Union{Bool,String, Nothing} = true
     inactiveColor::Union{String, Nothing} = "#ccc"
     selected::Union{Dict{String,Bool}, Nothing} = nothing
@@ -296,7 +296,7 @@ See also [`legend!`](@ref).
     scrollDataIndex::Union{Int, Nothing} = nothing
     pageButtonItemGap::Union{Int, Nothing} = nothing
     pageButtonPosition::Union{Int, Nothing} = nothing
-    pageFormatter::Union{String,JSFunction, Nothing} = nothing
+    pageFormatter::Union{String,JSON.JSONText, Nothing} = nothing
     pageIcons::Union{Dict, Nothing} = nothing
     pageIconColor::Union{String, Nothing} = nothing
     pageIconInactiveColor::Union{String, Nothing} = nothing
@@ -410,7 +410,7 @@ See also [`title!`](@ref).
     top::Union{Int,String, Nothing} = "auto"
     right::Union{Int,String, Nothing} = "auto"
     bottom::Union{Int,String, Nothing} = "auto"
-    backgroundColor::Union{String, Nothing, JSFunction} = nothing
+    backgroundColor::Union{String, Nothing, JSON.JSONText} = nothing
     borderColor::Union{String, Nothing} = "transparent"
     borderWidth::Union{Int, Nothing} = 1
     borderRadius::Union{Int, Nothing} = nothing
@@ -435,7 +435,7 @@ ECharts grid (plot area) configuration (position, size, background, border, etc.
     width::Union{Int,String, Nothing} = "auto"
     height::Union{Int,String, Nothing} = "auto"
     containLabel::Union{Bool, Nothing} = nothing
-    backgroundColor::Union{String, Nothing,JSFunction} = "transparent"
+    backgroundColor::Union{String, Nothing,JSON.JSONText} = "transparent"
     borderColor::Union{String, Nothing} = nothing
     borderWidth::Union{Int, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
@@ -483,7 +483,7 @@ ECharts timeline component configuration for animated, stepped chart sequences.
     orient::Union{String, Nothing} = "horizontal"
     inverse::Union{Bool, Nothing} = false
     symbol::Union{String, Nothing} = "emptyCircle"
-    symbolSize::Union{Array{Int,1},Int,JSFunction, Nothing} = 10
+    symbolSize::Union{Array{Int,1},Int,JSON.JSONText, Nothing} = 10
     symbolRotate::Union{Int, Nothing} = nothing
     symbolOffset::Union{Array{Int,1}, Nothing} = [0,0]
     lineStyle::Union{LineStyle, Nothing} = nothing
@@ -618,7 +618,7 @@ ECharts visual map component configuration for mapping data values to visual enc
     borderWidth::Union{Int, Nothing} = nothing
     color::Union{String, Nothing} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
-    formatter::Union{String, JSFunction, Nothing} = nothing
+    formatter::Union{String, JSON.JSONText, Nothing} = nothing
     #piecewise
     splitNumber::Union{Int, Nothing} = nothing
     pieces::Union{AbstractVector, Nothing} = nothing
@@ -794,7 +794,7 @@ for highlighting specific data points on a series.
 """
 @with_kw mutable struct MarkPoint <: AbstractEChartType
     _symbol::Union{String, Nothing} = nothing
-    symbolSize::Union{Int, AbstractVector, JSFunction, Nothing} = nothing
+    symbolSize::Union{Int, AbstractVector, JSON.JSONText, Nothing} = nothing
     symbolRotate::Union{Int, Nothing} = nothing
     symbolOffset::Union{AbstractVector, Nothing} = nothing
     silent::Union{Bool, Nothing} = nothing
@@ -819,7 +819,7 @@ ECharts mark line annotation configuration for drawing reference lines
 @with_kw mutable struct MarkLine <: AbstractEChartType
     silent::Union{Bool, Nothing} = nothing
     _symbol::Union{String, Nothing} = nothing
-    symbolSize::Union{Int, AbstractVector, JSFunction, Nothing} = nothing
+    symbolSize::Union{Int, AbstractVector, JSON.JSONText, Nothing} = nothing
     precision::Union{Int, Nothing} = nothing
     label::Union{Dict, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = deepcopy(LineStyle())
@@ -923,10 +923,10 @@ ECharts series configuration for radar (spider/web) charts.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
-    animationDurationUpdate::Union{Int,JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
+    animationDurationUpdate::Union{Int,JSON.JSONText, Nothing} = nothing
     animationEasingUpdate::Union{String, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -956,7 +956,7 @@ ECharts series configuration for box (box-and-whisker) plots.
     silent::Union{Bool, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1064,10 +1064,10 @@ ECharts series configuration for gauge (dial/speedometer) charts.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
     data::Union{AbstractArray, Nothing} = nothing
 end
@@ -1102,10 +1102,10 @@ ECharts series configuration for funnel charts.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1141,10 +1141,10 @@ ECharts series configuration for Sankey flow diagrams.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1201,10 +1201,10 @@ ECharts series configuration for graph / network relationship charts.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1239,10 +1239,10 @@ ECharts series configuration for geographic line (route) charts.
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
 end
 """
     ParallelSeries
@@ -1368,7 +1368,7 @@ ECharts series configuration for candlestick (OHLC) financial charts.
     z::Union{Int, Nothing} = nothing
     silent::Union{Bool, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
-    animationEasing::Union{JSFunction, String, Nothing} = nothing
+    animationEasing::Union{JSON.JSONText, String, Nothing} = nothing
     animationDelay::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
@@ -1439,7 +1439,7 @@ ECharts series configuration for treemap (nested rectangle) charts.
     emphasis::Union{Dict, Nothing} = nothing
     data::Union{AbstractVector, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
-    animationEasing::Union{String, JSFunction, Nothing} = nothing
+    animationEasing::Union{String, JSON.JSONText, Nothing} = nothing
     animationDelay::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
@@ -1514,10 +1514,10 @@ ECharts series configuration for effect scatter charts (scatter with ripple anim
     animation::Union{Bool, Nothing} = nothing
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
-    animationEasing::Union{String, JSFunction, Nothing} = nothing
+    animationEasing::Union{String, JSON.JSONText, Nothing} = nothing
     animationDelay::Union{Int, Nothing} = nothing
     animationDurationUpdate::Union{Int, Nothing} = nothing
-    animationEasingUpdate::Union{String, JSFunction, Nothing} = nothing
+    animationEasingUpdate::Union{String, JSON.JSONText, Nothing} = nothing
     animationDelayUpdate::Union{Int, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
@@ -1537,7 +1537,7 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     yAxisIndex::Int = 0
     polarIndex::Union{Int, Nothing} = nothing
     symbol::Union{String, Nothing} = nothing
-    symbolSize::Union{Number, AbstractVector,JSFunction, Nothing} = nothing
+    symbolSize::Union{Number, AbstractVector,JSON.JSONText, Nothing} = nothing
     symbolRotate::Union{Int, Nothing} = nothing
     symbolOffset::Union{AbstractVector, Nothing} = nothing
     showSymbol::Union{Bool, Nothing} = nothing
@@ -1564,10 +1564,10 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     animationThreshold::Union{Int, Nothing} = nothing
     animationDuration::Union{Int, Nothing} = nothing
     animationEasing::Union{String, Nothing} = nothing
-    animationDelay::Union{Int, JSFunction, Nothing} = nothing
-    animationDurationUpdate::Union{Int,JSFunction, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
+    animationDurationUpdate::Union{Int,JSON.JSONText, Nothing} = nothing
     animationEasingUpdate::Union{String, Nothing} = nothing
-    animationDelayUpdate::Union{Int, JSFunction, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
     #bar
     barWidth::Union{Int, Nothing} = nothing
@@ -1630,8 +1630,8 @@ details.
     dataset::Union{Dataset, Nothing} = nothing
     aria::Union{Aria, Nothing} = Aria()
     series::Union{AbstractVector{<:AbstractEChartSeries}, Nothing} = nothing
-    color::Union{AbstractVector,JSFunction, Nothing} = nothing
-    backgroundColor::Union{String, Nothing, JSFunction} = nothing
+    color::Union{AbstractVector, Dict, Nothing} = nothing
+    backgroundColor::Union{String, Nothing, JSON.JSONText} = nothing
     textStyle::Union{TextStyle, Nothing} = nothing
     animation::Union{Bool, Nothing} = nothing
     animationThreshold::Union{Int, Nothing} = nothing

@@ -46,7 +46,7 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 
 		normalized = maximum(sqrt.(size))
 
-		[x.symbolSize =  JSFunction("""function (data) {return $bubblesize * Math.sqrt(data[2]) / ($normalized);}""") for x in ec.series]
+		[x.symbolSize =  JSON.JSONText("""function (data) {return $bubblesize * Math.sqrt(data[2]) / ($normalized);}""") for x in ec.series]
 
 		return ec
 

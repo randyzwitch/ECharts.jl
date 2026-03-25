@@ -16,7 +16,7 @@ Running the fixtures through test/js/validate.js catches:
 Fields excluded:
   _type            needs chart-specific strings ("bar","value"…), already covered
                    by chart-function fixtures.
-  JSFunction       not valid JSON.
+  JSON.JSONText       not valid JSON.
   Nested structs / AbstractVector / Dict   shape-specific; covered separately.
   Structural fields that would break chart context (gridIndex, stack, etc.) are
   noted inline.
@@ -26,7 +26,7 @@ Usage:
 """
 
 using ECharts, JSON
-using ECharts: AbstractEChartType, AbstractEChartSeries, JSFunction,
+using ECharts: AbstractEChartType, AbstractEChartSeries,
                AxisPointer, Aria, Dataset, Label, XYSeries,
                Polar, RadiusAxis, AngleAxis, Radar,
                SplitLine, SplitArea, AxisLine, AxisTick, AxisLabel,
@@ -58,7 +58,7 @@ const FIELD_OVERRIDES = Dict{Tuple{Type,Symbol,Type}, Any}(
 function concrete_types(ftype::Type)
     types = Base.uniontypes(ftype isa Union ? ftype : Union{ftype, Nothing})
     filter(t -> t !== Nothing &&
-                t !== JSFunction &&
+                t !== JSON.JSONText &&
                 !(t <: AbstractEChartType) &&
                 !(t <: AbstractVector) &&
                 !(t <: AbstractDict), types)
@@ -68,11 +68,11 @@ end
 # Fixture helpers
 # ---------------------------------------------------------------------------
 function save_fixture(path, chart)
-    json_str = ECharts.json(ECharts.makevalidjson(chart))
+    json_str = JSON.json(chart)
     try
         JSON.parse(json_str)
     catch
-        return  # silently skip fixtures with JSFunction output
+        return  # silently skip fixtures with JSON.JSONText output
     end
     write(path, json_str)
 end
@@ -164,7 +164,7 @@ function generate(outdir)
             # Always skip
             fname in (:_type, :ec_width, :ec_height, :ec_renderer, :ec_charttype) && continue
             # Skip fields whose Union is entirely non-scalar (nested structs, vectors, dicts)
-            all(t -> t === Nothing || t === JSFunction ||
+            all(t -> t === Nothing || t === JSON.JSONText ||
                      t <: AbstractEChartType || t <: AbstractVector || t <: AbstractDict,
                 Base.uniontypes(ftype isa Union ? ftype : Union{ftype, Nothing})) && continue
 
