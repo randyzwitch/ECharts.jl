@@ -75,9 +75,9 @@ Charts render automatically based on the environment:
 
 No configuration required — displaying a chart is as simple as evaluating an `EChart` value in any of these environments.
 
-## DataFrame Support
+## Tables.jl Support
 
-Most chart functions accept a `DataFrame` directly alongside column symbols, making it easy to plot tabular data without pre-processing:
+Most chart functions accept any [Tables.jl](https://github.com/JuliaData/Tables.jl)-compatible table alongside column symbols, making it easy to plot tabular data without pre-processing. This includes `DataFrame`, `CSV.File`, `TypedTables.Table`, a `NamedTuple` of vectors, and more:
 
 ```julia
 bar(df, :category, :value)

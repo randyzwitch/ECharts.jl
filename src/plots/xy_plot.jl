@@ -109,7 +109,7 @@ Internal generic interface for building a single-series `EChart` from DataFrame 
 Axis labels are set automatically from column names.
 See the primary `xy_plot` method for full argument documentation.
 """
-function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
+function xy_plot(df, x::Symbol, y::Symbol;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
 			step::Union{String, Nothing} = nothing,
@@ -118,8 +118,10 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
+	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+
 	#Intialize for single series
-	ec = xy_plot(df[!, x], df[!, y], mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(_table_col(df, x), _table_col(df, y), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
@@ -139,7 +141,7 @@ Internal generic interface for building a multi-series `EChart` from DataFrame `
 pivoting `y` values by the `group` column. Axis labels and series names are set automatically.
 See the primary `xy_plot` method for full argument documentation.
 """
-function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
+function xy_plot(df, x::Symbol, y::Symbol, group::Symbol;
 			mark::String = "bar",
 			stack::Union{Bool, AbstractVector, Nothing} = nothing, #No op, here since other functions dispatch here
 			step::Union{String, Nothing} = nothing,
@@ -148,14 +150,12 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 			scale::Bool = false,
 			kwargs...)
 
-	#create grouped df
-	#This appears to handle missings gracefully via DataFrames package
-	pivotdf = unstack(df, x, group, y)
+	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-	#Get number of groups
-	numgroups = size(pivotdf, 2)
+	#create pivot from table
+	xvals, m, groupnames = _table_unstack(df, x, group, y)
 
-	ec = xy_plot(pivotdf[!, x], Matrix(pivotdf[:, 2:end]), mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(xvals, m, mark = mark, stack = stack, step = step, horizontal = horizontal, legend = legend, scale = scale, kwargs...)
 
 	#Name axes since we know them
 	xaxis!(ec, name = string(x))
@@ -165,7 +165,7 @@ function xy_plot(df::AbstractDataFrame, x::Symbol, y::Symbol, group::Symbol;
 	legend ? legend!(ec) : nothing
 
 	#Add series names
-	seriesnames!(ec, names(pivotdf)[2:end])
+	seriesnames!(ec, groupnames)
 
 	return ec
 

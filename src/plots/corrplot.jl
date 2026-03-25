@@ -6,7 +6,7 @@ Creates an `EChart` showing pairwise correlations between columns of data.
 ## Methods
 ```julia
 corrplot(m::Matrix)
-corrplot(df::AbstractDataFrame)
+corrplot(df)
 ```
 
 ## Arguments
@@ -39,25 +39,25 @@ function corrplot(m::Matrix;
         nothing
     end
 
-    #convert back to df, melt to pass to arrayofarray
-    cor_df = DataFrame(m_, :auto)
-    original_names = names(cor_df)
-    rename!(cor_df, [Symbol(x) for x in 1:length(names(cor_df))])
-    cor_df[!, :rownames] = names(cor_df)
-    df_melt = stack(cor_df, Not([:rownames]))
-
-    #convert to numeric, fixes weird echarts api requiring numeric series in order to rename
-    df_melt[!, :variable] = [parse(Int, string(x)) - 1 for x in df_melt[!, :variable]]
-    df_melt[!, :rownames] = [parse(Int, string(x)) - 1 for x in df_melt[!, :rownames]]
+    #build melt/stack equivalent using plain arrays
+    n = size(m_, 1)
+    melt_variable = Int[]
+    melt_rownames = Int[]
+    melt_value = Float64[]
+    for col in 1:n, row in 1:n
+        push!(melt_variable, col - 1)
+        push!(melt_rownames, row - 1)
+        push!(melt_value, m_[row, col])
+    end
 
     #plot
     ec = newplot(kwargs, ec_charttype = "corrplot")
     ec.ec_height = ec_height
     ec.ec_width = ec_width
-    ec.xAxis = [Axis(data = 1:length(original_names), _type = "category")]
-    ec.yAxis = [Axis(data = 1:length(original_names), _type = "category", inverse = true)]
+    ec.xAxis = [Axis(data = 1:n, _type = "category")]
+    ec.yAxis = [Axis(data = 1:n, _type = "category", inverse = true)]
 
-    ec.series = [XYSeries(data = arrayofarray(df_melt[!, :variable], df_melt[!, :rownames], df_melt[!, :value]),
+    ec.series = [XYSeries(data = arrayofarray(melt_variable, melt_rownames, melt_value),
                         _type = "scatter",
                         symbolSize = JSFunction("""function (data) {return $bubblesize * Math.sqrt(Math.abs(data[2]))}""")
                         )
@@ -83,7 +83,7 @@ function corrplot(m::Matrix;
 
 end
 
-function corrplot(df::AbstractDataFrame;
+function corrplot(df;
                   bubblesize::Int = 45,
                   layout::String = "lower",
                   labels::Bool = true,
@@ -91,15 +91,20 @@ function corrplot(df::AbstractDataFrame;
                   ec_width::Real = 650,
                   kwargs...)
 
-    #get numeric columns from df, call cor from StatsBase
-    df_num = df[!, [x <: Union{Missing, Number} for x in eltype.(eachcol(df))]]
-    c = cor(Matrix(df_num))
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+
+    #get numeric columns from table, call cor from StatsBase
+    cols = Tables.columns(df)
+    colnames = collect(Tables.columnnames(cols))
+    num_colnames = [n for n in colnames if eltype(Tables.getcolumn(cols, n)) <: Union{Missing, Number}]
+    m = convert(Matrix{Float64}, hcat([collect(Tables.getcolumn(cols, n)) for n in num_colnames]...))
+    c = cor(m)
 
     ec = corrplot(c, bubblesize = bubblesize, layout = layout, labels = labels, ec_height = ec_height, ec_width = ec_width, kwargs...)
 
     #add column names
-    yaxis!(ec, data = names(df_num))
-    xaxis!(ec, data = names(df_num))
+    yaxis!(ec, data = [string(n) for n in num_colnames])
+    xaxis!(ec, data = [string(n) for n in num_colnames])
 
 
     ec

@@ -7,8 +7,8 @@ Creates an `EChart` scatterplot, with additional dimension represented by circle
 ```julia
 bubble(x::AbstractVector{<:Union{Missing, Real}}, y::AbstractVector{<:Union{Missing, Real}},
     size::AbstractVector{<:Union{Missing, Real}})
-bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol)
-bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
+bubble(df, x::Symbol, y::Symbol, size::Symbol)
+bubble(df, x::Symbol, y::Symbol, size::Symbol, group::Symbol)
 ```
 
 ## Arguments
@@ -59,7 +59,7 @@ Creates an `EChart` bubble chart from DataFrame `df`, using columns `x`, `y`, an
 Axis labels are set automatically from column names.
 See the primary `bubble` method for full argument documentation.
 """
-function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
+function bubble(df, x::Symbol, y::Symbol, size::Symbol;
 		legend::Bool = false,
 		scale::Bool = false,
 		large::Bool = true,
@@ -67,8 +67,10 @@ function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol;
 		bubblesize::Real = 50,
 		kwargs...)
 
+		Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+
 		#Not currently handling NAs
-		ec = bubble(df[!, x], df[!, y], df[!, size],
+		ec = bubble(_table_col(df, x), _table_col(df, y), _table_col(df, size),
 					legend = legend,
 					scale = scale,
 					large = large,
@@ -89,31 +91,36 @@ Creates an `EChart` bubble chart from DataFrame `df`, grouping series by the `gr
 Legend is displayed by default when a group is provided.
 See the primary `bubble` method for full argument documentation.
 """
-function bubble(df::AbstractDataFrame, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
+function bubble(df, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
 			legend::Bool = true,
 			scale::Bool = false,
 			large::Bool = true,
 			largeThreshold::Int = 2000,
 			kwargs...)
 
-			#Create grouped df
-			subdf = groupby(df, group)
+			Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-			#Get number of groups
-			numgroups = length(subdf)
+			#Create grouped data
+			groups = _table_groupby(df, group)
+			numgroups = length(groups)
+			xcol = _table_col(df, x)
+			ycol = _table_col(df, y)
+			sizecol = _table_col(df, size)
 
 			#Initialize with single series
-			ec = bubble(subdf[1], x, y, size; legend = legend, scale = scale, kwargs...)
+			_, idx1 = groups[1]
+			ec = bubble(xcol[idx1], ycol[idx1], sizecol[idx1]; legend = legend, scale = scale, kwargs...)
 
 			#Append remaining series, put symbolSize
 			for i in 2:numgroups
-				push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(subdf[i][!, x], subdf[i][!, y], subdf[i][!, size])))
+				_, idxi = groups[i]
+				push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(xcol[idxi], ycol[idxi], sizecol[idxi])))
 
 				ec.series[i].symbolSize = ec.series[1].symbolSize
 			end
 
-			#Add series names based on levels of grouped df
-			seriesnames!(ec, [unique(subdf[x][!, group])[1] for x in 1:numgroups])
+			#Add series names based on levels of grouped data
+			seriesnames!(ec, [string(groups[i][1]) for i in 1:numgroups])
 
 			#Add legend if desired
 			legend == true ? legend!(ec) : nothing
