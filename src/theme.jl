@@ -1,6 +1,19 @@
 abstract type AbstractEChartType end
 abstract type AbstractEChartSeries <: AbstractEChartType end
 
+"""
+    Theme
+
+ECharts visual theme applied to a chart.  All fields mirror the top-level keys of an
+ECharts JSON theme file.  Pre-built themes exported by ECharts.jl:
+`chalk`, `dark`, `essos`, `halloween`, `infographic`, `macarons`, `purplepassion`, `roma`,
+`shine`, `vintage`, `walden`, `westeros`, `wonderland`, `grayscale`.
+
+Pass a theme to any chart constructor via the `theme` keyword, or change it afterwards by
+setting `ec.theme = mytheme`.
+
+See also [`theme!`](@ref).
+"""
 @with_kw mutable struct Theme <: AbstractEChartType
     color::Union{AbstractVector, Nothing} = nothing
     backgroundColor::Union{String, Nothing} = nothing

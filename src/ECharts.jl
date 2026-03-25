@@ -9,6 +9,14 @@ module ECharts
 	export print
 
 	# Create base color library
+	"""
+	    colorpalettes
+
+	A merged dictionary of named color palettes from
+	[ColorBrewer.jl](https://github.com/timothyrenner/ColorBrewer.jl) and
+	[NoveltyColors.jl](https://github.com/randyzwitch/NoveltyColors.jl).
+	Pass a key from this dict to [`colorscheme!`](@ref) to apply a named palette to a chart.
+	"""
 	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 	export colorpalettes
 
@@ -16,7 +24,7 @@ module ECharts
 	export BoxPlotSeries, CandleStickSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
 	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
 	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
-	export Title, Axis, Series, Toolbox, DataZoom
+	export Title, Axis, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
@@ -33,7 +41,18 @@ module ECharts
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
-	# JSFunction wraps a raw JavaScript string to be emitted verbatim (unquoted) in JSON output
+	"""
+	    JSFunction(data::String)
+
+	Wraps a raw JavaScript string so it is emitted verbatim (unquoted) in the JSON passed to
+	ECharts.  Use this wherever the ECharts API expects a JavaScript callback rather than a
+	plain value, such as custom `formatter`, `symbolSize`, or gradient expressions.
+
+	## Example
+	```julia
+	bar(x, y; symbolSize = JSFunction("function(val){ return val * 2; }"))
+	```
+	"""
 	struct JSFunction
 		data::String
 	end
