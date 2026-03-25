@@ -69,13 +69,13 @@ let passed = 0, failed = 0, skipped = 0;
 for (const file of files) {
     const filePath = path.join(fixturesDir, file);
 
-    // --- Step 1: parse JSON.  Fixtures that contain raw JSFunction output
+    // --- Step 1: parse JSON.  Fixtures that contain raw JSON.JSONText output
     // are not valid JSON and get skipped rather than failed. ---
     let option;
     try {
         option = JSON.parse(fs.readFileSync(filePath, "utf8"));
     } catch (_) {
-        console.log(`~ ${file} (skipped: not valid JSON — contains JSFunction output)`);
+        console.log(`~ ${file} (skipped: not valid JSON — contains JSON.JSONText output)`);
         skipped++;
         continue;
     }

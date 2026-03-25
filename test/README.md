@@ -49,10 +49,10 @@ Key design decisions:
 - **`Int` defaults to `0`** (not `1`) so index fields like `gridIndex`, `xAxisIndex`, `polarIndex` remain valid in single-component test charts.
 - **`Bool` is checked before `Integer`** because `Bool <: Integer` in Julia — without this, `Bool` fields would receive an `Int` test value.
 - **`FIELD_OVERRIDES`** handles fields where the generic default (`"test"` / `0`) is not a valid ECharts value (e.g., `coordinateSystem` must be `"cartesian2d"`).
-- **`JSFunction` fields are skipped** — they produce raw JavaScript, not valid JSON, and cannot be validated this way.
+- **`JSON.JSONText` fields are skipped** — they produce raw JavaScript, not valid JSON, and cannot be validated this way.
 - **Nested structs, Vectors, and Dicts are skipped** — shape-specific; covered by the chart-function fixtures instead.
 
 ## Known exclusions
 
-- **`bubble` and `corrplot` chart fixtures** are not generated because these charts use `JSFunction` for dynamic symbol sizing, producing non-valid JSON.
+- **`bubble` and `corrplot` chart fixtures** are not generated because these charts use `JSON.JSONText` for dynamic symbol sizing, producing non-valid JSON.
 - **Radar tick-readability warning** (`"The ticks may be not readable when set"`) is suppressed in `validate.js` — this is an ECharts internal aesthetic hint that fires regardless of chart spec correctness.

@@ -1,7 +1,7 @@
 """
     lineargradient(color1, color2)
 
-Creates a linear gradient `JSFunction` for use with `colorscheme!` or other color arguments.
+Creates a linear gradient `JSON.JSONText` for use with `colorscheme!` or other color arguments.
 The gradient transitions from `color1` at offset 0 to `color2` at offset 1.
 
 ## Methods
@@ -29,14 +29,16 @@ function lineargradient(color1::String, color2::String;
                         x2::Number = 0,
                         y2::Number = 1)
 
-    JSFunction("""new echarts.graphic.LinearGradient($x0, $y0, $x2, $y2, [{offset: 0, color: '$color1'}, {offset: 1, color: '$color2'}])""")
+    Dict("type" => "linear", "x" => x0, "y" => y0, "x2" => x2, "y2" => y2,
+         "colorStops" => [Dict("offset" => 0, "color" => color1),
+                          Dict("offset" => 1, "color" => color2)])
 
 end
 
 """
     radialgradient(color1, color2)
 
-Creates a radial gradient `JSFunction` for use with `colorscheme!` or other color arguments.
+Creates a radial gradient `JSON.JSONText` for use with `colorscheme!` or other color arguments.
 The gradient transitions from `color1` at offset 0 to `color2` at offset 1.
 
 ## Methods
@@ -63,6 +65,8 @@ function radialgradient(color1::String,
                         y::Number = 0.5,
                         r::Number = 0.5)
 
-    JSFunction("""new echarts.graphic.RadialGradient($x, $y, $r, [{offset: 0, color: '$color1'}, {offset: 1, color: '$color2'}])""")
+    Dict("type" => "radial", "x" => x, "y" => y, "r" => r,
+         "colorStops" => [Dict("offset" => 0, "color" => color1),
+                          Dict("offset" => 1, "color" => color2)])
 
 end

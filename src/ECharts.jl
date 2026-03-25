@@ -28,7 +28,7 @@ module ECharts
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
-	export JSFunction, Theme, VisualMap
+	export Theme, VisualMap
 
 	export xy_plot, bar, radialbar, line, scatter, area, waterfall
 	export box, candlestick, sankey
@@ -41,23 +41,6 @@ module ECharts
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!
 
-	"""
-	    JSFunction(data::String)
-
-	Wraps a raw JavaScript string so it is emitted verbatim (unquoted) in the JSON passed to
-	ECharts.  Use this wherever the ECharts API expects a JavaScript callback rather than a
-	plain value, such as custom `formatter`, `symbolSize`, or gradient expressions.
-
-	## Example
-	```julia
-	bar(x, y; symbolSize = JSFunction("function(val){ return val * 2; }"))
-	```
-	"""
-	struct JSFunction
-		data::String
-	end
-
-	json(x) = JSON.json(x)
 
 	# Primitives - in order of descending dependency within files
 	include("theme.jl")
@@ -110,30 +93,20 @@ module ECharts
 	include("plots/bubble.jl")
 	include("plots/corrplot.jl")
 
-	# From JMW originally
-	makevalidjson(f::JSFunction) = JSON.JSONText(f.data)
-	makevalidjson(s::Symbol) = string(s)
-	makevalidjson(v::Vector) = [makevalidjson(v_i) for v_i in v]
+	# JSON.lower hooks replace the old makevalidjson pipeline.
+	# JSON.jl calls these automatically during serialization and recurses into
+	# the returned value, so Vector/Dict/primitive handling is implicit.
+	JSON.lower(s::Symbol) = string(s)
+	JSON.lower(::Missing) = "-" # "-" represents missing in ECharts
 
-	function makevalidjson(v::Dict)
-	    res = Dict()
-	    for (k, v) in v
-	        res[k] = makevalidjson(v)
-	    end
-	    return res
-	end
-	makevalidjson(x::Missing) = "-" # this is a backstop to a value of missing getting to render step. "-" represents missing in ECharts
-	makevalidjson(x::Any) = x
-
-	# By convention, using single underscore at beginning to get around reserved words
-	# Check for this, strip off _ before creating js
-	function makevalidjson(x::AbstractEChartType)
-	    res = Dict()
-
+	# By convention, fields starting with _ are reserved words — strip the prefix.
+	function JSON.lower(x::AbstractEChartType)
+	    res = Dict{String,Any}()
 	    for f in fieldnames(typeof(x))
-	        if !isnothing(getfield(x, f))
-	        	startswith(string(f), "_") ? res[string(f)[2:end]] = makevalidjson(getfield(x, f)) : res[string(f)] = makevalidjson(getfield(x, f))
-	        end
+	        v = getfield(x, f)
+	        isnothing(v) && continue
+	        key = startswith(string(f), "_") ? string(f)[2:end] : string(f)
+	        res[key] = v
 	    end
 	    return res
 	end

@@ -65,13 +65,13 @@ macro echart(option, kwargs...)
 end
 
 #Pretty-print
-print(x::EChart) = print(json(makevalidjson(x)))
+print(x::EChart) = print(JSON.json(x))
 print(x::EChartRaw) = print(x.option)
 
 #Shared helper: produces self-contained HTML with echarts.min.js inlined
 function _echarts_html(ec::EChart)
-    option = json(makevalidjson(ec))
-    theme = json(makevalidjson(ec.theme))
+    option = JSON.json(ec)
+    theme = JSON.json(ec.theme)
     chart_id = "echarts_" * string(rand(UInt32))
 
     # When ECHARTS_DOCS_BUILD is set, echarts.min.js is loaded as a page asset
@@ -105,7 +105,7 @@ Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart) = write(io, _echarts_htm
 
 #Shared helper for EChartRaw: same structure as EChart but uses the raw JSON option string directly
 function _echarts_html(ec::EChartRaw)
-    theme = json(makevalidjson(ec.theme))
+    theme = JSON.json(ec.theme)
     chart_id = "echarts_" * string(rand(UInt32))
 
     echarts_loader = if get(ENV, "ECHARTS_DOCS_BUILD", "false") == "true"
