@@ -30,9 +30,17 @@ function legend!(ec::EChart; kwargs...)
 	#Define data upfront for the most common cases
 	#This currently clobbers, should this be a check for nothing instead of clobber?
 	if ec.ec_charttype in ["circular", "funnel"]
-		ec.legend = Legend(data = [x["name"] for x in ec.series[1].data])
+		data = ec.series[1].data
+		isempty(data) && error("Cannot build legend: $(ec.ec_charttype) series data is empty")
+		all(d -> haskey(d, "name"), data) ||
+			error("Cannot build legend: $(ec.ec_charttype) series data entries must each have a \"name\" key")
+		ec.legend = Legend(data = [x["name"] for x in data])
 	elseif ec.ec_charttype in ["streamgraph"]
-		ec.legend = Legend(data = unique([x[3] for x in ec.series[1].data]))
+		data = ec.series[1].data
+		isempty(data) && error("Cannot build legend: streamgraph series data is empty")
+		all(d -> length(d) >= 3, data) ||
+			error("Cannot build legend: streamgraph series data entries must each have at least 3 elements (got an entry with $(minimum(length.(data))))")
+		ec.legend = Legend(data = unique([x[3] for x in data]))
 	else
 		ec.legend = Legend(data = [x.name for x in ec.series])
 	end
