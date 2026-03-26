@@ -2,8 +2,14 @@ function collect_data_sankey(datafile::String)
     data = Vector{Tuple{AbstractString, AbstractString, Int}}()
     
     open(datafile) do io
-        while ! eof(io)
-            n1, v, n2 = match(r"(.*)\s+\[(\d+)\]\s+(.*)", readline(io)).captures
+        for (lineno, line) in enumerate(eachline(io))
+            isempty(strip(line)) && continue
+            m = match(r"(.*)\s+\[(\d+)\]\s+(.*)", line)
+            if isnothing(m)
+                error("sankey input line $lineno does not match expected format " *
+                      "\"SOURCE [AMOUNT] TARGET\": $(repr(line))")
+            end
+            n1, v, n2 = m.captures
             v = parse(Int, v)
             push!(data, (n1, n2, v))
         end
@@ -34,8 +40,12 @@ function parse_sankey(datafile::String)
     for line in data
         n1, n2, v = line
         push!(values, v)
-        push!(source, findfirst(==(n1), names) - 1)
-        push!(target, findfirst(==(n2), names) - 1)
+        i1 = findfirst(==(n1), names)
+        i2 = findfirst(==(n2), names)
+        isnothing(i1) && error("Node name not found in names list: $(repr(n1))")
+        isnothing(i2) && error("Node name not found in names list: $(repr(n2))")
+        push!(source, i1 - 1)
+        push!(target, i2 - 1)
     end
     
     return names, source, target, values
