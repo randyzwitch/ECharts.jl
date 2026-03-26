@@ -16,13 +16,6 @@ colorscheme!(ec::EChart, palette::AbstractVector; reversePalette)
 * `palette::AbstractVector` : vector of color strings
 * `reversePalette::Bool = false` : reverse the color order (not applicable to single-color method)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-colorscheme!(b, ("Set1", 9))
-
-colorscheme!(b, ["#ff0000", "#00ff00", "#0000ff"])
-```
 """
 function colorscheme!(ec::EChart, palette::Tuple{AbstractString,Any}; reversePalette::Bool = false)
     #using colorpalettes

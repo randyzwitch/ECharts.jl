@@ -12,11 +12,6 @@ title!(ec::EChart; kwargs...)
 ## Arguments
 * `kwargs` : any field of the `Title` struct (e.g. `text`, `subtext`, `left`, `top`)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-title!(b, text = "My Chart", subtext = "subtitle here")
-```
 """
 title!(ec::EChart; kwargs...) = text!(ec, 1; kwargs...) # By convention from definetypes.jl, make title! update the first Title object in array
 
@@ -36,11 +31,6 @@ text!(ec::EChart, series::Int; kwargs...)
 * `series::Int` : index of the existing `Title` object to modify (1-based)
 * `kwargs` : any field of the `Title` struct (e.g. `text`, `subtext`, `left`, `top`)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-text!(b, text = "Subtitle", top = "bottom", left = "center")
-```
 """
 function text!(ec::EChart; kwargs...)
 	#Push on to end of ec.title array

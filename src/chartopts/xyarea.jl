@@ -14,11 +14,6 @@ xarea!(ec::EChart, startval, endval; series, kwargs...)
 * `series::Int = 1` : index of the series to attach the region to
 * `kwargs` : additional `ItemStyle` fields for the shaded area (e.g. `color`, `opacity`)
 
-## Examples
-```julia
-b = bar(["A","B","C","D","E"], [1,2,3,4,5])
-xarea!(b, "B", "D", color = "rgba(200,200,200,0.4)")
-```
 """
 function xarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 	#Merge methods together using metaprogramming?
@@ -53,11 +48,6 @@ yarea!(ec::EChart, startval, endval; series, kwargs...)
 * `series::Int = 1` : index of the series to attach the region to
 * `kwargs` : additional `ItemStyle` fields for the shaded area (e.g. `color`, `opacity`)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-yarea!(b, 1.5, 2.5, color = "rgba(200,200,200,0.4)")
-```
 """
 function yarea!(ec::EChart, startval, endval; series::Int = 1, kwargs...)
 

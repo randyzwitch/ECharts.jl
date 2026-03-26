@@ -27,16 +27,6 @@ pass a `shadowColor` that is a darker, semi-transparent tint of the bubble color
 series, and consider pairing it with a `radialgradient` fill via [`lineargradient`](@ref)
 or [`radialgradient`](@ref).
 
-## Examples
-```julia
-# Shadows are applied automatically on bubble charts — no call needed
-b = bubble([1,2,3,4,5], [10,30,20,50,40], [100,200,300,150,250])
-
-# For a richer effect, pair a colored shadow with a radial gradient fill,
-# matching the hue of each series (as in the ECharts bubble-gradient example):
-shadow!(b, 1, shadowColor = "rgba(120, 36, 50, 0.5)")
-b.series[1].itemStyle.color = radialgradient("rgb(251, 118, 123)", "rgb(204, 46, 72)", x = 0.4, y = 0.3, r = 1)
-```
 """
 function shadow!(ec::EChart, series::Int;
     shadowBlur::Int = 10,

@@ -17,11 +17,6 @@ lineargradient(color1::String, color2::String; x0, y0, x2, y2)
 * `x2::Number = 0` : x coordinate of gradient end (0–1)
 * `y2::Number = 1` : y coordinate of gradient end (0–1)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-colorscheme!(b, lineargradient("#e96c5b", "#47a0d5"))
-```
 """
 function lineargradient(color1::String, color2::String;
                         x0::Number = 0,
@@ -53,11 +48,6 @@ radialgradient(color1::String, color2::String; x, y, r)
 * `y::Number = 0.5` : y coordinate of gradient center (0–1)
 * `r::Number = 0.5` : radius of gradient (0–1)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-colorscheme!(b, radialgradient("#e96c5b", "#47a0d5"))
-```
 """
 function radialgradient(color1::String,
                         color2::String;

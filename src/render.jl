@@ -26,16 +26,6 @@ end
 Create an `EChartRaw` from a raw JSON string specification, allowing ECharts examples copied
 from the Apache ECharts gallery to be rendered directly in Julia.
 
-# Example
-```julia
-ec = echart(\"\"\"
-{
-  "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
-  "yAxis": {"type": "value"},
-  "series": [{"data": [820, 932, 901, 934, 1290, 1330, 1320], "type": "bar"}]
-}
-\"\"\")
-```
 """
 function echart(option::AbstractString; width::Int=800, height::Int=450,
                 renderer::String="canvas", theme::Theme=roma)
@@ -49,16 +39,6 @@ end
 
 Macro form of [`echart`](@ref). Accepts a raw JSON string literal without a function-call wrapper.
 
-# Example
-```julia
-@echart \"\"\"
-{
-  "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
-  "yAxis": {"type": "value"},
-  "series": [{"data": [820, 932, 901, 934, 1290, 1330, 1320], "type": "bar"}]
-}
-\"\"\"
-```
 """
 macro echart(option, kwargs...)
     :(echart($(esc(option)); $(map(esc, kwargs)...)))

@@ -16,12 +16,6 @@ yline!(ec::EChart, value::Real; series, kwargs...)
 * `series::Int = 1` : index of the series to attach the line to
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
-## Examples
-```julia
-b = bar(["A","B","C","D"], [1,4,2,5])
-yline!(b, "average")
-yline!(b, 3.0, color = "red")
-```
 """
 function yline!(ec::EChart, value::String; series::Int = 1, kwargs...)
 	# echarts built-in for average, min, max
@@ -81,11 +75,6 @@ xline!(ec::EChart, value::Any; series, kwargs...)
 * `series::Int = 1` : index of the series to attach the line to
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
-## Examples
-```julia
-b = bar(["A","B","C","D"], [1,4,2,5])
-xline!(b, "B")
-```
 """
 function xline!(ec::EChart, value::Any; series::Int = 1, kwargs...)
 	#arbitrary line: need to confirm that the xAxis line can only be xAxis => value, not min/max/average

@@ -14,11 +14,6 @@ xgridlines!(ec::EChart; show, interval, kwargs...)
 * `interval::Union{Int, String, JSON.JSONText, Nothing} = "auto"` : interval between grid lines
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-xgridlines!(b, show = false)
-```
 """
 function xgridlines!(ec::EChart; axis::Int = 1,
 								 show::Bool = true,
@@ -55,11 +50,6 @@ ygridlines!(ec::EChart; show, interval, kwargs...)
 * `interval::Union{Int, String, JSON.JSONText, Nothing} = "auto"` : interval between grid lines
 * `kwargs` : additional `LineStyle` fields (e.g. `color`, `width`, `type`)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-ygridlines!(b, show = false)
-```
 """
 function ygridlines!(ec::EChart; axis::Int = 1,
 								 show::Bool = true,

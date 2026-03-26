@@ -20,11 +20,6 @@ jitter!(ec::EChart; pctxrange, pctyrange)
 
 When called without a `series` argument, jitter is applied to all series.
 
-## Examples
-```julia
-s = scatter([1,1,2,2,3], [1,1,2,2,3])
-jitter!(s)
-```
 """
 function jitter!(ec::EChart, series::Int; pctxrange::Real = 0.05, pctyrange::Real = 0)
 
