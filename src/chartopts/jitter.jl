@@ -45,9 +45,9 @@ function jitter!(ec::EChart, series::Int; pctxrange::Real = 0.05, pctyrange::Rea
     yrange = maximum(_y) - minimum(_y)
 
     #To avoid inexact error, ensure array is float
-    ec.series[series].data isa Vector{Vector{Int64}} ?
-        ec.series[1].data = [convert(Vector{Float64}, x) for x in ec.series[series].data] :
-            nothing
+    if ec.series[series].data isa Vector{Vector{Int64}}
+        ec.series[series].data = [convert(Vector{Float64}, x) for x in ec.series[series].data]
+    end
 
     #Iterate over series to jitter dataset
     for datum in ec.series[series].data
