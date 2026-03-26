@@ -68,10 +68,9 @@ end
 print(x::EChart) = print(JSON.json(x))
 print(x::EChartRaw) = print(x.option)
 
-#Shared helper: produces self-contained HTML with echarts.min.js inlined
-function _echarts_html(ec::EChart)
-    option = JSON.json(ec)
-    theme = JSON.json(ec.theme)
+# Internal: shared HTML template used by both EChart and EChartRaw renderers.
+function _echarts_html(option::String, width, height, renderer::String, theme)
+    theme_json = JSON.json(theme)
     chart_id = "echarts_" * string(rand(UInt32))
 
     # When ECHARTS_DOCS_BUILD is set, echarts.min.js is loaded as a page asset
@@ -84,12 +83,12 @@ function _echarts_html(ec::EChart)
     end
 
     return """
-    <div id="$(chart_id)" style="width:$(ec.ec_width)px;height:$(ec.ec_height)px;"></div>
+    <div id="$(chart_id)" style="width:$(width)px;height:$(height)px;"></div>
     <script>
     $(echarts_loader)
     (function() {
         var dom = document.getElementById('$(chart_id)');
-        var myChart = echarts.init(dom, $(theme), {renderer: '$(ec.ec_renderer)'});
+        var myChart = echarts.init(dom, $(theme_json), {renderer: '$(renderer)'});
         myChart.setOption($(option));
         window.addEventListener('resize', function() { myChart.resize(); });
     })();
@@ -97,37 +96,11 @@ function _echarts_html(ec::EChart)
     """
 end
 
+_echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
+_echarts_html(ec::EChartRaw) = _echarts_html(ec.option,     ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
+
 #Jupyter notebook method
-Base.show(io::IO, ::MIME"text/html", ec::EChart) = write(io, _echarts_html(ec))
-
-#VSCode method - displays chart inline in the VSCode plot panel (requires Julia VSCode extension)
-Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart) = write(io, _echarts_html(ec))
-
-#Shared helper for EChartRaw: same structure as EChart but uses the raw JSON option string directly
-function _echarts_html(ec::EChartRaw)
-    theme = JSON.json(ec.theme)
-    chart_id = "echarts_" * string(rand(UInt32))
-
-    echarts_loader = if get(ENV, "ECHARTS_DOCS_BUILD", "false") == "true"
-        ""
-    else
-        echarts_js = read(joinpath(@__DIR__, "echarts.min.js"), String)
-        "if (typeof echarts === 'undefined') { $(echarts_js) }"
-    end
-
-    return """
-    <div id="$(chart_id)" style="width:$(ec.ec_width)px;height:$(ec.ec_height)px;"></div>
-    <script>
-    $(echarts_loader)
-    (function() {
-        var dom = document.getElementById('$(chart_id)');
-        var myChart = echarts.init(dom, $(theme), {renderer: '$(ec.ec_renderer)'});
-        myChart.setOption($(ec.option));
-        window.addEventListener('resize', function() { myChart.resize(); });
-    })();
-    </script>
-    """
-end
-
-Base.show(io::IO, ::MIME"text/html", ec::EChartRaw) = write(io, _echarts_html(ec))
+Base.show(io::IO, ::MIME"text/html",        ec::EChart)    = write(io, _echarts_html(ec))
+Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart)    = write(io, _echarts_html(ec))
+Base.show(io::IO, ::MIME"text/html",        ec::EChartRaw) = write(io, _echarts_html(ec))
 Base.show(io::IO, ::MIME"juliavscode/html", ec::EChartRaw) = write(io, _echarts_html(ec))
