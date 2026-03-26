@@ -67,6 +67,7 @@ makedocs(
             "functions/radialgradient.md",
             "functions/seriesnames!.md",
             "functions/datazoom!.md",
+            "functions/shadow!.md",
             "functions/smooth!.md",
             "functions/text!.md",
             "functions/theme!.md",

@@ -12,21 +12,30 @@ shadow!(ec::EChart; shadowBlur, shadowColor, shadowOffsetX, shadowOffsetY)
 ## Arguments
 * `series::Int` : index of the series to apply shadow to (single-series method only)
 * `shadowBlur::Int = 10` : size of the shadow blur in pixels
-* `shadowColor::String = "rgba(0,0,0,0.3)"` : CSS color string for the shadow
+* `shadowColor::String = "rgba(0,0,0,0.5)"` : CSS color string for the shadow
 * `shadowOffsetX::Int = 0` : horizontal shadow offset in pixels
-* `shadowOffsetY::Int = 0` : vertical shadow offset in pixels
+* `shadowOffsetY::Int = 5` : vertical shadow offset in pixels
 
 ## Notes
 
 When called without a `series` argument, shadow is applied to all series.
 
+The default `shadowColor` is a neutral dark because series colors cannot be determined
+automatically. For a more polished effect — as seen in the
+[Apache ECharts bubble-gradient example](https://echarts.apache.org/examples/en/editor.html?c=bubble-gradient) —
+pass a `shadowColor` that is a darker, semi-transparent tint of the bubble color for each
+series, and consider pairing it with a `radialgradient` fill via [`lineargradient`](@ref)
+or [`radialgradient`](@ref).
+
 ## Examples
 ```julia
-b = bubble([1,2,3], [4,5,6], [10,20,30])
-shadow!(b)
+# Shadows are applied automatically on bubble charts — no call needed
+b = bubble([1,2,3,4,5], [10,30,20,50,40], [100,200,300,150,250])
 
-# Custom shadow
-shadow!(b, shadowBlur = 20, shadowColor = "rgba(100,100,200,0.5)", shadowOffsetY = 4)
+# For a richer effect, pair a colored shadow with a radial gradient fill,
+# matching the hue of each series (as in the ECharts bubble-gradient example):
+shadow!(b, 1, shadowColor = "rgba(120, 36, 50, 0.5)")
+b.series[1].itemStyle.color = radialgradient("rgb(251, 118, 123)", "rgb(204, 46, 72)", x = 0.4, y = 0.3, r = 1)
 ```
 """
 function shadow!(ec::EChart, series::Int;
@@ -56,8 +65,8 @@ function shadow!(ec::EChart;
     shadowOffsetX::Int = 0,
     shadowOffsetY::Int = 5)
 
-    for n in 1:length(ec.series)
-        shadow!(ec, n,
+    for i in eachindex(ec.series)
+        shadow!(ec, i,
             shadowBlur = shadowBlur,
             shadowColor = shadowColor,
             shadowOffsetX = shadowOffsetX,
