@@ -42,7 +42,12 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 					kwargs...)
 
 		#Append size into existing data structure
-		[push!(x, y) for (x,y) in zip(ec.series[1].data, size)]
+		npoints = length(ec.series[1].data)
+		length(size) != npoints &&
+			error("bubble: x/y data has $npoints points but size has $(length(size)) — all three must have equal length")
+		for (point, sz) in zip(ec.series[1].data, size)
+			push!(point, sz)
+		end
 
 		normalized = maximum(sqrt.(size))
 
