@@ -13,12 +13,6 @@ flip!(ec::EChart; rotatedims)
 ## Arguments
 * `rotatedims::Bool = false` : also swap the chart width and height to preserve aspect ratio
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-flip!(b)
-```
-
 """
 function flip!(ec::EChart; rotatedims::Bool = false)
     #Flip x and y axis. Currently only works for XY plots

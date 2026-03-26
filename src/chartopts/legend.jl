@@ -16,13 +16,6 @@ legend!(ec::EChart; kwargs...)
 
 Does not work as expected for sankey and gauge chart types.
 
-## Examples
-```julia
-x = ["A","B","C"]
-y = [1 2; 3 4; 5 6]
-b = bar(x, y)
-legend!(b, orient = "vertical", left = "right")
-```
 """
 function legend!(ec::EChart; kwargs...)
 	# Works, but doesn't make sense for: sankey, gauge

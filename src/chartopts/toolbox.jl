@@ -35,14 +35,6 @@ toolbox!(ec::EChart; show, restore, dataView, saveAsImage, dataZoom, chartTypes,
 * `right::Union{Number,String,Nothing} = nothing` : toolbox right position
 * `bottom::Union{Number,String,Nothing} = nothing` : toolbox bottom position
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-toolbox!(b, chartTypes = ["line", "bar"])
-
-# Add data zoom button and reposition to top-right
-toolbox!(b, dataZoom = true, right = "5%", top = "5%", orient = "horizontal")
-```
 """
 function toolbox!(ec::EChart; 	show::Bool = true,
 								#mark::Bool = true,

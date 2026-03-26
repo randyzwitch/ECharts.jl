@@ -23,20 +23,6 @@ labels!(ec::EChart; show, position, color, rotate, fontSize, fontWeight, formatt
 
 When called without a `series` argument, labels are applied to all series.
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-labels!(b)
-
-# Color and font size
-labels!(b, color = "#fff", fontSize = 14)
-
-# Rotate labels
-labels!(b, position = "top", rotate = 45)
-
-# Format numbers to 2 decimal places
-labels!(b, formatter = "{c:.2f}")
-```
 """
 function labels!(ec::EChart, series::Int;
                  show::Bool = true,

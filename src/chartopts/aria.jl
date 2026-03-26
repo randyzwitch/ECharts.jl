@@ -16,11 +16,6 @@ aria!(ec::EChart; enabled, description, general, series, data, decal)
 * `data::Union{Dict, Nothing} = nothing` : per-data ARIA label configuration dict
 * `decal::Union{Dict, Nothing} = nothing` : decal pattern configuration dict (v5+)
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-aria!(b)
-```
 """
 function aria!(ec::EChart; enabled::Bool = true, description::Union{String, Nothing} = nothing,
                general::Union{Dict, Nothing} = nothing, series::Union{Dict, Nothing} = nothing,

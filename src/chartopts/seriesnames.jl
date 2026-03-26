@@ -15,13 +15,6 @@ seriesnames!(ec::EChart, names::AbstractVector)
 ## Arguments
 * `names::AbstractVector` : vector of names, one per series (converted to `String` if needed)
 
-## Examples
-```julia
-x = ["A","B","C"]
-y = [1 2; 3 4; 5 6]
-b = bar(x, y)
-seriesnames!(b, ["Series One", "Series Two"])
-```
 """
 function seriesnames!(ec::EChart)
     #Automatically name series, so that downstream functions like legend which use names have one

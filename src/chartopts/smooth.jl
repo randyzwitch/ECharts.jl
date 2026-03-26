@@ -19,11 +19,6 @@ smooth!(ec::EChart, series::Vector{Int}; smooth)
 
 When called without a `series` argument, smoothing is applied to all series.
 
-## Examples
-```julia
-l = line(["A","B","C","D"], [1,4,2,5])
-smooth!(l)
-```
 """
 function smooth!(ec::EChart; smooth::Bool = true)
 	#All series by default

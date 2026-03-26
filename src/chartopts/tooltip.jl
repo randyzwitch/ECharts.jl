@@ -33,14 +33,6 @@ tooltip!(ec::EChart; show, trigger, formatter, backgroundColor, borderColor, pad
 The auto-selected trigger for Cartesian charts (`"axis"`) shows a single tooltip for all series
 at the same x position. Pass `trigger = "item"` to override this behaviour.
 
-## Examples
-```julia
-b = bar(["A","B","C"], [1,2,3])
-tooltip!(b)                                   # trigger = "axis" (auto)
-tooltip!(b, trigger = "item")                 # per-bar tooltip
-tooltip!(b, formatter = "{b}: {c} units")     # custom format
-tooltip!(b, backgroundColor = "rgba(0,0,0,0.8)", padding = 10)
-```
 """
 function tooltip!(ec::EChart; show::Bool = true,
                                trigger::Union{String,Nothing} = nothing,
