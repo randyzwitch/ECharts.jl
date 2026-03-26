@@ -23,7 +23,7 @@ function waterfall(x::AbstractVector, y::AbstractVector{<:Real};
  		kwargs...)
 
     #Need to add a value for total, since user passes in data values only
-    labels = [string(x) for x in x]
+    labels = [string(v) for v in x]
     push!(labels, "total")
 
     #Calculate transparent series as base for stacking
