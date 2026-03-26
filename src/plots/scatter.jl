@@ -30,15 +30,14 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 			largeThreshold::Int = 2000,
 			kwargs...)
 
-	ec = xy_plot(x, arrayofarray(x,y); mark = mark, legend = legend, scale = scale, kwargs...)
-	ec.xAxis[1]._type = "value"
-	ec.xAxis[1].data = nothing #This is necessary to re-use xy_plot, deletes data since scatter uses arrayofarray
+	ec = newplot(kwargs, ec_charttype = "xy plot")
 
-	#Enable optimization for lots of data
-	for s in ec.series
-		s.large = large
-		s.largeThreshold = largeThreshold
-	end
+	ec.xAxis = [Axis(_type = "value", nameGap = 50, scale = scale)]
+	ec.yAxis = [Axis(_type = "value", nameGap = 50, scale = scale)]
+	ec.series = [XYSeries(name = "Series 1", _type = mark, data = arrayofarray(x, y),
+	                      large = large, largeThreshold = largeThreshold)]
+
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -60,23 +59,17 @@ function scatter(x::AbstractVector{<:Union{Missing, Real}},
 			largeThreshold::Int = 2000,
 			kwargs...)
 
-	#Initialize with single series
-	ec = scatter(x, y[:,1]; mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = scatter(x, y[:,1]; mark = mark, legend = legend, scale = scale,
+	             large = large, largeThreshold = largeThreshold, kwargs...)
 
-	#Append remaining series
 	for i in 2:size(y)[2]
-		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(x, y[:,i])))
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(x, y[:,i]),
+		                          large = large, largeThreshold = largeThreshold))
 	end
 
 	seriesnames!(ec)
 
-	legend == true ? legend!(ec) : nothing
-
-	#Enable optimization for lots of data
-	for s in ec.series
-		s.large = large
-		s.largeThreshold = largeThreshold
-	end
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -99,21 +92,13 @@ function scatter(df, x::Symbol, y::Symbol;
 
 	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-	#Initialize with single series
-	ec = scatter(_table_col(df, x), _table_col(df, y); mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = scatter(_table_col(df, x), _table_col(df, y); mark = mark, legend = legend,
+	             scale = scale, large = large, largeThreshold = largeThreshold, kwargs...)
 
-	#Add legend if desired
-	legend == true ? legend!(ec) : nothing
-
-	#Name axes since we know them
 	xaxis!(ec, name = string(x))
 	yaxis!(ec, name = string(y))
 
-	#Enable optimization for lots of data
-	for s in ec.series
-		s.large = large
-		s.largeThreshold = largeThreshold
-	end
+	legend ? legend!(ec) : nothing
 
 	return ec
 
@@ -136,33 +121,27 @@ function scatter(df, x::Symbol, y::Symbol, group::Symbol;
 
 	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-	#Create grouped data
 	groups = _table_groupby(df, group)
 	numgroups = length(groups)
 	xcol = _table_col(df, x)
 	ycol = _table_col(df, y)
 
-	#Initialize with single series
 	_, idx1 = groups[1]
-	ec = scatter(xcol[idx1], ycol[idx1]; mark = mark, legend = legend, scale = scale, kwargs...)
+	ec = scatter(xcol[idx1], ycol[idx1]; mark = mark, legend = legend, scale = scale,
+	             large = large, largeThreshold = largeThreshold, kwargs...)
 
-	#Append remaining series
 	for i in 2:numgroups
 		_, idxi = groups[i]
-		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(xcol[idxi], ycol[idxi])))
+		push!(ec.series, XYSeries(_type = "scatter", data = arrayofarray(xcol[idxi], ycol[idxi]),
+		                          large = large, largeThreshold = largeThreshold))
 	end
 
-	#Add series names based on levels of grouped data
 	seriesnames!(ec, [string(groups[i][1]) for i in 1:numgroups])
 
-	#Add legend if desired
-	legend == true ? legend!(ec) : nothing
+	xaxis!(ec, name = string(x))
+	yaxis!(ec, name = string(y))
 
-	#Enable optimization for lots of data
-	for s in ec.series
-		s.large = large
-		s.largeThreshold = largeThreshold
-	end
+	legend ? legend!(ec) : nothing
 
 	return ec
 
