@@ -63,8 +63,20 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	# Allow for convenience of using single string to represent same mark for all series values
 	typeof(mark) <: AbstractVector ? nothing : mark = [mark for i in 1:length(x)]
 
-	#If there are missing values, set equal to zero so the graph stacks correctly
-	eltype(y) >: Missing ? y_ = coalesce.(y, 0) : y_ = deepcopy(y)
+	#Warn if x contains missing values — they render as literal "missing" category labels
+	if eltype(x) >: Missing
+		@warn "x contains Missing values; they will appear as \"missing\" category labels on the axis. " *
+		      "Pass an array without Missing values to suppress this warning."
+	end
+
+	#If there are missing values in y, set equal to zero so the graph stacks correctly
+	if eltype(y) >: Missing
+		@warn "y contains Missing values; they will be replaced with 0 for rendering. " *
+		      "Pass an array without Missing values to suppress this warning."
+		y_ = coalesce.(y, 0)
+	else
+		y_ = deepcopy(y)
+	end
 
 	# Call 1-D method to build base
 	ec = xy_plot(x, y_[:,1]; mark = mark[1], scale = scale, kwargs...)
