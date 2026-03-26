@@ -49,8 +49,8 @@ function seriesnames!(ec::EChart, names::AbstractVector{String})
         ec.series[i].name = names[i]
     end
 
-    #Modify legend attribute to use new seriesnames
-    ec.legend.data = names
+    #Modify legend attribute to use new seriesnames, if one exists
+    isnothing(ec.legend) || (ec.legend.data = names)
 
     return ec
 
