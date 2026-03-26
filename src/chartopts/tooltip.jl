@@ -1,3 +1,11 @@
+# Chart types that use "axis" trigger (cross-hair tooltip across all series at one x position).
+# All other chart types default to "item" trigger (per-point tooltip).
+# Add an entry here whenever a new Cartesian chart type is introduced.
+const AXIS_TRIGGER_CHARTTYPES = (
+    "xy plot", "bar", "line", "area", "waterfall", "histogram",
+    "streamgraph", "box", "candlestick", "corrplot", "heatmap", "bubble",
+)
+
 """
     tooltip!(ec)
 
@@ -49,9 +57,7 @@ function tooltip!(ec::EChart; show::Bool = true,
 
     # Auto-select trigger based on chart type when not specified
     if isnothing(trigger)
-        axis_types = ("xy plot", "bar", "line", "area", "waterfall", "histogram",
-                      "streamgraph", "box", "candlestick", "corrplot", "heatmap", "bubble")
-        trigger = ec.ec_charttype in axis_types ? "axis" : "item"
+        trigger = ec.ec_charttype in AXIS_TRIGGER_CHARTTYPES ? "axis" : "item"
     end
     ec.tooltip.trigger = trigger
 
