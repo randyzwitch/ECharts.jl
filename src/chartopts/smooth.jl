@@ -28,7 +28,9 @@ smooth!(l)
 function smooth!(ec::EChart; smooth::Bool = true)
 	#All series by default
 
-	[x.smooth = smooth for x in ec.series]
+	for s in ec.series
+		s.smooth = smooth
+	end
 
 	return ec
 
@@ -56,7 +58,9 @@ See the primary `smooth!` method for full argument documentation.
 """
 function smooth!(ec::EChart, series::Vector{Int}; smooth::Bool = true)
 
-	[smooth!(ec, x, smooth = smooth) for x in series]
+	for s in series
+		smooth!(ec, s, smooth = smooth)
+	end
 
 	return ec
 
