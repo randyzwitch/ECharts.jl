@@ -30,7 +30,7 @@ function corrplot(m::Matrix;
     size(m)[1] != size(m)[2] ? error("Matrix needs to be square for a corrplot") : nothing
 
     #Copy to avoid mutating
-    m_ = m
+    m_ = copy(m)
     if layout == "lower"
         tril!(m_)
     elseif layout == "upper"
