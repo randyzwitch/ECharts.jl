@@ -39,7 +39,7 @@ module ECharts
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
-	export radial!, jitter!, labels!, theme!, tooltip!, aria!
+	export radial!, jitter!, labels!, theme!, tooltip!, aria!, shadow!
 
 
 	# Primitives - in order of descending dependency within files
@@ -68,6 +68,7 @@ module ECharts
 	include("chartopts/radial.jl")
 	include("chartopts/gradients.jl")
 	include("chartopts/aria.jl")
+	include("chartopts/shadow.jl")
 
 	# Plots
 	include("plots/xy_plot.jl")
