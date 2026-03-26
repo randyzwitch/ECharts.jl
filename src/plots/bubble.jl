@@ -53,6 +53,8 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 
 		[x.symbolSize =  JSON.JSONText("""function (data) {return $bubblesize * Math.sqrt(data[2]) / ($normalized);}""") for x in ec.series]
 
+		shadow!(ec)
+
 		return ec
 
 end
@@ -86,6 +88,8 @@ function bubble(df, x::Symbol, y::Symbol, size::Symbol;
 		#Name axes since we know them
 		yaxis!(ec, name = string(y))
 		xaxis!(ec, name = string(x))
+
+		return ec
 
 end
 
@@ -133,6 +137,8 @@ function bubble(df, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
 			#Enable optimization for lots of data
 			[x.large = large for x in ec.series]
 			[x.largeThreshold = largeThreshold for x in ec.series]
+
+			shadow!(ec)
 
 			return ec
 

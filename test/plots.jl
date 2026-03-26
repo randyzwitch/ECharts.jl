@@ -295,6 +295,24 @@ sgrp2 = bubble(mtcars.MPG, mtcars.HP, mtcars.Disp)
 sgrp3 = bubble(mtcars, :MPG, :HP, :Disp, :Cyl)
 @test typeof(sgrp3) == EChart
 
+#shadow! — bubbles have shadows by default
+@test sgrp2.series[1].itemStyle.shadowBlur == 10
+@test sgrp2.series[1].itemStyle.shadowColor == "rgba(0,0,0,0.5)"
+@test sgrp2.series[1].itemStyle.shadowOffsetX == 0
+@test sgrp2.series[1].itemStyle.shadowOffsetY == 5
+
+#shadow! on grouped bubble applies to all series
+for s in sgrp3.series
+    @test s.itemStyle.shadowBlur == 10
+end
+
+#shadow! can override defaults
+shadow!(sgrp3, 1, shadowBlur = 20, shadowColor = "rgba(255,0,0,0.5)", shadowOffsetX = 2, shadowOffsetY = 4)
+@test sgrp3.series[1].itemStyle.shadowBlur == 20
+@test sgrp3.series[1].itemStyle.shadowColor == "rgba(255,0,0,0.5)"
+@test sgrp3.series[1].itemStyle.shadowOffsetX == 2
+@test sgrp3.series[1].itemStyle.shadowOffsetY == 4
+
 #19: corrplot
 cplot = corrplot(mtcars)
 @test typeof(cplot) == EChart
