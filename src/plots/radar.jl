@@ -68,11 +68,8 @@ function radar(names::AbstractVector,
 		push!(ec.series, RadarSeries(data = [Dict{Any, Any}("value" => values[:,i])]))
 	end
 
-	# Fill area if requested
-	# This is smelly
-	fill isa Bool ? fill = [fill for i in 1:size(values)[2]] : nothing
-	cols = length(fill)
-	fill!(ec, cols, fill)
+	# Fill area if requested — fill! handles Bool→Vector expansion internally
+	fill!(ec, size(values)[2], fill)
 
 	seriesnames!(ec)
 
