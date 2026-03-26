@@ -20,7 +20,9 @@ function gauge(x::Union{Missing, Real};
                colors::AbstractVector = ["#91c7ae", "#63869e", "#c23531"],
                kwargs...)
 
-    length(breakpoints) != length(colors) ? error("breakpoints and colors vectors need to have the same length.") : nothing
+    length(breakpoints) != length(colors) && error("breakpoints and colors must have the same length.")
+    any(b -> b <= 0 || b > 1, breakpoints) && error("all breakpoints must be in the range (0, 1].")
+    issorted(breakpoints) || error("breakpoints must be in ascending order.")
 
     ec = newplot(kwargs, ec_charttype = "gauge")
 
