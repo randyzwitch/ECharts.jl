@@ -37,10 +37,7 @@ function candlestick(dt::AbstractVector{String},
                      kwargs...)
 
     #Put in array of array format
-    fmtdata = []
-    for (o,c,l,h) in zip(open, close, low, high)
-        push!(fmtdata, [o,c,l,h])
-    end
+    fmtdata = [[o,c,l,h] for (o,c,l,h) in zip(open, close, low, high)]
 
     ec = newplot(kwargs, ec_charttype = "candlestick")
     ec.xAxis = [Axis(_type = "category", data = dt, scale = true, boundaryGap = true)]
