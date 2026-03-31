@@ -1631,7 +1631,7 @@ details.
     brush::Union{Brush, Nothing} = nothing
     geo::Union{Geo, Nothing} = nothing
     parallel::Union{Parallel, Nothing} = nothing
-    parallelAxis::Union{ParallelAxis, Nothing} = nothing
+    parallelAxis::Union{AbstractVector, ParallelAxis, Nothing} = nothing
     singleAxis::Union{SingleAxis, Nothing} = nothing
     timeline::Union{Timeline, Nothing} = nothing
     graphic::Union{Graphic, Nothing} = nothing

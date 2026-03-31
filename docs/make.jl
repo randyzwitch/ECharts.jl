@@ -45,6 +45,7 @@ makedocs(
             "charts/heatmap.md",
             "charts/histogram.md",
             "charts/line.md",
+            "charts/parallel.md",
             "charts/pie.md",
             "charts/polar.md",
             "charts/radar.md",
