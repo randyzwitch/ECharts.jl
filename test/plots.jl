@@ -355,3 +355,8 @@ par_data = [1.0 2.0 3.0; 4.0 5.0 6.0; 7.0 8.0 9.0]
 par_dims = ["A", "B", "C"]
 result_parallel = parallel(par_data, par_dims)
 @test typeof(result_parallel) == EChart
+# effectscatter
+es_x = randn(20)
+es_y = randn(20)
+result_effectscatter = effectscatter(es_x, es_y)
+@test typeof(result_effectscatter) == EChart
