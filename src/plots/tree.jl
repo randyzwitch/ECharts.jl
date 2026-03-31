@@ -32,6 +32,6 @@ tree(data)
 """
 function tree(data::AbstractDict; kwargs...)
     ec = newplot(kwargs, ec_charttype = "tree")
-    ec.series = [TreeSeries(data = data)]
+    ec.series = [TreeSeries(data = [data])]
     return ec
 end

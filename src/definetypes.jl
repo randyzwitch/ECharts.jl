@@ -1480,7 +1480,7 @@ ECharts series configuration for tree (hierarchy) charts.
     label::Union{Label, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = nothing
     emphasis::Union{Dict, Nothing} = nothing
-    data::Union{Dict, Nothing} = nothing
+    data::Union{AbstractVector, Dict, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
