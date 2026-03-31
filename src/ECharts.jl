@@ -38,6 +38,7 @@ module ECharts
 	export corrplot
 	export sunburst
 	export tree
+	export treemap
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -98,6 +99,7 @@ module ECharts
 	include("plots/corrplot.jl")
 	include("plots/sunburst.jl")
 	include("plots/tree.jl")
+	include("plots/treemap.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into

@@ -54,6 +54,7 @@ makedocs(
             "charts/streamgraph.md",
             "charts/sunburst.md",
             "charts/tree.md",
+            "charts/treemap.md",
             "charts/waterfall.md",
             "charts/xy_plot.md",
         ],
