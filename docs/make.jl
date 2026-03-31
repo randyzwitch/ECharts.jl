@@ -50,6 +50,7 @@ makedocs(
             "charts/line.md",
             "charts/parallel.md",
             "charts/pie.md",
+            "charts/punchcard.md",
             "charts/polar.md",
             "charts/radar.md",
             "charts/radialbar.md",
