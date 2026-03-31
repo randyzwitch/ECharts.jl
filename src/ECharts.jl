@@ -46,6 +46,7 @@ module ECharts
 	export punchcard
 	export beeswarm
 	export population_pyramid
+	export gantt
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -114,6 +115,7 @@ module ECharts
 	include("plots/punchcard.jl")
 	include("plots/beeswarm.jl")
 	include("plots/population_pyramid.jl")
+	include("plots/gantt.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into

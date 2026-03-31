@@ -388,3 +388,10 @@ pp_male = [100, 120, 130, 110]
 pp_female = [95, 115, 125, 105]
 result_pyramid = population_pyramid(pp_ages, pp_male, pp_female)
 @test typeof(result_pyramid) == EChart
+# gantt
+using Dates
+gantt_tasks  = ["Design", "Development", "Testing", "Deployment"]
+gantt_starts = [Date(2024, 1, 1), Date(2024, 2, 1), Date(2024, 4, 1), Date(2024, 5, 1)]
+gantt_ends   = [Date(2024, 2, 1), Date(2024, 4, 1), Date(2024, 5, 1), Date(2024, 5, 15)]
+result_gantt = gantt(gantt_tasks, gantt_starts, gantt_ends)
+@test typeof(result_gantt) == EChart
