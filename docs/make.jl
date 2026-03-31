@@ -34,6 +34,7 @@ makedocs(
         "Charts" => [
             "charts/area.md",
             "charts/bar.md",
+            "charts/beeswarm.md",
             "charts/box.md",
             "charts/bubble.md",
             "charts/calendar_heatmap.md",

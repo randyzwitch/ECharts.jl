@@ -377,3 +377,8 @@ pc_y = repeat(["Morning", "Afternoon", "Evening"], inner = 5)
 pc_sizes = rand(1:100, 15)
 result_punchcard = punchcard(pc_x, pc_y, pc_sizes)
 @test typeof(result_punchcard) == EChart
+# beeswarm
+bs_cats = vcat(fill("A", 20), fill("B", 20), fill("C", 20))
+bs_vals = randn(60)
+result_beeswarm = beeswarm(bs_cats, bs_vals)
+@test typeof(result_beeswarm) == EChart
