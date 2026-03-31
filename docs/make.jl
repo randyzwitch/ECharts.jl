@@ -52,6 +52,7 @@ makedocs(
             "charts/sankey.md",
             "charts/scatter.md",
             "charts/streamgraph.md",
+            "charts/sunburst.md",
             "charts/waterfall.md",
             "charts/xy_plot.md",
         ],

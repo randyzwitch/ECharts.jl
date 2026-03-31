@@ -14,26 +14,6 @@ sunburst(data::AbstractVector)
   optionally `children` for nested levels
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
-## Examples
-```julia
-# Basic
-data = [
-    Dict("name" => "A", "value" => 10, "children" => [
-        Dict("name" => "A1", "value" => 4),
-        Dict("name" => "A2", "value" => 6),
-    ]),
-    Dict("name" => "B", "value" => 20, "children" => [
-        Dict("name" => "B1", "value" => 12),
-        Dict("name" => "B2", "value" => 8),
-    ]),
-]
-sunburst(data)
-
-# With title and custom color scheme
-ec = sunburst(data)
-title!(ec, text = "Sales Breakdown")
-colorscheme!(ec, ("Tableau", 10))
-```
 """
 function sunburst(data::AbstractVector; kwargs...)
     ec = newplot(kwargs, ec_charttype = "sunburst")
