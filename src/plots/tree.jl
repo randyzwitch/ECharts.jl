@@ -15,6 +15,7 @@ tree(data::AbstractDict)
 
 ## Examples
 ```julia
+# Basic
 data = Dict(
     "name" => "root",
     "children" => [
@@ -28,6 +29,11 @@ data = Dict(
     ]
 )
 tree(data)
+
+# With title and tooltip
+ec = tree(data)
+title!(ec, text = "Org Chart")
+tooltip!(ec)
 ```
 """
 function tree(data::AbstractDict; kwargs...)
