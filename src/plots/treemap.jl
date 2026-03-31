@@ -16,6 +16,7 @@ treemap(data::AbstractVector)
 
 ## Examples
 ```julia
+# Basic
 data = [
     Dict("name" => "Group A", "value" => 40, "children" => [
         Dict("name" => "Item A1", "value" => 25),
@@ -28,6 +29,12 @@ data = [
     Dict("name" => "Group C", "value" => 25),
 ]
 treemap(data)
+
+# With title, tooltip, and custom color scheme
+ec = treemap(data)
+title!(ec, text = "Budget Allocation")
+tooltip!(ec)
+colorscheme!(ec, ("Tableau", 10))
 ```
 """
 function treemap(data::AbstractVector; kwargs...)
