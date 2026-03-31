@@ -42,6 +42,7 @@ module ECharts
 	export parallel
 	export effectscatter
 	export graph
+	export calendar_heatmap
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -106,6 +107,7 @@ module ECharts
 	include("plots/parallel.jl")
 	include("plots/effectscatter.jl")
 	include("plots/graph.jl")
+	include("plots/calendar_heatmap.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into

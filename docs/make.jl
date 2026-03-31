@@ -36,6 +36,7 @@ makedocs(
             "charts/bar.md",
             "charts/box.md",
             "charts/bubble.md",
+            "charts/calendar_heatmap.md",
             "charts/candlestick.md",
             "charts/corrplot.md",
             "charts/donut.md",
