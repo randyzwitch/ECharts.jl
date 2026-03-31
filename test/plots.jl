@@ -365,3 +365,9 @@ g_nodes = ["A", "B", "C", "D"]
 g_links = [["A", "B"], ["B", "C"], ["C", "D"], ["D", "A"]]
 result_graph = graph(g_nodes, g_links)
 @test typeof(result_graph) == EChart
+# calendar_heatmap
+using Dates
+cal_dates = [Date(2023, 1, 1) + Day(i) for i in 0:364]
+cal_values = rand(365)
+result_cal = calendar_heatmap(cal_dates, cal_values, 2023)
+@test typeof(result_cal) == EChart
