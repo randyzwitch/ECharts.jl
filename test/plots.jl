@@ -349,3 +349,9 @@ cplot_alpha = corrplot(mtcars, order = "alphabet")
 @test typeof(cplot_alpha) == EChart
 
 @test_throws ArgumentError corrplot(mtcars, order = "invalid")
+
+# parallel
+par_data = [1.0 2.0 3.0; 4.0 5.0 6.0; 7.0 8.0 9.0]
+par_dims = ["A", "B", "C"]
+result_parallel = parallel(par_data, par_dims)
+@test typeof(result_parallel) == EChart
