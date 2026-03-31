@@ -382,3 +382,9 @@ bs_cats = vcat(fill("A", 20), fill("B", 20), fill("C", 20))
 bs_vals = randn(60)
 result_beeswarm = beeswarm(bs_cats, bs_vals)
 @test typeof(result_beeswarm) == EChart
+# population_pyramid
+pp_ages = ["0-9", "10-19", "20-29", "30-39"]
+pp_male = [100, 120, 130, 110]
+pp_female = [95, 115, 125, 105]
+result_pyramid = population_pyramid(pp_ages, pp_male, pp_female)
+@test typeof(result_pyramid) == EChart
