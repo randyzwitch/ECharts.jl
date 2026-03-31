@@ -44,6 +44,7 @@ makedocs(
             "charts/echart_raw.md",
             "charts/effectscatter.md",
             "charts/funnel.md",
+            "charts/gantt.md",
             "charts/gauge.md",
             "charts/graph.md",
             "charts/heatmap.md",
