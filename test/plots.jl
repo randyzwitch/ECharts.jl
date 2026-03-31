@@ -334,3 +334,18 @@ df_num = mtcars[!, [x <: Union{Number, Missing} for x in eltype.(eachcol(mtcars)
 c = cor(Matrix(df_num))
 ccc = corrplot(c)
 @test typeof(ccc) == EChart
+
+# new arguments
+ccc_nodiag = corrplot(c, diag = false)
+@test typeof(ccc_nodiag) == EChart
+
+ccc_digits = corrplot(c, number_digits = 4)
+@test typeof(ccc_digits) == EChart
+
+ccc_style = corrplot(c, label_color = "white", label_fontsize = 12)
+@test typeof(ccc_style) == EChart
+
+cplot_alpha = corrplot(mtcars, order = "alphabet")
+@test typeof(cplot_alpha) == EChart
+
+@test_throws ArgumentError corrplot(mtcars, order = "invalid")
