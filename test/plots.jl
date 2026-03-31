@@ -371,3 +371,9 @@ cal_dates = [Date(2023, 1, 1) + Day(i) for i in 0:364]
 cal_values = rand(365)
 result_cal = calendar_heatmap(cal_dates, cal_values, 2023)
 @test typeof(result_cal) == EChart
+# punchcard
+pc_x = repeat(["Mon", "Tue", "Wed", "Thu", "Fri"], 3)
+pc_y = repeat(["Morning", "Afternoon", "Evening"], inner = 5)
+pc_sizes = rand(1:100, 15)
+result_punchcard = punchcard(pc_x, pc_y, pc_sizes)
+@test typeof(result_punchcard) == EChart
