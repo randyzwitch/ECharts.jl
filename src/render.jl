@@ -84,3 +84,35 @@ Base.show(io::IO, ::MIME"text/html",        ec::EChart)    = write(io, _echarts_
 Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart)    = write(io, _echarts_html(ec))
 Base.show(io::IO, ::MIME"text/html",        ec::EChartRaw) = write(io, _echarts_html(ec))
 Base.show(io::IO, ::MIME"juliavscode/html", ec::EChartRaw) = write(io, _echarts_html(ec))
+
+"""
+    savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
+
+Save an EChart to a file. The output format is determined by the file extension:
+
+- `.html` — self-contained HTML page with ECharts.js embedded
+- `.json` — raw ECharts option JSON (the object passed to `setOption`)
+
+# Examples
+```julia
+chart = bar(["A","B","C"], [1,2,3])
+savefig("mychart.html", chart)   # standalone HTML page
+savefig("mychart.json", chart)   # ECharts option JSON
+```
+"""
+function savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
+    ext = lowercase(splitext(filename)[2])
+    if ext == ".html"
+        open(filename, "w") do io
+            write(io, "<!DOCTYPE html>\n<html>\n<head><meta charset=\"utf-8\"><title>ECharts</title></head>\n<body>\n")
+            write(io, _echarts_html(ec))
+            write(io, "\n</body>\n</html>\n")
+        end
+    elseif ext == ".json"
+        open(filename, "w") do io
+            write(io, ec isa EChart ? JSON.json(ec) : ec.option)
+        end
+    else
+        throw(ArgumentError("Unsupported extension \"$ext\". Use \".html\" or \".json\"."))
+    end
+end
