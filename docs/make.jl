@@ -43,6 +43,7 @@ makedocs(
             "charts/effectscatter.md",
             "charts/funnel.md",
             "charts/gauge.md",
+            "charts/graph.md",
             "charts/heatmap.md",
             "charts/histogram.md",
             "charts/line.md",

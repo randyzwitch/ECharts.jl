@@ -360,3 +360,8 @@ es_x = randn(20)
 es_y = randn(20)
 result_effectscatter = effectscatter(es_x, es_y)
 @test typeof(result_effectscatter) == EChart
+# graph
+g_nodes = ["A", "B", "C", "D"]
+g_links = [["A", "B"], ["B", "C"], ["C", "D"], ["D", "A"]]
+result_graph = graph(g_nodes, g_links)
+@test typeof(result_graph) == EChart
