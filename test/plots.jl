@@ -163,6 +163,19 @@ y2 = 0.6 .* y
 l2s = line(x, hcat(y, y2))
 @test typeof(l2s) == EChart
 
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+lsamp = line(x, y, sampling = "lttb")
+@test typeof(lsamp) == EChart
+@test lsamp.series[1].sampling == "lttb"
+
+x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+y = [11, 11, 15, 13, 12, 13, 10]
+y2 = 0.6 .* y
+l2samp = line(x, hcat(y, y2), sampling = "average")
+@test typeof(l2samp) == EChart
+@test all(s.sampling == "average" for s in l2samp.series)
+
 #9: pie
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]

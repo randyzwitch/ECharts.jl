@@ -14,6 +14,7 @@ line(df, x::Symbol, y::Symbol, group::Symbol)
 ## Arguments
 * `mark::Union{String, AbstractVector} = "line"` : how to display plotted points
 * `step::Union{String, Void} = nothing` : one of {"start", "end", "middle", nothing}
+* `sampling::Union{String, Nothing} = nothing` : downsampling strategy for large datasets; one of {"lttb", "average", "min", "max", "sum", nothing}
 * `legend::Bool = false` : display legend?
 * `scale::Bool = false` : show full Y-axis or truncated
 * `kwargs` : varargs to set any field of resulting `EChart` struct
@@ -25,11 +26,14 @@ Reasonable defaults set for different methods of `area`, such as displaying a le
 function line(x::AbstractVector, y::AbstractVector{<:Union{Missing, Real}};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
+			sampling::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
 
-	return xy_plot(x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	!isnothing(sampling) ? [s.sampling = sampling for s in ec.series] : nothing
+	return ec
 
 end
 
@@ -43,11 +47,14 @@ See the primary `line` method for full argument documentation.
 function line(x::AbstractVector, y::AbstractArray{<:Union{Missing, Real},2};
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
+			sampling::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
 
-	return xy_plot(x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	!isnothing(sampling) ? [s.sampling = sampling for s in ec.series] : nothing
+	return ec
 
 end
 
@@ -60,12 +67,15 @@ See the primary `line` method for full argument documentation.
 function line(df, x::Symbol, y::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
+			sampling::Union{String, Nothing} = nothing,
 			legend::Bool = false,
 			scale::Bool = false,
 			kwargs...)
 
 	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
-	return xy_plot(df, x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(df, x, y; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	!isnothing(sampling) ? [s.sampling = sampling for s in ec.series] : nothing
+	return ec
 
 end
 
@@ -79,11 +89,14 @@ See the primary `line` method for full argument documentation.
 function line(df, x::Symbol, y::Symbol, group::Symbol;
 			mark::Union{String, AbstractVector} = "line",
 			step::Union{String, Nothing} = nothing,
+			sampling::Union{String, Nothing} = nothing,
 			legend::Bool = true,
 			scale::Bool = false,
 			kwargs...)
 
 	Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
-	return xy_plot(df, x, y, group; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	ec = xy_plot(df, x, y, group; mark = mark, step = step, legend = legend, scale = scale, kwargs...)
+	!isnothing(sampling) ? [s.sampling = sampling for s in ec.series] : nothing
+	return ec
 
 end
