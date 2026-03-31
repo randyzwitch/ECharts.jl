@@ -57,6 +57,7 @@ makedocs(
             "charts/polar.md",
             "charts/radar.md",
             "charts/radialbar.md",
+            "charts/ridgeline.md",
             "charts/sankey.md",
             "charts/scatter.md",
             "charts/streamgraph.md",

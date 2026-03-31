@@ -395,3 +395,8 @@ gantt_starts = [Date(2024, 1, 1), Date(2024, 2, 1), Date(2024, 4, 1), Date(2024,
 gantt_ends   = [Date(2024, 2, 1), Date(2024, 4, 1), Date(2024, 5, 1), Date(2024, 5, 15)]
 result_gantt = gantt(gantt_tasks, gantt_starts, gantt_ends)
 @test typeof(result_gantt) == EChart
+# ridgeline
+rl_groups = ["Group A", "Group B", "Group C"]
+rl_data   = [randn(50), randn(50) .+ 2, randn(50) .- 1]
+result_ridgeline = ridgeline(rl_groups, rl_data)
+@test typeof(result_ridgeline) == EChart
