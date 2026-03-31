@@ -40,6 +40,7 @@ makedocs(
             "charts/corrplot.md",
             "charts/donut.md",
             "charts/echart_raw.md",
+            "charts/effectscatter.md",
             "charts/funnel.md",
             "charts/gauge.md",
             "charts/heatmap.md",
