@@ -400,3 +400,10 @@ rl_groups = ["Group A", "Group B", "Group C"]
 rl_data   = [randn(50), randn(50) .+ 2, randn(50) .- 1]
 result_ridgeline = ridgeline(rl_groups, rl_data)
 @test typeof(result_ridgeline) == EChart
+# violin
+vio_groups = vcat(fill("A", 50), fill("B", 50))
+vio_values = vcat(randn(50), randn(50) .+ 2)
+result_violin = violin(vio_groups, vio_values)
+@test typeof(result_violin) == EChart
+result_violin_single = violin(randn(50))
+@test typeof(result_violin_single) == EChart
