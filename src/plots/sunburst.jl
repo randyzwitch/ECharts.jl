@@ -16,6 +16,7 @@ sunburst(data::AbstractVector)
 
 ## Examples
 ```julia
+# Basic
 data = [
     Dict("name" => "A", "value" => 10, "children" => [
         Dict("name" => "A1", "value" => 4),
@@ -27,6 +28,11 @@ data = [
     ]),
 ]
 sunburst(data)
+
+# With title and custom color scheme
+ec = sunburst(data)
+title!(ec, text = "Sales Breakdown")
+colorscheme!(ec, ("Tableau", 10))
 ```
 """
 function sunburst(data::AbstractVector; kwargs...)
