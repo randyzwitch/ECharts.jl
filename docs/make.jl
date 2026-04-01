@@ -54,6 +54,7 @@ makedocs(
             "charts/heatmap.md",
             "charts/histogram.md",
             "charts/line.md",
+            "charts/lollipop.md",
             "charts/nightingale.md",
             "charts/parallel.md",
             "charts/pie.md",
