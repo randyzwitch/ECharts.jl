@@ -701,9 +701,9 @@ end
     _type::Union{String, Nothing} = "value"
     name::Union{String, Nothing} = nothing
     nameLocation::Union{String, Nothing} = "start"
-    nameTextStyle::Union{TextStyle, Nothing} = "#fff"
+    nameTextStyle::Union{TextStyle, Nothing} = TextStyle(color = "#fff")
     nameGap::Union{Int, Nothing} = 15
-    nameRotate::Union{Int, Nothing}
+    nameRotate::Union{Int, Nothing} = nothing
     inverse::Union{Bool, Nothing} = false
     boundaryGap::Union{AbstractVector,Bool, Nothing} = nothing
     min::Union{Int,String, Nothing} = "auto"
@@ -922,7 +922,7 @@ ECharts series configuration for radar (spider/web) charts.
     label::Union{Label, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = nothing
-    areaStyle::Union{ItemStyle, Nothing} = nothing
+    areaStyle::Union{AreaStyle, Nothing} = nothing
     emphasis::Union{Dict, Nothing} = nothing
     data::Union{AbstractVector, Nothing}
     zlevel::Union{Int, Nothing} = nothing
@@ -1558,8 +1558,8 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     step::Union{String, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
-    lineStyle::Union{ItemStyle, Nothing} = nothing
-    areaStyle::Union{ItemStyle, Nothing} = nothing
+    lineStyle::Union{LineStyle, Nothing} = nothing
+    areaStyle::Union{AreaStyle, Nothing} = nothing
     smooth::Union{Bool, Nothing} = false
     smoothMonotone::Union{String, Nothing} = nothing
     sampling::Union{String, Nothing} = nothing
