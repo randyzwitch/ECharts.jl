@@ -42,17 +42,17 @@ module ECharts
 	export parallel
 	export effectscatter
 	export graph
-	export arc_diagram
-	export calendar_heatmap
+	export arcdiagram
+	export calendarheatmap
 	export punchcard
 	export beeswarm
-	export population_pyramid
+	export populationpyramid
 	export gantt
 	export ridgeline
 	export violin
 	export nightingale
 	export bullet
-	export span_chart
+	export spanchart
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!

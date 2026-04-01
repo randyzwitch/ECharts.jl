@@ -1,5 +1,5 @@
 """
-    arc_diagram(nodes, links)
+    arcdiagram(nodes, links)
 
 Creates an `EChart` arc diagram — a network graph with nodes arranged in a circle
 and edges drawn as curved arcs. Arc diagrams are effective for showing connections
@@ -7,8 +7,8 @@ between entities without the instability of force-directed layouts.
 
 ## Methods
 ```julia
-arc_diagram(nodes::AbstractVector{String}, links::AbstractVector)
-arc_diagram(nodes::AbstractVector{String}, links::AbstractVector,
+arcdiagram(nodes::AbstractVector{String}, links::AbstractVector)
+arcdiagram(nodes::AbstractVector{String}, links::AbstractVector,
             weights::AbstractVector{<:Real})
 ```
 
@@ -35,10 +35,10 @@ using ECharts
 nodes = ["Alice", "Bob", "Carol", "Dave", "Eve"]
 links = [["Alice","Bob"], ["Alice","Carol"], ["Bob","Dave"],
          ["Carol","Dave"], ["Carol","Eve"], ["Dave","Eve"]]
-arc_diagram(nodes, links)
+arcdiagram(nodes, links)
 ```
 """
-function arc_diagram(nodes::AbstractVector{String},
+function arcdiagram(nodes::AbstractVector{String},
                      links::AbstractVector;
                      curveness::Real = 0.4,
                      symbol_size::Int = 20,
@@ -49,7 +49,7 @@ function arc_diagram(nodes::AbstractVector{String},
 	node_data = [Dict("name" => n) for n in nodes]
 	link_data = [Dict("source" => string(l[1]), "target" => string(l[2])) for l in links]
 
-	ec = newplot(kwargs, ec_charttype = "arc_diagram")
+	ec = newplot(kwargs, ec_charttype = "arcdiagram")
 	ec.xAxis = nothing
 	ec.yAxis = nothing
 	ec.series = [GraphSeries(
@@ -68,10 +68,10 @@ function arc_diagram(nodes::AbstractVector{String},
 end
 
 """
-    arc_diagram(nodes, links, weights)
+    arcdiagram(nodes, links, weights)
 
 Creates an `EChart` arc diagram with edge widths scaled by `weights`.
-See the primary `arc_diagram` method for full argument documentation.
+See the primary `arcdiagram` method for full argument documentation.
 
 # Examples
 ```@example
@@ -79,10 +79,10 @@ using ECharts
 nodes = ["A", "B", "C", "D"]
 links = [["A","B"], ["B","C"], ["C","D"], ["A","D"]]
 weights = [5.0, 3.0, 8.0, 2.0]
-arc_diagram(nodes, links, weights)
+arcdiagram(nodes, links, weights)
 ```
 """
-function arc_diagram(nodes::AbstractVector{String},
+function arcdiagram(nodes::AbstractVector{String},
                      links::AbstractVector,
                      weights::AbstractVector{<:Real};
                      curveness::Real = 0.4,
@@ -109,7 +109,7 @@ function arc_diagram(nodes::AbstractVector{String},
 		for i in eachindex(links)
 	]
 
-	ec = newplot(kwargs, ec_charttype = "arc_diagram")
+	ec = newplot(kwargs, ec_charttype = "arcdiagram")
 	ec.xAxis = nothing
 	ec.yAxis = nothing
 	ec.series = [GraphSeries(

@@ -1,5 +1,5 @@
 """
-    span_chart(categories, lows, highs)
+    spanchart(categories, lows, highs)
 
 Creates an `EChart` span (range) chart — a floating bar chart that shows a range from
 `lows[i]` to `highs[i]` for each category. Useful for visualising data ranges, error bounds,
@@ -7,8 +7,8 @@ confidence intervals, or any quantity defined by a minimum and maximum.
 
 ## Methods
 ```julia
-span_chart(categories::AbstractVector, lows::AbstractVector{<:Real}, highs::AbstractVector{<:Real})
-span_chart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol)
+spanchart(categories::AbstractVector, lows::AbstractVector{<:Real}, highs::AbstractVector{<:Real})
+spanchart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol)
 ```
 
 ## Arguments
@@ -28,10 +28,10 @@ using ECharts
 months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
 temp_low  = [-3.0, -2.0, 3.0, 8.0, 13.0, 18.0]
 temp_high = [5.0,  7.0, 12.0, 18.0, 23.0, 28.0]
-span_chart(months, temp_low, temp_high)
+spanchart(months, temp_low, temp_high)
 ```
 """
-function span_chart(categories::AbstractVector,
+function spanchart(categories::AbstractVector,
                     lows::AbstractVector{<:Real},
                     highs::AbstractVector{<:Real};
                     color::String = "#5470c6",
@@ -59,7 +59,7 @@ function span_chart(categories::AbstractVector,
 		itemStyle = ItemStyle(color = color),
 	)
 
-	ec = newplot(kwargs, ec_charttype = "span_chart")
+	ec = newplot(kwargs, ec_charttype = "spanchart")
 	ec.xAxis = [Axis(_type = "category", data = string.(categories))]
 	ec.yAxis = [Axis(_type = "value")]
 	ec.series = [spacer, spans]
@@ -70,10 +70,10 @@ function span_chart(categories::AbstractVector,
 end
 
 """
-    span_chart(df, category_col, low_col, high_col)
+    spanchart(df, category_col, low_col, high_col)
 
 Creates an `EChart` span chart from a Tables.jl-compatible table.
-See the primary `span_chart` method for full argument documentation.
+See the primary `spanchart` method for full argument documentation.
 
 # Examples
 ```@example
@@ -83,10 +83,10 @@ df = DataFrame(
     revenue_low  = [80.0, 95.0, 110.0, 130.0],
     revenue_high = [120.0, 145.0, 165.0, 180.0],
 )
-span_chart(df, :quarter, :revenue_low, :revenue_high)
+spanchart(df, :quarter, :revenue_low, :revenue_high)
 ```
 """
-function span_chart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol;
+function spanchart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol;
                     color::String = "#5470c6",
                     legend::Bool = false,
                     kwargs...)
@@ -95,5 +95,5 @@ function span_chart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol;
 	cats  = _table_col(df, category_col)
 	lows  = Float64.(_table_col(df, low_col))
 	highs = Float64.(_table_col(df, high_col))
-	return span_chart(cats, lows, highs; color = color, legend = legend, kwargs...)
+	return spanchart(cats, lows, highs; color = color, legend = legend, kwargs...)
 end

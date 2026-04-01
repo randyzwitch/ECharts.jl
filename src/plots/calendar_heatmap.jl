@@ -1,11 +1,11 @@
 """
-    calendar_heatmap(dates, values, year)
+    calendarheatmap(dates, values, year)
 
 Creates an `EChart` calendar heatmap showing daily values laid out in a calendar grid.
 
 ## Methods
 ```julia
-calendar_heatmap(dates::AbstractVector{Date}, values::AbstractVector{<:Real}, year::Int)
+calendarheatmap(dates::AbstractVector{Date}, values::AbstractVector{<:Real}, year::Int)
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ calendar_heatmap(dates::AbstractVector{Date}, values::AbstractVector{<:Real}, ye
 Each element of `dates` is paired with the corresponding element of `values`. Only dates
 within the specified `year` are rendered.
 """
-function calendar_heatmap(dates::AbstractVector{Dates.Date},
+function calendarheatmap(dates::AbstractVector{Dates.Date},
                           values::AbstractVector{<:Real},
                           year::Int;
                           show::Bool = true,
@@ -27,7 +27,7 @@ function calendar_heatmap(dates::AbstractVector{Dates.Date},
 
     data = [[Dates.format(d, "yyyy-mm-dd"), v] for (d, v) in zip(dates, values)]
 
-    ec = newplot(kwargs, ec_charttype = "calendar_heatmap")
+    ec = newplot(kwargs, ec_charttype = "calendarheatmap")
     ec.xAxis = nothing
     ec.yAxis = nothing
     ec.calendar = Calendar(range = string(year), cellSize = ["auto", 13])

@@ -1,12 +1,12 @@
 """
-    population_pyramid(ages, male, female)
+    populationpyramid(ages, male, female)
 
 Creates an `EChart` population pyramid with age groups on the y-axis and bars diverging
 left (male) and right (female) on the x-axis.
 
 ## Methods
 ```julia
-population_pyramid(ages::AbstractVector{String},
+populationpyramid(ages::AbstractVector{String},
                    male::AbstractVector{<:Real},
                    female::AbstractVector{<:Real})
 ```
@@ -22,7 +22,7 @@ population_pyramid(ages::AbstractVector{String},
 Male values are plotted as negative so bars extend to the left. Pass positive values for
 both `male` and `female`; negation is handled internally.
 """
-function population_pyramid(ages::AbstractVector{String},
+function populationpyramid(ages::AbstractVector{String},
                              male::AbstractVector{<:Real},
                              female::AbstractVector{<:Real};
                              legend::Bool = true,
@@ -30,7 +30,7 @@ function population_pyramid(ages::AbstractVector{String},
                              female_name::String = "Female",
                              kwargs...)
 
-    ec = newplot(kwargs, ec_charttype = "population_pyramid")
+    ec = newplot(kwargs, ec_charttype = "populationpyramid")
     ec.xAxis = [Axis(_type = "value")]
     ec.yAxis = [Axis(_type = "category", data = collect(ages))]
     ec.series = [
