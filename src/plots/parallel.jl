@@ -26,7 +26,7 @@ function parallel(data::AbstractMatrix, dims::AbstractVector{String};
     ec.yAxis = nothing
     ec.parallel = Parallel()
     ec.parallelAxis = [ParallelAxis(dim = i - 1, name = dims[i]) for i in eachindex(dims)]
-    ec.series = [ParallelSeries(data = [collect(data[i, :]) for i in axes(data, 1)])]
+    ec.series = [ParallelSeries(data = [collect(data[i, :])]) for i in axes(data, 1)]
 
     legend ? legend!(ec) : nothing
 
