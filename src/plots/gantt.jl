@@ -17,8 +17,9 @@ gantt(tasks::AbstractVector{String},
 
 ## Notes
 
-Dates are converted to millisecond timestamps (Unix epoch) for ECharts' time axis.
-The bar data format is `[start_ms, end_ms]` per task row.
+Dates are converted to millisecond durations for ECharts' value axis. A transparent
+spacer series offsets each bar to its start date, and the visible series spans the
+task duration. The x-axis labels are formatted as `YYYY-MM-DD` dates.
 """
 function gantt(tasks::AbstractVector{String},
                start_dates::AbstractVector{Dates.Date},
@@ -26,15 +27,38 @@ function gantt(tasks::AbstractVector{String},
                legend::Bool = false,
                kwargs...)
 
-    # Convert dates to millisecond timestamps (ECharts time axis uses ms)
     to_ms(d::Dates.Date) = Dates.value(Dates.DateTime(d)) - Dates.value(Dates.DateTime(Dates.Date(1970, 1, 1)))
 
-    data = [[to_ms(start_dates[i]), to_ms(end_dates[i])] for i in eachindex(tasks)]
+    start_ms  = to_ms.(start_dates)
+    end_ms    = to_ms.(end_dates)
+    min_start = minimum(start_ms)
+
+    spacer_data   = collect(Int, start_ms .- min_start)
+    duration_data = collect(Int, end_ms   .- start_ms)
+
+    formatter_js = "function(val){var d=new Date(val+$(min_start));return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}"
+
+    spacer = XYSeries(
+        name      = "",
+        _type     = "bar",
+        stack     = "gantt",
+        data      = spacer_data,
+        itemStyle = ItemStyle(color = "transparent"),
+    )
+
+    bars = XYSeries(
+        name      = "Tasks",
+        _type     = "bar",
+        stack     = "gantt",
+        data      = duration_data,
+    )
 
     ec = newplot(kwargs, ec_charttype = "gantt")
-    ec.xAxis = [Axis(_type = "time")]
+    ec.xAxis = [Axis(_type     = "value",
+                     min       = 0,
+                     axisLabel = AxisLabel(formatter = JSON.JSONText(formatter_js)))]
     ec.yAxis = [Axis(_type = "category", data = collect(tasks))]
-    ec.series = [XYSeries(name = "Tasks", _type = "bar", data = data)]
+    ec.series = [spacer, bars]
 
     legend ? legend!(ec) : nothing
 
