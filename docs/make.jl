@@ -32,6 +32,7 @@ makedocs(
     pages = [
         "Home" => "index.md",
         "Charts" => [
+            "charts/arc_diagram.md",
             "charts/area.md",
             "charts/bar.md",
             "charts/beeswarm.md",

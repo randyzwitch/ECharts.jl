@@ -42,6 +42,7 @@ module ECharts
 	export parallel
 	export effectscatter
 	export graph
+	export arc_diagram
 	export calendar_heatmap
 	export punchcard
 	export beeswarm
@@ -116,6 +117,7 @@ module ECharts
 	include("plots/parallel.jl")
 	include("plots/effectscatter.jl")
 	include("plots/graph.jl")
+	include("plots/arc_diagram.jl")
 	include("plots/calendar_heatmap.jl")
 	include("plots/punchcard.jl")
 	include("plots/beeswarm.jl")
