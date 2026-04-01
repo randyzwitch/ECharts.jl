@@ -360,6 +360,15 @@ es_x = randn(20)
 es_y = randn(20)
 result_effectscatter = effectscatter(es_x, es_y)
 @test typeof(result_effectscatter) == EChart
+
+es2 = effectscatter(es_x, hcat(es_y, randn(20)))
+@test typeof(es2) == EChart
+
+es_df = effectscatter(mtcars, :MPG, :HP)
+@test typeof(es_df) == EChart
+
+es_grp = effectscatter(mtcars, :MPG, :HP, :Cyl)
+@test typeof(es_grp) == EChart
 # graph
 g_nodes = ["A", "B", "C", "D"]
 g_links = [["A", "B"], ["B", "C"], ["C", "D"], ["D", "A"]]
