@@ -25,8 +25,8 @@ function histogram(h::StatsBase.Histogram;
     if length(h.edges) == 1
         #Create labels for bins
         edges = collect(h.edges[1])
-        h.closed == :left ? left = "[" : left = "("
-        left == "[" ? right = ")" : right = "]"
+        left  = h.closed == :left ? "[" : "("
+        right = left == "[" ? ")" : "]"
         labels = []
         for i in 1:length(edges)-1
             push!(labels, string(left, edges[i], " - ", edges[i + 1], right))

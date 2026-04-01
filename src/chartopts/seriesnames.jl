@@ -38,8 +38,8 @@ function seriesnames!(ec::EChart, names::AbstractVector{String})
 
     length(ec.series) != length(names) ? error("Names not equal to number of Series") : nothing
 
-    for i in 1:length(ec.series)
-        ec.series[i].name = names[i]
+    for (s, name) in zip(ec.series, names)
+        s.name = name
     end
 
     #Modify legend attribute to use new seriesnames, if one exists
