@@ -425,3 +425,13 @@ result_bullet = bullet(bl_labels, bl_actual, bl_target, bl_ranges)
 @test length(result_bullet.series) == 2  # actual bar + target scatter
 @test_throws ArgumentError bullet(bl_labels, bl_actual, bl_target, [100.0, 60.0, 80.0])  # not sorted
 @test_throws ArgumentError bullet(bl_labels, bl_actual, [80.0, 70.0], bl_ranges)  # wrong length target
+# span_chart
+sc_cats  = ["Jan", "Feb", "Mar", "Apr", "May"]
+sc_lows  = [2.0, 3.0, 8.0, 14.0, 18.0]
+sc_highs = [10.0, 12.0, 18.0, 22.0, 27.0]
+result_span = span_chart(sc_cats, sc_lows, sc_highs)
+@test typeof(result_span) == EChart
+@test length(result_span.series) == 2  # spacer + visible span
+@test result_span.series[1].itemStyle.color == "transparent"
+@test_throws ArgumentError span_chart(sc_cats, sc_highs, sc_lows)  # lows > highs
+@test_throws ArgumentError span_chart(sc_cats, sc_lows, [1.0, 2.0])  # wrong length

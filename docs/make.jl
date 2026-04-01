@@ -62,6 +62,7 @@ makedocs(
             "charts/ridgeline.md",
             "charts/sankey.md",
             "charts/scatter.md",
+            "charts/span_chart.md",
             "charts/streamgraph.md",
             "charts/sunburst.md",
             "charts/tree.md",
