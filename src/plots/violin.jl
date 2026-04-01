@@ -27,7 +27,7 @@ function violin(groups::AbstractVector, values::AbstractVector{<:Real};
                 kwargs...)
 
     group_labels = unique(groups)
-    series_list = []
+    series_list = XYSeries[]
 
     for (pos, grp) in enumerate(group_labels)
         idx = findall(==(grp), groups)
@@ -54,7 +54,13 @@ function violin(groups::AbstractVector, values::AbstractVector{<:Real};
     end
 
     ec = newplot(kwargs, ec_charttype = "violin")
-    ec.xAxis = [Axis(_type = "value")]
+    ec.xAxis = [Axis(_type = "value",
+                     min = 0,
+                     max = length(group_labels) + 1,
+                     axisLabel = AxisLabel(formatter = JSON.JSONText(
+                         "(function(v){ var labels=" *
+                         JSON.json(string.(group_labels)) *
+                         "; return labels[Math.round(v)-1] || ''; })")))]
     ec.yAxis = [Axis(_type = "value")]
     ec.series = series_list
 

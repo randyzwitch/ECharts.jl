@@ -13,23 +13,23 @@ ridgeline(groups::AbstractVector{String}, data::AbstractVector{<:AbstractVector}
 * `npoints::Int = 200` : number of KDE evaluation points per group
 * `overlap::Real = 0.6` : fraction of the per-group y-range used as the vertical offset
                            between successive groups (0 = no overlap, 1 = full overlap)
-* `legend::Bool = false` : display legend?
+* `legend::Bool = true` : display legend?
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
 
 `groups` and `data` must be the same length. `data[i]` is the vector of observations for
-`groups[i]`. Each group's KDE is rendered as a filled line series at a fixed y-offset;
-group labels are placed on the y-axis at those offsets.
+`groups[i]`. Each group's KDE is rendered as a filled line series at a fixed y-offset.
+The legend is shown by default since the y-axis displays numeric density offsets, not group names.
 """
 function ridgeline(groups::AbstractVector{String},
                    data::AbstractVector{<:AbstractVector};
                    npoints::Int = 200,
                    overlap::Real = 0.6,
-                   legend::Bool = false,
+                   legend::Bool = true,
                    kwargs...)
 
-    series_list = []
+    series_list = XYSeries[]
     offset      = 0.0
     step        = 1.0
 
