@@ -49,6 +49,7 @@ module ECharts
 	export gantt
 	export ridgeline
 	export violin
+	export nightingale
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -120,6 +121,7 @@ module ECharts
 	include("plots/gantt.jl")
 	include("plots/ridgeline.jl")
 	include("plots/violin.jl")
+	include("plots/nightingale.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
