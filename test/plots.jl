@@ -435,3 +435,13 @@ result_span = span_chart(sc_cats, sc_lows, sc_highs)
 @test result_span.series[1].itemStyle.color == "transparent"
 @test_throws ArgumentError span_chart(sc_cats, sc_highs, sc_lows)  # lows > highs
 @test_throws ArgumentError span_chart(sc_cats, sc_lows, [1.0, 2.0])  # wrong length
+# arc_diagram
+ad_nodes = ["Alice", "Bob", "Carol", "Dave", "Eve"]
+ad_links = [["Alice","Bob"], ["Alice","Carol"], ["Bob","Dave"], ["Carol","Eve"]]
+result_arc = arc_diagram(ad_nodes, ad_links)
+@test typeof(result_arc) == EChart
+ad_weights = [5.0, 3.0, 8.0, 2.0]
+result_arc_w = arc_diagram(ad_nodes, ad_links, ad_weights)
+@test typeof(result_arc_w) == EChart
+@test_throws ArgumentError arc_diagram(ad_nodes, ad_links, [1.0, 2.0])  # wrong length
+>>>>>>> 615de01 (Add arc diagram chart type)
