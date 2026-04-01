@@ -378,7 +378,7 @@ result_graph = graph(g_nodes, g_links)
 using Dates
 cal_dates = [Date(2023, 1, 1) + Day(i) for i in 0:364]
 cal_values = rand(365)
-result_cal = calendar_heatmap(cal_dates, cal_values, 2023)
+result_cal = calendarheatmap(cal_dates, cal_values, 2023)
 @test typeof(result_cal) == EChart
 # punchcard
 pc_x = repeat(["Mon", "Tue", "Wed", "Thu", "Fri"], 3)
@@ -395,7 +395,7 @@ result_beeswarm = beeswarm(bs_cats, bs_vals)
 pp_ages = ["0-9", "10-19", "20-29", "30-39"]
 pp_male = [100, 120, 130, 110]
 pp_female = [95, 115, 125, 105]
-result_pyramid = population_pyramid(pp_ages, pp_male, pp_female)
+result_pyramid = populationpyramid(pp_ages, pp_male, pp_female)
 @test typeof(result_pyramid) == EChart
 # gantt
 using Dates
@@ -438,18 +438,18 @@ result_bullet = bullet(bl_labels, bl_actual, bl_target, bl_ranges)
 sc_cats  = ["Jan", "Feb", "Mar", "Apr", "May"]
 sc_lows  = [2.0, 3.0, 8.0, 14.0, 18.0]
 sc_highs = [10.0, 12.0, 18.0, 22.0, 27.0]
-result_span = span_chart(sc_cats, sc_lows, sc_highs)
+result_span = spanchart(sc_cats, sc_lows, sc_highs)
 @test typeof(result_span) == EChart
 @test length(result_span.series) == 2  # spacer + visible span
 @test result_span.series[1].itemStyle.color == "transparent"
-@test_throws ArgumentError span_chart(sc_cats, sc_highs, sc_lows)  # lows > highs
-@test_throws ArgumentError span_chart(sc_cats, sc_lows, [1.0, 2.0])  # wrong length
+@test_throws ArgumentError spanchart(sc_cats, sc_highs, sc_lows)  # lows > highs
+@test_throws ArgumentError spanchart(sc_cats, sc_lows, [1.0, 2.0])  # wrong length
 # arc_diagram
 ad_nodes = ["Alice", "Bob", "Carol", "Dave", "Eve"]
 ad_links = [["Alice","Bob"], ["Alice","Carol"], ["Bob","Dave"], ["Carol","Eve"]]
-result_arc = arc_diagram(ad_nodes, ad_links)
+result_arc = arcdiagram(ad_nodes, ad_links)
 @test typeof(result_arc) == EChart
 ad_weights = [5.0, 3.0, 8.0, 2.0]
-result_arc_w = arc_diagram(ad_nodes, ad_links, ad_weights)
+result_arc_w = arcdiagram(ad_nodes, ad_links, ad_weights)
 @test typeof(result_arc_w) == EChart
-@test_throws ArgumentError arc_diagram(ad_nodes, ad_links, [1.0, 2.0])  # wrong length
+@test_throws ArgumentError arcdiagram(ad_nodes, ad_links, [1.0, 2.0])  # wrong length
