@@ -532,3 +532,25 @@ lp_df2 = DataFrame(day = vcat(lp_cats, lp_cats),
                    group = vcat(fill("A", 5), fill("B", 5)))
 result_lollipop_grp = lollipop(lp_df2, :day, :sales, :group)
 @test typeof(result_lollipop_grp) == EChart
+
+# slope
+slope_labels = ["2015", "2023"]
+slope_vals = [4.6  3.0;
+              10.4  7.3;
+              22.1 12.2]
+result_slope = slope(slope_labels, slope_vals)
+@test typeof(result_slope) == EChart
+@test length(result_slope.series) == 3
+@test result_slope.xAxis[1]._type == "category"
+
+@test_throws ArgumentError slope(["2015", "2020", "2023"], slope_vals)  # too many labels
+@test_throws ArgumentError slope(slope_labels, hcat(slope_vals, slope_vals[:,1]))  # 3 cols
+
+slope_df = DataFrame(
+    country   = ["Germany", "France", "Spain"],
+    rate_2015 = [4.6, 10.4, 22.1],
+    rate_2023 = [3.0,  7.3, 12.2],
+)
+result_slope_df = slope(slope_df, :country, :rate_2015, :rate_2023)
+@test typeof(result_slope_df) == EChart
+@test result_slope_df.series[1].name == "Germany"
