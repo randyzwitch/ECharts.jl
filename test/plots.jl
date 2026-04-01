@@ -444,4 +444,3 @@ ad_weights = [5.0, 3.0, 8.0, 2.0]
 result_arc_w = arc_diagram(ad_nodes, ad_links, ad_weights)
 @test typeof(result_arc_w) == EChart
 @test_throws ArgumentError arc_diagram(ad_nodes, ad_links, [1.0, 2.0])  # wrong length
->>>>>>> 615de01 (Add arc diagram chart type)
