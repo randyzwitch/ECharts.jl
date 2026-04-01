@@ -1,4 +1,9 @@
-# candlestick
+# candlestick (OHLC)
+
+!!! note "OHLC charts"
+    Candlestick charts and OHLC (Open-High-Low-Close) charts display the same
+    four-value financial data. `candlestick` is the ECharts native implementation
+    of this chart type; there is no separate `ohlc` function.
 
 ```@docs
 candlestick

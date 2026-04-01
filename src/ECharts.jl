@@ -21,7 +21,7 @@ module ECharts
 	export colorpalettes
 
 	export EChart, EChartRaw, echart, @echart
-	export BoxPlotSeries, CandleStickSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
+	export BoxPlotSeries, CandleStickSeries, ChordSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
 	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
 	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
 	export Title, Axis, Toolbox, DataZoom
@@ -53,6 +53,8 @@ module ECharts
 	export nightingale
 	export bullet
 	export spanchart
+	export chord
+	export singleaxis
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -128,6 +130,8 @@ module ECharts
 	include("plots/nightingale.jl")
 	include("plots/bullet.jl")
 	include("plots/span_chart.jl")
+	include("plots/chord.jl")
+	include("plots/single_axis.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
