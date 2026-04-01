@@ -30,4 +30,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REF: refs/tags/${{ github.event.inputs.tag }}
+          GITHUB_EVENT_NAME: push
         run: julia --project=docs docs/make.jl
