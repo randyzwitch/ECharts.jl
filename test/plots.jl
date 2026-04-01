@@ -407,3 +407,11 @@ result_violin = violin(vio_groups, vio_values)
 @test typeof(result_violin) == EChart
 result_violin_single = violin(randn(50))
 @test typeof(result_violin_single) == EChart
+# nightingale
+ng_labels = ["A", "B", "C", "D", "E"]
+ng_values = [42.0, 32.0, 26.0, 18.0, 12.0]
+result_nightingale = nightingale(ng_labels, ng_values)
+@test typeof(result_nightingale) == EChart
+result_nightingale_area = nightingale(ng_labels, ng_values, rose_type = "area")
+@test typeof(result_nightingale_area) == EChart
+@test_throws ArgumentError nightingale(ng_labels, ng_values, rose_type = "invalid")
