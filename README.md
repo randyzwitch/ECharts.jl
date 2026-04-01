@@ -21,10 +21,11 @@ The API is intentionally opinionated — sensible defaults handle the boilerplat
 
 | Category | Charts |
 |---|---|
-| Basic | `bar`, `line`, `area`, `scatter`, `bubble` |
-| Statistical | `histogram`, `box`, `corrplot`, `streamgraph` |
-| Part-of-whole | `pie`, `donut`, `funnel`, `waterfall`, `radialbar` |
-| Specialized | `candlestick`, `gauge`, `radar`, `polar`, `sankey` |
+| Basic | [`bar`](https://randyzwitch.com/ECharts.jl/charts/bar/), [`line`](https://randyzwitch.com/ECharts.jl/charts/line/), [`area`](https://randyzwitch.com/ECharts.jl/charts/area/), [`scatter`](https://randyzwitch.com/ECharts.jl/charts/scatter/), [`bubble`](https://randyzwitch.com/ECharts.jl/charts/bubble/), [`effectscatter`](https://randyzwitch.com/ECharts.jl/charts/effectscatter/) |
+| Statistical | [`histogram`](https://randyzwitch.com/ECharts.jl/charts/histogram/), [`box`](https://randyzwitch.com/ECharts.jl/charts/box/), [`corrplot`](https://randyzwitch.com/ECharts.jl/charts/corrplot/), [`streamgraph`](https://randyzwitch.com/ECharts.jl/charts/streamgraph/), [`beeswarm`](https://randyzwitch.com/ECharts.jl/charts/beeswarm/), [`ridgeline`](https://randyzwitch.com/ECharts.jl/charts/ridgeline/), [`violin`](https://randyzwitch.com/ECharts.jl/charts/violin/) |
+| Part-of-whole | [`pie`](https://randyzwitch.com/ECharts.jl/charts/pie/), [`donut`](https://randyzwitch.com/ECharts.jl/charts/donut/), [`funnel`](https://randyzwitch.com/ECharts.jl/charts/funnel/), [`waterfall`](https://randyzwitch.com/ECharts.jl/charts/waterfall/), [`radialbar`](https://randyzwitch.com/ECharts.jl/charts/radialbar/), [`nightingale`](https://randyzwitch.com/ECharts.jl/charts/nightingale/) |
+| Hierarchical / Network | [`treemap`](https://randyzwitch.com/ECharts.jl/charts/treemap/), [`sunburst`](https://randyzwitch.com/ECharts.jl/charts/sunburst/), [`tree`](https://randyzwitch.com/ECharts.jl/charts/tree/), [`sankey`](https://randyzwitch.com/ECharts.jl/charts/sankey/), [`graph`](https://randyzwitch.com/ECharts.jl/charts/graph/), [`arc_diagram`](https://randyzwitch.com/ECharts.jl/charts/arc_diagram/) |
+| Specialized | [`candlestick`](https://randyzwitch.com/ECharts.jl/charts/candlestick/), [`gauge`](https://randyzwitch.com/ECharts.jl/charts/gauge/), [`radar`](https://randyzwitch.com/ECharts.jl/charts/radar/), [`polar`](https://randyzwitch.com/ECharts.jl/charts/polar/), [`parallel`](https://randyzwitch.com/ECharts.jl/charts/parallel/), [`heatmap`](https://randyzwitch.com/ECharts.jl/charts/heatmap/), [`calendar_heatmap`](https://randyzwitch.com/ECharts.jl/charts/calendar_heatmap/), [`punchcard`](https://randyzwitch.com/ECharts.jl/charts/punchcard/), [`gantt`](https://randyzwitch.com/ECharts.jl/charts/gantt/), [`bullet`](https://randyzwitch.com/ECharts.jl/charts/bullet/), [`span_chart`](https://randyzwitch.com/ECharts.jl/charts/span_chart/), [`population_pyramid`](https://randyzwitch.com/ECharts.jl/charts/population_pyramid/), [`xy_plot`](https://randyzwitch.com/ECharts.jl/charts/xy_plot/) |
 
 ## Workflow
 
