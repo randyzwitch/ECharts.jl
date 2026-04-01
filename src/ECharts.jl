@@ -51,6 +51,7 @@ module ECharts
 	export violin
 	export nightingale
 	export bullet
+	export span_chart
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -124,6 +125,7 @@ module ECharts
 	include("plots/violin.jl")
 	include("plots/nightingale.jl")
 	include("plots/bullet.jl")
+	include("plots/span_chart.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
