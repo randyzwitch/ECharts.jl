@@ -99,7 +99,7 @@ function bullet(labels::AbstractVector,
 	)
 
 	ec = newplot(kwargs, ec_charttype = "bullet")
-	ec.xAxis = [Axis(_type = "value", max = Float64(ranges[end]))]
+	ec.xAxis = [Axis(_type = "value", max = ceil(Int, ranges[end]))]
 	ec.yAxis = [Axis(_type = "category", data = string.(labels),
 					 inverse = true)]
 	ec.series = [actual_series, target_series]
