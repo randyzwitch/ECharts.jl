@@ -415,3 +415,13 @@ result_nightingale = nightingale(ng_labels, ng_values)
 result_nightingale_area = nightingale(ng_labels, ng_values, rose_type = "area")
 @test typeof(result_nightingale_area) == EChart
 @test_throws ArgumentError nightingale(ng_labels, ng_values, rose_type = "invalid")
+# bullet
+bl_labels = ["Revenue", "Profit", "Satisfaction"]
+bl_actual = [75.0, 62.0, 81.0]
+bl_target = [80.0, 70.0, 85.0]
+bl_ranges = [60.0, 80.0, 100.0]
+result_bullet = bullet(bl_labels, bl_actual, bl_target, bl_ranges)
+@test typeof(result_bullet) == EChart
+@test length(result_bullet.series) == 2  # actual bar + target scatter
+@test_throws ArgumentError bullet(bl_labels, bl_actual, bl_target, [100.0, 60.0, 80.0])  # not sorted
+@test_throws ArgumentError bullet(bl_labels, bl_actual, [80.0, 70.0], bl_ranges)  # wrong length target
