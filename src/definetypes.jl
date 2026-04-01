@@ -1157,6 +1157,42 @@ ECharts series configuration for Sankey flow diagrams.
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
+    ChordSeries
+
+ECharts series configuration for chord diagrams showing bidirectional flow between nodes.
+"""
+@with_kw mutable struct ChordSeries <: AbstractEChartSeries
+    _type::String = "chord"
+    name::Union{String, Nothing} = nothing
+    legendHoverLink::Union{Bool, Nothing} = nothing
+    colorBy::Union{String, Nothing} = nothing
+    center::Union{AbstractVector, Nothing} = nothing
+    radius::Union{AbstractVector, Nothing} = nothing
+    clockwise::Union{Bool, Nothing} = nothing
+    startAngle::Union{Number, Nothing} = nothing
+    endAngle::Union{Any, Nothing} = nothing
+    minAngle::Union{Number, Nothing} = nothing
+    padAngle::Union{Number, Nothing} = nothing
+    itemStyle::Union{ItemStyle, Nothing} = nothing
+    lineStyle::Union{LineStyle, Nothing} = nothing
+    label::Union{Label, Nothing} = nothing
+    emphasis::Union{Dict, Nothing} = nothing
+    data::Union{AbstractVector, Nothing} = nothing
+    links::Union{AbstractVector, Nothing} = nothing
+    zlevel::Union{Int, Nothing} = nothing
+    z::Union{Int, Nothing} = nothing
+    silent::Union{Bool, Nothing} = nothing
+    animation::Union{Bool, Nothing} = nothing
+    animationThreshold::Union{Int, Nothing} = nothing
+    animationDuration::Union{Int, Nothing} = nothing
+    animationEasing::Union{String, Nothing} = nothing
+    animationDelay::Union{Int, JSON.JSONText, Nothing} = nothing
+    animationDurationUpdate::Union{Int, Nothing} = nothing
+    animationEasingUpdate::Union{Dict, Nothing} = nothing
+    animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
+    tooltip::Union{Tooltip, Nothing} = nothing
+end
+"""
     GraphSeries
 
 ECharts series configuration for graph / network relationship charts.
