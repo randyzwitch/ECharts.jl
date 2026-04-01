@@ -1,6 +1,6 @@
 name = "ECharts"
 uuid = "f9630f5b-a116-5b0c-bd6c-4699aee17694"
-version = "0.7.1"
+version = "0.8.0"
 
 [deps]
 ColorBrewer = "a2cac450-b92f-5266-8821-25eda20663c8"
