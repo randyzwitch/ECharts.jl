@@ -43,3 +43,19 @@ function populationpyramid(ages::AbstractVector{String},
     return ec
 
 end
+
+"""
+    populationpyramid(df, ages, male, female)
+
+Creates an `EChart` population pyramid from columns `ages`, `male`, and `female` in table `df`.
+See the primary `populationpyramid` method for full argument documentation.
+"""
+function populationpyramid(df, ages::Symbol, male::Symbol, female::Symbol;
+                            legend::Bool = true,
+                            male_name::String = "Male",
+                            female_name::String = "Female",
+                            kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    populationpyramid(_table_col(df, ages), _table_col(df, male), _table_col(df, female);
+                      legend = legend, male_name = male_name, female_name = female_name, kwargs...)
+end

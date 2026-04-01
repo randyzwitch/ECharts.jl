@@ -54,3 +54,18 @@ function beeswarm(categories::AbstractVector, values::AbstractVector{<:Real};
     return ec
 
 end
+
+"""
+    beeswarm(df, categories, values)
+
+Creates an `EChart` beeswarm plot from columns `categories` and `values` in table `df`.
+See the primary `beeswarm` method for full argument documentation.
+"""
+function beeswarm(df, categories::Symbol, values::Symbol;
+                  jitter_width::Real = 0.3,
+                  legend::Bool = false,
+                  kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    beeswarm(_table_col(df, categories), _table_col(df, values);
+             jitter_width = jitter_width, legend = legend, kwargs...)
+end

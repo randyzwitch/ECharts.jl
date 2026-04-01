@@ -44,3 +44,18 @@ function punchcard(x::AbstractVector, y::AbstractVector,
     return ec
 
 end
+
+"""
+    punchcard(df, x, y, sizes)
+
+Creates an `EChart` punchcard chart from columns `x`, `y`, and `sizes` in table `df`.
+See the primary `punchcard` method for full argument documentation.
+"""
+function punchcard(df, x::Symbol, y::Symbol, sizes::Symbol;
+                   scale::Real = 10,
+                   legend::Bool = false,
+                   kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    punchcard(_table_col(df, x), _table_col(df, y), _table_col(df, sizes);
+              scale = scale, legend = legend, kwargs...)
+end

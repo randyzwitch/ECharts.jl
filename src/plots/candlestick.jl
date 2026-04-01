@@ -59,3 +59,19 @@ candlestick(dt::AbstractVector{<:Dates.TimeType},
                      legend::Bool = false,
                      scale::Bool = true,
                      kwargs...) = candlestick(string.(dt), open, close, low, high; legend = legend, scale = scale, kwargs...)
+
+"""
+    candlestick(df, dt, open, close, low, high)
+
+Creates an `EChart` candlestick chart from columns in table `df`.
+See the primary `candlestick` method for full argument documentation.
+"""
+function candlestick(df, dt::Symbol, open::Symbol, close::Symbol, low::Symbol, high::Symbol;
+                     legend::Bool = false,
+                     scale::Bool = true,
+                     kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    candlestick(_table_col(df, dt), _table_col(df, open), _table_col(df, close),
+                _table_col(df, low), _table_col(df, high);
+                legend = legend, scale = scale, kwargs...)
+end

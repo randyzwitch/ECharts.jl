@@ -10,3 +10,11 @@ groups = vcat(fill("A", 50), fill("B", 50), fill("C", 50))
 values = vcat(randn(50), randn(50) .+ 2, randn(50) .- 1)
 violin(groups, values)
 ```
+
+```@example
+using ECharts, DataFrames, Random
+Random.seed!(42)
+df = DataFrame(group = vcat(fill("A", 50), fill("B", 50), fill("C", 50)),
+               value = vcat(randn(50), randn(50) .+ 2, randn(50) .- 1))
+violin(df, :group, :value)
+```

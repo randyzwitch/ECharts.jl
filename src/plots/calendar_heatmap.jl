@@ -45,3 +45,18 @@ function calendarheatmap(dates::AbstractVector{Dates.Date},
     return ec
 
 end
+
+"""
+    calendarheatmap(df, dates, values, year)
+
+Creates an `EChart` calendar heatmap from columns `dates` and `values` in table `df`.
+See the primary `calendarheatmap` method for full argument documentation.
+"""
+function calendarheatmap(df, dates::Symbol, values::Symbol, year::Int;
+                          show::Bool = true,
+                          calculable::Bool = true,
+                          kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    calendarheatmap(_table_col(df, dates), _table_col(df, values), year;
+                    show = show, calculable = calculable, kwargs...)
+end
