@@ -22,6 +22,6 @@ data = [
     240.0  23.0  49.0  7.8  41.0;   # SUV B
     320.0  17.0  55.0  6.5  62.0;   # SUV C
 ]
-dims = ["Horsepower", "MPG", "Weight (100 lbs)", "0-60 (sec)", "Price ($k)"]
+dims = ["Horsepower", "MPG", "Weight (100 lbs)", "0-60 (sec)", "Price (\$k)"]
 parallel(data, dims)
 ```
