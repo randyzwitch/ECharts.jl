@@ -78,3 +78,18 @@ See the primary `violin` method for full argument documentation.
 """
 violin(data::AbstractVector{<:Real}; kwargs...) =
     violin(fill("1", length(data)), data; kwargs...)
+
+"""
+    violin(df, groups, values)
+
+Creates an `EChart` violin plot from columns `groups` and `values` in table `df`.
+See the primary `violin` method for full argument documentation.
+"""
+function violin(df, groups::Symbol, values::Symbol;
+                npoints::Int = 100,
+                legend::Bool = false,
+                kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    violin(_table_col(df, groups), _table_col(df, values);
+           npoints = npoints, legend = legend, kwargs...)
+end

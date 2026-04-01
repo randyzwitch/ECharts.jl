@@ -103,3 +103,23 @@ function sankey(names::AbstractVector,
 end
 
 sankey(datafile::AbstractString; kwargs...) = sankey(parse_sankey(datafile)...; kwargs...)
+
+"""
+    sankey(df, source, target, value)
+
+Creates an `EChart` sankey diagram from columns `source`, `target`, and `value` in table `df`.
+The `source` and `target` columns should contain node names as strings; unique names are
+automatically collected and converted to integer indices.
+See the primary `sankey` method for full argument documentation.
+"""
+function sankey(df, source::Symbol, target::Symbol, value::Symbol; kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    source_col = _table_col(df, source)
+    target_col = _table_col(df, target)
+    value_col  = _table_col(df, value)
+    names = unique(vcat(source_col, target_col))
+    name_idx = Dict(n => i - 1 for (i, n) in enumerate(names))
+    source_idx = [name_idx[s] for s in source_col]
+    target_idx = [name_idx[t] for t in target_col]
+    sankey(names, source_idx, target_idx, value_col; kwargs...)
+end

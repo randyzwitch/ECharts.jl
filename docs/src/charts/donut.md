@@ -10,3 +10,10 @@ x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
 donut(x, y)
 ```
+
+```@example
+using ECharts, DataFrames
+df = DataFrame(day   = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+               count = [11, 11, 15, 13, 12, 13, 10])
+donut(df, :day, :count)
+```

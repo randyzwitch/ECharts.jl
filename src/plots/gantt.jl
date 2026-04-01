@@ -65,3 +65,17 @@ function gantt(tasks::AbstractVector{String},
     return ec
 
 end
+
+"""
+    gantt(df, tasks, start_dates, end_dates)
+
+Creates an `EChart` Gantt chart from columns `tasks`, `start_dates`, and `end_dates` in table `df`.
+See the primary `gantt` method for full argument documentation.
+"""
+function gantt(df, tasks::Symbol, start_dates::Symbol, end_dates::Symbol;
+               legend::Bool = false,
+               kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    gantt(_table_col(df, tasks), _table_col(df, start_dates), _table_col(df, end_dates);
+          legend = legend, kwargs...)
+end

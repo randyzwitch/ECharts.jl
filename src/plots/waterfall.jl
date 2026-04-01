@@ -41,3 +41,17 @@ function waterfall(x::AbstractVector, y::AbstractVector{<:Real};
 
     return ec
 end
+
+"""
+    waterfall(df, x, y)
+
+Creates an `EChart` waterfall chart from columns `x` and `y` in table `df`.
+See the primary `waterfall` method for full argument documentation.
+"""
+function waterfall(df, x::Symbol, y::Symbol;
+                   legend::Bool = false,
+                   scale::Bool = false,
+                   kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    waterfall(_table_col(df, x), _table_col(df, y); legend = legend, scale = scale, kwargs...)
+end

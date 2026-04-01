@@ -62,3 +62,21 @@ function nightingale(labels::AbstractVector, values::AbstractVector{<:Real};
     legend ? legend!(ec) : nothing
     return ec
 end
+
+"""
+    nightingale(df, labels, values)
+
+Creates an `EChart` nightingale rose chart from columns `labels` and `values` in table `df`.
+See the primary `nightingale` method for full argument documentation.
+"""
+function nightingale(df, labels::Symbol, values::Symbol;
+                     rose_type::String = "radius",
+                     radius::AbstractVector{String} = ["20%", "75%"],
+                     center::AbstractVector{String} = ["50%", "50%"],
+                     legend::Bool = true,
+                     kwargs...)
+    Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
+    nightingale(_table_col(df, labels), _table_col(df, values);
+                rose_type = rose_type, radius = radius, center = center,
+                legend = legend, kwargs...)
+end
