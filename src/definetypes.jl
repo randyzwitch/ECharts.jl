@@ -1626,6 +1626,31 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     largeThreshold::Union{Int, Nothing} = nothing
 end
 """
+    CustomSeries
+
+ECharts series configuration for custom-rendered charts. The `renderItem` field accepts
+a `JSON.JSONText`-wrapped JavaScript function string that ECharts calls for each data
+point to produce SVG/canvas primitives (rect, circle, etc.).
+
+Used internally by [`marimekko`](@ref).
+"""
+@with_kw mutable struct CustomSeries <: AbstractEChartSeries
+    _type::String = "custom"
+    name::Union{String, Nothing} = nothing
+    renderItem::Union{JSON.JSONText, Nothing} = nothing
+    itemStyle::Union{ItemStyle, Nothing} = nothing
+    label::Union{Label, Nothing} = nothing
+    encode::Union{Dict, Nothing} = nothing
+    data::Union{AbstractVector, Nothing} = nothing
+    xAxisIndex::Union{Int, Nothing} = nothing
+    yAxisIndex::Union{Int, Nothing} = nothing
+    zlevel::Union{Int, Nothing} = nothing
+    z::Union{Int, Nothing} = nothing
+    silent::Union{Bool, Nothing} = nothing
+    animation::Union{Bool, Nothing} = nothing
+    tooltip::Union{Tooltip, Nothing} = nothing
+end
+"""
     EChart
 
 The main chart struct returned by all ECharts.jl chart constructors (e.g. [`bar`](@ref),

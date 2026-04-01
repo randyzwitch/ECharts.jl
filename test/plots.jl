@@ -554,3 +554,29 @@ slope_df = DataFrame(
 result_slope_df = slope(slope_df, :country, :rate_2015, :rate_2023)
 @test typeof(result_slope_df) == EChart
 @test result_slope_df.series[1].name == "Germany"
+
+# marimekko
+mm_cats = ["North", "South", "East", "West"]
+mm_subs = ["Product A", "Product B", "Product C"]
+mm_vals = [40.0 30.0 20.0 10.0;
+           25.0 35.0 15.0 25.0;
+           35.0 35.0 65.0 65.0]
+result_marimekko = marimekko(mm_cats, mm_subs, mm_vals)
+@test typeof(result_marimekko) == EChart
+@test length(result_marimekko.series) == 3  # one CustomSeries per subcategory
+@test result_marimekko.series[1]._type == "custom"
+@test result_marimekko.series[1].name == "Product A"
+@test result_marimekko.xAxis[1]._type == "value"
+
+@test_throws ArgumentError marimekko(["A", "B"], mm_subs, mm_vals)  # wrong categories length
+@test_throws ArgumentError marimekko(mm_cats, ["X"], mm_vals)        # wrong subcategories length
+@test_throws ArgumentError marimekko(mm_cats, mm_subs, -1 .* mm_vals) # negative values
+
+mm_df = DataFrame(
+    region  = repeat(["North","South","East","West"], inner = 3),
+    product = repeat(["A","B","C"], outer = 4),
+    revenue = [40.0, 25.0, 35.0, 30.0, 35.0, 35.0, 20.0, 15.0, 65.0, 10.0, 25.0, 65.0],
+)
+result_marimekko_df = marimekko(mm_df, :region, :product, :revenue)
+@test typeof(result_marimekko_df) == EChart
+@test length(result_marimekko_df.series) == 3
