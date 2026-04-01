@@ -37,6 +37,7 @@ makedocs(
             "charts/beeswarm.md",
             "charts/box.md",
             "charts/bubble.md",
+            "charts/bullet.md",
             "charts/calendar_heatmap.md",
             "charts/candlestick.md",
             "charts/corrplot.md",
