@@ -481,3 +481,31 @@ pb_df2 = DataFrame(day = vcat(pb_cats, pb_cats),
                    sales = vcat(pb_vals, 0.8 .* pb_vals),
                    group = vcat(fill("A", 7), fill("B", 7)))
 @test typeof(polarbar(pb_df2, :day, :sales, :group)) == EChart
+
+# bump
+bump_periods = ["2019", "2020", "2021", "2022", "2023"]
+bump_vals = [82.0 75.0 60.0;
+             74.0 88.0 65.0;
+             68.0 95.0 72.0;
+             91.0 70.0 80.0;
+             85.0 78.0 92.0]
+result_bump = bump(bump_periods, bump_vals)
+@test typeof(result_bump) == EChart
+@test result_bump.yAxis[1].inverse == true
+@test result_bump.yAxis[1].min == 1
+@test length(result_bump.series) == 3
+
+result_bump_named = bump(bump_periods, bump_vals, names = ["A", "B", "C"])
+@test typeof(result_bump_named) == EChart
+@test result_bump_named.series[1].name == "A"
+
+@test_throws ArgumentError bump(bump_periods, bump_vals, names = ["A", "B"])  # wrong length
+@test_throws ArgumentError bump(["2019", "2020"], bump_vals)  # mismatched periods
+
+bump_df = DataFrame(
+    year  = repeat(2019:2023, inner = 3),
+    brand = repeat(["Alpha", "Beta", "Gamma"], outer = 5),
+    sales = [82.0, 75.0, 60.0, 74.0, 88.0, 65.0, 68.0, 95.0, 72.0, 91.0, 70.0, 80.0, 85.0, 78.0, 92.0],
+)
+result_bump_df = bump(bump_df, :year, :sales, :brand)
+@test typeof(result_bump_df) == EChart

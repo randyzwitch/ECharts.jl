@@ -31,6 +31,7 @@ module ECharts
 	export Theme, VisualMap
 
 	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall
+	export bump
 	export box, candlestick, sankey
 	export radar, funnel
 	export pie, donut, gauge, polar
@@ -133,6 +134,7 @@ module ECharts
 	include("plots/span_chart.jl")
 	include("plots/chord.jl")
 	include("plots/single_axis.jl")
+	include("plots/bump.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into

@@ -36,6 +36,7 @@ makedocs(
             "charts/area.md",
             "charts/bar.md",
             "charts/beeswarm.md",
+            "charts/bump.md",
             "charts/box.md",
             "charts/bubble.md",
             "charts/bullet.md",
