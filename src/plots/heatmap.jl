@@ -28,8 +28,8 @@ function heatmap(h::StatsBase.Histogram;
     xedges = collect(h.edges[1])
     yedges = collect(h.edges[2])
 
-    h.closed == :left ? left = "[" : left = "("
-    left == "[" ? right = ")" : right = "]"
+    left  = h.closed == :left ? "[" : "("
+    right = left == "[" ? ")" : "]"
 
     xlabels = []
     for i in 1:length(xedges)-1

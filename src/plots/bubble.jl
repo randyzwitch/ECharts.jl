@@ -51,7 +51,9 @@ function bubble(x::AbstractVector{<:Union{Missing, Real}},
 
 		normalized = maximum(sqrt.(size))
 
-		[x.symbolSize =  JSON.JSONText("""function (data) {return $bubblesize * Math.sqrt(data[2]) / ($normalized);}""") for x in ec.series]
+		for s in ec.series
+			s.symbolSize = JSON.JSONText("""function (data) {return $bubblesize * Math.sqrt(data[2]) / ($normalized);}""")
+		end
 
 		shadow!(ec)
 
@@ -132,11 +134,11 @@ function bubble(df, x::Symbol, y::Symbol, size::Symbol, group::Symbol;
 			seriesnames!(ec, [string(groups[i][1]) for i in 1:numgroups])
 
 			#Add legend if desired
-			legend == true ? legend!(ec) : nothing
+			legend ? legend!(ec) : nothing
 
 			#Enable optimization for lots of data
-			[x.large = large for x in ec.series]
-			[x.largeThreshold = largeThreshold for x in ec.series]
+			for s in ec.series; s.large = large; end
+			for s in ec.series; s.largeThreshold = largeThreshold; end
 
 			shadow!(ec)
 

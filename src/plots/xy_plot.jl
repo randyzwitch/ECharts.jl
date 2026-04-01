@@ -61,7 +61,7 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 			kwargs...)
 
 	# Allow for convenience of using single string to represent same mark for all series values
-	typeof(mark) <: AbstractVector ? nothing : mark = [mark for i in 1:length(x)]
+	mark = mark isa AbstractVector ? mark : fill(mark, length(x))
 
 	#Warn if x contains missing values — they render as literal "missing" category labels
 	if eltype(x) >: Missing
@@ -89,9 +89,9 @@ function xy_plot(x::AbstractVector, y::AbstractArray;
 	#stack: this logic feels janky, but seems to work
 	if !isnothing(stack)
 		if stack == true
-			[x.stack = 1 for x in ec.series]
+			for s in ec.series; s.stack = 1; end
 		elseif typeof(stack) <: AbstractVector
-			[x.stack = stack[i] for (i,x) in enumerate(ec.series)]
+			for (i, s) in enumerate(ec.series); s.stack = stack[i]; end
 		else
 			nothing
 		end

@@ -29,7 +29,7 @@ function arrayofdicts(; kwargs...)
 
     for j in 1:lengths[1]
         temp = Dict()
-        for i in 1:length(k)
+        for i in eachindex(k)
             temp[string(k[i])] = v[i][j]
         end
         push!(datafmt, temp)
@@ -39,8 +39,8 @@ function arrayofdicts(; kwargs...)
 end
 
 #Combine arrays into array of arrays by each value
-arrayofarray(x::AbstractVector,y::AbstractVector) = [[x,y] for (x,y) in zip(x,y)]
-arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[x,y,z] for (x,y,z) in zip(x,y,z)]
+arrayofarray(x::AbstractVector,y::AbstractVector) = [[xi,yi] for (xi,yi) in zip(x,y)]
+arrayofarray(x::AbstractVector,y::AbstractVector,z::AbstractVector) = [[xi,yi,zi] for (xi,yi,zi) in zip(x,y,z)]
 
 #Common kwargs code for all plots
 #For convenience, let color be specified as a string, even though it's always an array in echarts.js

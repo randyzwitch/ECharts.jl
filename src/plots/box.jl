@@ -44,16 +44,16 @@ function box(data::AbstractVector{<:AbstractVector{<:Union{Missing, Real}}};
 
     if outliers
         #Format outliers to ECharts nested array format
-        outliers = []
+        outlier_data = []
         for (i, s_) in enumerate(dataprep)
             if length(s_.outliers) > 0
                 for outlier in s_.outliers
-                    push!(outliers, [names[i], outlier])
+                    push!(outlier_data, [names[i], outlier])
                 end
             end
         end
         #hack to call this BoxPlotSeries, since the data fields are the same
-        push!(ec.series, BoxPlotSeries(name = "outliers", _type = "scatter", data = outliers))
+        push!(ec.series, BoxPlotSeries(name = "outliers", _type = "scatter", data = outlier_data))
     end
 
     #Add legend if requested
