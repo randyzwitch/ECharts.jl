@@ -30,7 +30,7 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export Theme, VisualMap
 
-	export xy_plot, bar, radialbar, line, scatter, area, waterfall
+	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall
 	export box, candlestick, sankey
 	export radar, funnel
 	export pie, donut, gauge, polar
@@ -94,6 +94,7 @@ module ECharts
 	include("plots/xy_plot.jl")
 	include("plots/bar.jl")
 	include("plots/radialbar.jl")
+	include("plots/polarbar.jl")
 	include("plots/line.jl")
 	include("plots/scatter.jl")
 	include("plots/area.jl")

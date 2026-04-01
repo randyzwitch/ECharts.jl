@@ -453,3 +453,31 @@ ad_weights = [5.0, 3.0, 8.0, 2.0]
 result_arc_w = arcdiagram(ad_nodes, ad_links, ad_weights)
 @test typeof(result_arc_w) == EChart
 @test_throws ArgumentError arcdiagram(ad_nodes, ad_links, [1.0, 2.0])  # wrong length
+
+# polarbar
+pb_cats = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+pb_vals = [120.0, 200.0, 150.0, 80.0, 70.0, 110.0, 130.0]
+result_polarbar = polarbar(pb_cats, pb_vals)
+@test typeof(result_polarbar) == EChart
+@test result_polarbar.angleAxis._type == "category"
+@test result_polarbar.radiusAxis !== nothing
+
+result_polarbar_legend = polarbar(pb_cats, pb_vals, legend = true)
+@test typeof(result_polarbar_legend) == EChart
+
+pb_vals2 = hcat(pb_vals, 0.8 .* pb_vals)
+result_polarbar_multi = polarbar(pb_cats, pb_vals2)
+@test typeof(result_polarbar_multi) == EChart
+@test length(result_polarbar_multi.series) == 2
+
+result_polarbar_stack = polarbar(pb_cats, pb_vals2, stack = true)
+@test typeof(result_polarbar_stack) == EChart
+@test result_polarbar_stack.series[1].stack == "polarbar_stack"
+
+pb_df = DataFrame(day = pb_cats, sales = pb_vals)
+@test typeof(polarbar(pb_df, :day, :sales)) == EChart
+
+pb_df2 = DataFrame(day = vcat(pb_cats, pb_cats),
+                   sales = vcat(pb_vals, 0.8 .* pb_vals),
+                   group = vcat(fill("A", 7), fill("B", 7)))
+@test typeof(polarbar(pb_df2, :day, :sales, :group)) == EChart
