@@ -509,3 +509,26 @@ bump_df = DataFrame(
 )
 result_bump_df = bump(bump_df, :year, :sales, :brand)
 @test typeof(result_bump_df) == EChart
+
+# lollipop
+lp_cats = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+lp_vals = [120.0, 200.0, 150.0, 80.0, 110.0]
+result_lollipop = lollipop(lp_cats, lp_vals)
+@test typeof(result_lollipop) == EChart
+@test length(result_lollipop.series) == 2  # stem bar + dot scatter
+@test result_lollipop.series[1]._type == "bar"
+@test result_lollipop.series[2]._type == "scatter"
+
+lp_vals2 = hcat(lp_vals, 0.8 .* lp_vals)
+result_lollipop_multi = lollipop(lp_cats, lp_vals2)
+@test typeof(result_lollipop_multi) == EChart
+@test length(result_lollipop_multi.series) == 4  # 2 stems + 2 dots
+
+lp_df = DataFrame(day = lp_cats, sales = lp_vals)
+@test typeof(lollipop(lp_df, :day, :sales)) == EChart
+
+lp_df2 = DataFrame(day = vcat(lp_cats, lp_cats),
+                   sales = vcat(lp_vals, 0.8 .* lp_vals),
+                   group = vcat(fill("A", 5), fill("B", 5)))
+result_lollipop_grp = lollipop(lp_df2, :day, :sales, :group)
+@test typeof(result_lollipop_grp) == EChart
