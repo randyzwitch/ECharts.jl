@@ -37,7 +37,7 @@ function nightingale(labels::AbstractVector, values::AbstractVector{<:Real};
                      rose_type::String = "radius",
                      radius::AbstractVector{String} = ["20%", "75%"],
                      center::AbstractVector{String} = ["50%", "50%"],
-                     legend::Bool = true,
+                     legend::Bool = false,
                      kwargs...)
 
     rose_type in ("radius", "area") ||
@@ -73,7 +73,7 @@ function nightingale(df, labels::Symbol, values::Symbol;
                      rose_type::String = "radius",
                      radius::AbstractVector{String} = ["20%", "75%"],
                      center::AbstractVector{String} = ["50%", "50%"],
-                     legend::Bool = true,
+                     legend::Bool = false,
                      kwargs...)
     Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
     nightingale(_table_col(df, labels), _table_col(df, values);

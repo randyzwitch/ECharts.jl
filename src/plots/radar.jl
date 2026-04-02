@@ -60,12 +60,22 @@ function radar(names::AbstractVector,
 				legend::Bool = true,
 				kwargs...)
 
+	# Default ECharts color palette for radar series
+	default_colors = ["#5470c6", "#ee6666", "#91cc75", "#fac858", "#ee6666", "#73c0de", "#3ba272", "#fc8452", "#9a60b4", "#ea7ccc"]
+
 	# Call 1-D method to build base
 	ec = radar(names, values[:,1], max; kwargs...)
 
-	# Append remaining Y data
+	# Set lineStyle color for first series
+	ec.series[1].lineStyle = LineStyle(color = default_colors[1])
+
+	# Append remaining Y data with distinct lineStyle colors
 	for i in 2:size(values)[2]
-		push!(ec.series, RadarSeries(data = [Dict{Any, Any}("value" => values[:,i])]))
+		color_idx = ((i - 1) % length(default_colors)) + 1
+		push!(ec.series, RadarSeries(
+			data = [Dict{Any, Any}("value" => values[:,i])],
+			lineStyle = LineStyle(color = default_colors[color_idx])
+		))
 	end
 
 	# Fill area if requested — fill! handles Bool→Vector expansion internally

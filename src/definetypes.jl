@@ -278,9 +278,9 @@ See also [`legend!`](@ref).
     zlevel::Union{Int, Nothing} = 0
     z::Union{Int, Nothing} = 2
     left::Union{Int,String, Nothing} = nothing
-    top::Union{Int,String, Nothing} = "auto"
+    top::Union{Int,String, Nothing} = nothing
     right::Union{Int,String, Nothing} = "auto"
-    bottom::Union{Int,String, Nothing} = "auto"
+    bottom::Union{Int,String, Nothing} = 0
     width::Union{Int,String, Nothing} = "auto"
     height::Union{Int,String, Nothing} = "auto"
     orient::Union{String, Nothing} = "horizontal"
@@ -473,6 +473,10 @@ See also [`datazoom!`](@ref).
     filterMode::Union{String, Nothing} = nothing
     zoomLock::Union{Bool, Nothing} = nothing
     throttle::Union{Int, Nothing} = nothing
+    left::Union{Int,String, Nothing} = nothing
+    top::Union{Int,String, Nothing} = nothing
+    right::Union{Int,String, Nothing} = "auto"
+    bottom::Union{Int,String, Nothing} = 0
 end
 """
     Timeline
