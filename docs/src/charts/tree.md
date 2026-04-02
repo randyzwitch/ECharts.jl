@@ -7,38 +7,28 @@ tree
 ```@example
 using ECharts
 data = Dict(
-    "name" => "root",
+    "name" => "CEO",
     "children" => [
-        Dict("name" => "A", "children" => [
-            Dict("name" => "A1"),
-            Dict("name" => "A2"),
+        Dict("name" => "CTO", "children" => [
+            Dict("name" => "Engineering", "children" => [
+                Dict("name" => "Frontend"),
+                Dict("name" => "Backend"),
+                Dict("name" => "DevOps"),
+            ]),
+            Dict("name" => "Data Science"),
         ]),
-        Dict("name" => "B", "children" => [
-            Dict("name" => "B1"),
+        Dict("name" => "CFO", "children" => [
+            Dict("name" => "Accounting"),
+            Dict("name" => "FP&A"),
         ]),
-    ]
-)
-tree(data)
-```
-
-With a title and tooltip:
-
-```@example styled
-using ECharts
-data = Dict(
-    "name" => "root",
-    "children" => [
-        Dict("name" => "A", "children" => [
-            Dict("name" => "A1"),
-            Dict("name" => "A2"),
+        Dict("name" => "CMO", "children" => [
+            Dict("name" => "Marketing"),
+            Dict("name" => "Sales"),
         ]),
-        Dict("name" => "B", "children" => [
-            Dict("name" => "B1"),
-        ]),
-    ]
+    ],
 )
 ec = tree(data)
-title!(ec, text = "Org Chart")
+title!(ec, text = "Company Organization Chart")
 tooltip!(ec)
 ec
 ```

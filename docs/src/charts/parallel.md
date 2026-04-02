@@ -6,11 +6,7 @@ parallel
 
 ```@example
 using ECharts
-
-# Each row is a car model: [horsepower, mpg, weight (lbs/100), 0-60 mph (sec), price ($k)]
-# High-performance cars: high HP, low mpg, heavy, fast, expensive
-# Economy cars: low HP, high mpg, light, slower, cheap
-# SUVs: moderate HP, low mpg, very heavy, moderate speed, moderate price
+# Each row is a vehicle: [horsepower, mpg, weight (100 lbs), 0–60 mph (sec), price ($k)]
 data = [
     310.0  18.0  43.0  5.2  52.0;   # Sports car A
     450.0  14.0  47.0  4.1  88.0;   # Sports car B
@@ -22,6 +18,8 @@ data = [
     240.0  23.0  49.0  7.8  41.0;   # SUV B
     320.0  17.0  55.0  6.5  62.0;   # SUV C
 ]
-dims = ["Horsepower", "MPG", "Weight (100 lbs)", "0-60 (sec)", "Price (\$k)"]
-parallel(data, dims)
+dims = ["Horsepower", "MPG", "Weight (100 lbs)", "0–60 (sec)", "Price (\$k)"]
+ec = parallel(data, dims)
+title!(ec, text = "Vehicle Attribute Comparison", subtext = "Sports cars, economy cars, and SUVs")
+ec
 ```

@@ -6,20 +6,25 @@ sankey
 
 ```@example
 using ECharts
-name   = ["Agricultural waste","Bio-conversion","Liquid","Losses","Solid","Gas",
-          "Biofuel imports","Biomass imports","Coal imports","Coal"]
-source = [0, 1, 1, 1, 1, 6, 7, 8, 10]
-target = [1, 2, 3, 4, 5, 2, 4, 9,  9]
-value  = [124.729, 0.597, 26.862, 280.322, 81.144, 35, 35, 11.606, 63.965]
-sankey(name, source, target, value)
+# UK energy flow (simplified from DECC)
+name   = ["Coal", "Natural Gas", "Nuclear", "Wind/Solar",
+          "Electricity", "Industry", "Transport", "Residential", "Losses"]
+source = [0, 1, 2, 3, 0, 1, 4, 4, 4]
+target = [4, 4, 4, 4, 5, 5, 6, 7, 8]
+value  = [60.0, 90.0, 70.0, 35.0, 25.0, 30.0, 85.0, 65.0, 55.0]
+ec = sankey(name, source, target, value)
+title!(ec, text = "Energy Flow Diagram", subtext = "TWh, simplified")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    source = ["Wages", "Wages", "Interest", "Budget", "Budget", "Budget"],
-    target = ["Budget", "Taxes", "Budget", "Housing", "Food", "Transport"],
-    value  = [2000.0, 200.0, 25.0, 500.0, 450.0, 310.0],
+    source = ["Salary", "Salary",  "Freelance", "Budget",   "Budget",    "Budget",   "Budget"],
+    target = ["Budget", "Savings", "Budget",    "Housing",  "Food",      "Transport","Leisure"],
+    value  = [4200.0,   800.0,     600.0,       1400.0,     600.0,       350.0,      450.0],
 )
-sankey(df, :source, :target, :value)
+ec = sankey(df, :source, :target, :value)
+title!(ec, text = "Monthly Household Budget", subtext = "USD")
+ec
 ```
