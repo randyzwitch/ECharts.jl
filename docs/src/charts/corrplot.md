@@ -9,7 +9,9 @@ Default corrplot from a DataFrame — lower triangle with correlation labels:
 ```@example
 using ECharts, RDatasets
 df = dataset("datasets", "mtcars")
-corrplot(df)
+ec = corrplot(df)
+title!(ec, text = "Motor Trend Car Road Tests", subtext = "Pearson correlation — mtcars dataset")
+ec
 ```
 
 Full matrix (both triangles) with the diagonal hidden:
@@ -51,5 +53,7 @@ using ECharts, RDatasets, StatsBase
 df = dataset("datasets", "iris")
 num_cols = [:SepalLength, :SepalWidth, :PetalLength, :PetalWidth]
 m = cor(Matrix(df[!, num_cols]))
-corrplot(m)
+ec = corrplot(m)
+title!(ec, text = "Iris Dataset", subtext = "Pearson correlation — numeric columns")
+ec
 ```

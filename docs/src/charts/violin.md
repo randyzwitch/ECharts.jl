@@ -5,16 +5,28 @@ violin
 ```
 
 ```@example
-using ECharts
-groups = vcat(fill("A", 50), fill("B", 50), fill("C", 50))
-values = vcat(randn(50), randn(50) .+ 2, randn(50) .- 1)
-violin(groups, values)
+using ECharts, Random
+Random.seed!(42)
+# Sepal length (cm) for three iris species
+setosa     = 5.0 .+ 0.35 .* randn(50)
+versicolor = 5.9 .+ 0.52 .* randn(50)
+virginica  = 6.6 .+ 0.64 .* randn(50)
+groups = vcat(fill("I. setosa", 50), fill("I. versicolor", 50), fill("I. virginica", 50))
+values = vcat(setosa, versicolor, virginica)
+ec = violin(groups, values)
+title!(ec, text = "Iris Sepal Length by Species", subtext = "cm (n = 50 per species)")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames, Random
 Random.seed!(42)
-df = DataFrame(group = vcat(fill("A", 50), fill("B", 50), fill("C", 50)),
-               value = vcat(randn(50), randn(50) .+ 2, randn(50) .- 1))
-violin(df, :group, :value)
+setosa     = 5.0 .+ 0.35 .* randn(50)
+versicolor = 5.9 .+ 0.52 .* randn(50)
+virginica  = 6.6 .+ 0.64 .* randn(50)
+df = DataFrame(
+    species = vcat(fill("I. setosa", 50), fill("I. versicolor", 50), fill("I. virginica", 50)),
+    sepal_length = vcat(setosa, versicolor, virginica),
+)
+violin(df, :species, :sepal_length)
 ```
