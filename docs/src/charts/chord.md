@@ -18,7 +18,7 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    names  = ["USA", "China", "Germany", "Japan", "Brazil"],
+    names  = ["USA", "China", "Germany", "Japan", "Brazil", "Mexico", "India"],
     source = ["USA",     "China",   "Germany", "Japan",   "Brazil",  "USA",     "China"],
     target = ["China",   "USA",     "USA",     "Germany", "USA",     "Germany", "Germany"],
     value  = [450.0,     450.0,     180.0,     130.0,     90.0,      120.0,     110.0],

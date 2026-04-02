@@ -6,6 +6,7 @@ Creates an `EChart` where each value is represented as circular portion of the w
 ## Methods
 ```julia
 donut(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
+donut(df, names::Symbol, values::Symbol)
 ```
 
 ## Arguments
