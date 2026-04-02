@@ -6,6 +6,11 @@ box
 
 ```@example
 using ECharts
-data = [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960]
-box(data)
+# API response times (ms) sampled from a web service over one hour
+response_times = [112, 98, 134, 145, 118, 102, 156, 189, 121, 108,
+                  99,  143, 167, 115, 103, 128, 142, 119, 97,  131,
+                  188, 107, 122, 136, 114, 101, 159, 144, 126, 110]
+ec = box(response_times)
+title!(ec, text = "API Response Time Distribution", subtext = "Milliseconds — 30 sampled requests")
+ec
 ```
