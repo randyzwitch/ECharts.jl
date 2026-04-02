@@ -6,12 +6,19 @@ singleaxis
 
 ```@example
 using ECharts
-x = [0.1, 0.5, 1.2, 2.3, 3.8, 4.1, 5.0, 6.3, 7.7, 8.2, 9.5]
-singleaxis(x)
+# Marathon finish times (minutes) for a local race — clustered around common pacing groups
+times = [178, 183, 191, 195, 202, 208, 213, 218, 225, 231,
+         237, 244, 252, 261, 270, 279, 288, 301, 315, 342]
+ec = singleaxis(times)
+title!(ec, text = "Marathon Finish Time Distribution", subtext = "Minutes")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames
-df = DataFrame(score = [55, 62, 71, 80, 88, 91, 95, 42, 76, 83])
-singleaxis(df, :score)
+df = DataFrame(
+    finish_min = [178, 183, 191, 195, 202, 208, 213, 218, 225, 231,
+                  237, 244, 252, 261, 270, 279, 288, 301, 315, 342],
+)
+singleaxis(df, :finish_min)
 ```

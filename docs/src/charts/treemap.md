@@ -7,37 +7,27 @@ treemap
 ```@example
 using ECharts
 data = [
-    Dict("name" => "Group A", "value" => 40, "children" => [
-        Dict("name" => "Item A1", "value" => 25),
-        Dict("name" => "Item A2", "value" => 15),
+    Dict("name" => "Americas", "value" => 0, "children" => [
+        Dict("name" => "United States", "value" => 25500),
+        Dict("name" => "Brazil",        "value" =>  2080),
+        Dict("name" => "Canada",        "value" =>  2140),
+        Dict("name" => "Mexico",        "value" =>  1320),
     ]),
-    Dict("name" => "Group B", "value" => 35, "children" => [
-        Dict("name" => "Item B1", "value" => 20),
-        Dict("name" => "Item B2", "value" => 15),
+    Dict("name" => "Asia Pacific", "value" => 0, "children" => [
+        Dict("name" => "China",   "value" => 17900),
+        Dict("name" => "Japan",   "value" =>  4230),
+        Dict("name" => "India",   "value" =>  3730),
+        Dict("name" => "S. Korea","value" =>  1710),
     ]),
-    Dict("name" => "Group C", "value" => 25),
-]
-treemap(data)
-```
-
-With a title, tooltip, and custom color scheme:
-
-```@example styled
-using ECharts
-data = [
-    Dict("name" => "Group A", "value" => 40, "children" => [
-        Dict("name" => "Item A1", "value" => 25),
-        Dict("name" => "Item A2", "value" => 15),
+    Dict("name" => "Europe", "value" => 0, "children" => [
+        Dict("name" => "Germany", "value" => 4080),
+        Dict("name" => "UK",      "value" => 3080),
+        Dict("name" => "France",  "value" => 2780),
+        Dict("name" => "Italy",   "value" => 2010),
+        Dict("name" => "Russia",  "value" => 1860),
     ]),
-    Dict("name" => "Group B", "value" => 35, "children" => [
-        Dict("name" => "Item B1", "value" => 20),
-        Dict("name" => "Item B2", "value" => 15),
-    ]),
-    Dict("name" => "Group C", "value" => 25),
 ]
 ec = treemap(data)
-title!(ec, text = "Budget Allocation")
-tooltip!(ec)
-colorscheme!(ec, ("Tableau", 10))
+title!(ec, text = "GDP by Country", subtext = "USD billions, 2023")
 ec
 ```
