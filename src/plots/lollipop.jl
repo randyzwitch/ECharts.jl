@@ -46,7 +46,6 @@ function lollipop(x::AbstractVector,
     ec.yAxis = [Axis(_type = "value")]
 
     stem = XYSeries(
-        name      = "Series 1",
         _type     = "bar",
         barWidth  = stem_width,
         data      = ydata,
@@ -90,12 +89,23 @@ function lollipop(x::AbstractVector,
     end
 
     # Name only the scatter series (every second series is the visible dot)
+    # Bars stay unnamed to keep legend clean, but get explicit colors to match scatters
     names = ["Series $i" for i in 1:n_series]
+    palette = ["#e01f54","#001852","#f5e8c8","#b8d2c7","#c6b38e","#a4d8c2","#f3d999","#d3758f","#dcc392","#2e4783","#82b6e9","#ff6347","#a092f1","#0a915d","#eaf889","#6699FF","#ff6666","#3cb371","#d5b158","#38b6b6"]
     for (i, s) in enumerate(ec.series)
-        s._type == "scatter" ? s.name = names[ceil(Int, i / 2)] : s.name = ""
+        series_idx = ceil(Int, i / 2)
+        if s._type == "scatter"
+            s.name = names[series_idx]
+        else  # bar
+            color_idx = mod(series_idx - 1, length(palette)) + 1
+            s.itemStyle = ItemStyle(color = palette[color_idx])
+        end
     end
 
-    legend ? legend!(ec) : nothing
+    if legend
+        legend!(ec)
+        ec.legend.data = names  # Show only scatter series names, not bars
+    end
     return ec
 end
 
