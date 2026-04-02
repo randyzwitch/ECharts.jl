@@ -50,7 +50,6 @@ function lollipop(x::AbstractVector,
         _type     = "bar",
         barWidth  = stem_width,
         data      = ydata,
-        itemStyle = ItemStyle(color = "inherit"),
     )
     dot = XYSeries(
         name       = "Series 1",
@@ -85,8 +84,7 @@ function lollipop(x::AbstractVector,
     for i in 2:n_series
         ydata = collect(y[:, i])
         push!(ec.series,
-              XYSeries(_type = "bar", barWidth = stem_width,
-                       data = ydata, itemStyle = ItemStyle(color = "inherit")))
+              XYSeries(_type = "bar", barWidth = stem_width, data = ydata))
         push!(ec.series,
               XYSeries(_type = "scatter", symbolSize = dot_size, data = ydata))
     end
