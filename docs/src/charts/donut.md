@@ -6,14 +6,18 @@ donut
 
 ```@example
 using ECharts
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-donut(x, y)
+devices  = ["Desktop", "Mobile", "Tablet"]
+sessions = [42.3, 52.1, 5.6]
+ec = donut(devices, sessions)
+title!(ec, text = "Website Sessions by Device", subtext = "% share, last 30 days")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames
-df = DataFrame(day   = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-               count = [11, 11, 15, 13, 12, 13, 10])
-donut(df, :day, :count)
+df = DataFrame(
+    device   = ["Desktop", "Mobile", "Tablet"],
+    sessions = [42.3, 52.1, 5.6],
+)
+donut(df, :device, :sessions)
 ```

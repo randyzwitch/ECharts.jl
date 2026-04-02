@@ -6,19 +6,22 @@ lollipop
 
 ```@example
 using ECharts
-categories = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-values = [120, 200, 150, 80, 70, 110, 130]
-lollipop(categories, values)
+languages = ["Python", "JavaScript", "Java", "C#", "C++", "TypeScript", "PHP", "Go", "Rust", "Swift"]
+usage     = [28.2, 19.1, 17.8, 12.6, 11.1, 9.3, 7.7, 5.0, 4.8, 3.9]
+ec = lollipop(languages, usage)
+title!(ec, text = "Most Popular Programming Languages", subtext = "Stack Overflow Developer Survey 2024 (% usage)")
+ec
 ```
 
-With multiple series and a title:
+With multiple series:
 
 ```@example multi
 using ECharts
-categories = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-online  = [120, 200, 150, 80, 70, 110, 130]
-instore = [80,  120, 100, 60, 50, 90,  80]
-ec = lollipop(categories, hcat(online, instore), legend = true)
-title!(ec, text = "Weekly Sales by Channel")
+quarters = ["Q1", "Q2", "Q3", "Q4"]
+online   = [320, 415, 390, 480]
+instore  = [210, 245, 270, 295]
+ec = lollipop(quarters, hcat(online, instore), legend = true)
+seriesnames!(ec, ["Online", "In-Store"])
+title!(ec, text = "Quarterly Sales by Channel", subtext = "Units sold")
 ec
 ```

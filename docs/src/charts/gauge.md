@@ -6,5 +6,7 @@ gauge
 
 ```@example
 using ECharts
-gauge(27.64)
+ec = gauge(67.0)
+title!(ec, text = "Server CPU Usage (%)", subtext = "Current load")
+ec
 ```

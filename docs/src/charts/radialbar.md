@@ -6,7 +6,9 @@ radialbar
 
 ```@example
 using ECharts
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-radialbar(x, y)
+sports = ["Swimming", "Running", "Cycling", "Strength", "Flexibility"]
+scores = [88, 92, 74, 81, 66]
+ec = radialbar(sports, scores)
+title!(ec, text = "Athlete Performance Profile", subtext = "Score out of 100")
+ec
 ```
