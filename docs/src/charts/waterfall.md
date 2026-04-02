@@ -6,12 +6,18 @@ waterfall
 
 ```@example
 using ECharts
-waterfall(["Q1","Q2","Q3","Q4","Q5"], [2900, -1200, -300, -200, -900])
+items   = ["Revenue", "COGS", "Gross Profit", "Marketing", "R&D", "G&A", "Operating Income"]
+amounts = [12500, -4800, -1200, -950, -620, 0, 0]
+ec = waterfall(items, amounts)
+title!(ec, text = "Annual P&L Breakdown", subtext = "USD thousands")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames
-df = DataFrame(quarter = ["Q1","Q2","Q3","Q4","Q5"],
-               change  = [2900, -1200, -300, -200, -900])
-waterfall(df, :quarter, :change)
+df = DataFrame(
+    item   = ["Revenue", "COGS", "Gross Profit", "Marketing", "R&D", "G&A", "Operating Income"],
+    amount = [12500, -4800, -1200, -950, -620, 0, 0],
+)
+waterfall(df, :item, :amount)
 ```

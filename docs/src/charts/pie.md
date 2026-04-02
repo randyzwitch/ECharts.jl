@@ -6,14 +6,18 @@ pie
 
 ```@example
 using ECharts
-x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-y = [11, 11, 15, 13, 12, 13, 10]
-pie(x, y)
+browsers = ["Chrome", "Safari", "Edge", "Firefox", "Samsung Internet", "Other"]
+share    = [65.8, 18.7, 5.3, 4.1, 2.6, 3.5]
+ec = pie(browsers, share)
+title!(ec, text = "Browser Market Share", subtext = "Global, Q4 2024")
+ec
 ```
 
 ```@example
 using ECharts, DataFrames
-df = DataFrame(day   = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-               count = [11, 11, 15, 13, 12, 13, 10])
-pie(df, :day, :count)
+df = DataFrame(
+    browser = ["Chrome", "Safari", "Edge", "Firefox", "Samsung Internet", "Other"],
+    share   = [65.8, 18.7, 5.3, 4.1, 2.6, 3.5],
+)
+pie(df, :browser, :share)
 ```
