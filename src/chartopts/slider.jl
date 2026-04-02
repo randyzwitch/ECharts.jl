@@ -5,7 +5,7 @@ Adds a DataZoom control to an `EChart` for panning and zooming along an axis.
 
 ## Methods
 ```julia
-datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterMode, zoomLock, throttle)
+datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterMode, zoomLock, throttle, left, top, right, bottom)
 ```
 
 ## Arguments
@@ -18,6 +18,10 @@ datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterM
 * `filterMode::String = "filter"` : how out-of-range data is handled: `"filter"`, `"weakFilter"`, `"empty"`, or `"none"`
 * `zoomLock::Union{Bool,Nothing} = nothing` : lock zoom ratio so scrolling only pans (inside only)
 * `throttle::Union{Int,Nothing} = nothing` : throttle the zoom/pan events in milliseconds (inside only)
+* `left::Union{Int,String,Nothing} = nothing` : distance from left edge; not set if nothing
+* `top::Union{Int,String,Nothing} = nothing` : distance from top edge; not set if nothing
+* `right::Union{Int,String,Nothing} = "auto"` : distance from right edge
+* `bottom::Union{Int,String,Nothing} = 0` : distance from bottom edge (slider positioned at bottom by default)
 
 ## Notes
 
@@ -32,7 +36,11 @@ function datazoom!(ec::EChart;
                    orient::Union{String,Nothing} = nothing,
                    filterMode::String = "filter",
                    zoomLock::Union{Bool,Nothing} = nothing,
-                   throttle::Union{Int,Nothing} = nothing)
+                   throttle::Union{Int,Nothing} = nothing,
+                   left::Union{Int,String,Nothing} = nothing,
+                   top::Union{Int,String,Nothing} = nothing,
+                   right::Union{Int,String,Nothing} = "auto",
+                   bottom::Union{Int,String,Nothing} = 0)
 
     dz = DataZoom(_type = type,
                   show = type == "slider" ? true : nothing,
@@ -43,7 +51,11 @@ function datazoom!(ec::EChart;
                   orient = orient,
                   filterMode = filterMode,
                   zoomLock = zoomLock,
-                  throttle = throttle)
+                  throttle = throttle,
+                  left = left,
+                  top = top,
+                  right = right,
+                  bottom = bottom)
 
     isnothing(ec.dataZoom) ? ec.dataZoom = [dz] : push!(ec.dataZoom, dz)
 
