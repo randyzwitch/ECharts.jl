@@ -163,11 +163,14 @@ ECharts item (data point) style configuration (color, border, shadow, opacity, e
     color::Union{String, Dict, Nothing} = nothing
     borderColor::Union{String, Nothing} = nothing
     borderWidth::Union{Int, Nothing} = nothing
+    borderRadius::Union{Int, AbstractVector, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
     shadowColor::Union{String, Nothing} = nothing
     shadowOffsetX::Union{Int, Nothing} = nothing
     shadowOffsetY::Union{Int, Nothing} = nothing
     opacity::Union{Float64, Nothing} = nothing
+    gapWidth::Union{Int, Nothing} = nothing
+    borderColorSaturation::Union{Number, Nothing} = nothing
 end
 @with_kw mutable struct IconStyleOpts <: AbstractEChartType
     color::Union{String, Nothing} = "adaptive"
@@ -259,6 +262,9 @@ See also [`tooltip!`](@ref).
     padding::Union{Int, Nothing} = 5
     textStyle::Union{TextStyle, Nothing} = nothing
     extraCssText::Union{String, Nothing} = nothing
+    valueFormatter::Union{String, JSON.JSONText, Nothing} = nothing
+    order::Union{String, Nothing} = nothing
+    width::Union{Int, String, Nothing} = nothing
 end
 """
     Legend
@@ -387,6 +393,8 @@ See also [`xaxis!`](@ref), [`yaxis!`](@ref).
     splitArea::Union{SplitArea, Nothing} = nothing
     data::Union{AbstractVector, Nothing} = nothing
     axisPointer::Union{AxisPointer, Nothing} = nothing
+    jitter::Union{Number, Nothing} = nothing
+    jitterOverlap::Union{Number, Nothing} = nothing
     zlevel::Union{Int, Nothing} = 0
     z::Union{Int, Nothing} = 0
 end
@@ -782,6 +790,7 @@ end
     silent::Union{Bool, Nothing} = nothing
 end
 @with_kw mutable struct Dataset <: AbstractEChartType
+    id::Union{String, Nothing} = nothing
     source::Union{Dict, Array, Nothing} = nothing
     dimensions::Union{AbstractVector, Nothing} = nothing
     sourceHeader::Union{Bool, Nothing} = nothing
@@ -877,8 +886,10 @@ ECharts series configuration for pie and donut charts.
     startAngle::Union{Int, Nothing} = nothing
     minAngle::Union{Int, Nothing} = nothing
     roseType::Union{String, Nothing} = nothing
-    aNothingLabelOverlap::Union{Bool, Nothing} = nothing
+    avoidLabelOverlap::Union{Bool, Nothing} = nothing
     stillShowZeroSum::Union{Bool, Nothing} = nothing
+    padAngle::Union{Number, Nothing} = nothing
+    bleedMargin::Union{Number, Nothing} = nothing
     cursor::Union{String, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
     labelLine::Union{Dict, Nothing} = nothing
@@ -1057,10 +1068,12 @@ ECharts series configuration for gauge (dial/speedometer) charts.
     max::Union{Int, Nothing} = nothing
     splitNumber::Union{Int, Nothing} = nothing
     axisLine::Union{AxisLine, Nothing} = nothing
+    progress::Union{Dict, Nothing} = nothing
     splitLine::Union{SplitLine, Nothing} = nothing
     axisTick::Union{AxisTick, Nothing} = nothing
     axisLabel::Union{AxisLabel, Nothing} = nothing
     pointer::Union{Dict, Nothing} = nothing
+    anchor::Union{Dict, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
     emphasis::Union{Dict, Nothing} = nothing
     title::Union{Title, Nothing} = nothing
@@ -1135,6 +1148,7 @@ ECharts series configuration for Sankey flow diagrams.
     height::Union{String, Int, Nothing} = nothing
     nodeWidth::Union{Int, Nothing} = nothing
     nodeGap::Union{Int, Nothing} = nothing
+    nodeAlign::Union{String, Nothing} = nothing
     layout::Union{String, Nothing} = nothing
     layoutIterations::Union{Int, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
@@ -1190,6 +1204,7 @@ ECharts series configuration for chord diagrams showing bidirectional flow betwe
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
     animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
+    universalTransition::Union{Dict, Bool, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1223,6 +1238,7 @@ ECharts series configuration for graph / network relationship charts.
     itemStyle::Union{ItemStyle, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
+    labelLayout::Union{Dict, Nothing} = nothing
     edgeLabel::Union{ItemStyle, Nothing} = nothing
     emphasis::Union{Dict, Nothing} = nothing
     categories::Union{AbstractVector, Nothing} = nothing
@@ -1233,6 +1249,7 @@ ECharts series configuration for graph / network relationship charts.
     markPoint::Union{MarkPoint, Nothing} = nothing
     markLine::Union{MarkLine, Nothing} = nothing
     markArea::Union{MarkArea, Nothing} = nothing
+    thumbnail::Union{Dict, Nothing} = nothing
     zlevel::Union{Int, Nothing} = nothing
     z::Union{Int, Nothing} = nothing
     left::Union{String, Nothing} = nothing
@@ -1250,6 +1267,7 @@ ECharts series configuration for graph / network relationship charts.
     animationDurationUpdate::Union{Int, Nothing} = nothing
     animationEasingUpdate::Union{Dict, Nothing} = nothing
     animationDelayUpdate::Union{Int, JSON.JSONText, Nothing} = nothing
+    universalTransition::Union{Dict, Bool, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
@@ -1428,6 +1446,7 @@ ECharts series configuration for sunburst (multi-level pie) charts.
     z::Union{Int, Nothing} = nothing
     center::Union{AbstractVector, Nothing} = nothing
     radius::Union{AbstractVector, Nothing} = nothing
+    color::Union{AbstractVector, Nothing} = nothing
     data::Union{AbstractVector, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
@@ -1514,8 +1533,12 @@ ECharts series configuration for tree (hierarchy) charts.
     initialTreeDepth::Union{Int, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
+    leaves::Union{Dict, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = nothing
+    edgeShape::Union{String, Nothing} = nothing
+    edgeForkPosition::Union{String, Number, Nothing} = nothing
     emphasis::Union{Dict, Nothing} = nothing
+    select::Union{Dict, Nothing} = nothing
     data::Union{AbstractVector, Dict, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
@@ -1576,7 +1599,9 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
 @with_kw mutable struct XYSeries <: AbstractEChartSeries
     #line
     _type::Union{String, Nothing} = nothing
+    id::Union{String, Nothing} = nothing
     name::Union{String, Nothing} = nothing
+    colorBy::Union{String, Nothing} = nothing
     coordinateSystem::Union{String, Nothing} = nothing
     xAxisIndex::Int = 0
     yAxisIndex::Int = 0
@@ -1593,12 +1618,20 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     connectNulls::Union{Bool, Nothing} = nothing
     step::Union{String, Nothing} = nothing
     label::Union{Label, Nothing} = nothing
+    emphasis::Union{Dict, Nothing} = nothing
     itemStyle::Union{ItemStyle, Nothing} = nothing
     lineStyle::Union{LineStyle, Nothing} = nothing
     areaStyle::Union{AreaStyle, Nothing} = nothing
     smooth::Union{Bool, Nothing} = false
     smoothMonotone::Union{String, Nothing} = nothing
     sampling::Union{String, Nothing} = nothing
+    seriesLayoutBy::Union{String, Nothing} = nothing
+    datasetIndex::Union{Int, Nothing} = nothing
+    dimensions::Union{AbstractVector, Nothing} = nothing
+    encode::Union{Dict, Nothing} = nothing
+    dataGroupId::Union{String, Nothing} = nothing
+    realtimeSort::Union{Bool, Nothing} = nothing
+    silent::Union{Bool, Nothing} = nothing
     data::Union{AbstractVector, Nothing} = nothing
     markPoint::Union{MarkPoint, Nothing} = nothing
     markLine::Union{MarkLine, Nothing} = MarkLine()
@@ -1620,6 +1653,7 @@ This is the series type used internally by [`bar`](@ref), [`line`](@ref), [`scat
     barMinHeight::Union{Int, Nothing} = nothing
     barGap::Union{String, Int, Nothing} = nothing
     barCategoryGap::Union{String, Int, Nothing} = nothing
+    universalTransition::Union{Dict, Bool, Nothing} = nothing
     #scatter
     geoIndex::Union{Int, Nothing} = nothing
     large::Union{Bool, Nothing} = nothing
@@ -1716,4 +1750,6 @@ details.
     blendMode::Any = nothing
     hoverLayerThreshold::Any = nothing
     useUTC::Union{Bool, Nothing} = nothing
+    options::Union{AbstractVector, Nothing} = nothing
+    media::Union{AbstractVector, Nothing} = nothing
 end
