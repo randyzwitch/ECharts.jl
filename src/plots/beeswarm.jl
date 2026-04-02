@@ -11,7 +11,7 @@ beeswarm(categories::AbstractVector, values::AbstractVector{<:Real})
 
 ## Arguments
 * `jitter_width::Real = 0.3` : half-width of the uniform jitter range (in category units)
-* `legend::Bool = false` : display legend?
+* `legend::Bool = true` : display legend?
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
@@ -24,7 +24,7 @@ distinct color from the active theme palette.
 """
 function beeswarm(categories::AbstractVector, values::AbstractVector{<:Real};
                   jitter_width::Real = 0.3,
-                  legend::Bool = false,
+                  legend::Bool = true,
                   kwargs...)
 
     cat_labels = unique(categories)
@@ -63,7 +63,7 @@ See the primary `beeswarm` method for full argument documentation.
 """
 function beeswarm(df, categories::Symbol, values::Symbol;
                   jitter_width::Real = 0.3,
-                  legend::Bool = false,
+                  legend::Bool = true,
                   kwargs...)
     Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
     beeswarm(_table_col(df, categories), _table_col(df, values);

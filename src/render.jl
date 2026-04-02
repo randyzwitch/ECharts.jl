@@ -1,3 +1,5 @@
+const _chart_id_counter = Threads.Atomic{Int}(0)
+
 """
     EChartRaw
 
@@ -51,7 +53,7 @@ print(x::EChartRaw) = print(x.option)
 # Internal: shared HTML template used by both EChart and EChartRaw renderers.
 function _echarts_html(option::String, width, height, renderer::String, theme)
     theme_json = JSON.json(theme)
-    chart_id = "echarts_" * string(rand(UInt64), base = 16)
+    chart_id = "echarts_" * string(Threads.atomic_add!(_chart_id_counter, 1))
 
     # When ECHARTS_DOCS_BUILD is set, echarts.min.js is loaded as a page asset
     # by Documenter.jl — skip inlining it to avoid bloating the output.
