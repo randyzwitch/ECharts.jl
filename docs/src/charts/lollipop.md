@@ -21,7 +21,6 @@ quarters = ["Q1", "Q2", "Q3", "Q4"]
 online   = [320, 415, 390, 480]
 instore  = [210, 245, 270, 295]
 ec = lollipop(quarters, hcat(online, instore), legend = true)
-seriesnames!(ec, ["Online", "In-Store"])
 title!(ec, text = "Quarterly Sales by Channel", subtext = "Units sold")
 ec
 ```

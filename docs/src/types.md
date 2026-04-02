@@ -21,6 +21,8 @@ PieSeries
 RadarSeries
 BoxPlotSeries
 CandleStickSeries
+ChordSeries
+CustomSeries
 EffectScatterSeries
 FunnelSeries
 GaugeSeries
