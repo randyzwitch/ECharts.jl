@@ -13,8 +13,6 @@ slope(df, label::Symbol, before::Symbol, after::Symbol)
 ```
 
 ## Arguments
-* `left_label::String` : label for the left axis point (default: `string(labels[1])`)
-* `right_label::String` : label for the right axis point (default: `string(labels[2])`)
 * `legend::Bool = true` : display legend?
 * `kwargs` : varargs to set any field of the resulting `EChart` struct
 

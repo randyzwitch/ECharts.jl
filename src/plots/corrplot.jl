@@ -17,7 +17,9 @@ corrplot(df)
 * `number_digits::Int = 2` : decimal places shown in correlation labels
 * `label_color::String = "black"` : text color of correlation labels
 * `label_fontsize::Int = 14` : font size of correlation labels
-* `order::String = "original"` : column ordering for table input; one of {"original", "alphabet"}
+* `ec_height::Real = 650` : chart height in pixels
+* `ec_width::Real = 650` : chart width in pixels
+* `order::String = "original"` : column ordering; one of {"original", "alphabet"} (table input only)
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
 ## Notes
