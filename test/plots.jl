@@ -580,3 +580,34 @@ mm_df = DataFrame(
 result_marimekko_df = marimekko(mm_df, :region, :product, :revenue)
 @test typeof(result_marimekko_df) == EChart
 @test length(result_marimekko_df.series) == 3
+
+# choropleth
+regions = ["China", "United States", "Brazil", "Russia", "Australia"]
+values  = [100.0, 200.0, 150.0, 80.0, 120.0]
+
+result_choropleth = choropleth(regions, values)
+@test typeof(result_choropleth) == EChart
+@test result_choropleth.series[1]._type == "map"
+@test result_choropleth.series[1].map == "world"
+@test result_choropleth.visualMap !== nothing
+@test result_choropleth.ec_mapname === nothing  # no custom geojson
+
+result_choropleth_roam = choropleth(regions, values; map = "world", roam = true)
+@test typeof(result_choropleth_roam) == EChart
+@test result_choropleth_roam.series[1].roam == true
+
+# custom map via geojson keyword
+fake_geojson = """{"type":"FeatureCollection","features":[]}"""
+result_choropleth_geo = choropleth(regions, values; map = "custom", geojson = fake_geojson)
+@test typeof(result_choropleth_geo) == EChart
+@test result_choropleth_geo.ec_mapname == "custom"
+@test result_choropleth_geo.ec_mapdata == fake_geojson
+
+# table interface
+using DataFrames
+choro_df = DataFrame(region = regions, val = values)
+result_choropleth_df = choropleth(choro_df, :region, :val)
+@test typeof(result_choropleth_df) == EChart
+@test result_choropleth_df.series[1].map == "world"
+
+@test_throws ArgumentError choropleth("not a table", :region, :val)

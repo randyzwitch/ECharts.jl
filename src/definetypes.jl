@@ -1712,6 +1712,8 @@ details.
     ec_height::Int = 400
     ec_renderer::String = "canvas" #svg
     ec_charttype::Union{String, Nothing} = nothing
+    ec_mapname::Union{String, Nothing} = nothing
+    ec_mapdata::Union{String, Nothing} = nothing
     theme::Theme = roma #required for chart to render
     title::Union{Vector{Title}, Nothing} = [Title()]
     legend::Union{Legend, Nothing} = nothing   #Already has legend! defined, need to modify legend! if change default here

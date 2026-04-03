@@ -51,7 +51,9 @@ print(x::EChart) = print(JSON.json(x))
 print(x::EChartRaw) = print(x.option)
 
 # Internal: shared HTML template used by both EChart and EChartRaw renderers.
-function _echarts_html(option::String, width, height, renderer::String, theme)
+function _echarts_html(option::String, width, height, renderer::String, theme;
+                       register_map_name::Union{String, Nothing} = nothing,
+                       register_map_data::Union{String, Nothing} = nothing)
     theme_json = JSON.json(theme)
     chart_id = "echarts_" * string(Threads.atomic_add!(_chart_id_counter, 1))
 
@@ -64,6 +66,12 @@ function _echarts_html(option::String, width, height, renderer::String, theme)
         "if (typeof echarts === 'undefined') { $(echarts_js) }"
     end
 
+    register_map_js = if !isnothing(register_map_name) && !isnothing(register_map_data)
+        "echarts.registerMap('$(register_map_name)', $(register_map_data));"
+    else
+        ""
+    end
+
     return """
     <div id="$(chart_id)" style="width:$(width)px;height:$(height)px;"></div>
     <script>
@@ -71,6 +79,7 @@ function _echarts_html(option::String, width, height, renderer::String, theme)
     (function() {
         var dom = document.getElementById('$(chart_id)');
         var myChart = echarts.init(dom, $(theme_json), {renderer: '$(renderer)'});
+        $(register_map_js)
         myChart.setOption($(option));
         window.addEventListener('resize', function() { myChart.resize(); });
     })();
@@ -78,7 +87,9 @@ function _echarts_html(option::String, width, height, renderer::String, theme)
     """
 end
 
-_echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
+_echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme;
+                                             register_map_name = ec.ec_mapname,
+                                             register_map_data = ec.ec_mapdata)
 _echarts_html(ec::EChartRaw) = _echarts_html(ec.option,     ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
 
 #Jupyter notebook method
