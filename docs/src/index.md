@@ -7,7 +7,7 @@ ECharts.jl provides:
 
 - High-level functions for quickly creating visualizations such as bar charts, area charts, line charts, and others
 - Support for ColorBrewer color scales via [ColorBrewer.jl](https://github.com/timothyrenner/ColorBrewer.jl) and other colors via [NoveltyColors.jl](https://github.com/randyzwitch/NoveltyColors.jl)
-- Inline output via [IJulia (Jupyter Notebook)](https://github.com/JuliaLang/IJulia.jl) and VSCode, and REPL support via [Blink.jl](https://github.com/JunoLab/Blink.jl)
+- Inline output via [IJulia (Jupyter Notebook)](https://github.com/JuliaLang/IJulia.jl) and VSCode
 
 ## Motivation
 
