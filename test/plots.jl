@@ -590,7 +590,8 @@ result_choropleth = choropleth(regions, values)
 @test result_choropleth.series[1]._type == "map"
 @test result_choropleth.series[1].map == "world"
 @test result_choropleth.visualMap !== nothing
-@test result_choropleth.ec_mapname === nothing  # no custom geojson
+@test result_choropleth.ec_mapname == "world"   # bundled world map auto-loaded
+@test result_choropleth.ec_mapdata !== nothing
 
 result_choropleth_roam = choropleth(regions, values; map = "world", roam = true)
 @test typeof(result_choropleth_roam) == EChart

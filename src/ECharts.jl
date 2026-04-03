@@ -3,6 +3,7 @@ module ECharts
 	using JSON, Parameters, NoveltyColors, ColorBrewer, StatsBase
 	using Dates, Random, Tables
 	using KernelDensity
+	using LazyArtifacts
 	import Base: print, show
 	import LinearAlgebra: triu!, triu, tril, tril!
 
