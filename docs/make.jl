@@ -43,6 +43,7 @@ makedocs(
             "charts/calendar_heatmap.md",
             "charts/candlestick.md",
             "charts/chord.md",
+            "charts/choropleth.md",
             "charts/corrplot.md",
             "charts/donut.md",
             "charts/echart_raw.md",

@@ -56,6 +56,7 @@ module ECharts
 	export spanchart
 	export chord
 	export singleaxis
+	export choropleth
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -139,6 +140,7 @@ module ECharts
 	include("plots/lollipop.jl")
 	include("plots/slope.jl")
 	include("plots/marimekko.jl")
+	include("plots/choropleth.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
@@ -147,9 +149,11 @@ module ECharts
 	JSON.lower(::Missing) = "-" # "-" represents missing in ECharts
 
 	# By convention, fields starting with _ are reserved words — strip the prefix.
+	# Fields starting with ec_ are ECharts.jl-internal and excluded from JSON output.
 	function JSON.lower(x::AbstractEChartType)
 	    res = Dict{String,Any}()
 	    for f in fieldnames(typeof(x))
+	        startswith(string(f), "ec_") && continue
 	        v = getfield(x, f)
 	        isnothing(v) && continue
 	        key = startswith(string(f), "_") ? string(f)[2:end] : string(f)
