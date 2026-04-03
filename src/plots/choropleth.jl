@@ -10,8 +10,9 @@ choropleth(df, regions::Symbol, values::Symbol)
 ```
 
 ## Arguments
-* `map::String = "world"` : ECharts map name; must match a built-in ECharts map (e.g. `"world"`,
-  `"china"`, `"USA"`) or the name used when registering a custom map via `geojson`
+* `map::String = "world"` : map name. `"world"` uses the built-in world map bundled with this
+  package. For any other map, supply a GeoJSON string via `geojson` and set `map` to the name
+  you want to register it under.
 * `geojson::Union{AbstractString, Nothing} = nothing` : raw GeoJSON string to register as a
   custom map under the name given by `map`. Compatible with any workflow that produces a GeoJSON
   string, including:
@@ -26,8 +27,8 @@ choropleth(df, regions::Symbol, values::Symbol)
 
 ## Notes
 
-Region names in `regions` must match the names used in the ECharts map definition. For the
-built-in world map, names follow ISO 3166-1 English country names as used by ECharts
+Region names in `regions` must match the names used in the map's GeoJSON `name` property.
+For the bundled world map (`map = "world"`), names follow the ECharts convention
 (e.g. `"United States"`, `"China"`, `"Brazil"`).
 
 To use a custom map from a file on disk:
@@ -63,9 +64,17 @@ function choropleth(regions::AbstractVector,
                                  top = "middle")
     end
 
-    if !isnothing(geojson)
+    resolved_geojson = if !isnothing(geojson)
+        String(geojson)
+    elseif map == "world"
+        read(joinpath(@__DIR__, "..", "maps", "world.json"), String)
+    else
+        nothing
+    end
+
+    if !isnothing(resolved_geojson)
         ec.ec_mapname = map
-        ec.ec_mapdata = String(geojson)
+        ec.ec_mapdata = resolved_geojson
     end
 
     legend ? legend!(ec) : nothing
