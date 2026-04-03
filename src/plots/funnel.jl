@@ -9,6 +9,7 @@ funnel(names::AbstractVector, values::AbstractVector{<:Union{Missing, Real}})
 ```
 
 ## Arguments
+* `sort::String = "descending"` : sort order for funnel slices; one of {"descending", "ascending", "none"}
 * `legend::Bool` : display legend?
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 

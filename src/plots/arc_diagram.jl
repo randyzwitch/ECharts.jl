@@ -16,7 +16,6 @@ arcdiagram(nodes::AbstractVector{String}, links::AbstractVector,
 * `curveness::Real = 0.4` : edge curvature (0 = straight, 1 = very curved)
 * `symbol_size::Int = 20` : node circle diameter in pixels
 * `roam::Bool = false` : allow panning and zooming?
-* `max_width::Int = 8` : maximum edge line width when weights are provided
 * `legend::Bool = false` : display legend?
 * `kwargs` : varargs to set any field of the resulting `EChart` struct
 
