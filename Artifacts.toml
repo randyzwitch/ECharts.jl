@@ -1,0 +1,7 @@
+[world]
+lazy = true
+git-tree-sha1 = "7a79c0b46fa778f73a6be543a39f746d61558e01"
+
+    [[world.download]]
+    url = "https://github.com/randyzwitch/ECharts.jl/releases/download/map-data-v1/world_map.tar.gz"
+    sha256 = "d2c214c9cfcb7b94727cf297b3155535cd27ce29854e8fe366b36aea5beb7811"

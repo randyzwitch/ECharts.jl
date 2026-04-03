@@ -67,7 +67,7 @@ function choropleth(regions::AbstractVector,
     resolved_geojson = if !isnothing(geojson)
         String(geojson)
     elseif map == "world"
-        read(joinpath(@__DIR__, "..", "maps", "world.json"), String)
+        read(joinpath(artifact"world", "world.json"), String)
     else
         nothing
     end
