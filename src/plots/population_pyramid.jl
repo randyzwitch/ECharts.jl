@@ -2,13 +2,15 @@
     populationpyramid(ages, male, female)
 
 Creates an `EChart` population pyramid with age groups on the y-axis and bars diverging
-left (male) and right (female) on the x-axis.
+left (male) and right (female) on the x-axis. This is a convenience wrapper around
+[`divergingbar`](@ref) with demographic defaults.
 
 ## Methods
 ```julia
 populationpyramid(ages::AbstractVector{String},
                    male::AbstractVector{<:Real},
                    female::AbstractVector{<:Real})
+populationpyramid(df, ages::Symbol, male::Symbol, female::Symbol)
 ```
 
 ## Arguments
@@ -29,19 +31,9 @@ function populationpyramid(ages::AbstractVector{String},
                              male_name::String = "Male",
                              female_name::String = "Female",
                              kwargs...)
-
-    ec = newplot(kwargs, ec_charttype = "populationpyramid")
-    ec.xAxis = [Axis(_type = "value")]
-    ec.yAxis = [Axis(_type = "category", data = collect(ages))]
-    ec.series = [
-        XYSeries(name = male_name,   _type = "bar", data = [-m for m in male]),
-        XYSeries(name = female_name, _type = "bar", data = collect(female)),
-    ]
-
-    legend ? legend!(ec) : nothing
-
-    return ec
-
+    divergingbar(ages, male, female;
+                 left_name = male_name, right_name = female_name,
+                 legend = legend, kwargs...)
 end
 
 """
@@ -56,6 +48,7 @@ function populationpyramid(df, ages::Symbol, male::Symbol, female::Symbol;
                             female_name::String = "Female",
                             kwargs...)
     Tables.istable(df) || throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
-    populationpyramid(_table_col(df, ages), _table_col(df, male), _table_col(df, female);
-                      legend = legend, male_name = male_name, female_name = female_name, kwargs...)
+    divergingbar(_table_col(df, ages), _table_col(df, male), _table_col(df, female);
+                 left_name = male_name, right_name = female_name,
+                 legend = legend, kwargs...)
 end
