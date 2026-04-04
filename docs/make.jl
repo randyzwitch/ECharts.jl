@@ -75,7 +75,6 @@ makedocs(
             "charts/streamgraph.md",
             "charts/sunburst.md",
             "charts/tree.md",
-            "charts/ternary.md",
             "charts/treemap.md",
             "charts/violin.md",
             "charts/waterfall.md",

@@ -1689,66 +1689,6 @@ Used internally by [`marimekko`](@ref).
     tooltip::Union{Tooltip, Nothing} = nothing
 end
 """
-    TernaryAxis
-
-Configuration for one axis (A, B, or C) of an ECharts ternary coordinate system.
-Embedded directly inside a [`Ternary`](@ref) struct as `axisA`, `axisB`, or `axisC`.
-"""
-@with_kw mutable struct TernaryAxis <: AbstractEChartType
-    _type::Union{String, Nothing} = "value"
-    name::Union{String, Nothing} = nothing
-    nameTextStyle::Union{TextStyle, Nothing} = nothing
-    nameGap::Union{Number, Nothing} = nothing
-    min::Union{Number, Nothing} = nothing
-    max::Union{Number, Nothing} = nothing
-    scale::Union{Bool, Nothing} = nothing
-    splitNumber::Union{Int, Nothing} = nothing
-    axisLine::Union{AxisLine, Nothing} = nothing
-    axisTick::Union{AxisTick, Nothing} = nothing
-    axisLabel::Union{AxisLabel, Nothing} = nothing
-    splitLine::Union{SplitLine, Nothing} = nothing
-    splitArea::Union{SplitArea, Nothing} = nothing
-end
-"""
-    Ternary
-
-ECharts ternary coordinate system component. Defines the triangular plotting area and its
-three axes (`axisA`, `axisB`, `axisC`). Used by [`ternary`](@ref) charts.
-"""
-@with_kw mutable struct Ternary <: AbstractEChartType
-    zlevel::Union{Int, Nothing} = nothing
-    z::Union{Int, Nothing} = nothing
-    left::Union{String, Number, Nothing} = nothing
-    top::Union{String, Number, Nothing} = nothing
-    right::Union{String, Number, Nothing} = nothing
-    bottom::Union{String, Number, Nothing} = nothing
-    width::Union{String, Number, Nothing} = nothing
-    height::Union{String, Number, Nothing} = nothing
-    axisA::Union{TernaryAxis, Nothing} = nothing
-    axisB::Union{TernaryAxis, Nothing} = nothing
-    axisC::Union{TernaryAxis, Nothing} = nothing
-end
-"""
-    TernarySeries
-
-ECharts scatter series rendered on a ternary coordinate system.
-Each data point is a three-element vector `[a, b, c]`.
-Used internally by [`ternary`](@ref).
-"""
-@with_kw mutable struct TernarySeries <: AbstractEChartSeries
-    _type::String = "scatter"
-    name::Union{String, Nothing} = nothing
-    coordinateSystem::String = "ternary"
-    data::Union{AbstractVector, Nothing} = nothing
-    symbolSize::Union{Int, Nothing} = nothing
-    itemStyle::Union{ItemStyle, Nothing} = nothing
-    label::Union{Label, Nothing} = nothing
-    large::Union{Bool, Nothing} = nothing
-    largeThreshold::Union{Int, Nothing} = nothing
-    animation::Union{Bool, Nothing} = nothing
-    tooltip::Union{Tooltip, Nothing} = nothing
-end
-"""
     EChart
 
 The main chart struct returned by all ECharts.jl chart constructors (e.g. [`bar`](@ref),
@@ -1794,7 +1734,6 @@ details.
     parallel::Union{Parallel, Nothing} = nothing
     parallelAxis::Union{AbstractVector, ParallelAxis, Nothing} = nothing
     singleAxis::Union{SingleAxis, Nothing} = nothing
-    ternary::Union{Ternary, Nothing} = nothing
     timeline::Union{Timeline, Nothing} = nothing
     graphic::Union{Graphic, Nothing} = nothing
     calendar::Union{Calendar, Nothing} = nothing
