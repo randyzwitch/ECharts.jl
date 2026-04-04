@@ -77,6 +77,28 @@ Charts render automatically based on the environment:
 
 No configuration required — displaying a chart is as simple as evaluating an `EChart` value in any of these environments.
 
+### Saving charts to disk
+
+Use `savefig` to write a chart to a file. Three formats are supported:
+
+| Format | Extension | Notes |
+|---|---|---|
+| HTML | `.html` | Self-contained file with bundled ECharts JS — open in any browser |
+| JSON | `.json` | Raw ECharts option payload — useful for embedding or further processing |
+| SVG | `.svg` | Server-side rendered via [NodeJS.jl](https://github.com/nicholasfasching/NodeJS.jl) — no browser required, suitable for CI/headless environments |
+
+```julia
+using ECharts
+
+chart = bar(["A", "B", "C"], [1, 2, 3])
+
+savefig("chart.html", chart)   # interactive HTML
+savefig("chart.json", chart)   # ECharts option JSON
+savefig("chart.svg", chart)    # static SVG (server-side rendered)
+```
+
+SVG export uses ECharts' built-in `renderToSVGString` SSR API and requires [NodeJS.jl](https://github.com/nicholasfasching/NodeJS.jl) to be installed. It is loaded lazily — there is no startup overhead when only using HTML or JSON output.
+
 ## Tables.jl Support
 
 Most chart functions accept any [Tables.jl](https://github.com/JuliaData/Tables.jl)-compatible table alongside column symbols, making it easy to plot tabular data without pre-processing. This includes `DataFrame`, `CSV.File`, `TypedTables.Table`, a `NamedTuple` of vectors, and more:
