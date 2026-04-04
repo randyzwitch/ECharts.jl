@@ -98,6 +98,8 @@ Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart)    = write(io, _echarts_
 Base.show(io::IO, ::MIME"text/html",        ec::EChartRaw) = write(io, _echarts_html(ec))
 Base.show(io::IO, ::MIME"juliavscode/html", ec::EChartRaw) = write(io, _echarts_html(ec))
 
+const _NODEJS_PKG_ID = Base.PkgId(Base.UUID("2bd173c7-0d6d-553b-b6af-13a54713934c"), "NodeJS")
+
 """
     savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
 
@@ -105,12 +107,14 @@ Save an EChart to a file. The output format is determined by the file extension:
 
 - `.html` — self-contained HTML page with ECharts.js embedded
 - `.json` — raw ECharts option JSON (the object passed to `setOption`)
+- `.svg`  — server-side rendered SVG via NodeJS.jl
 
 # Examples
 ```julia
 chart = bar(["A","B","C"], [1,2,3])
 savefig("mychart.html", chart)   # standalone HTML page
 savefig("mychart.json", chart)   # ECharts option JSON
+savefig("mychart.svg",  chart)   # server-side rendered SVG
 ```
 """
 function savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
@@ -125,7 +129,17 @@ function savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
         open(filename, "w") do io
             write(io, ec isa EChart ? JSON.json(ec) : ec.option)
         end
+    elseif ext == ".svg"
+        NodeJS = Base.require(_NODEJS_PKG_ID)
+        payload = JSON.json(Dict(
+            "option" => JSON.parse(ec isa EChart ? JSON.json(ec) : ec.option),
+            "width"  => ec.ec_width,
+            "height" => ec.ec_height,
+            "theme"  => ec.theme,
+        ))
+        script = joinpath(@__DIR__, "ssr_render.js")
+        write(filename, read(pipeline(IOBuffer(payload), `$(NodeJS.nodejs_cmd()) $script`), String))
     else
-        throw(ArgumentError("Unsupported extension \"$ext\". Use \".html\" or \".json\"."))
+        throw(ArgumentError("Unsupported extension \"$ext\". Use \".html\", \".json\", or \".svg\"."))
     end
 end
