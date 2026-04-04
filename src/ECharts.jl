@@ -49,6 +49,7 @@ module ECharts
 	export punchcard
 	export beeswarm
 	export populationpyramid
+	export dumbbell
 	export gantt
 	export ridgeline
 	export violin
@@ -129,6 +130,7 @@ module ECharts
 	include("plots/punchcard.jl")
 	include("plots/beeswarm.jl")
 	include("plots/population_pyramid.jl")
+	include("plots/dumbbell.jl")
 	include("plots/gantt.jl")
 	include("plots/ridgeline.jl")
 	include("plots/violin.jl")
