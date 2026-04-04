@@ -48,6 +48,7 @@ module ECharts
 	export calendarheatmap
 	export punchcard
 	export beeswarm
+	export divergingbar
 	export populationpyramid
 	export gantt
 	export ridgeline
@@ -128,6 +129,7 @@ module ECharts
 	include("plots/calendar_heatmap.jl")
 	include("plots/punchcard.jl")
 	include("plots/beeswarm.jl")
+	include("plots/divergingbar.jl")
 	include("plots/population_pyramid.jl")
 	include("plots/gantt.jl")
 	include("plots/ridgeline.jl")

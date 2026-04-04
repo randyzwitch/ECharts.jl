@@ -45,6 +45,7 @@ makedocs(
             "charts/chord.md",
             "charts/choropleth.md",
             "charts/corrplot.md",
+            "charts/divergingbar.md",
             "charts/donut.md",
             "charts/echart_raw.md",
             "charts/effectscatter.md",
