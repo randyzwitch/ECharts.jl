@@ -21,7 +21,7 @@ module ECharts
 	const colorpalettes = merge(ColorBrewer.colorSchemes, NoveltyColors.ColorDict)
 	export colorpalettes
 
-	export EChart, EChartRaw, echart, @echart, from_json
+	export EChart, EChartRaw, EChartLive, echart, @echart, from_json, livechart, update!
 	export BoxPlotSeries, CandleStickSeries, ChordSeries, CustomSeries, EffectScatterSeries, FunnelSeries, GaugeSeries, GraphSeries,
 	HeatmapSeries, LinesSeries, MapSeries, ParallelSeries, PictorialBarSeries, PieSeries, RadarSeries,
 	SankeySeries, SunburstSeries, ThemeRiverSeries, TreeSeries, TreemapSeries, XYSeries
@@ -72,6 +72,7 @@ module ECharts
 	include("definetypes.jl")
 	include("render.jl")
 	include("from_json.jl")
+	include("live.jl")
 
 	# Visualization mutating functions
 	include("chartopts/utilities.jl")
