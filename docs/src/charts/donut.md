@@ -16,8 +16,10 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    device   = ["Desktop", "Mobile", "Tablet"],
-    sessions = [42.3, 52.1, 5.6],
+    sector    = ["Energy", "Transport", "Industry", "Agriculture", "Buildings", "Other"],
+    emissions = [34.6, 16.2, 24.2, 18.4, 5.9, 0.7],
 )
-donut(df, :device, :sessions)
+ec = donut(df, :sector, :emissions)
+title!(ec, text = "Global CO₂ Emissions by Sector", subtext = "Share of total, 2023")
+ec
 ```

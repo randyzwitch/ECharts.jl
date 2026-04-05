@@ -18,10 +18,12 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    category = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
-    oppose   = [12, 28, 15, 34, 11],
-    support  = [18, 35, 20, 20,  7],
+    policy     = ["Climate Bill", "Infrastructure Plan", "Tax Reform", "Healthcare Act", "Education Budget"],
+    disapprove = [38, 22, 45, 31, 19],
+    approve    = [52, 67, 43, 58, 71],
 )
-divergingbar(df, :category, :oppose, :support;
-             left_name = "Oppose", right_name = "Support")
+ec = divergingbar(df, :policy, :disapprove, :approve;
+                  left_name = "Disapprove", right_name = "Approve")
+title!(ec, text = "Public Approval of Policy Proposals", subtext = "Likely voters, n = 1,200")
+ec
 ```

@@ -16,8 +16,11 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    item   = ["Revenue", "COGS", "Gross Profit", "Marketing", "R&D", "G&A", "Operating Income"],
-    amount = [12500, -4800, -1200, -950, -620, 0, 0],
+    item   = ["Opening Balance", "Tax Revenue", "Federal Grants", "Debt Service",
+              "Public Safety", "Infrastructure", "Social Services", "Closing Balance"],
+    amount = [4200, 3800, 650, -980, -1540, -1100, -1430, 0],
 )
-waterfall(df, :item, :amount)
+ec = waterfall(df, :item, :amount)
+title!(ec, text = "Municipal Budget Breakdown", subtext = "USD millions, Fiscal Year 2024")
+ec
 ```

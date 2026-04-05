@@ -23,17 +23,20 @@ ec
 
 ```@example
 using ECharts, DataFrames, Random
-Random.seed!(42)
+Random.seed!(13)
 day_names  = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-days  = repeat(day_names, 24)
-hours = repeat(string.(0:23), inner = 7)
-is_weekday = [d ∈ ["Mon","Tue","Wed","Thu","Fri"] for d in days]
-is_peak    = [h ∈ ["9","10","11","14","15","16"] for h in hours]
-base       = is_weekday .* 200 .+ is_peak .* 150
+time_slots = ["Breakfast", "Lunch", "Afternoon", "Dinner", "Late Night"]
+days  = repeat(day_names, inner = 1, outer = 5)
+slots = repeat(time_slots, inner = 7)
+is_weekend = [d ∈ ["Sat", "Sun"] for d in days]
+is_meal    = [s ∈ ["Lunch", "Dinner"] for s in slots]
+base       = is_weekend .* 55 .+ is_meal .* 90 .+ 20
 df = DataFrame(
-    day   = days,
-    hour  = hours,
-    count = max.(0, round.(Int, base .+ 60 .* randn(length(days)))),
+    day    = days,
+    slot   = slots,
+    orders = max.(0, round.(Int, base .+ 20 .* randn(35))),
 )
-punchcard(df, :day, :hour, :count)
+ec = punchcard(df, :day, :slot, :orders)
+title!(ec, text = "Restaurant Orders by Day and Time Slot")
+ec
 ```
