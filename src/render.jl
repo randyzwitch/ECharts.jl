@@ -109,13 +109,6 @@ Save an EChart to a file. The output format is determined by the file extension:
 - `.json` — raw ECharts option JSON (the object passed to `setOption`)
 - `.svg`  — server-side rendered SVG via NodeJS.jl
 
-# Examples
-```julia
-chart = bar(["A","B","C"], [1,2,3])
-savefig("mychart.html", chart)   # standalone HTML page
-savefig("mychart.json", chart)   # ECharts option JSON
-savefig("mychart.svg",  chart)   # server-side rendered SVG
-```
 """
 function savefig(filename::AbstractString, ec::Union{EChart, EChartRaw})
     ext = lowercase(splitext(filename)[2])

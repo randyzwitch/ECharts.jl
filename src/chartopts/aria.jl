@@ -32,24 +32,6 @@ aria!(ec::EChart; enabled, label_enabled, description, general, series, data, de
   pattern objects with fields `"symbol"`, `"symbolSize"`, `"symbolKeepAspect"`, `"color"`,
   `"backgroundColor"`, `"dashArrayX"`, `"dashArrayY"`, `"rotation"`, `"maxTileWidth"`, `"maxTileHeight"`)
 
-## Examples
-```julia
-# Enable screen reader label (auto-generated from chart title, series, and data)
-aria!(ec)
-
-# Provide a fully custom description instead of the auto-generated one
-aria!(ec; description = "Bar chart showing monthly revenue for 2024.")
-
-# Customise the title template
-aria!(ec; general = Dict("withTitle" => "Chart titled {title}, showing sales data."))
-
-# Enable decal patterns for colour-blind accessibility (no other config needed)
-aria!(ec; decal_show = true)
-
-# Enable both screen reader label and decal patterns
-aria!(ec; decal_show = true)
-```
-
 """
 function aria!(ec::EChart; enabled::Bool = true,
                label_enabled::Bool = true,

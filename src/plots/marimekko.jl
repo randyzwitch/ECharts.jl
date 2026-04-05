@@ -29,16 +29,6 @@ Both axes display percentage labels.
 Rendering uses ECharts' `custom` series type with a `renderItem` JavaScript function that
 draws one rectangle per cell. One `CustomSeries` is created per sub-category row.
 
-# Examples
-```@example
-using ECharts
-categories    = ["North", "South", "East", "West"]
-subcategories = ["Product A", "Product B", "Product C"]
-values = [40.0  30.0  20.0  10.0;   # Product A share per region
-          25.0  35.0  15.0  25.0;   # Product B
-          35.0  35.0  65.0  65.0]   # Product C
-marimekko(categories, subcategories, values)
-```
 """
 function marimekko(categories::AbstractVector,
                    subcategories::AbstractVector,
@@ -135,16 +125,6 @@ The `category` column defines the columns (variable-width axis), `subcategory` d
 the stacked segments, and `value` holds the cell magnitudes.
 See the primary `marimekko` method for full argument documentation.
 
-# Examples
-```@example df
-using ECharts, DataFrames
-df = DataFrame(
-    region   = repeat(["North","South","East","West"], inner = 3),
-    product  = repeat(["A","B","C"], outer = 4),
-    revenue  = [40, 25, 35, 30, 35, 35, 20, 15, 65, 10, 25, 65],
-)
-marimekko(df, :region, :product, :revenue)
-```
 """
 function marimekko(df, category::Symbol, subcategory::Symbol, value::Symbol;
                    legend::Bool = true,

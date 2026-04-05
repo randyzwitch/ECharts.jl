@@ -24,13 +24,6 @@ Unlike [`radialbar`](@ref) (which converts a Cartesian bar chart to a radial lay
 `polarbar` is built directly on ECharts' polar coordinate system with a category angle axis
 and a value radius axis, giving true circular column bars.
 
-# Examples
-```@example
-using ECharts
-days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-sales = [120, 200, 150, 80, 70, 110, 130]
-polarbar(days, sales)
-```
 """
 function polarbar(categories::AbstractVector,
                   values::AbstractVector{<:Union{Missing, Real}};

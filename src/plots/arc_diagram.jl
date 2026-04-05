@@ -28,14 +28,6 @@ appear in `nodes`.
 When `weights` are provided, edge line widths are scaled linearly from 1 to `max_width`
 based on the weight values.
 
-# Examples
-```@example
-using ECharts
-nodes = ["Alice", "Bob", "Carol", "Dave", "Eve"]
-links = [["Alice","Bob"], ["Alice","Carol"], ["Bob","Dave"],
-         ["Carol","Dave"], ["Carol","Eve"], ["Dave","Eve"]]
-arcdiagram(nodes, links)
-```
 """
 function arcdiagram(nodes::AbstractVector{String},
                      links::AbstractVector;
@@ -72,14 +64,6 @@ end
 Creates an `EChart` arc diagram with edge widths scaled by `weights`.
 See the primary `arcdiagram` method for full argument documentation.
 
-# Examples
-```@example
-using ECharts
-nodes = ["A", "B", "C", "D"]
-links = [["A","B"], ["B","C"], ["C","D"], ["A","D"]]
-weights = [5.0, 3.0, 8.0, 2.0]
-arcdiagram(nodes, links, weights)
-```
 """
 function arcdiagram(nodes::AbstractVector{String},
                      links::AbstractVector,

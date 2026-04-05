@@ -26,17 +26,6 @@ position in the column order (leftmost gets the better rank).
 To supply pre-computed ranks, pass the rank matrix directly together with
 `yAxis` adjustment: the function always inverts the Y-axis and sets the minimum rank to 1.
 
-# Examples
-```@example
-using ECharts
-periods = ["2019", "2020", "2021", "2022", "2023"]
-values = [
-    82  74  68  91  85;   # Series A
-    75  88  95  70  78;   # Series B
-    60  65  72  80  92;   # Series C
-]'  # transpose so rows = periods
-bump(periods, values, names = ["A", "B", "C"])
-```
 """
 function bump(periods::AbstractVector,
               values::AbstractArray{<:Union{Missing, Real},2};
@@ -82,16 +71,6 @@ identifies individual series; `value` is the magnitude ranked at each `period`.
 Legend is displayed by default.
 See the primary `bump` method for full argument documentation.
 
-# Examples
-```@example df
-using ECharts, DataFrames
-df = DataFrame(
-    year  = repeat(2019:2023, inner = 3),
-    brand = repeat(["Alpha", "Beta", "Gamma"], outer = 5),
-    sales = [82, 75, 60, 74, 88, 65, 68, 95, 72, 91, 70, 80, 85, 78, 92],
-)
-bump(df, :year, :sales, :brand)
-```
 """
 function bump(df, period::Symbol, value::Symbol, group::Symbol;
               legend::Bool = true,
