@@ -16,8 +16,10 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    browser = ["Chrome", "Safari", "Edge", "Firefox", "Samsung Internet", "Other"],
-    share   = [65.8, 18.7, 5.3, 4.1, 2.6, 3.5],
+    source = ["Coal", "Natural Gas", "Oil", "Hydro", "Nuclear", "Wind", "Solar", "Other"],
+    share  = [35.8, 22.4, 4.1, 15.3, 9.7, 6.5, 4.7, 1.5],
 )
-pie(df, :browser, :share)
+ec = pie(df, :source, :share)
+title!(ec, text = "Global Electricity Generation by Source", subtext = "Share of total, 2023")
+ec
 ```

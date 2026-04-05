@@ -16,8 +16,11 @@ ec
 ```@example
 using ECharts, DataFrames
 df = DataFrame(
-    stage = ["Impressions", "Clicks", "Visits", "Inquiries", "Orders"],
-    count = [50000, 18000, 9000, 2000, 800],
+    stage = ["Applications", "Resume Screen", "Phone Screen",
+             "Technical Interview", "Final Round", "Offers Extended"],
+    count = [8500, 2200, 650, 180, 42, 15],
 )
-funnel(df, :stage, :count)
+ec = funnel(df, :stage, :count)
+title!(ec, text = "Engineering Hiring Pipeline", subtext = "Annual recruiting cycle")
+ec
 ```

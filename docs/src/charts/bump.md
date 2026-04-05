@@ -23,16 +23,17 @@ From a DataFrame:
 
 ```@example df
 using ECharts, DataFrames
-services = ["Netflix", "Disney+", "Amazon", "HBO Max", "Hulu"]
-years    = repeat(2019:2024, inner = 5)
-subs     = [167, 0, 150, 38, 28,
-            204, 95, 175, 61, 39,
-            222, 130, 200, 73, 43,
-            231, 152, 168, 122, 48,
-            260, 150, 200, 95, 50,
-            269, 153, 215, 110, 51]
-df = DataFrame(year = years, service = repeat(services, outer = 6), subscribers = Float64.(subs))
-ec = bump(df, :year, :subscribers, :service)
-title!(ec, text = "Streaming Service Subscribers", subtext = "Millions of paid subscribers")
+# TIOBE-style popularity index (% share) for top programming languages, 2019–2024
+languages = ["Python", "Java", "C/C++", "JavaScript", "Go"]
+years     = repeat(2019:2024, inner = 5)
+ratings   = [ 8.5, 16.0, 15.2, 9.7, 1.2,
+               9.7, 14.5, 15.8, 9.8, 1.5,
+              11.3, 12.0, 14.1, 9.1, 1.8,
+              13.2, 11.5, 13.6, 8.8, 2.4,
+              14.8, 10.9, 12.4, 9.2, 2.9,
+              16.1, 10.2, 11.8, 8.5, 3.5]
+df = DataFrame(year = years, language = repeat(languages, outer = 6), rating = Float64.(ratings))
+ec = bump(df, :year, :rating, :language)
+title!(ec, text = "Programming Language Popularity", subtext = "TIOBE-style index share %, 2019–2024")
 ec
 ```

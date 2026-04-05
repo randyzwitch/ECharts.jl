@@ -22,11 +22,14 @@ From a DataFrame (long format):
 ```@example df
 using ECharts, DataFrames
 df = DataFrame(
-    region  = repeat(["North America","Europe","Asia Pacific","Rest of World"], inner = 3),
-    segment = repeat(["Enterprise","Mid-Market","SMB"], outer = 4),
-    revenue = [420, 280, 150, 310, 195, 120, 580, 210, 175, 140, 85, 60],
+    region = repeat(["North America", "Europe", "Asia Pacific", "Middle East"], inner = 4),
+    source = repeat(["Fossil Fuels", "Nuclear", "Hydro", "Renewables"], outer = 4),
+    output = [480, 90, 70, 130,
+              320, 180, 95, 215,
+              780, 60, 120, 180,
+              360,  5, 10,  25],
 )
-ec = marimekko(df, :region, :segment, :revenue)
-title!(ec, text = "Revenue by Region and Customer Segment", subtext = "USD millions")
+ec = marimekko(df, :region, :source, :output)
+title!(ec, text = "Electricity Generation by Region and Source", subtext = "Terawatt-hours")
 ec
 ```
