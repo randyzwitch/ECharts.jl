@@ -25,13 +25,6 @@ Each lollipop is rendered as a scatter series (the dot) combined with a zero-wid
 series (the stem). The stem color automatically matches the dot color via the ECharts
 color palette.
 
-# Examples
-```@example
-using ECharts
-categories = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-values = [120, 200, 150, 80, 70, 110, 130]
-lollipop(categories, values)
-```
 """
 function lollipop(x::AbstractVector,
                   y::AbstractVector{<:Union{Missing, Real}};

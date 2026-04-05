@@ -34,16 +34,6 @@ is drawn via ECharts `markLine` attached to the start series. Dot colors follow 
 ECharts palette; the connector color is independent and defaults to light gray so it
 recedes behind the dots.
 
-# Examples
-```@example
-using ECharts
-roles = ["Engineer", "Manager", "Director", "VP", "C-Suite"]
-low   = [85,  100, 130, 160, 210]
-high  = [110, 145, 180, 230, 400]
-ec = dumbbell(roles, low, high; start_name = "25th pct", end_name = "75th pct")
-title!(ec, text = "Salary Range by Role (USD 000s)")
-ec
-```
 """
 function dumbbell(categories::AbstractVector,
                   start_vals::AbstractVector{<:Union{Missing, Real}},
@@ -105,18 +95,6 @@ provides y-axis labels; `start_val` and `end_val` are the two value columns.
 Legend labels default to the column names.
 See the primary `dumbbell` method for full argument documentation.
 
-# Examples
-```@example df
-using ECharts, DataFrames
-df = DataFrame(
-    country    = ["Germany", "France", "Spain", "Italy", "Portugal"],
-    rate_2015  = [4.6, 10.4, 22.1, 11.9,  12.4],
-    rate_2023  = [3.0,  7.3, 12.2,  6.7,   6.5],
-)
-ec = dumbbell(df, :country, :rate_2015, :rate_2023)
-title!(ec, text = "Unemployment Rate: 2015 vs 2023")
-ec
-```
 """
 function dumbbell(df, category::Symbol, start_val::Symbol, end_val::Symbol;
                   start_name::String = string(start_val),

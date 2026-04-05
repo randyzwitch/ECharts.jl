@@ -25,13 +25,6 @@ more perceptually accurate.
 
 Labels are shown on the sectors by default using `"{b}: {c}"` format (name + value).
 
-# Examples
-```@example
-using ECharts
-labels = ["Respiratory", "Zymotic", "Other"]
-values = [42, 32, 26]
-nightingale(labels, values)
-```
 """
 function nightingale(labels::AbstractVector, values::AbstractVector{<:Real};
                      rose_type::String = "radius",

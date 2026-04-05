@@ -22,14 +22,6 @@ Each bar "floats" above the axis: an invisible spacer bar extends from 0 to `low
 and the visible span bar extends from `lows[i]` to `highs[i]` (height = `highs[i] - lows[i]`).
 All values of `lows` must be ≤ the corresponding `highs`.
 
-# Examples
-```@example
-using ECharts
-months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-temp_low  = [-3.0, -2.0, 3.0, 8.0, 13.0, 18.0]
-temp_high = [5.0,  7.0, 12.0, 18.0, 23.0, 28.0]
-spanchart(months, temp_low, temp_high)
-```
 """
 function spanchart(categories::AbstractVector,
                     lows::AbstractVector{<:Real},
@@ -75,16 +67,6 @@ end
 Creates an `EChart` span chart from a Tables.jl-compatible table.
 See the primary `spanchart` method for full argument documentation.
 
-# Examples
-```@example
-using ECharts, DataFrames
-df = DataFrame(
-    quarter      = ["Q1", "Q2", "Q3", "Q4"],
-    revenue_low  = [80.0, 95.0, 110.0, 130.0],
-    revenue_high = [120.0, 145.0, 165.0, 180.0],
-)
-spanchart(df, :quarter, :revenue_low, :revenue_high)
-```
 """
 function spanchart(df, category_col::Symbol, low_col::Symbol, high_col::Symbol;
                     color::String = "#5470c6",

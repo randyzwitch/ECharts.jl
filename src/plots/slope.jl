@@ -23,18 +23,6 @@ slope(df, label::Symbol, before::Symbol, after::Symbol)
 DataFrame method). Each row represents a named series; use `seriesnames!` to set names
 after construction if needed.
 
-# Examples
-```@example
-using ECharts
-points = ["2020", "2023"]
-# Rows = countries, Columns = years
-vals = [72.0  78.0;   # Country A
-        65.0  60.0;   # Country B
-        81.0  85.0]   # Country C
-ec = slope(points, vals)
-seriesnames!(ec, ["Country A", "Country B", "Country C"])
-ec
-```
 """
 function slope(labels::AbstractVector,
                values::AbstractArray{<:Union{Missing, Real},2};
@@ -70,18 +58,6 @@ Creates an `EChart` slope chart from a Tables.jl-compatible table. The `label` c
 provides series names; `before` and `after` are the two value columns.
 See the primary `slope` method for full argument documentation.
 
-# Examples
-```@example df
-using ECharts, DataFrames
-df = DataFrame(
-    country   = ["Germany", "France", "Spain", "Italy"],
-    rate_2015 = [4.6, 10.4, 22.1, 11.9],
-    rate_2023 = [3.0,  7.3, 12.2,  6.7],
-)
-ec = slope(df, :country, :rate_2015, :rate_2023)
-title!(ec, text = "Unemployment Rate Change 2015 → 2023")
-ec
-```
 """
 function slope(df, label::Symbol, before::Symbol, after::Symbol;
                legend::Bool = true,

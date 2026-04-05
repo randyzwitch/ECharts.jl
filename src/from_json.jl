@@ -9,19 +9,6 @@ and re-exported.
 Any JSON keys that have no corresponding field in the Julia type system emit a `@warn` message
 so that gaps can be identified and fixed. Pass `warn_unknown=false` to suppress these warnings.
 
-# Examples
-```julia
-json = \"\"\"
-{
-  "xAxis": {"type": "category", "data": ["Mon","Tue","Wed"]},
-  "yAxis": {"type": "value"},
-  "series": [{"type": "bar", "data": [120, 200, 150]}]
-}
-\"\"\"
-ec = from_json(json)
-title!(ec, text = "My Chart")
-ec
-```
 """
 function from_json(json_str::AbstractString;
                    width::Int     = 800,
