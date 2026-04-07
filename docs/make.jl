@@ -64,6 +64,7 @@ makedocs(
             "charts/parallel.md",
             "charts/pie.md",
             "charts/punchcard.md",
+            "charts/qqplot.md",
             "charts/population_pyramid.md",
             "charts/polar.md",
             "charts/polarbar.md",
