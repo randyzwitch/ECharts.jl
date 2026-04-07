@@ -73,14 +73,12 @@ applied to the chart.
 - `ec::EChart`: a chart with two or more series (e.g. from `bar`, `line`, `scatter` with a group column)
 - `ncols::Union{Int,Nothing} = nothing`: columns in the panel grid (default: `min(n_series, 3)`)
 
-Returns the mutated `ec` so it can be used in a pipeline.
+Returns the mutated `ec` so it can be used in a pipeline with `|>`.
 
 ## Examples
 ```julia
-# Pipeline style
 bar(df, :month, :sales, :region) |> facet!
 
-# Pre-configure then facet
 ec = line(df, :month, :revenue, :product)
 smooth!(ec)
 colorscheme!(ec, ("Paired", 12))
@@ -148,9 +146,8 @@ end
     facet(df, x, y, facet_col; mark, ncols, scale, kwargs...)
 
 Build a faceted chart directly from a Tables.jl-compatible table.
-Automatically selects the correct axis type and data format based on
-whether the `x` column is numeric (value axis, `[[x,y],...]` data) or
-categorical (category axis, separate y data).
+The axis type and data format are chosen automatically: numeric `x` columns
+use value axes; string/categorical columns use category axes.
 
 ## Arguments
 - `df`: any Tables.jl-compatible source (DataFrame, NamedTuple, etc.)
@@ -171,8 +168,6 @@ df = DataFrame(
 )
 facet(df, :month, :sales, :region)
 facet(df, :month, :sales, :region; mark="line", ncols=2)
-
-# Numeric x column → value axes, no special casing needed
 facet(df, :height, :weight, :sex; mark="scatter")
 ```
 """
@@ -198,7 +193,8 @@ end
     facet(x, y, facet_var; mark, ncols, scale, kwargs...)
 
 Build a faceted chart from raw arrays. Each unique value in `facet_var` becomes
-one panel containing the subset of `x`/`y` belonging to that group.
+one panel containing the subset of `x`/`y` belonging to that group. Numeric `x`
+arrays use value axes; string/categorical arrays use category axes.
 
 ## Arguments
 - `x::AbstractVector`: x-axis values

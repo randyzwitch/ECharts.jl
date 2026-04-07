@@ -43,10 +43,9 @@ title!(ec, text = "Quarterly Revenue by Product")
 facet!(ec; ncols = 2)
 ```
 
-## Scatter chart — numeric x handled automatically
+## Scatter chart
 
-When the x column is numeric, `facet` uses value-type axes and packages each
-point as `[x, y]` — the same format `scatter` uses natively. No special casing needed.
+Numeric x columns automatically use value-type axes with `[x, y]` point data.
 
 ```@example
 using ECharts
