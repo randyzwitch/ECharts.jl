@@ -28,9 +28,10 @@ function calendarheatmap(dates::AbstractVector{Dates.Date},
     data = [[Dates.format(d, "yyyy-mm-dd"), v] for (d, v) in zip(dates, values)]
 
     ec = newplot(kwargs, ec_charttype = "calendarheatmap")
+    any(k == :ec_height for (k, _) in kwargs) || (ec.ec_height = 225)
     ec.xAxis = nothing
     ec.yAxis = nothing
-    ec.calendar = Calendar(range = string(year), cellSize = ["auto", 13])
+    ec.calendar = Calendar(range = string(year), cellSize = ["auto", 13], top = 60)
     ec.series = [HeatmapSeries(coordinateSystem = "calendar", data = data)]
 
     minval, maxval = extrema(values)
@@ -40,7 +41,7 @@ function calendarheatmap(dates::AbstractVector{Dates.Date},
                              calculable = calculable,
                              orient = "horizontal",
                              left = "center",
-                             top = "top")
+                             bottom = 0)
 
     return ec
 

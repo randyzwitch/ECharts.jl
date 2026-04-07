@@ -20,8 +20,8 @@ datazoom!(ec::EChart; type, start, end_, xAxisIndex, yAxisIndex, orient, filterM
 * `throttle::Union{Int,Nothing} = nothing` : throttle the zoom/pan events in milliseconds (inside only)
 * `left::Union{Int,String,Nothing} = nothing` : distance from left edge; not set if nothing
 * `top::Union{Int,String,Nothing} = nothing` : distance from top edge; not set if nothing
-* `right::Union{Int,String,Nothing} = "auto"` : distance from right edge
-* `bottom::Union{Int,String,Nothing} = 0` : distance from bottom edge (slider positioned at bottom by default)
+* `right::Union{Int,String,Nothing} = nothing` : distance from right edge; auto-positioned if nothing
+* `bottom::Union{Int,String,Nothing} = nothing` : distance from bottom edge; auto-positioned at bottom of chart if nothing
 
 ## Notes
 
@@ -39,8 +39,8 @@ function datazoom!(ec::EChart;
                    throttle::Union{Int,Nothing} = nothing,
                    left::Union{Int,String,Nothing} = nothing,
                    top::Union{Int,String,Nothing} = nothing,
-                   right::Union{Int,String,Nothing} = "auto",
-                   bottom::Union{Int,String,Nothing} = 0)
+                   right::Union{Int,String,Nothing} = nothing,
+                   bottom::Union{Int,String,Nothing} = nothing)
 
     dz = DataZoom(_type = type,
                   show = type == "slider" ? true : nothing,

@@ -475,8 +475,8 @@ See also [`datazoom!`](@ref).
     throttle::Union{Int, Nothing} = nothing
     left::Union{Int,String, Nothing} = nothing
     top::Union{Int,String, Nothing} = nothing
-    right::Union{Int,String, Nothing} = "auto"
-    bottom::Union{Int,String, Nothing} = 0
+    right::Union{Int,String, Nothing} = nothing
+    bottom::Union{Int,String, Nothing} = nothing
 end
 """
     Timeline

@@ -26,3 +26,4 @@ ec = calendarheatmap(df, :date, :temp_f, 2023)
 title!(ec, text = "Daily High Temperature — New York City, 2023", subtext = "°F")
 ec
 ```
+
