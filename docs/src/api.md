@@ -7,7 +7,7 @@ Pages = ["charts/arc_diagram.md", "charts/area.md", "charts/bar.md", "charts/bee
          "charts/box.md", "charts/bubble.md", "charts/bullet.md", "charts/bump.md",
          "charts/calendar_heatmap.md", "charts/candlestick.md", "charts/chord.md",
          "charts/corrplot.md", "charts/donut.md", "charts/echart_raw.md",
-         "charts/effectscatter.md", "charts/funnel.md", "charts/gantt.md",
+         "charts/effectscatter.md", "charts/facet.md", "charts/funnel.md", "charts/gantt.md",
          "charts/gauge.md", "charts/graph.md", "charts/heatmap.md",
          "charts/histogram.md", "charts/line.md", "charts/lollipop.md",
          "charts/marimekko.md", "charts/nightingale.md", "charts/parallel.md",

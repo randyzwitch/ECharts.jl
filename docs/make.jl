@@ -50,6 +50,7 @@ makedocs(
             "charts/echart_raw.md",
             "charts/ecdfplot.md",
             "charts/effectscatter.md",
+            "charts/facet.md",
             "charts/funnel.md",
             "charts/gantt.md",
             "charts/gauge.md",

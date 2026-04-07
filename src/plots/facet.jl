@@ -10,7 +10,7 @@ function _facet_layout(n::Int, ncols::Union{Int,Nothing})
     top_margin    = 12.0   # headroom for panel titles
     bottom_margin = 5.0
     col_gap       = 3.0
-    row_gap       = 3.0
+    row_gap       = 10.0   # must exceed title_offset below so row-N+1 title clears row-N grid
 
     cell_w = (100 - left_margin - right_margin - (nc - 1) * col_gap) / nc
     cell_h = (100 - top_margin  - bottom_margin - (nr - 1) * row_gap) / nr
@@ -122,16 +122,21 @@ function facet!(ec::EChart; ncols::Union{Int,Nothing} = nothing)
         s.yAxisIndex = idx
     end
 
+    # Preserve any chart-level title already set by title!() — filter out the
+    # default empty Title() that every EChart starts with.
+    existing = isnothing(ec.title) ? Title[] :
+               filter(t -> !isnothing(t.text), ec.title)
+
     ec.grid          = grids
     ec.xAxis         = xaxes
     ec.yAxis         = yaxes
-    ec.title         = titles
+    ec.title         = vcat(existing, titles)
     ec.legend        = nothing   # panel titles serve as labels
     ec.ec_charttype  = "facet"
 
     # Scale height with row count unless the caller already set a custom height
     if ec.ec_height == 400
-        ec.ec_height = max(400, nr * 260)
+        ec.ec_height = max(400, nr * 300)
     end
 
     return ec
@@ -239,7 +244,7 @@ function facet(x::AbstractVector, y::AbstractVector, facet_var::AbstractVector;
 
     ec = newplot(collect(kwargs), ec_charttype = "facet")
     if ec.ec_height == 400
-        ec.ec_height = max(400, nr * 260)
+        ec.ec_height = max(400, nr * 300)
     end
     ec.grid   = grids
     ec.xAxis  = xaxes
