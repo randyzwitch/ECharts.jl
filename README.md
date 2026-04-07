@@ -21,10 +21,11 @@ The API is intentionally opinionated — sensible defaults handle the boilerplat
 
 | Category | Charts |
 |---|---|
-| Basic | [`bar`](https://randyzwitch.com/ECharts.jl/charts/bar/), [`line`](https://randyzwitch.com/ECharts.jl/charts/line/), [`area`](https://randyzwitch.com/ECharts.jl/charts/area/), [`scatter`](https://randyzwitch.com/ECharts.jl/charts/scatter/), [`bubble`](https://randyzwitch.com/ECharts.jl/charts/bubble/), [`effectscatter`](https://randyzwitch.com/ECharts.jl/charts/effectscatter/), [`lollipop`](https://randyzwitch.com/ECharts.jl/charts/lollipop/), [`slope`](https://randyzwitch.com/ECharts.jl/charts/slope/), [`singleaxis`](https://randyzwitch.com/ECharts.jl/charts/single_axis/) |
-| Statistical | [`histogram`](https://randyzwitch.com/ECharts.jl/charts/histogram/), [`box`](https://randyzwitch.com/ECharts.jl/charts/box/), [`corrplot`](https://randyzwitch.com/ECharts.jl/charts/corrplot/), [`streamgraph`](https://randyzwitch.com/ECharts.jl/charts/streamgraph/), [`beeswarm`](https://randyzwitch.com/ECharts.jl/charts/beeswarm/), [`ridgeline`](https://randyzwitch.com/ECharts.jl/charts/ridgeline/), [`violin`](https://randyzwitch.com/ECharts.jl/charts/violin/), [`bump`](https://randyzwitch.com/ECharts.jl/charts/bump/) |
+| Basic | [`bar`](https://randyzwitch.com/ECharts.jl/charts/bar/), [`line`](https://randyzwitch.com/ECharts.jl/charts/line/), [`area`](https://randyzwitch.com/ECharts.jl/charts/area/), [`scatter`](https://randyzwitch.com/ECharts.jl/charts/scatter/), [`bubble`](https://randyzwitch.com/ECharts.jl/charts/bubble/), [`effectscatter`](https://randyzwitch.com/ECharts.jl/charts/effectscatter/), [`lollipop`](https://randyzwitch.com/ECharts.jl/charts/lollipop/), [`slope`](https://randyzwitch.com/ECharts.jl/charts/slope/), [`dumbbell`](https://randyzwitch.com/ECharts.jl/charts/dumbbell/), [`divergingbar`](https://randyzwitch.com/ECharts.jl/charts/divergingbar/), [`singleaxis`](https://randyzwitch.com/ECharts.jl/charts/single_axis/) |
+| Statistical | [`histogram`](https://randyzwitch.com/ECharts.jl/charts/histogram/), [`box`](https://randyzwitch.com/ECharts.jl/charts/box/), [`corrplot`](https://randyzwitch.com/ECharts.jl/charts/corrplot/), [`ecdfplot`](https://randyzwitch.com/ECharts.jl/charts/ecdfplot/), [`streamgraph`](https://randyzwitch.com/ECharts.jl/charts/streamgraph/), [`beeswarm`](https://randyzwitch.com/ECharts.jl/charts/beeswarm/), [`ridgeline`](https://randyzwitch.com/ECharts.jl/charts/ridgeline/), [`violin`](https://randyzwitch.com/ECharts.jl/charts/violin/), [`bump`](https://randyzwitch.com/ECharts.jl/charts/bump/) |
 | Part-of-whole | [`pie`](https://randyzwitch.com/ECharts.jl/charts/pie/), [`donut`](https://randyzwitch.com/ECharts.jl/charts/donut/), [`funnel`](https://randyzwitch.com/ECharts.jl/charts/funnel/), [`waterfall`](https://randyzwitch.com/ECharts.jl/charts/waterfall/), [`radialbar`](https://randyzwitch.com/ECharts.jl/charts/radialbar/), [`nightingale`](https://randyzwitch.com/ECharts.jl/charts/nightingale/), [`marimekko`](https://randyzwitch.com/ECharts.jl/charts/marimekko/) |
 | Hierarchical / Network | [`treemap`](https://randyzwitch.com/ECharts.jl/charts/treemap/), [`sunburst`](https://randyzwitch.com/ECharts.jl/charts/sunburst/), [`tree`](https://randyzwitch.com/ECharts.jl/charts/tree/), [`sankey`](https://randyzwitch.com/ECharts.jl/charts/sankey/), [`graph`](https://randyzwitch.com/ECharts.jl/charts/graph/), [`arcdiagram`](https://randyzwitch.com/ECharts.jl/charts/arc_diagram/), [`chord`](https://randyzwitch.com/ECharts.jl/charts/chord/) |
+| Geographic | [`choropleth`](https://randyzwitch.com/ECharts.jl/charts/choropleth/) |
 | Specialized | [`candlestick`](https://randyzwitch.com/ECharts.jl/charts/candlestick/), [`gauge`](https://randyzwitch.com/ECharts.jl/charts/gauge/), [`radar`](https://randyzwitch.com/ECharts.jl/charts/radar/), [`polar`](https://randyzwitch.com/ECharts.jl/charts/polar/), [`parallel`](https://randyzwitch.com/ECharts.jl/charts/parallel/), [`heatmap`](https://randyzwitch.com/ECharts.jl/charts/heatmap/), [`calendarheatmap`](https://randyzwitch.com/ECharts.jl/charts/calendar_heatmap/), [`punchcard`](https://randyzwitch.com/ECharts.jl/charts/punchcard/), [`gantt`](https://randyzwitch.com/ECharts.jl/charts/gantt/), [`bullet`](https://randyzwitch.com/ECharts.jl/charts/bullet/), [`spanchart`](https://randyzwitch.com/ECharts.jl/charts/span_chart/), [`populationpyramid`](https://randyzwitch.com/ECharts.jl/charts/population_pyramid/), [`xy_plot`](https://randyzwitch.com/ECharts.jl/charts/xy_plot/), [`polarbar`](https://randyzwitch.com/ECharts.jl/charts/polarbar/) |
 
 ## Workflow
@@ -48,13 +49,34 @@ xaxis!(ar, name = "Day of Week")
 yaxis!(ar, name = "Daily High Temperature °C")
 ```
 
+## Faceted / Small-Multiples Charts
+
+`facet!` splits any multi-series chart into a trellis of panels — one per series —
+while preserving all styling already applied to the chart. `facet` is a convenience
+form for building and faceting in one step.
+
+```julia
+# Split a grouped bar chart into panels
+bar(df, :month, :sales, :region) |> facet!
+
+# Apply styling first, then facet into a 2-column grid
+ec = line(df, :quarter, :revenue, :product)
+smooth!(ec)
+colorscheme!(ec, ("Paired", 12))
+facet!(ec; ncols = 2)
+
+# One-step form — axis type is inferred automatically
+facet(df, :month, :sales, :region)                       # categorical x → bar panels
+facet(df, :height, :weight, :sex; mark = "scatter")      # numeric x → scatter panels
+```
+
 ## Mutating Functions
 
 Chart appearance and behavior can be modified after creation:
 
-- **Axes:** [`xaxis!`](https://randyzwitch.com/ECharts.jl/functions/xaxis!_yaxis!/), [`yaxis!`](https://randyzwitch.com/ECharts.jl/functions/xaxis!_yaxis!/), [`xline!`](https://randyzwitch.com/ECharts.jl/functions/xline!_yline!/), [`yline!`](https://randyzwitch.com/ECharts.jl/functions/xline!_yline!/), [`xarea!`](https://randyzwitch.com/ECharts.jl/functions/xarea!_yarea!/), [`yarea!`](https://randyzwitch.com/ECharts.jl/functions/xarea!_yarea!/), [`xgridlines!`](https://randyzwitch.com/ECharts.jl/functions/xgridlines!_ygridlines!/), [`ygridlines!`](https://randyzwitch.com/ECharts.jl/functions/xgridlines!_ygridlines!/)
+- **Axes:** [`xaxis!`](https://randyzwitch.com/ECharts.jl/functions/xaxis!_yaxis!/), [`yaxis!`](https://randyzwitch.com/ECharts.jl/functions/xaxis!_yaxis!/) (including `decimals` for tick formatting), [`xline!`](https://randyzwitch.com/ECharts.jl/functions/xline!_yline!/), [`yline!`](https://randyzwitch.com/ECharts.jl/functions/xline!_yline!/), [`xarea!`](https://randyzwitch.com/ECharts.jl/functions/xarea!_yarea!/), [`yarea!`](https://randyzwitch.com/ECharts.jl/functions/xarea!_yarea!/), [`xgridlines!`](https://randyzwitch.com/ECharts.jl/functions/xgridlines!_ygridlines!/), [`ygridlines!`](https://randyzwitch.com/ECharts.jl/functions/xgridlines!_ygridlines!/)
 - **Style:** [`colorscheme!`](https://randyzwitch.com/ECharts.jl/functions/colorscheme!/), [`theme!`](https://randyzwitch.com/ECharts.jl/functions/theme!/), [`smooth!`](https://randyzwitch.com/ECharts.jl/functions/smooth!/), [`flip!`](https://randyzwitch.com/ECharts.jl/functions/flip!/), [`jitter!`](https://randyzwitch.com/ECharts.jl/functions/jitter!/), [`shadow!`](https://randyzwitch.com/ECharts.jl/functions/shadow!/), [`radial!`](https://randyzwitch.com/ECharts.jl/functions/radial!/)
-- **Layout:** [`legend!`](https://randyzwitch.com/ECharts.jl/functions/legend!/), [`title!`](https://randyzwitch.com/ECharts.jl/functions/title!/), [`toolbox!`](https://randyzwitch.com/ECharts.jl/functions/toolbox!/), [`tooltip!`](https://randyzwitch.com/ECharts.jl/functions/tooltip!/), [`datazoom!`](https://randyzwitch.com/ECharts.jl/functions/datazoom!/)
+- **Layout:** [`facet!`](https://randyzwitch.com/ECharts.jl/charts/facet/), [`legend!`](https://randyzwitch.com/ECharts.jl/functions/legend!/), [`title!`](https://randyzwitch.com/ECharts.jl/functions/title!/), [`toolbox!`](https://randyzwitch.com/ECharts.jl/functions/toolbox!/), [`tooltip!`](https://randyzwitch.com/ECharts.jl/functions/tooltip!/), [`datazoom!`](https://randyzwitch.com/ECharts.jl/functions/datazoom!/)
 - **Data:** [`seriesnames!`](https://randyzwitch.com/ECharts.jl/functions/seriesnames!/), [`aria!`](https://randyzwitch.com/ECharts.jl/functions/aria!/), [`labels!`](https://randyzwitch.com/ECharts.jl/functions/labels!/), [`text!`](https://randyzwitch.com/ECharts.jl/functions/text!/)
 - **Output:** [`savefig`](https://randyzwitch.com/ECharts.jl/functions/savefig/)
 
@@ -76,6 +98,19 @@ Charts render automatically based on the environment:
 | Julia REPL | Not supported (use VS Code or Jupyter) |
 
 No configuration required — displaying a chart is as simple as evaluating an `EChart` value in any of these environments.
+
+### Live / real-time charts
+
+`livechart` wraps any `EChart` in a local HTTP server and returns an `EChartLive`
+object. Call `update!` with new data to push changes to the browser without reloading
+the page — useful for dashboards and streaming data.
+
+```julia
+ec = bar(["A", "B", "C"], [1, 2, 3])
+lc = livechart(ec)               # opens in browser, starts polling server
+
+update!(lc, bar(["A", "B", "C"], [4, 1, 6]))   # chart updates in place
+```
 
 ### Saving charts to disk
 
