@@ -38,7 +38,7 @@ nt = (
 )
 ec = line(nt, :quarter, :revenue, :product)
 smooth!(ec)
-colorscheme!(ec, "Paired_12")
+colorscheme!(ec, ("Paired", 12))
 title!(ec, text = "Quarterly Revenue by Product")
 facet!(ec; ncols = 2)
 ```
