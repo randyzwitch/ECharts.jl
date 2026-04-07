@@ -256,11 +256,11 @@ See also [`tooltip!`](@ref).
     transitionDuration::Union{Number, Nothing} = 0.4
     position::Union{AbstractVector,String, Nothing} = nothing
     formatter::Union{String, Nothing, JSON.JSONText} = nothing
-    backgroundColor::Union{String, Nothing, JSON.JSONText} = "rgba(50,50,50,0.7)"
+    backgroundColor::Union{String, Nothing, JSON.JSONText} = "rgba(50,50,50,0.9)"
     borderColor::Union{String, Nothing} = "#333"
     borderWidth::Union{Int, Nothing} = 0
     padding::Union{Int, Nothing} = 5
-    textStyle::Union{TextStyle, Nothing} = nothing
+    textStyle::Union{TextStyle, Nothing} = TextStyle(color = "#fff", fontStyle = nothing, fontWeight = nothing, fontFamily = nothing, fontSize = nothing)
     extraCssText::Union{String, Nothing} = nothing
     valueFormatter::Union{String, JSON.JSONText, Nothing} = nothing
     order::Union{String, Nothing} = nothing
