@@ -43,9 +43,11 @@ title!(ec, text = "Quarterly Revenue by Product")
 facet!(ec; ncols = 2)
 ```
 
-## Scatter chart — Tables.jl convenience form
+## Scatter chart — pipeline style
 
-The `facet(df, x, y, group)` form builds and facets in one call.
+`scatter` stores both x and y values together per point (`[[x,y],...]`) and uses
+value-type axes, so it needs to be built with `scatter()` first rather than via
+the `facet()` convenience form. The pipeline approach works naturally.
 
 ```@example
 using ECharts
@@ -56,7 +58,7 @@ nt = (
               52,58,50,62,48,60,54,51,57,65],
     sex    = vcat(fill("Male",10), fill("Female",10)),
 )
-facet(nt, :height, :weight, :sex; mark = "scatter")
+scatter(nt, :height, :weight, :sex) |> facet!
 ```
 
 ## Raw arrays — groups with independent x values

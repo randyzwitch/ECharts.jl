@@ -147,15 +147,20 @@ end
 """
     facet(df, x, y, facet_col; mark, ncols, kwargs...)
 
-Build a faceted chart directly from a Tables.jl-compatible table.
-Equivalent to calling the grouped `xy_plot` and piping through `facet!`.
+Build a faceted chart directly from a Tables.jl-compatible table using
+`xy_plot`-based marks (`"bar"`, `"line"`, `"area"`, etc.).
+
+!!! note
+    Chart types that use value-type axes and encode both x and y in the series
+    data (e.g. `scatter`, `bubble`) should use the pipeline form instead:
+    `scatter(df, x, y, group) |> facet!`
 
 ## Arguments
 - `df`: any Tables.jl-compatible source (DataFrame, NamedTuple, etc.)
 - `x::Symbol`: column for the x-axis
 - `y::Symbol`: column for the y-axis
 - `facet_col::Symbol`: column whose unique values define the panels
-- `mark::String = "bar"`: series type (`"bar"`, `"line"`, `"scatter"`, etc.)
+- `mark::String = "bar"`: series type — `"bar"`, `"line"`, or `"area"`
 - `ncols::Union{Int,Nothing} = nothing`: columns in the panel grid
 
 ## Example
