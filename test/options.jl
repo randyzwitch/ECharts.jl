@@ -186,6 +186,30 @@ l = line(x, y)
 yaxis!(l, _type = "log", scale = true, formatter = "{value} kg")
 @test typeof(l) == EChart
 
+# decimals on value y-axis
+x = 1:10
+y = rand(10)
+l = line(x, y)
+yaxis!(l, decimals = 2)
+@test l.yAxis[1].axisLabel.formatter == JSON.JSONText("function(v){ return v.toFixed(2); }")
+
+# decimals on value x-axis
+sc = scatter(rand(20), rand(20))
+xaxis!(sc, decimals = 1)
+@test sc.xAxis[1].axisLabel.formatter == JSON.JSONText("function(v){ return v.toFixed(1); }")
+
+# formatter takes precedence over decimals — should warn
+l2 = line(x, y)
+@test_warn "formatter takes precedence" yaxis!(l2, formatter = "{value} kg", decimals = 2)
+@test l2.yAxis[1].axisLabel.formatter == "{value} kg"
+
+# decimals on category x-axis — should warn and not apply
+x = ["Mon","Tue","Wed"]
+y = [1.0, 2.5, 3.7]
+b = bar(x, y)
+@test_warn "category axes" xaxis!(b, decimals = 2)
+@test b.xAxis[1].axisLabel.formatter == "{value}"  # default unchanged
+
 #13: xgridlines!/ygridlines!
 x = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 y = [11, 11, 15, 13, 12, 13, 10]
