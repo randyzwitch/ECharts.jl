@@ -31,7 +31,7 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export Theme, VisualMap
 
-	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall, lollipop, slope, marimekko, facet
+	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall, lollipop, slope, marimekko, facet, facet!
 	export bump
 	export box, candlestick, sankey
 	export radar, funnel
