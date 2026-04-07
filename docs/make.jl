@@ -86,6 +86,8 @@ makedocs(
         "Modifier Functions" => [
             "functions/aria!.md",
             "functions/colorscheme!.md",
+            "functions/datazoom!.md",
+            "functions/errorbar!.md",
             "functions/flip!.md",
             "functions/jitter!.md",
             "functions/labels!.md",
@@ -94,7 +96,6 @@ makedocs(
             "functions/radial!.md",
             "functions/radialgradient.md",
             "functions/seriesnames!.md",
-            "functions/datazoom!.md",
             "functions/shadow!.md",
             "functions/smooth!.md",
             "functions/text!.md",

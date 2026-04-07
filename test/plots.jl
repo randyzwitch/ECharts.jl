@@ -625,3 +625,44 @@ e = ecdf(rand(100))
 w = Weights(rand(100))
 ew = ecdf(rand(100), weights = w)
 @test typeof(ecdfplot(ew)) == EChart
+
+# errorbar! — categorical x (bar chart)
+eb_cats  = ["A", "B", "C", "D"]
+eb_y     = [10.0, 15.0, 12.0, 8.0]
+eb_lower = [ 8.0, 12.0,  9.0, 6.0]
+eb_upper = [12.0, 18.0, 15.0, 10.0]
+
+result_eb = bar(eb_cats, eb_y)
+errorbar!(result_eb, eb_lower, eb_upper)
+@test typeof(result_eb) == EChart
+@test length(result_eb.series) == 2
+@test result_eb.series[2]._type == "custom"
+@test result_eb.series[2].encode == Dict("x" => 0, "y" => [1, 2])
+@test result_eb.series[2].renderItem !== nothing
+@test result_eb.series[2].silent == true
+
+# errorbar! — returns the chart (supports chaining)
+result_eb_chain = errorbar!(bar(eb_cats, eb_y), eb_lower, eb_upper)
+@test typeof(result_eb_chain) == EChart
+
+# errorbar! — kwargs: cap_frac, line_width, color
+result_eb_kw = bar(eb_cats, eb_y)
+errorbar!(result_eb_kw, eb_lower, eb_upper; line_width = 3, color = "#ff0000")
+@test typeof(result_eb_kw) == EChart
+
+# errorbar! — value x-axis (scatter chart)
+eb_x_num = [1.0, 2.0, 3.0, 4.0]
+result_eb_num = scatter(eb_x_num, eb_y)
+errorbar!(result_eb_num, eb_lower, eb_upper)
+@test typeof(result_eb_num) == EChart
+@test result_eb_num.xAxis[1]._type == "value"
+@test length(result_eb_num.series) == 2
+
+# errorbar! — length mismatch raises error
+@test_throws ArgumentError errorbar!(bar(eb_cats, eb_y), eb_lower, [1.0, 2.0])
+
+# errorbar! — invalid series_index raises error
+@test_throws ArgumentError errorbar!(bar(eb_cats, eb_y), eb_lower, eb_upper; series_index = 99)
+
+# errorbar! — chart without x-axis raises error
+@test_throws ArgumentError errorbar!(pie(eb_cats, eb_y), eb_lower, eb_upper)
