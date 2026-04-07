@@ -612,3 +612,16 @@ result_choropleth_df = choropleth(choro_df, :region, :val)
 @test result_choropleth_df.series[1].map == "world"
 
 @test_throws ArgumentError choropleth("not a table", :region, :val)
+
+# ecdfplot
+e = ecdf(rand(100))
+@test typeof(ecdfplot(e)) == EChart
+@test ecdfplot(e).yAxis[1].min == 0
+@test ecdfplot(e).yAxis[1].max == 1
+@test ecdfplot(e).series[1].showSymbol == false
+@test ecdfplot(e, showSymbol = true).series[1].showSymbol == true
+
+# weighted ECDF
+w = Weights(rand(100))
+ew = ecdf(rand(100), weights = w)
+@test typeof(ecdfplot(ew)) == EChart
