@@ -5,10 +5,9 @@ facet!
 facet
 ```
 
-## Bar chart — pipeline style
+## Bar chart
 
 Build a grouped bar chart, then call `facet!` to split each series into its own panel.
-This is the recommended workflow: configure the chart first, then facet.
 
 ```@example
 using ECharts
@@ -25,8 +24,7 @@ bar(nt, :month, :sales, :region) |> facet!
 
 ## Line chart — compose modifiers before faceting
 
-Apply `smooth!` and `colorscheme!` before `facet!` — all styling carries forward
-into the individual panels.
+Styling applied before `facet!` carries forward into each panel.
 
 ```@example
 using ECharts
@@ -45,8 +43,6 @@ facet!(ec; ncols = 2)
 
 ## Scatter chart
 
-Numeric x columns automatically use value-type axes with `[x, y]` point data.
-
 ```@example
 using ECharts
 nt = (
@@ -56,13 +52,12 @@ nt = (
               52,58,50,62,48,60,54,51,57,65],
     sex    = vcat(fill("Male",10), fill("Female",10)),
 )
-facet(nt, :height, :weight, :sex; mark = "scatter")
+scatter(nt, :height, :weight, :sex) |> facet!
 ```
 
 ## Raw arrays — groups with independent x values
 
-Pass arrays directly when each group has its own set of x categories,
-or when you are not working with a table.
+The array form of `facet` is useful when each group has its own set of x categories.
 
 ```@example
 using ECharts

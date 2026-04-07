@@ -65,9 +65,8 @@ smooth!(ec)
 colorscheme!(ec, ("Paired", 12))
 facet!(ec; ncols = 2)
 
-# One-step form — axis type is inferred automatically
-facet(df, :month, :sales, :region)                       # categorical x → bar panels
-facet(df, :height, :weight, :sex; mark = "scatter")      # numeric x → scatter panels
+# Works with any chart type that supports a group column
+scatter(df, :height, :weight, :sex) |> facet!
 ```
 
 ## Mutating Functions

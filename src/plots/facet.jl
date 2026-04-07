@@ -142,52 +142,6 @@ end
 
 # ── Convenience constructors ──────────────────────────────────────────────────
 
-"""
-    facet(df, x, y, facet_col; mark, ncols, scale, kwargs...)
-
-Build a faceted chart directly from a Tables.jl-compatible table.
-The axis type and data format are chosen automatically: numeric `x` columns
-use value axes; string/categorical columns use category axes.
-
-## Arguments
-- `df`: any Tables.jl-compatible source (DataFrame, NamedTuple, etc.)
-- `x::Symbol`: column for the x-axis
-- `y::Symbol`: column for the y-axis
-- `facet_col::Symbol`: column whose unique values define the panels
-- `mark::String = "bar"`: series type (`"bar"`, `"line"`, `"scatter"`, etc.)
-- `ncols::Union{Int,Nothing} = nothing`: columns in the panel grid
-- `scale::Bool = false`: truncate y-axes to data range?
-
-## Example
-```julia
-using ECharts, DataFrames
-df = DataFrame(
-    month  = repeat(["Jan","Feb","Mar","Apr"], 3),
-    sales  = [10,15,13,17, 25,30,22,28, 8,12,9,14],
-    region = repeat(["North","Central","South"], inner=4),
-)
-facet(df, :month, :sales, :region)
-facet(df, :month, :sales, :region; mark="line", ncols=2)
-facet(df, :height, :weight, :sex; mark="scatter")
-```
-"""
-function facet(df, x::Symbol, y::Symbol, facet_col::Symbol;
-               mark::String             = "bar",
-               ncols::Union{Int,Nothing} = nothing,
-               scale::Bool              = false,
-               kwargs...)
-
-    Tables.istable(df) ||
-        throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
-
-    facet(_table_col(df, x),
-          _table_col(df, y),
-          _table_col(df, facet_col);
-          mark  = mark,
-          ncols = ncols,
-          scale = scale,
-          kwargs...)
-end
 
 """
     facet(x, y, facet_var; mark, ncols, scale, kwargs...)
