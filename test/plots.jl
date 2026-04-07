@@ -666,3 +666,47 @@ errorbar!(result_eb_num, eb_lower, eb_upper)
 
 # errorbar! — chart without x-axis raises error
 @test_throws ArgumentError errorbar!(pie(eb_cats, eb_y), eb_lower, eb_upper)
+
+# qqplot — Q-Q plot against a Distributions.jl distribution
+using Distributions
+qq_data = randn(100)
+result_qq = qqplot(qq_data, Normal())
+@test typeof(result_qq) == EChart
+@test length(result_qq.series) == 2
+@test result_qq.series[1]._type == "scatter"
+@test result_qq.series[2]._type == "line"
+@test result_qq.series[1].showSymbol == true
+@test result_qq.series[2].showSymbol == false
+@test result_qq.xAxis[1].name == "Normal quantiles"
+@test result_qq.yAxis[1].name == "Sample quantiles"
+@test length(result_qq.series[1].data) == 100
+
+# qqplot — axis label reflects the distribution type
+@test qqplot(qq_data, TDist(5)).xAxis[1].name == "TDist quantiles"
+
+# qqplot — showSymbol kwarg
+@test qqplot(qq_data, Normal(), showSymbol = false).series[1].showSymbol == false
+
+# qqplot — too few elements raises error
+@test_throws ArgumentError qqplot([1.0], Normal())
+
+# qqplot — two-sample Q-Q plot (two-argument form)
+qq_x = randn(80)
+qq_y = randn(120)
+result_qq2 = qqplot(qq_x, qq_y)
+@test typeof(result_qq2) == EChart
+@test length(result_qq2.series) == 2
+@test result_qq2.series[1]._type == "scatter"
+@test result_qq2.series[2]._type == "line"
+@test result_qq2.xAxis[1].name == "x quantiles"
+@test result_qq2.yAxis[1].name == "y quantiles"
+# smaller sample size determines number of quantile points
+@test length(result_qq2.series[1].data) == 80
+
+# qqplot — equal-size two-sample
+result_qq2eq = qqplot(randn(50), randn(50))
+@test length(result_qq2eq.series[1].data) == 50
+
+# qqplot — two-sample too few elements raises error
+@test_throws ArgumentError qqplot([1.0], randn(50))
+@test_throws ArgumentError qqplot(randn(50), [1.0])

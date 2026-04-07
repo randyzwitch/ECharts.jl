@@ -61,6 +61,7 @@ module ECharts
 	export singleaxis
 	export choropleth
 	export ecdfplot
+	export qqplot
 
 	export title!, yaxis!, xaxis!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -150,6 +151,7 @@ module ECharts
 	include("plots/marimekko.jl")
 	include("plots/choropleth.jl")
 	include("plots/ecdfplot.jl")
+	include("plots/qqplot.jl")
 	include("plots/facet.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
