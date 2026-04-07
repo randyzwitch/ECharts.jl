@@ -83,7 +83,7 @@ bar(df, :month, :sales, :region) |> facet!
 # Pre-configure then facet
 ec = line(df, :month, :revenue, :product)
 smooth!(ec)
-colorscheme!(ec, "Paired_12")
+colorscheme!(ec, ("Paired", 12))
 facet!(ec; ncols=2)
 ```
 """
@@ -145,23 +145,21 @@ end
 # ── Convenience constructors ──────────────────────────────────────────────────
 
 """
-    facet(df, x, y, facet_col; mark, ncols, kwargs...)
+    facet(df, x, y, facet_col; mark, ncols, scale, kwargs...)
 
-Build a faceted chart directly from a Tables.jl-compatible table using
-`xy_plot`-based marks (`"bar"`, `"line"`, `"area"`, etc.).
-
-!!! note
-    Chart types that use value-type axes and encode both x and y in the series
-    data (e.g. `scatter`, `bubble`) should use the pipeline form instead:
-    `scatter(df, x, y, group) |> facet!`
+Build a faceted chart directly from a Tables.jl-compatible table.
+Automatically selects the correct axis type and data format based on
+whether the `x` column is numeric (value axis, `[[x,y],...]` data) or
+categorical (category axis, separate y data).
 
 ## Arguments
 - `df`: any Tables.jl-compatible source (DataFrame, NamedTuple, etc.)
 - `x::Symbol`: column for the x-axis
 - `y::Symbol`: column for the y-axis
 - `facet_col::Symbol`: column whose unique values define the panels
-- `mark::String = "bar"`: series type — `"bar"`, `"line"`, or `"area"`
+- `mark::String = "bar"`: series type (`"bar"`, `"line"`, `"scatter"`, etc.)
 - `ncols::Union{Int,Nothing} = nothing`: columns in the panel grid
+- `scale::Bool = false`: truncate y-axes to data range?
 
 ## Example
 ```julia
@@ -173,21 +171,27 @@ df = DataFrame(
 )
 facet(df, :month, :sales, :region)
 facet(df, :month, :sales, :region; mark="line", ncols=2)
+
+# Numeric x column → value axes, no special casing needed
+facet(df, :height, :weight, :sex; mark="scatter")
 ```
 """
 function facet(df, x::Symbol, y::Symbol, facet_col::Symbol;
-               mark::String            = "bar",
+               mark::String             = "bar",
                ncols::Union{Int,Nothing} = nothing,
+               scale::Bool              = false,
                kwargs...)
 
     Tables.istable(df) ||
         throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
 
-    # xy_plot with a group column builds a multi-series chart with named series —
-    # exactly the input facet! expects.
-    ec = xy_plot(df, x, y, facet_col; mark = mark, legend = false, kwargs...)
-    facet!(ec; ncols = ncols)
-    return ec
+    facet(_table_col(df, x),
+          _table_col(df, y),
+          _table_col(df, facet_col);
+          mark  = mark,
+          ncols = ncols,
+          scale = scale,
+          kwargs...)
 end
 
 """
@@ -223,28 +227,46 @@ function facet(x::AbstractVector, y::AbstractVector, facet_var::AbstractVector;
     seriess = XYSeries[]
     titles  = Title[]
 
+    # Numeric x → value axes with paired [[x,y],...] data (scatter-style).
+    # String/categorical x → category axis with separate y data (bar/line-style).
+    x_is_numeric = eltype(x) <: Real
+
     for (i, group) in enumerate(groups)
         idx     = i - 1
         mask    = facet_var .== group
         group_x = x[mask]
         group_y = y[mask]
 
-        grid, xaxis, yaxis, title = _facet_panel(
-            idx, nc, lm, tm, cg, rg, cw, ch,
-            group_x, "category", scale, string(group)
-        )
+        if x_is_numeric
+            grid, xaxis, yaxis, title = _facet_panel(
+                idx, nc, lm, tm, cg, rg, cw, ch,
+                nothing, "value", scale, string(group)
+            )
+            push!(seriess, XYSeries(
+                _type      = mark,
+                name       = string(group),
+                data       = arrayofarray(group_x, group_y),
+                xAxisIndex = idx,
+                yAxisIndex = idx,
+            ))
+        else
+            grid, xaxis, yaxis, title = _facet_panel(
+                idx, nc, lm, tm, cg, rg, cw, ch,
+                group_x, "category", scale, string(group)
+            )
+            push!(seriess, XYSeries(
+                _type      = mark,
+                name       = string(group),
+                data       = group_y,
+                xAxisIndex = idx,
+                yAxisIndex = idx,
+            ))
+        end
 
-        push!(grids,   grid)
-        push!(xaxes,   xaxis)
-        push!(yaxes,   yaxis)
-        push!(titles,  title)
-        push!(seriess, XYSeries(
-            _type      = mark,
-            name       = string(group),
-            data       = group_y,
-            xAxisIndex = idx,
-            yAxisIndex = idx,
-        ))
+        push!(grids,  grid)
+        push!(xaxes,  xaxis)
+        push!(yaxes,  yaxis)
+        push!(titles, title)
     end
 
     ec = newplot(collect(kwargs), ec_charttype = "facet")

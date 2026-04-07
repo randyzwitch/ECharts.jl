@@ -43,11 +43,10 @@ title!(ec, text = "Quarterly Revenue by Product")
 facet!(ec; ncols = 2)
 ```
 
-## Scatter chart — pipeline style
+## Scatter chart — numeric x handled automatically
 
-`scatter` stores both x and y values together per point (`[[x,y],...]`) and uses
-value-type axes, so it needs to be built with `scatter()` first rather than via
-the `facet()` convenience form. The pipeline approach works naturally.
+When the x column is numeric, `facet` uses value-type axes and packages each
+point as `[x, y]` — the same format `scatter` uses natively. No special casing needed.
 
 ```@example
 using ECharts
@@ -58,7 +57,7 @@ nt = (
               52,58,50,62,48,60,54,51,57,65],
     sex    = vcat(fill("Male",10), fill("Female",10)),
 )
-scatter(nt, :height, :weight, :sex) |> facet!
+facet(nt, :height, :weight, :sex; mark = "scatter")
 ```
 
 ## Raw arrays — groups with independent x values
