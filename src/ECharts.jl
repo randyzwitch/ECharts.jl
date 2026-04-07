@@ -31,7 +31,7 @@ module ECharts
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export Theme, VisualMap
 
-	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall, lollipop, slope, marimekko
+	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall, lollipop, slope, marimekko, facet, facet!
 	export bump
 	export box, candlestick, sankey
 	export radar, funnel
@@ -149,6 +149,7 @@ module ECharts
 	include("plots/marimekko.jl")
 	include("plots/choropleth.jl")
 	include("plots/ecdfplot.jl")
+	include("plots/facet.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
