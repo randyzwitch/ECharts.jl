@@ -63,9 +63,8 @@ module ECharts
 	export ecdfplot
 	export qqplot
 	export differencearea
-	export regplot
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
-	export bollinger!
+	export bollinger!, regplot!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!, shadow!, errorbar!
 	export savefig
