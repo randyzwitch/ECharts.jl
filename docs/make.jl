@@ -45,6 +45,7 @@ makedocs(
             "charts/chord.md",
             "charts/choropleth.md",
             "charts/geoscatter.md",
+            "charts/geolines.md",
             "charts/corrplot.md",
             "charts/differencearea.md",
             "charts/divergingbar.md",

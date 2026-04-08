@@ -62,6 +62,7 @@ module ECharts
 	export singleaxis
 	export choropleth
 	export geoscatter
+	export geolines
 	export ecdfplot
 	export qqplot
 	export differencearea
@@ -156,6 +157,7 @@ module ECharts
 	include("plots/marimekko.jl")
 	include("plots/choropleth.jl")
 	include("plots/geoscatter.jl")
+	include("plots/geolines.jl")
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
