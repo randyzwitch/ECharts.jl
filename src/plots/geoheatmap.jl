@@ -39,7 +39,7 @@ function geoheatmap(lon::AbstractVector{<:Real},
                     kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "geoheatmap")
-    ec.geo = Geo(map = map, roam = roam)
+    ec.geo = Geo(map = map, roam = roam, top = "60")
     ec.series = [HeatmapSeries(coordinateSystem = "geo",
                                geoIndex = 0,
                                blurSize = blur_size,
