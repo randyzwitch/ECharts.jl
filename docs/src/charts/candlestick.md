@@ -42,3 +42,17 @@ ec = candlestick(df, :week, :open, :close, :low, :high)
 title!(ec, text = "WTI Crude Oil — Q1 2024", subtext = "Weekly OHLC, USD per barrel")
 ec
 ```
+
+```@example
+using ECharts
+# 60 trading days of synthetic price data (enough for a 20-day window)
+dates = ["Day $(lpad(i,2,'0'))" for i in 1:60]
+close_ = cumsum(randn(60)) .+ 150.0
+open_  = close_ .+ randn(60)
+low_   = min.(open_, close_) .- abs.(randn(60))
+high_  = max.(open_, close_) .+ abs.(randn(60))
+ec = candlestick(dates, open_, close_, low_, high_)
+bollinger!(ec, close_)
+title!(ec, text = "Synthetic Stock — Bollinger Bands", subtext = "20-day window, ±2σ")
+ec
+```
