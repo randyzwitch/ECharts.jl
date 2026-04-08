@@ -156,6 +156,7 @@ module ECharts
 	include("plots/lollipop.jl")
 	include("plots/slope.jl")
 	include("plots/marimekko.jl")
+	include("plots/geo_utils.jl")
 	include("plots/choropleth.jl")
 	include("plots/geoheatmap.jl")
 	include("plots/geolines.jl")

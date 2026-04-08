@@ -10,9 +10,10 @@ choropleth(df, regions::Symbol, values::Symbol)
 ```
 
 ## Arguments
-* `map::String = "world"` : map name. `"world"` uses the built-in world map bundled with this
-  package. For any other map, supply a GeoJSON string via `geojson` and set `map` to the name
-  you want to register it under.
+* `map::String = "world"` : map name. `"world"` uses the built-in world map. 215 individual
+  country/region maps (e.g. `"Germany"`, `"USA"`, `"Antigua_and_Barbuda"`) are also available
+  automatically via the bundled country_maps artifact. For any other map, supply a GeoJSON
+  string via `geojson` and set `map` to the name you want to register it under.
 * `geojson::Union{AbstractString, Nothing} = nothing` : raw GeoJSON string to register as a
   custom map under the name given by `map`. Compatible with any workflow that produces a GeoJSON
   string, including:
@@ -64,13 +65,7 @@ function choropleth(regions::AbstractVector,
                                  top = "middle")
     end
 
-    resolved_geojson = if !isnothing(geojson)
-        String(geojson)
-    elseif map == "world"
-        read(joinpath(artifact"world", "world.json"), String)
-    else
-        nothing
-    end
+    resolved_geojson = _resolve_map_geojson(map, geojson)
 
     if !isnothing(resolved_geojson)
         ec.ec_mapname = map

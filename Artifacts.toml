@@ -1,7 +1,15 @@
-[world]
+[country_maps]
+git-tree-sha1 = "640b33387be4ca24637b00e3c93b844882489bb9"
 lazy = true
+
+    [[country_maps.download]]
+    sha256 = "042de43cdc4c6cac624c563a631fc1d2934c181122d87ce42b09a479d11df7a6"
+    url = "https://github.com/randyzwitch/ECharts.jl/releases/download/map-data-v2/country_maps.tar.gz"
+
+[world]
 git-tree-sha1 = "7a79c0b46fa778f73a6be543a39f746d61558e01"
+lazy = true
 
     [[world.download]]
-    url = "https://github.com/randyzwitch/ECharts.jl/releases/download/map-data-v1/world_map.tar.gz"
     sha256 = "d2c214c9cfcb7b94727cf297b3155535cd27ce29854e8fe366b36aea5beb7811"
+    url = "https://github.com/randyzwitch/ECharts.jl/releases/download/map-data-v1/world_map.tar.gz"
