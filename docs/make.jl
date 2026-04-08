@@ -44,6 +44,7 @@ makedocs(
             "charts/candlestick.md",
             "charts/chord.md",
             "charts/choropleth.md",
+            "charts/geoscatter.md",
             "charts/corrplot.md",
             "charts/differencearea.md",
             "charts/divergingbar.md",
