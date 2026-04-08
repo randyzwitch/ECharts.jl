@@ -28,6 +28,7 @@ module ECharts
 	export Title, Axis, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
+	export Graphic, GraphicElement, GraphicStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export Theme, VisualMap
 
@@ -64,7 +65,7 @@ module ECharts
 	export qqplot
 	export differencearea
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
-	export bollinger!
+	export bollinger!, linreg!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!, shadow!, errorbar!
 	export savefig
@@ -154,6 +155,7 @@ module ECharts
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
+	include("plots/linreg.jl")
 	include("plots/bollinger.jl")
 	include("plots/facet.jl")
 
@@ -176,5 +178,8 @@ module ECharts
 	    end
 	    return res
 	end
+
+	# Graphic serializes as a JSON array (not an object) — that's what ECharts expects
+	JSON.lower(g::Graphic) = [JSON.lower(el) for el in g.elements]
 
 end # module

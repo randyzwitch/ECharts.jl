@@ -88,6 +88,7 @@ makedocs(
         ],
         "Modifier Functions" => [
             "functions/bollinger!.md",
+            "functions/linreg!.md",
             "functions/aria!.md",
             "functions/colorscheme!.md",
             "functions/datazoom!.md",
