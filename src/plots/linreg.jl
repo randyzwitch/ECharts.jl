@@ -7,7 +7,8 @@ Overlays an OLS regression line and optional confidence interval band on an exis
 ## Methods
 ```julia
 linreg!(ec::EChart, x::AbstractVector{<:Real}, y::AbstractVector{<:Real};
-        ci, ci_level, npoints, ci_color, line_color, ci_opacity)
+        ci, ci_level, npoints, ci_color, line_color, ci_opacity,
+        annotation, annotation_color, annotation_font)
 ```
 
 ## Arguments
@@ -19,6 +20,9 @@ linreg!(ec::EChart, x::AbstractVector{<:Real}, y::AbstractVector{<:Real};
 * `ci_color::String = "#5470c6"` : color used for the CI band fill and regression line
 * `line_color::String = "#5470c6"` : color of the regression line
 * `ci_opacity::Real = 0.2` : opacity of the CI band fill
+* `annotation::Bool = false` : overlay the regression equation and R² as a text label?
+* `annotation_color::String = "#333333"` : text color for the annotation label
+* `annotation_font::String = "14px sans-serif"` : CSS font string for the annotation label
 
 ## Notes
 
@@ -35,12 +39,15 @@ Missing values in either `x` or `y` are silently dropped before fitting.
 function linreg!(ec::EChart,
                  x::AbstractVector{<:Real},
                  y::AbstractVector{<:Real};
-                 ci::Bool            = true,
-                 ci_level::Real      = 0.95,
-                 npoints::Int        = 200,
-                 ci_color::String    = "#5470c6",
-                 line_color::String  = "#5470c6",
-                 ci_opacity::Real    = 0.2)
+                 ci::Bool                 = true,
+                 ci_level::Real           = 0.95,
+                 npoints::Int             = 200,
+                 ci_color::String         = "#5470c6",
+                 line_color::String       = "#5470c6",
+                 ci_opacity::Real         = 0.2,
+                 annotation::Bool         = false,
+                 annotation_color::String = "#333333",
+                 annotation_font::String  = "14px sans-serif")
 
     length(x) == length(y) || throw(ArgumentError("x and y must have the same length"))
     length(x) >= 2         || throw(ArgumentError("x and y must have at least 2 elements"))
@@ -99,6 +106,28 @@ function linreg!(ec::EChart,
         showSymbol = false,
         lineStyle  = LineStyle(color = line_color),
     ))
+
+    if annotation
+        r² = cor(xf, yf)^2
+        fmt(v) = string(round(v, sigdigits = 3))
+        sign_str = intercept >= 0 ? "+" : "-"
+        label_text = "ŷ = $(fmt(slope))x $sign_str $(fmt(abs(intercept)))\nR² = $(fmt(r²))"
+        el = GraphicElement(
+            _type  = "text",
+            left   = "10%",
+            top    = "10%",
+            style  = GraphicStyle(
+                text      = label_text,
+                fill      = annotation_color,
+                font      = annotation_font,
+            ),
+        )
+        if isnothing(ec.graphic)
+            ec.graphic = Graphic([el])
+        else
+            push!(ec.graphic.elements, el)
+        end
+    end
 
     return ec
 

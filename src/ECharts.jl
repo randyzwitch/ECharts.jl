@@ -28,6 +28,7 @@ module ECharts
 	export Title, Axis, Toolbox, DataZoom
 	export Tooltip, Legend, Grid, Timeline
 	export LineStyle, AreaStyle, ItemStyle, TextStyle
+	export Graphic, GraphicElement, GraphicStyle
 	export AxisLine, AxisTick, AxisLabel, SplitLine, SplitArea, MarkLine, MarkArea, MarkPoint
 	export Theme, VisualMap
 
@@ -177,5 +178,8 @@ module ECharts
 	    end
 	    return res
 	end
+
+	# Graphic serializes as a JSON array (not an object) — that's what ECharts expects
+	JSON.lower(g::Graphic) = [JSON.lower(el) for el in g.elements]
 
 end # module
