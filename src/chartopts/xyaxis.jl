@@ -96,24 +96,25 @@ yaxis2!(ec::EChart; series, kwargs...)
 
 ## Arguments
 * `data::AbstractVector` : values for a new series plotted on the second y-axis
-* `series_name::String` : legend label for the new series (default: `"Series N"`)
 * `mark::String = "line"` : series type for the new series (e.g. `"line"`, `"bar"`, `"scatter"`)
 * `series::Union{Int, AbstractVector{Int}, Nothing} = nothing` : Julia 1-based index (or indices) of *existing* series to reassign to the second y-axis
 * `kwargs` : any field of the `Axis` struct (e.g. `name`, `min`, `max`) applied to the new right axis
 
 """
 function yaxis2!(ec::EChart, data::AbstractVector;
-                 series_name::String = "Series $(length(ec.series) + 1)",
                  mark::String = "line",
                  kwargs...)
 
-    push!(ec.yAxis, Axis(_type = "value", position = "right"))
-
-    for (k, v) in kwargs
-        setfield!(ec.yAxis[end], k, v)
+    right_idx = findfirst(ax -> ax.position == "right", ec.yAxis)
+    if isnothing(right_idx)
+        push!(ec.yAxis, Axis(_type = "value", position = "right"))
+        right_idx = length(ec.yAxis)
+        for (k, v) in kwargs
+            setfield!(ec.yAxis[right_idx], k, v)
+        end
     end
 
-    push!(ec.series, XYSeries(_type = mark, name = series_name, data = data, yAxisIndex = 1))
+    push!(ec.series, XYSeries(_type = mark, data = data, yAxisIndex = right_idx - 1))
 
     return ec
 
@@ -123,15 +124,19 @@ function yaxis2!(ec::EChart;
                  series::Union{Int, AbstractVector{Int}, Nothing} = nothing,
                  kwargs...)
 
-    push!(ec.yAxis, Axis(_type = "value", position = "right"))
+    right_idx = findfirst(ax -> ax.position == "right", ec.yAxis)
+    if isnothing(right_idx)
+        push!(ec.yAxis, Axis(_type = "value", position = "right"))
+        right_idx = length(ec.yAxis)
+    end
 
     for (k, v) in kwargs
-        setfield!(ec.yAxis[end], k, v)
+        setfield!(ec.yAxis[right_idx], k, v)
     end
 
     if !isnothing(series)
         for i in (isa(series, Int) ? (series,) : series)
-            ec.series[i].yAxisIndex = 1
+            ec.series[i].yAxisIndex = right_idx - 1
         end
     end
 

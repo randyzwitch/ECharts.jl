@@ -11,18 +11,24 @@ quarters = ["Q1", "Q2", "Q3", "Q4"]
 revenue  = [120_000, 145_000, 98_000, 162_000]
 growth   = [nothing, 20.8, -32.4, 65.3]
 ec = bar(quarters, revenue)
-yaxis2!(ec, growth, series_name = "Growth Rate", name = "Growth Rate (%)")
+yaxis2!(ec, growth, name = "Growth Rate (%)")
+seriesnames!(ec, ["Revenue", "Growth Rate"])
 yaxis!(ec, name = "Revenue (\$)")
 title!(ec, text = "Dual-Axis: Revenue and Growth Rate")
+legend!(ec)
 ec
 ```
 
 ```@example
 using ECharts
-# Multiple series on the right axis
+# Reassign an existing series to the right axis
 months = ["Jan", "Feb", "Mar", "Apr"]
-ec = line(months, [10, 40, 30, 50])
-yaxis2!(ec, [22, 19, 24, 28], series_name = "Temp (°C)")
-yaxis2!(ec, [60, 75, 55, 80], series_name = "Humidity (%)")
+sales   = [10, 40, 30, 50]
+visits  = [2200, 1900, 2400, 2800]
+ec = line(months, hcat(sales, visits))
+seriesnames!(ec, ["Sales", "Website Visits"])
+yaxis2!(ec; series = 2, name = "Visits")
+yaxis!(ec, name = "Sales")
+legend!(ec)
 ec
 ```

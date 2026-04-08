@@ -770,10 +770,79 @@ end
     axisPointer::Union{AxisPointer, Nothing} = nothing
     tooltip::Union{Tooltip, Nothing} = nothing
 end
-#Needs to be fleshed out, might not be possible due to $action fieldname
-@with_kw mutable struct Graphic <: AbstractEChartType
-    tbd::Any = nothing
+"""
+    GraphicStyle
+
+Style properties for a `GraphicElement`. Fields apply selectively by element type:
+`text`/`font`/`textAlign`/`textVerticalAlign` are text-only; `width`/`height`/`r` apply
+to shapes; `fill`/`stroke`/`lineWidth`/`opacity`/shadow fields apply to most types.
+Pixel offsets `x`/`y` are relative to the element's anchor position.
+"""
+@with_kw mutable struct GraphicStyle <: AbstractEChartType
+    text::Union{String, Nothing}              = nothing
+    font::Union{String, Nothing}              = nothing
+    textAlign::Union{String, Nothing}         = nothing
+    textVerticalAlign::Union{String, Nothing} = nothing
+    x::Union{Number, Nothing}                 = nothing
+    y::Union{Number, Nothing}                 = nothing
+    fill::Union{String, Nothing}              = nothing
+    stroke::Union{String, Nothing}            = nothing
+    lineWidth::Union{Number, Nothing}         = nothing
+    opacity::Union{Number, Nothing}           = nothing
+    width::Union{Number, Nothing}             = nothing
+    height::Union{Number, Nothing}            = nothing
+    r::Union{Number, Nothing}                 = nothing
+    shadowBlur::Union{Number, Nothing}        = nothing
+    shadowColor::Union{String, Nothing}       = nothing
+    shadowOffsetX::Union{Number, Nothing}     = nothing
+    shadowOffsetY::Union{Number, Nothing}     = nothing
 end
+
+"""
+    GraphicElement
+
+A single ECharts graphic primitive. Set `_type` to one of: `"text"`, `"rect"`,
+`"circle"`, `"ring"`, `"sector"`, `"arc"`, `"polygon"`, `"polyline"`, `"line"`,
+`"image"`, `"group"`. Use `left`/`right`/`top`/`bottom` for percentage or pixel
+positioning relative to the chart container. `children` is only used for `"group"`.
+"""
+@with_kw mutable struct GraphicElement <: AbstractEChartType
+    _type::Union{String, Nothing}            = nothing
+    id::Union{String, Nothing}               = nothing
+    left::Union{String, Number, Nothing}     = nothing
+    right::Union{String, Number, Nothing}    = nothing
+    top::Union{String, Number, Nothing}      = nothing
+    bottom::Union{String, Number, Nothing}   = nothing
+    z::Union{Int, Nothing}                   = nothing
+    zlevel::Union{Int, Nothing}              = nothing
+    bounding::Union{String, Nothing}         = nothing
+    silent::Union{Bool, Nothing}             = nothing
+    invisible::Union{Bool, Nothing}          = nothing
+    draggable::Union{Bool, Nothing}          = nothing
+    style::Union{GraphicStyle, Nothing}      = nothing
+    children::Union{AbstractVector, Nothing} = nothing
+end
+
+"""
+    Graphic
+
+Container for one or more `GraphicElement` instances added to an `EChart` via
+`ec.graphic`. Serializes as a JSON array, which is what ECharts expects for the
+`graphic` option.
+
+# Example
+```julia
+ec.graphic = Graphic([
+    GraphicElement(_type = "text", left = "10%", top = "10%",
+                   style = GraphicStyle(text = "hello", fill = "#333",
+                                        font = "14px sans-serif"))
+])
+```
+"""
+mutable struct Graphic
+    elements::Vector{GraphicElement}
+end
+Graphic() = Graphic(GraphicElement[])
 @with_kw mutable struct Calendar <: AbstractEChartType
     zlevel::Union{Int, Nothing} = nothing
     z::Union{Int, Nothing} = nothing
