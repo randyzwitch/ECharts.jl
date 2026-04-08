@@ -108,6 +108,7 @@ makedocs(
             "functions/tooltip!.md",
             "functions/xarea!_yarea!.md",
             "functions/xaxis!_yaxis!.md",
+            "functions/yaxis2!.md",
             "functions/xgridlines!_ygridlines!.md",
             "functions/xline!_yline!.md",
         ],
