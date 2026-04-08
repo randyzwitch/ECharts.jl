@@ -1,13 +1,13 @@
 """
-    regplot!(ec, x, y)
+    linreg!(ec, x, y)
 
 Overlays an OLS regression line and optional confidence interval band on an existing `EChart`
 (typically a scatter plot).
 
 ## Methods
 ```julia
-regplot!(ec::EChart, x::AbstractVector{<:Real}, y::AbstractVector{<:Real};
-         ci, ci_level, npoints, ci_color, line_color, ci_opacity)
+linreg!(ec::EChart, x::AbstractVector{<:Real}, y::AbstractVector{<:Real};
+        ci, ci_level, npoints, ci_color, line_color, ci_opacity)
 ```
 
 ## Arguments
@@ -32,15 +32,15 @@ approximation (z-score), accurate for large n and reasonable for n ≥ 30.
 
 Missing values in either `x` or `y` are silently dropped before fitting.
 """
-function regplot!(ec::EChart,
-                  x::AbstractVector{<:Real},
-                  y::AbstractVector{<:Real};
-                  ci::Bool            = true,
-                  ci_level::Real      = 0.95,
-                  npoints::Int        = 200,
-                  ci_color::String    = "#5470c6",
-                  line_color::String  = "#5470c6",
-                  ci_opacity::Real    = 0.2)
+function linreg!(ec::EChart,
+                 x::AbstractVector{<:Real},
+                 y::AbstractVector{<:Real};
+                 ci::Bool            = true,
+                 ci_level::Real      = 0.95,
+                 npoints::Int        = 200,
+                 ci_color::String    = "#5470c6",
+                 line_color::String  = "#5470c6",
+                 ci_opacity::Real    = 0.2)
 
     length(x) == length(y) || throw(ArgumentError("x and y must have the same length"))
     length(x) >= 2         || throw(ArgumentError("x and y must have at least 2 elements"))
@@ -48,19 +48,16 @@ function regplot!(ec::EChart,
     xf = Float64.(x)
     yf = Float64.(y)
 
-    # OLS
-    n     = length(xf)
-    x_bar = sum(xf) / n
-    y_bar = sum(yf) / n
-    sxx   = sum((xi - x_bar)^2 for xi in xf)
-    sxy   = sum((xf[i] - x_bar) * (yf[i] - y_bar) for i in eachindex(xf))
-    slope     = sxy / sxx
-    intercept = y_bar - slope * x_bar
+    # OLS via StatsBase mean/cov/var
+    n         = length(xf)
+    x_bar     = mean(xf)
+    slope     = cov(xf, yf) / var(xf)
+    intercept = mean(yf) - slope * x_bar
+    sxx       = var(xf) * (n - 1)   # needed for SE formula
 
     # Residual standard error
-    y_hat = [intercept + slope * xi for xi in xf]
-    sse   = sum((yf[i] - y_hat[i])^2 for i in eachindex(yf))
-    s     = n > 2 ? sqrt(sse / (n - 2)) : 0.0
+    sse = sum((yf[i] - (intercept + slope * xf[i]))^2 for i in eachindex(xf))
+    s   = n > 2 ? sqrt(sse / (n - 2)) : 0.0
 
     z = _normal_quantile((1 + ci_level) / 2)
 
@@ -108,7 +105,7 @@ function regplot!(ec::EChart,
 end
 
 # Rational approximation to the Normal quantile (Abramowitz & Stegun 26.2.17).
-# Accurate to ~4.5e-4 for p in (0, 1).
+# Accurate to ~4.5e-4 for p in (0, 1). StatsBase has no norminvcdf equivalent.
 function _normal_quantile(p::Real)
     0 < p < 1 || throw(ArgumentError("p must be in (0, 1)"))
     p < 0.5 && return -_normal_quantile(1 - p)

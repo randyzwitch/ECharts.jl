@@ -64,7 +64,7 @@ module ECharts
 	export qqplot
 	export differencearea
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
-	export bollinger!, regplot!
+	export bollinger!, linreg!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!, shadow!, errorbar!
 	export savefig
@@ -154,7 +154,7 @@ module ECharts
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
-	include("plots/regplot.jl")
+	include("plots/linreg.jl")
 	include("plots/bollinger.jl")
 	include("plots/facet.jl")
 

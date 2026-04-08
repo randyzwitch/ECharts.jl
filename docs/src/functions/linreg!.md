@@ -1,7 +1,7 @@
-# regplot!
+# linreg!
 
 ```@docs
-regplot!
+linreg!
 ```
 
 ```@example
@@ -10,8 +10,8 @@ Random.seed!(42)
 x = randn(80)
 y = 1.5 .* x .+ 0.5 .+ randn(80)
 ec = scatter(x, y)
-regplot!(ec, x, y)
-title!(ec, text = "Regression Plot", subtext = "OLS fit with 95% confidence interval")
+linreg!(ec, x, y)
+title!(ec, text = "Linear Regression", subtext = "OLS fit with 95% confidence interval")
 xaxis!(ec, name = "x")
 yaxis!(ec, name = "y")
 ec
@@ -24,7 +24,7 @@ Random.seed!(7)
 x = collect(Float64, 1:30)
 y = 0.8 .* x .+ 5 .+ 3 .* randn(30)
 ec = scatter(x, y)
-regplot!(ec, x, y; ci = false, line_color = "#333333")
-title!(ec, text = "Regression Plot — CI disabled")
+linreg!(ec, x, y; ci = false, line_color = "#333333")
+title!(ec, text = "Linear Regression — CI disabled")
 ec
 ```
