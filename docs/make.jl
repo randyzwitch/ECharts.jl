@@ -36,7 +36,6 @@ makedocs(
             "charts/area.md",
             "charts/bar.md",
             "charts/beeswarm.md",
-            "charts/bollinger.md",
             "charts/bump.md",
             "charts/box.md",
             "charts/bubble.md",
@@ -88,6 +87,7 @@ makedocs(
             "charts/xy_plot.md",
         ],
         "Modifier Functions" => [
+            "functions/bollinger!.md",
             "functions/aria!.md",
             "functions/colorscheme!.md",
             "functions/datazoom!.md",
