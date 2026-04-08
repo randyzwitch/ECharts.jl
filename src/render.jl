@@ -87,7 +87,7 @@ function _echarts_html(option::String, width, height, renderer::String, theme;
     """
 end
 
-_echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec, allownan=true), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme;
+_echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme;
                                              register_map_name = ec.ec_mapname,
                                              register_map_data = ec.ec_mapdata)
 _echarts_html(ec::EChartRaw) = _echarts_html(ec.option,     ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)

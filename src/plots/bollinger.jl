@@ -25,9 +25,9 @@ bollinger(df, x::Symbol, y::Symbol)
 ## Notes
 
 The rolling mean and standard deviation use a simple (unweighted) trailing window.
-The first `window - 1` points have insufficient history; they are omitted from the
-band series so the bands only appear where a full window is available. The raw series
-always spans all points.
+The first `window - 1` points have insufficient history; they are rendered as gaps
+(`null` in JSON) in the band series so the bands only appear where a full window is
+available. The raw series always spans all points.
 
 Missing values in `y` are propagated as-is and rendered as gaps in ECharts.
 """
@@ -49,9 +49,9 @@ function bollinger(x::AbstractVector,
     xs = string.(x)
     n  = length(y)
 
-    # Rolling mean and std; NaN where window is incomplete
-    roll_mean = fill(NaN, n)
-    roll_std  = fill(NaN, n)
+    # Rolling mean and std; nothing (→ null in JSON) where window is incomplete
+    roll_mean = Vector{Union{Float64, Nothing}}(nothing, n)
+    roll_std  = Vector{Union{Float64, Nothing}}(nothing, n)
     for i in window:n
         seg = [Float64(v) for v in y[(i - window + 1):i] if !ismissing(v)]
         if length(seg) >= 2
@@ -61,11 +61,11 @@ function bollinger(x::AbstractVector,
         end
     end
 
-    upper = [isnan(roll_mean[i]) ? NaN : roll_mean[i] + nstd * roll_std[i] for i in 1:n]
-    lower = [isnan(roll_mean[i]) ? NaN : roll_mean[i] - nstd * roll_std[i] for i in 1:n]
+    upper = [isnothing(roll_mean[i]) ? nothing : roll_mean[i] + nstd * roll_std[i] for i in 1:n]
+    lower = [isnothing(roll_mean[i]) ? nothing : roll_mean[i] - nstd * roll_std[i] for i in 1:n]
 
     # Band via stacked area: invisible base (lower) + diff band
-    band_diff = [isnan(upper[i]) || isnan(lower[i]) ? NaN : upper[i] - lower[i] for i in 1:n]
+    band_diff = [isnothing(upper[i]) || isnothing(lower[i]) ? nothing : upper[i] - lower[i] for i in 1:n]
 
     ec = newplot(kwargs, ec_charttype = "bollinger")
     ec.xAxis = [Axis(_type = "category", data = xs, boundaryGap = false)]
