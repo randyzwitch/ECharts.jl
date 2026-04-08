@@ -61,6 +61,7 @@ module ECharts
 	export chord
 	export singleaxis
 	export choropleth
+	export geoheatmap
 	export ecdfplot
 	export qqplot
 	export differencearea
@@ -154,6 +155,7 @@ module ECharts
 	include("plots/slope.jl")
 	include("plots/marimekko.jl")
 	include("plots/choropleth.jl")
+	include("plots/geoheatmap.jl")
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
