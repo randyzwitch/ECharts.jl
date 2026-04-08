@@ -42,7 +42,7 @@ function geolines(start_lon::AbstractVector{<:Real},
         throw(ArgumentError("start_lon, start_lat, end_lon, and end_lat must all have the same length"))
 
     ec = newplot(kwargs, ec_charttype = "geolines")
-    ec.geo = Geo(map = map, roam = roam)
+    ec.geo = Geo(map = map, roam = roam, top = "60")
 
     # ECharts lines series on geo expects [{coords: [[lon1,lat1],[lon2,lat2]]}, ...]
     data = [Dict("coords" => [[start_lon[i], start_lat[i]], [end_lon[i], end_lat[i]]])
