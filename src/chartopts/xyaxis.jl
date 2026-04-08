@@ -83,20 +83,42 @@ function xaxis!(ec::EChart; axis::Int = 1,
 end
 
 """
+    yaxis2!(ec, data)
     yaxis2!(ec)
 
-Adds a second y-axis on the right side of an `EChart` and optionally assigns series to it.
+Adds a second y-axis on the right side of an `EChart`.
 
 ## Methods
 ```julia
-yaxis2!(ec::EChart; series=nothing, kwargs...)
+yaxis2!(ec::EChart, data::AbstractVector; series_name, mark, kwargs...)
+yaxis2!(ec::EChart; series, kwargs...)
 ```
 
 ## Arguments
-* `series::Union{Int, AbstractVector{Int}, Nothing} = nothing` : Julia 1-based index (or indices) of series to assign to the second y-axis; sets `yAxisIndex = 1` on those series
+* `data::AbstractVector` : values for a new series plotted on the second y-axis
+* `series_name::String` : legend label for the new series (default: `"Series N"`)
+* `mark::String = "line"` : series type for the new series (e.g. `"line"`, `"bar"`, `"scatter"`)
+* `series::Union{Int, AbstractVector{Int}, Nothing} = nothing` : Julia 1-based index (or indices) of *existing* series to reassign to the second y-axis
 * `kwargs` : any field of the `Axis` struct (e.g. `name`, `min`, `max`) applied to the new right axis
 
 """
+function yaxis2!(ec::EChart, data::AbstractVector;
+                 series_name::String = "Series $(length(ec.series) + 1)",
+                 mark::String = "line",
+                 kwargs...)
+
+    push!(ec.yAxis, Axis(_type = "value", position = "right"))
+
+    for (k, v) in kwargs
+        setfield!(ec.yAxis[end], k, v)
+    end
+
+    push!(ec.series, XYSeries(_type = mark, name = series_name, data = data, yAxisIndex = 1))
+
+    return ec
+
+end
+
 function yaxis2!(ec::EChart;
                  series::Union{Int, AbstractVector{Int}, Nothing} = nothing,
                  kwargs...)
