@@ -64,6 +64,8 @@ module ECharts
 	export ecdfplot
 	export qqplot
 	export differencearea
+	export forestplot
+
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export bollinger!, linreg!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
@@ -155,6 +157,7 @@ module ECharts
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
+	include("plots/forestplot.jl")
 	include("plots/linreg.jl")
 	include("plots/bollinger.jl")
 	include("plots/facet.jl")

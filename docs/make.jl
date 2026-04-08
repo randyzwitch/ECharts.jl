@@ -53,6 +53,7 @@ makedocs(
             "charts/effectscatter.md",
             "charts/facet.md",
             "charts/facet!.md",
+            "charts/forestplot.md",
             "charts/funnel.md",
             "charts/gantt.md",
             "charts/gauge.md",
