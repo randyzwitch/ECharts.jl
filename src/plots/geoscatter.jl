@@ -37,7 +37,7 @@ function geoscatter(lon::AbstractVector{<:Real}, lat::AbstractVector{<:Real};
                     kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "geoscatter")
-    ec.geo = Geo(map = map, roam = roam)
+    ec.geo = Geo(map = map, roam = roam, top = "60")
     ec.series = [XYSeries(_type = "scatter",
                           coordinateSystem = "geo",
                           geoIndex = 0,
@@ -83,7 +83,7 @@ function geoscatter(lon::AbstractVector{<:Real},
                     kwargs...)
 
     ec = newplot(kwargs, ec_charttype = "geoscatter")
-    ec.geo = Geo(map = map, roam = roam)
+    ec.geo = Geo(map = map, roam = roam, top = "60")
     ec.series = [XYSeries(_type = "scatter",
                           coordinateSystem = "geo",
                           geoIndex = 0,
