@@ -81,3 +81,38 @@ function xaxis!(ec::EChart; axis::Int = 1,
     return ec
 
 end
+
+"""
+    yaxis2!(ec)
+
+Adds a second y-axis on the right side of an `EChart` and optionally assigns series to it.
+
+## Methods
+```julia
+yaxis2!(ec::EChart; series=nothing, kwargs...)
+```
+
+## Arguments
+* `series::Union{Int, AbstractVector{Int}, Nothing} = nothing` : Julia 1-based index (or indices) of series to assign to the second y-axis; sets `yAxisIndex = 1` on those series
+* `kwargs` : any field of the `Axis` struct (e.g. `name`, `min`, `max`) applied to the new right axis
+
+"""
+function yaxis2!(ec::EChart;
+                 series::Union{Int, AbstractVector{Int}, Nothing} = nothing,
+                 kwargs...)
+
+    push!(ec.yAxis, Axis(_type = "value", position = "right"))
+
+    for (k, v) in kwargs
+        setfield!(ec.yAxis[end], k, v)
+    end
+
+    if !isnothing(series)
+        for i in (isa(series, Int) ? (series,) : series)
+            ec.series[i].yAxisIndex = 1
+        end
+    end
+
+    return ec
+
+end
