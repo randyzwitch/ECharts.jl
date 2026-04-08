@@ -25,7 +25,7 @@ end
 ECharts area fill style configuration (color, shadow, opacity, etc.).
 """
 @with_kw mutable struct AreaStyle <: AbstractEChartType
-    color::Union{AbstractVector, Nothing} = nothing
+    color::Union{AbstractVector, String, Nothing} = nothing
     shadowBlur::Union{Int, Nothing} = nothing
     shadowColor::Union{String, Nothing} = nothing
     shadowOffsetX::Union{Int, Nothing} = 0
