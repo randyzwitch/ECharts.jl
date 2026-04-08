@@ -21,7 +21,7 @@ ec
 using ECharts
 # Multiple series on the right axis; series_name appears in the legend
 months = ["Jan", "Feb", "Mar", "Apr"]
-ec = line(months, [10, 40, 30, 50], series_name = "Sales")
+ec = line(months, [10, 40, 30, 50])
 yaxis2!(ec, [22, 19, 24, 28], series_name = "Temp (°C)", name = "Weather")
 yaxis2!(ec, [60, 75, 55, 80], series_name = "Humidity (%)")
 yaxis!(ec, name = "Sales")
