@@ -1,58 +1,7 @@
-# facet / facet!
+# facet
 
 ```@docs
-facet!
 facet
-```
-
-## Bar chart
-
-Build a grouped bar chart, then call `facet!` to split each series into its own panel.
-
-```@example
-using ECharts
-months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-nt = (
-    month  = repeat(months, 3),
-    sales  = [120,132,101,134,90,230,210,182,191,234,290,330,
-               220,182,191,234,290,330,310,213,180,199,250,180,
-               150,232,201,154,190,330,410,382,391,234,290,330],
-    region = repeat(["North","Central","South"], inner=12),
-)
-bar(nt, :month, :sales, :region) |> facet!
-```
-
-## Line chart — compose modifiers before faceting
-
-Styling applied before `facet!` carries forward into each panel.
-
-```@example
-using ECharts
-quarters = ["Q1","Q2","Q3","Q4"]
-nt = (
-    quarter = repeat(quarters, 4),
-    revenue = [450,520,610,580, 310,380,420,390, 620,700,750,810, 280,310,290,340],
-    product = repeat(["Widgets","Gadgets","Gizmos","Doohickeys"], inner=4),
-)
-ec = line(nt, :quarter, :revenue, :product)
-smooth!(ec)
-colorscheme!(ec, ("Paired", 12))
-title!(ec, text = "Quarterly Revenue by Product")
-facet!(ec; ncols = 2)
-```
-
-## Scatter chart
-
-```@example
-using ECharts
-nt = (
-    height = [174,180,177,183,170,188,175,172,178,185,
-              160,165,158,170,155,168,162,157,164,172],
-    weight = [75,85,78,90,68,95,76,72,80,88,
-              52,58,50,62,48,60,54,51,57,65],
-    sex    = vcat(fill("Male",10), fill("Female",10)),
-)
-scatter(nt, :height, :weight, :sex) |> facet!
 ```
 
 ## Raw arrays — groups with independent x values
