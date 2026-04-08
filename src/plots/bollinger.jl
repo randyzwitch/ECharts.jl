@@ -54,6 +54,9 @@ function bollinger!(ec::EChart,
     lower     = [isnothing(roll_mean[i]) ? nothing : roll_mean[i] - nstd * roll_std[i] for i in 1:n]
     band_diff = [isnothing(upper[i]) || isnothing(lower[i]) ? nothing : upper[i] - lower[i] for i in 1:n]
 
+    # Widen the series vector so XYSeries can be pushed onto any chart type (e.g. candlestick)
+    ec.series = Vector{AbstractEChartSeries}(ec.series)
+
     # Lower invisible base for stacking
     push!(ec.series, XYSeries(
         name            = "",
