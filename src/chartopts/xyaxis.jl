@@ -107,13 +107,17 @@ function yaxis2!(ec::EChart, data::AbstractVector;
                  mark::String = "line",
                  kwargs...)
 
-    push!(ec.yAxis, Axis(_type = "value", position = "right"))
-
-    for (k, v) in kwargs
-        setfield!(ec.yAxis[end], k, v)
+    right_idx = findfirst(ax -> ax.position == "right", ec.yAxis)
+    if isnothing(right_idx)
+        push!(ec.yAxis, Axis(_type = "value", position = "right"))
+        right_idx = length(ec.yAxis)
     end
 
-    push!(ec.series, XYSeries(_type = mark, name = series_name, data = data, yAxisIndex = 1))
+    for (k, v) in kwargs
+        setfield!(ec.yAxis[right_idx], k, v)
+    end
+
+    push!(ec.series, XYSeries(_type = mark, name = series_name, data = data, yAxisIndex = right_idx - 1))
 
     return ec
 
@@ -123,15 +127,19 @@ function yaxis2!(ec::EChart;
                  series::Union{Int, AbstractVector{Int}, Nothing} = nothing,
                  kwargs...)
 
-    push!(ec.yAxis, Axis(_type = "value", position = "right"))
+    right_idx = findfirst(ax -> ax.position == "right", ec.yAxis)
+    if isnothing(right_idx)
+        push!(ec.yAxis, Axis(_type = "value", position = "right"))
+        right_idx = length(ec.yAxis)
+    end
 
     for (k, v) in kwargs
-        setfield!(ec.yAxis[end], k, v)
+        setfield!(ec.yAxis[right_idx], k, v)
     end
 
     if !isnothing(series)
         for i in (isa(series, Int) ? (series,) : series)
-            ec.series[i].yAxisIndex = 1
+            ec.series[i].yAxisIndex = right_idx - 1
         end
     end
 
