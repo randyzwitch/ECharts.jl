@@ -61,6 +61,7 @@ module ECharts
 	export chord
 	export singleaxis
 	export choropleth
+	export geoscatter
 	export geolines
 	export ecdfplot
 	export qqplot
@@ -155,6 +156,7 @@ module ECharts
 	include("plots/slope.jl")
 	include("plots/marimekko.jl")
 	include("plots/choropleth.jl")
+	include("plots/geoscatter.jl")
 	include("plots/geolines.jl")
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
