@@ -117,7 +117,7 @@ end
 
 **Four-method pattern** (all chart creation functions follow this shape):
 
-```julia
+````julia
 """
     chartname(x, y)
 
@@ -166,7 +166,7 @@ function chartname(df, x::Symbol, y::Symbol, group::Symbol;
                    kwargs...)
     # delegate to vector method using _table_unstack()
 end
-```
+````
 
 **Common keyword arguments** shared across chart types:
 
@@ -186,7 +186,7 @@ Modification functions mutate an existing `EChart` and live in `src/chartopts/`.
 
 Provide three method overloads: apply to all series, a single series by index, and a vector of series by index.
 
-```julia
+````julia
 """
     myoption!(ec[, series]; kwarg = default)
 
@@ -220,7 +220,7 @@ function myoption!(ec::EChart, series::Vector{Int}; kwarg::Bool = true)
     end
     return ec
 end
-```
+````
 
 Add a `include("chartopts/{filename}.jl")` line and an export in `src/ECharts.jl`. Add tests to `test/options.jl`.
 
@@ -230,7 +230,7 @@ Add a `include("chartopts/{filename}.jl")` line and an export in `src/ECharts.jl
 
 Every exported function requires a docstring. Follow this structure:
 
-```julia
+````julia
 """
     functionname(required_args)
 
@@ -249,7 +249,7 @@ functionname(x::Type2, y::Type2)
 ## Notes
 Any non-obvious behavior, defaults that differ by method, or echarts.js quirks.
 """
-```
+````
 
 **Rules:**
 - The `## Methods` block shows all overloads with their full type signatures
