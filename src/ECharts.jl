@@ -63,8 +63,8 @@ module ECharts
 	export ecdfplot
 	export qqplot
 	export differencearea
-
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
+	export bollinger!
 	export yline!, xline!, lineargradient, radialgradient, text!, xarea!, yarea!, xgridlines!, ygridlines!
 	export radial!, jitter!, labels!, theme!, tooltip!, aria!, shadow!, errorbar!
 	export savefig
@@ -154,6 +154,7 @@ module ECharts
 	include("plots/ecdfplot.jl")
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
+	include("plots/bollinger.jl")
 	include("plots/facet.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
