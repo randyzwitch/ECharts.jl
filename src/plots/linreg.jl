@@ -114,8 +114,8 @@ function linreg!(ec::EChart,
         label_text = "ŷ = $(fmt(slope))x $sign_str $(fmt(abs(intercept)))\nR² = $(fmt(r²))"
         el = GraphicElement(
             _type  = "text",
-            left   = "10%",
-            top    = "10%",
+            right  = "5%",
+            bottom = "10%",
             style  = GraphicStyle(
                 text      = label_text,
                 fill      = annotation_color,
