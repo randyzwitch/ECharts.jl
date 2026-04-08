@@ -16,6 +16,6 @@ population = [2.2, 9.0, 3.6, 12.5, 13.9, 2.7, 13.4, 5.3,
               15.5, 20.7, 21.5, 21.6, 5.9, 15.1, 10.1, 26.3]  # millions
 
 ec = geoscatter(lons, lats, population; symbol_size = 15)
-title!(ec, text = "World Cities by Population", subtext = "Colour = population (millions)")
+title!(ec, text = "World Cities by Population", subtext = "Color = population (millions)")
 ec
 ```
