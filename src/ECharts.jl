@@ -106,6 +106,8 @@ module ECharts
 	include("chartopts/aria.jl")
 	include("chartopts/shadow.jl")
 	include("chartopts/errorbar.jl")
+	include("chartopts/linreg.jl")
+	include("chartopts/bollinger.jl")
 
 	# Plots
 	include("plots/xy_plot.jl")
@@ -165,8 +167,6 @@ module ECharts
 	include("plots/qqplot.jl")
 	include("plots/differencearea.jl")
 	include("plots/forestplot.jl")
-	include("plots/linreg.jl")
-	include("plots/bollinger.jl")
 	include("plots/facet.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
