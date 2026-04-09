@@ -68,6 +68,7 @@ makedocs(
             "charts/marimekko.md",
             "charts/nightingale.md",
             "charts/parallel.md",
+            "charts/pictorialbar.md",
             "charts/pie.md",
             "charts/polar.md",
             "charts/polarbar.md",
