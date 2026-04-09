@@ -13,8 +13,11 @@ horizonchart(df, x::Symbol, y::Symbol)
 
 ## Arguments
 * `nbands::Int = 3` : number of fold levels (bands)
-* `colors::Union{AbstractVector, Nothing} = nothing` : vector of `nbands` colour strings;
-  defaults to a sequential blue palette from light to dark
+* `palette::String = "Blues"` : name of a sequential palette from `colorpalettes`
+  (e.g. `"Reds"`, `"Greens"`, `"Oranges"`, `"Purples"`). `nbands` evenly-spaced
+  colours are sampled from light to dark.
+* `colors::Union{AbstractVector, Nothing} = nothing` : explicit vector of `nbands`
+  colour strings; overrides `palette` when provided
 * `legend::Bool = false` : display legend?
 * `kwargs` : varargs to set any field of resulting `EChart` struct
 
@@ -30,15 +33,25 @@ Negative values are shifted upward so the minimum maps to zero before folding.
 The y-axis maximum is fixed to `band_size` (not the full data range).
 """
 
-_horizon_palette(n::Int) = begin
-    # Sequential blues from ColorBrewer Blues (light → dark)
-    all_blues = ["#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594"]
-    idxs = round.(Int, range(1, length(all_blues), length = n))
-    [all_blues[i] for i in idxs]
+# Sample n evenly-spaced colours from a named sequential colorpalettes entry.
+# ColorBrewer sequential palettes have 3–9 swatches; we pick the largest available
+# swatch set and subsample from it.
+function _horizon_colors(palette::String, n::Int)
+    haskey(colorpalettes, palette) ||
+        throw(ArgumentError("palette \"$palette\" not found in colorpalettes"))
+    pal = colorpalettes[palette]
+    # Keys are like "3","4",…,"9","type" — keep only numeric ones
+    numeric_keys = [k for k in keys(pal) if all(isdigit, k)]
+    isempty(numeric_keys) && throw(ArgumentError("palette \"$palette\" has no numeric swatch keys"))
+    max_key = string(maximum(parse(Int, k) for k in numeric_keys))
+    all_colors = pal[max_key]
+    idxs = round.(Int, range(1, length(all_colors); length = n))
+    [all_colors[i] for i in idxs]
 end
 
 function horizonchart(x::AbstractVector, y::AbstractVector{<:Real};
                       nbands::Int = 3,
+                      palette::String = "Blues",
                       colors::Union{AbstractVector, Nothing} = nothing,
                       legend::Bool = false,
                       kwargs...)
@@ -54,7 +67,7 @@ function horizonchart(x::AbstractVector, y::AbstractVector{<:Real};
     ymax > 0 || throw(ArgumentError("all values are identical; cannot build a horizon chart"))
 
     band_size = ymax / nbands
-    clrs = isnothing(colors) ? _horizon_palette(nbands) : colors
+    clrs = isnothing(colors) ? _horizon_colors(palette, nbands) : colors
     length(clrs) == nbands ||
         throw(ArgumentError("length(colors) must equal nbands (got $(length(clrs)), need $nbands)"))
 
@@ -93,13 +106,15 @@ See the primary `horizonchart` method for full argument documentation.
 """
 function horizonchart(df, x::Symbol, y::Symbol;
                       nbands::Int = 3,
+                      palette::String = "Blues",
                       colors::Union{AbstractVector, Nothing} = nothing,
                       legend::Bool = false,
                       kwargs...)
     Tables.istable(df) ||
         throw(ArgumentError("first argument must be a Tables.jl-compatible table"))
     ec = horizonchart(_table_col(df, x), _table_col(df, y);
-                      nbands = nbands, colors = colors, legend = legend, kwargs...)
+                      nbands = nbands, palette = palette, colors = colors,
+                      legend = legend, kwargs...)
     xaxis!(ec, name = string(x))
     yaxis!(ec, name = string(y))
     return ec
@@ -124,8 +139,10 @@ horizonchart(df, x::Symbol, ys::AbstractVector{Symbol}; ...)
 * `names::Union{AbstractVector, Nothing} = nothing` : row labels; defaults to
   `"Series 1"`, `"Series 2"`, …
 * `nbands::Int = 3` : number of fold levels per row
-* `colors::Union{AbstractVector, Nothing} = nothing` : `nbands` colour strings shared
-  across all rows; defaults to sequential blues
+* `palette::String = "Blues"` : named sequential palette from `colorpalettes`;
+  `nbands` colours are sampled light-to-dark and shared across all rows
+* `colors::Union{AbstractVector, Nothing} = nothing` : explicit colour override;
+  takes precedence over `palette` when provided
 * `row_height::Int = 60` : height of each row in pixels
 * `shared_scale::Bool = false` : if `true`, all rows use the same `band_size`
   (the global maximum ÷ `nbands`); if `false` (default) each row is scaled
@@ -142,6 +159,7 @@ function horizonchart(x::AbstractVector,
                       Y::AbstractVector{<:AbstractVector{<:Real}};
                       names::Union{AbstractVector, Nothing} = nothing,
                       nbands::Int = 3,
+                      palette::String = "Blues",
                       colors::Union{AbstractVector, Nothing} = nothing,
                       shared_scale::Bool = false,
                       row_height::Int = 60,
@@ -157,7 +175,7 @@ function horizonchart(x::AbstractVector,
     length(row_names) == n ||
         throw(ArgumentError("length(names) must equal number of series"))
 
-    clrs = isnothing(colors) ? _horizon_palette(nbands) : colors
+    clrs = isnothing(colors) ? _horizon_colors(palette, nbands) : colors
     length(clrs) == nbands ||
         throw(ArgumentError("length(colors) must equal nbands"))
 
@@ -281,7 +299,7 @@ See the `horizonchart(x, Y::Vector{Vector})` method for full documentation.
 function horizonchart(x::AbstractVector,
                       Y::AbstractMatrix{<:Real};
                       kwargs...)
-    horizonchart(x, [Y[:, j] for j in 1:size(Y, 2)]; kwargs...)
+    horizonchart(x, [Y[:, j] for j in axes(Y, 2)]; kwargs...)
 end
 
 """
@@ -294,6 +312,7 @@ See the `horizonchart(x, Y::Vector{Vector})` method for full documentation.
 function horizonchart(df, x::Symbol, ys::AbstractVector{Symbol};
                       names::Union{AbstractVector, Nothing} = nothing,
                       nbands::Int = 3,
+                      palette::String = "Blues",
                       colors::Union{AbstractVector, Nothing} = nothing,
                       shared_scale::Bool = false,
                       row_height::Int = 60,
@@ -304,6 +323,6 @@ function horizonchart(df, x::Symbol, ys::AbstractVector{Symbol};
     Yvec = [_table_col(df, s) for s in ys]
     nm   = isnothing(names) ? string.(ys) : names
     horizonchart(xvec, Yvec;
-                 names = nm, nbands = nbands, colors = colors,
+                 names = nm, nbands = nbands, palette = palette, colors = colors,
                  shared_scale = shared_scale, row_height = row_height, kwargs...)
 end

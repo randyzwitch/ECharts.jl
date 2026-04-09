@@ -56,3 +56,19 @@ ec = horizonchart(df, :day, tickers; shared_scale = true, nbands = 3, row_height
 title!(ec, text = "Cumulative Returns — shared scale")
 ec
 ```
+
+```@example
+using ECharts, DataFrames, Random
+Random.seed!(99)
+# Same data with a Reds palette instead of the default Blues
+n = 200
+days = string.(1:n)
+tickers = [:AAPL, :GOOG, :MSFT, :AMZN, :TSLA, :NVDA]
+df = DataFrame(day = days)
+for tk in tickers
+    df[!, tk] = cumsum(0.015 .* randn(n))
+end
+ec = horizonchart(df, :day, tickers; palette = "Reds", shared_scale = true, nbands = 3, row_height = 55)
+title!(ec, text = "Cumulative Returns — Reds palette")
+ec
+```
