@@ -60,6 +60,7 @@ makedocs(
             "charts/funnel.md",
             "charts/gantt.md",
             "charts/gauge.md",
+            "charts/joint_plot.md",
             "charts/graph.md",
             "charts/heatmap.md",
             "charts/histogram.md",

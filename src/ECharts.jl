@@ -68,6 +68,7 @@ module ECharts
 	export qqplot
 	export differencearea
 	export forestplot
+	export jointplot
 
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export bollinger!, linreg!
@@ -169,6 +170,7 @@ module ECharts
 	include("plots/differencearea.jl")
 	include("plots/forestplot.jl")
 	include("plots/facet.jl")
+	include("plots/joint_plot.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
