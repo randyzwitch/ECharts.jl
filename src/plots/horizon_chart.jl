@@ -76,7 +76,7 @@ function horizonchart(x::AbstractVector, y::AbstractVector{<:Real};
 
     ec = newplot(kwargs, ec_charttype = "horizonchart")
     ec.xAxis  = [Axis(_type = x_type)]
-    ec.yAxis  = [Axis(_type = "value", min = 0, max = band_size)]
+    ec.yAxis  = [Axis(_type = "value", min = 0)]
     ec.series = series_list
 
     legend ? legend!(ec) : nothing
