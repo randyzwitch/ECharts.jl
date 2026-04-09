@@ -227,13 +227,15 @@ function horizonchart(x::AbstractVector,
             axisLine  = AxisLine(show = false),
         ))
 
-        # Right-aligned graphic text label — all anchored at the same x pixel
+        # Right-aligned graphic text label.
+        # style.x/style.y set the anchor point; textAlign="right" means text
+        # extends leftward from that anchor, keeping all labels flush-right.
         push!(labels, GraphicElement(
             _type = "text",
-            left  = lm_px - 6,
-            top   = row_top + div(row_height, 2),
             style = GraphicStyle(
                 text              = row_names[i],
+                x                 = lm_px - 6,
+                y                 = row_top + div(row_height, 2),
                 textAlign         = "right",
                 textVerticalAlign = "middle",
                 fill              = "#555",
