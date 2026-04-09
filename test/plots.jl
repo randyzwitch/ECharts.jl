@@ -710,3 +710,40 @@ result_qq2eq = qqplot(randn(50), randn(50))
 # qqplot — two-sample too few elements raises error
 @test_throws ArgumentError qqplot([1.0], randn(50))
 @test_throws ArgumentError qqplot(randn(50), [1.0])
+
+# horizonchart — basic numeric x-axis
+hc_x = collect(1:100)
+hc_y = sin.(range(0, 4π, length = 100)) .* 5 .+ 3.0
+result_hc = horizonchart(hc_x, hc_y)
+@test typeof(result_hc) == EChart
+@test result_hc.ec_charttype == "horizonchart"
+@test length(result_hc.series) == 3      # default nbands = 3
+@test result_hc.yAxis[1].min == 0
+@test result_hc.xAxis[1]._type == "value"
+@test all(s._type == "line" for s in result_hc.series)
+
+# horizonchart — string x-axis becomes category
+hc_cats = string.(1:50)
+hc_y2   = abs.(randn(50)) .* 4
+result_hc_cat = horizonchart(hc_cats, hc_y2; nbands = 2)
+@test result_hc_cat.xAxis[1]._type == "category"
+@test length(result_hc_cat.series) == 2
+
+# horizonchart — negative values shift without error
+result_hc_neg = horizonchart(hc_x, hc_y .- 10.0)
+@test typeof(result_hc_neg) == EChart
+
+# horizonchart — custom colors
+result_hc_col = horizonchart(hc_x, hc_y; nbands = 2, colors = ["#ffffcc", "#d9f0a3"])
+@test typeof(result_hc_col) == EChart
+
+# horizonchart — color length mismatch raises error
+@test_throws ArgumentError horizonchart(hc_x, hc_y; nbands = 3, colors = ["#aaa", "#bbb"])
+
+# horizonchart — table method
+using DataFrames
+hc_df = DataFrame(t = hc_x, v = hc_y)
+result_hc_df = horizonchart(hc_df, :t, :v)
+@test typeof(result_hc_df) == EChart
+@test result_hc_df.xAxis[1].name == "t"
+@test result_hc_df.yAxis[1].name == "v"
