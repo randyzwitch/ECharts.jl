@@ -178,53 +178,67 @@ function horizonchart(x::AbstractVector,
         band_sizes .= global_bs
     end
 
-    # Layout: percentage-based, one row per series
-    lm   = 12.0   # left margin — room for row labels
-    rm   = 2.0
-    tm   = 1.0
-    bm   = 6.0    # bottom margin — room for x-axis ticks on last row
-    rgap = 0.5    # tiny gap between rows
+    # ── Pixel-exact layout ───────────────────────────────────────────────────
+    # All positions in pixels so rows align perfectly regardless of label length.
+    canvas_w  = 800
+    lm_px     = 110   # fixed left margin — labels are right-aligned here
+    rm_px     = 10
+    title_px  = 40    # reserved for an optional title above the rows
+    bottom_px = 30    # space for x-axis ticks on the last row
+    row_gap   = 1     # 1 px gap between rows
 
-    row_h_pct = (100.0 - tm - bm - (n - 1) * rgap) / n
+    canvas_h  = title_px + n * row_height + bottom_px
 
-    grids  = Grid[]
-    xaxes  = Axis[]
-    yaxes  = Axis[]
+    grids   = Grid[]
+    xaxes   = Axis[]
+    yaxes   = Axis[]
     seriess = AbstractEChartSeries[]
+    labels  = GraphicElement[]
 
     for i in 1:n
-        idx   = i - 1
-        gt    = tm + (i - 1) * (row_h_pct + rgap)
-        bs    = band_sizes[i]
-        show_x = i == n   # x-axis labels only on last row
+        idx    = i - 1
+        row_top = title_px + (i - 1) * row_height
+        bs      = band_sizes[i]
+        show_x  = i == n
 
         push!(grids, Grid(
-            left         = "$(round(lm; digits=1))%",
-            top          = "$(round(gt; digits=1))%",
-            width        = "$(round(100.0 - lm - rm; digits=1))%",
-            height       = "$(round(row_h_pct; digits=1))%",
-            containLabel = false,
+            left   = lm_px,
+            top    = row_top,
+            width  = canvas_w - lm_px - rm_px,
+            height = row_height - row_gap,
         ))
 
         push!(xaxes, Axis(
             _type     = x_type,
             gridIndex = idx,
             show      = show_x,
-            axisLabel = show_x ? AxisLabel() : AxisLabel(show = false),
+            axisLabel = show_x ? AxisLabel(fontSize = 10) : AxisLabel(show = false),
             splitLine = SplitLine(show = false),
+            axisTick  = AxisTick(show = show_x),
         ))
 
         push!(yaxes, Axis(
             _type     = "value",
             gridIndex = idx,
             min       = 0,
-            name      = row_names[i],
-            nameLocation = "middle",
-            nameRotate   = 0,
-            nameGap      = round(Int, lm * 6),   # push label into left margin
-            axisLabel    = AxisLabel(show = false),
-            splitLine    = SplitLine(show = false),
-            axisTick     = AxisTick(show = false),
+            axisLabel = AxisLabel(show = false),
+            splitLine = SplitLine(show = false),
+            axisTick  = AxisTick(show = false),
+            axisLine  = AxisLine(show = false),
+        ))
+
+        # Right-aligned graphic text label — all anchored at the same x pixel
+        push!(labels, GraphicElement(
+            _type = "text",
+            left  = lm_px - 6,
+            top   = row_top + div(row_height, 2),
+            style = GraphicStyle(
+                text              = row_names[i],
+                textAlign         = "right",
+                textVerticalAlign = "middle",
+                fill              = "#555",
+                font              = "12px sans-serif",
+            ),
         ))
 
         for k in 0:nbands-1
@@ -244,13 +258,14 @@ function horizonchart(x::AbstractVector,
     end
 
     ec = newplot(kwargs, ec_charttype = "horizonchart")
-    ec.grid   = grids
-    ec.xAxis  = xaxes
-    ec.yAxis  = yaxes
-    ec.series = seriess
-    ec.legend = nothing
-    ec.ec_height = n * row_height + 60
-    ec.ec_width  = 800
+    ec.grid    = grids
+    ec.xAxis   = xaxes
+    ec.yAxis   = yaxes
+    ec.series  = seriess
+    ec.legend  = nothing
+    ec.graphic = Graphic(labels)
+    ec.ec_height = canvas_h
+    ec.ec_width  = canvas_w
 
     return ec
 end
