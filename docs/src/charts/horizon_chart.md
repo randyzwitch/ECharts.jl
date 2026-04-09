@@ -25,3 +25,34 @@ ec = horizonchart(df, :day, :dev; nbands = 4)
 title!(ec, text = "Price Deviation from 30-day MA")
 ec
 ```
+
+## Multi-row horizon chart
+
+```@example
+using ECharts, Random
+Random.seed!(42)
+# 12 monthly temperature anomaly series (different weather stations)
+n = 120
+t = collect(1:n)
+stations = ["Station $i" for i in 1:12]
+Y = [sin.(2π .* t ./ 12 .+ 0.3i) .* (1 + 0.3i) .+ 0.4 .* randn(n) for i in 1:12]
+ec = horizonchart(t, Y; names = stations, nbands = 3, row_height = 50)
+title!(ec, text = "Monthly Temperature Anomaly by Station")
+ec
+```
+
+```@example
+using ECharts, DataFrames, Random
+Random.seed!(7)
+# Cumulative returns for several assets — shared_scale makes magnitudes comparable
+n = 200
+days = string.(1:n)
+tickers = [:AAPL, :GOOG, :MSFT, :AMZN, :TSLA, :NVDA]
+df = DataFrame(day = days)
+for tk in tickers
+    df[!, tk] = cumsum(0.015 .* randn(n))
+end
+ec = horizonchart(df, :day, tickers; shared_scale = true, nbands = 3, row_height = 55)
+title!(ec, text = "Cumulative Returns — shared scale")
+ec
+```
