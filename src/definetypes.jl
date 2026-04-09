@@ -1098,7 +1098,7 @@ ECharts series configuration for pictorial bar charts (bars shaped like custom s
     barGap::Union{Int, String, Nothing} = nothing
     barCategoryGap::Union{Int, String, Nothing} = nothing
     symbol::Union{String, Nothing} = nothing
-    symbolSize::Union{AbstractVector, Nothing} = nothing
+    symbolSize::Union{Number, AbstractVector, Nothing} = nothing
     symbolPosition::Union{String, Nothing} = nothing
     symbolOffset::Union{AbstractVector, Nothing} = nothing
     symbolRotate::Union{Int, Nothing} = nothing
@@ -1106,7 +1106,7 @@ ECharts series configuration for pictorial bar charts (bars shaped like custom s
     symbolRepeatDirection::Union{String, Nothing} = nothing
     symbolMargin::Union{Int, String, Nothing} = nothing
     symbolClip::Union{Bool, Nothing} = nothing
-    symbolBoundingData::Union{Int, AbstractArray, Nothing} = nothing
+    symbolBoundingData::Union{Number, AbstractArray, Nothing} = nothing
     symbolPatternSize::Union{Int, Nothing} = nothing
     dimensions::Union{AbstractArray, Nothing} = nothing
     encode::Union{Dict, Nothing} = nothing

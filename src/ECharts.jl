@@ -35,7 +35,7 @@ module ECharts
 	export xy_plot, bar, radialbar, polarbar, line, scatter, area, waterfall, lollipop, slope, marimekko, facet, facet!
 	export bump
 	export box, candlestick, sankey
-	export radar, funnel
+	export radar, funnel, pictorialbar
 	export pie, donut, gauge, polar
 	export histogram, heatmap, streamgraph, bubble
 	export corrplot
@@ -124,6 +124,7 @@ module ECharts
 	include("plots/gauge.jl")
 	include("plots/polar.jl")
 	include("plots/funnel.jl")
+	include("plots/pictorialbar.jl")
 	include("plots/waterfall.jl")
 	include("plots/box.jl")
 	include("plots/candlestick.jl")
