@@ -19,3 +19,14 @@ ec = scatter(df, :height, :weight, :sex)
 title!(ec, text = "Height vs Weight", subtext = "20 subjects by sex (cm, kg)")
 ec
 ```
+
+```@example
+using ECharts, Random
+Random.seed!(42)
+x = collect(1.0:0.5:10.0)
+y = 1.8 .* x .+ 3.0 .+ randn(length(x)) .* 2
+ec = scatter(x, y)
+linreg!(ec, x, y; annotation = true)
+title!(ec, text = "Simple Linear Regression", subtext = "OLS fit with 95% CI")
+ec
+```

@@ -73,29 +73,22 @@ function linreg!(ec::EChart,
     se_fit = [s * sqrt(1/n + (xi - x_bar)^2 / sxx) for xi in xgrid]
 
     if ci && s > 0
-        lo_pts  = [[xgrid[i], y_fit[i] - z * se_fit[i]] for i in eachindex(xgrid)]
-        hi_diff = [2 * z * se_fit[i] for i in eachindex(xgrid)]
+        # Closed-polygon approach: trace upper CI left→right, then lower CI right→left.
+        # ECharts fills the interior (the CI band) via the canvas non-zero winding rule.
+        # This avoids ECharts stacking, which does not work correctly for [x, y] pair
+        # data on a value axis (as opposed to scalar data on a category axis).
+        upper_pts = [[xgrid[i], y_fit[i] + z * se_fit[i]] for i in eachindex(xgrid)]
+        lower_pts = [[xgrid[i], y_fit[i] - z * se_fit[i]] for i in reverse(eachindex(xgrid))]
 
         push!(ec.series, XYSeries(
             name            = "",
             _type           = "line",
-            data            = lo_pts,
+            data            = vcat(upper_pts, lower_pts),
             lineStyle       = LineStyle(width = 0),
-            showSymbol      = false,
-            legendHoverLink = false,
-            silent          = true,
-            stack           = "ci_band",
-        ))
-        push!(ec.series, XYSeries(
-            name            = "",
-            _type           = "line",
-            data            = [[xgrid[i], hi_diff[i]] for i in eachindex(xgrid)],
-            lineStyle       = LineStyle(width = 0),
-            showSymbol      = false,
             areaStyle       = AreaStyle(color = ci_color, opacity = ci_opacity),
+            showSymbol      = false,
             legendHoverLink = false,
             silent          = true,
-            stack           = "ci_band",
         ))
     end
 
