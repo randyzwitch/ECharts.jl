@@ -4,7 +4,7 @@
 Creates an `EChart` slope chart — a line chart with exactly two x-axis points that
 emphasises the direction and magnitude of change between two states (e.g. before/after,
 two time points, two groups). Each row in `values` (or each series in a DataFrame)
-becomes a labelled slope line.
+becomes a labeled slope line.
 
 ## Methods
 ```julia

@@ -68,6 +68,7 @@ module ECharts
 	export qqplot
 	export differencearea
 	export forestplot
+	export jointplot
 	export boxenplot
 	export horizonchart
 
@@ -171,6 +172,7 @@ module ECharts
 	include("plots/differencearea.jl")
 	include("plots/forestplot.jl")
 	include("plots/facet.jl")
+	include("plots/joint_plot.jl")
 	include("plots/boxen_plot.jl")
 	include("plots/horizon_chart.jl")
 

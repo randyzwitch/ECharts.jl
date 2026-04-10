@@ -17,7 +17,7 @@ violin(data::AbstractVector{<:Real})
 
 ## Notes
 
-The single-vector method treats all values as one group labelled `"1"`.
+The single-vector method treats all values as one group labeled `"1"`.
 KDE is computed via `KernelDensity.kde`. Each violin is rendered as a pair of filled
 area series (mirrored about the group's integer x-position).
 """

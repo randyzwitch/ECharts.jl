@@ -42,7 +42,7 @@ function ridgeline(groups::AbstractVector{String},
         dens = KernelDensity.pdf(k, collect(xpts))
         max_dens = maximum(dens)
         max_dens == 0 && continue
-        dens_norm = dens ./ max_dens   # normalise to [0, 1]
+        dens_norm = dens ./ max_dens   # normalize to [0, 1]
 
         pts = [[xpts[j], offset + dens_norm[j]] for j in eachindex(xpts)]
 

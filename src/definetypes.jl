@@ -377,8 +377,8 @@ See also [`xaxis!`](@ref), [`yaxis!`](@ref).
     nameRotate::Union{Int, Nothing} = nothing
     inverse::Union{Bool, Nothing} = false
     boundaryGap::Union{AbstractVector,Bool, Nothing} = nothing
-    min::Union{Int,String, Nothing} = nothing
-    max::Union{Int,String, Nothing} = nothing
+    min::Union{Real,String, Nothing} = nothing
+    max::Union{Real,String, Nothing} = nothing
     scale::Union{Bool, Nothing} = false
     splitNumber::Union{Int, Nothing} = 5
     minInterval::Union{Int, Nothing} = 0
@@ -532,8 +532,8 @@ end
     nameRotate::Union{Int, Nothing} = nothing
     inverse::Union{Bool, Nothing} = false
     boundaryGap::Union{Array{String,1},Bool, Nothing} = nothing
-    min::Union{Int,String, Nothing} = nothing
-    max::Union{Int,String, Nothing} = nothing
+    min::Union{Real,String, Nothing} = nothing
+    max::Union{Real,String, Nothing} = nothing
     scale::Union{Bool, Nothing} = false
     splitNumber::Union{Int, Nothing} = 5
     minInterval::Union{Int, Nothing} = 0
@@ -558,8 +558,8 @@ end
     clockwise::Union{Bool, Nothing} = true
     _type::Union{String, Nothing} = nothing
     boundaryGap::Union{AbstractVector,Bool, Nothing} = nothing
-    min::Union{Int,String, Nothing} = nothing
-    max::Union{Int,String, Nothing} = nothing
+    min::Union{Real,String, Nothing} = nothing
+    max::Union{Real,String, Nothing} = nothing
     scale::Union{Bool, Nothing} = false
     splitNumber::Union{Int, Nothing} = nothing
     minInterval::Union{Int, Nothing} = 0

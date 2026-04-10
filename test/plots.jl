@@ -711,6 +711,53 @@ result_qq2eq = qqplot(randn(50), randn(50))
 @test_throws ArgumentError qqplot([1.0], randn(50))
 @test_throws ArgumentError qqplot(randn(50), [1.0])
 
+# jointplot — basic
+using Random
+Random.seed!(1)
+jp_x = randn(200)
+jp_y = 0.6 .* jp_x .+ 0.8 .* randn(200)
+result_jp = jointplot(jp_x, jp_y)
+@test typeof(result_jp) == EChart
+@test result_jp.ec_charttype == "jointplot"
+@test length(result_jp.series) == 3
+@test result_jp.series[1]._type == "scatter"
+@test result_jp.series[2]._type == "line"   # top histogram
+@test result_jp.series[3]._type == "line"   # right histogram
+@test length(result_jp.grid) == 3
+@test length(result_jp.xAxis) == 3
+@test length(result_jp.yAxis) == 3
+@test result_jp.ec_height == 600
+
+# jointplot — scatter axis bounds are rounded to 4 significant figures
+_sigfig(v) = round(v; sigdigits = 4)
+@test result_jp.xAxis[1].min ≈ _sigfig(minimum(jp_x))
+@test result_jp.xAxis[1].max ≈ _sigfig(maximum(jp_x))
+@test result_jp.yAxis[1].min ≈ _sigfig(minimum(jp_y))
+@test result_jp.yAxis[1].max ≈ _sigfig(maximum(jp_y))
+
+# jointplot — top histogram x-range = scatter x-range
+@test result_jp.xAxis[2].min == result_jp.xAxis[1].min
+@test result_jp.xAxis[2].max == result_jp.xAxis[1].max
+
+# jointplot — right histogram y-range = scatter y-range
+@test result_jp.yAxis[3].min == result_jp.yAxis[1].min
+@test result_jp.yAxis[3].max == result_jp.yAxis[1].max
+
+# jointplot — custom nbins
+result_jp_bins = jointplot(jp_x, jp_y; nbins = 10)
+@test typeof(result_jp_bins) == EChart
+
+# jointplot — table method
+using DataFrames
+jp_df = DataFrame(a = jp_x, b = jp_y)
+result_jp_df = jointplot(jp_df, :a, :b)
+@test typeof(result_jp_df) == EChart
+@test result_jp_df.xAxis[1].name == "a"
+@test result_jp_df.yAxis[1].name == "b"
+
+# jointplot — length mismatch raises error
+@test_throws ArgumentError jointplot(jp_x, jp_y[1:end-1])
+
 # boxenplot — single vector
 bp_data = randn(200)
 result_bp = boxenplot(bp_data)
@@ -731,7 +778,6 @@ result_bp_multi = boxenplot(bp_groups; names = ["A", "B", "C"])
 @test any(s isa CustomSeries for s in result_bp_multi.series)
 
 # boxenplot — table methods
-using DataFrames
 bp_df = DataFrame(
     val = vcat(randn(80), randn(80) .+ 2),
     grp = vcat(fill("X", 80), fill("Y", 80)),
