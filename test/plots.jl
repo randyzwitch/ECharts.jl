@@ -728,11 +728,12 @@ result_jp = jointplot(jp_x, jp_y)
 @test length(result_jp.yAxis) == 3
 @test result_jp.ec_height == 600
 
-# jointplot — scatter axis ranges match data
-@test result_jp.xAxis[1].min ≈ minimum(jp_x)
-@test result_jp.xAxis[1].max ≈ maximum(jp_x)
-@test result_jp.yAxis[1].min ≈ minimum(jp_y)
-@test result_jp.yAxis[1].max ≈ maximum(jp_y)
+# jointplot — scatter axis bounds are rounded to 4 significant figures
+_sigfig(v) = round(v; sigdigits = 4)
+@test result_jp.xAxis[1].min == string(_sigfig(minimum(jp_x)))
+@test result_jp.xAxis[1].max == string(_sigfig(maximum(jp_x)))
+@test result_jp.yAxis[1].min == string(_sigfig(minimum(jp_y)))
+@test result_jp.yAxis[1].max == string(_sigfig(maximum(jp_y)))
 
 # jointplot — top histogram x-range = scatter x-range
 @test result_jp.xAxis[2].min == result_jp.xAxis[1].min

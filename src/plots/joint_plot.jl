@@ -38,8 +38,13 @@ function jointplot(x::AbstractVector{<:Real}, y::AbstractVector{<:Real};
     length(x) >= 2 ||
         throw(ArgumentError("need at least 2 observations"))
 
-    xmin, xmax = Float64(minimum(x)), Float64(maximum(x))
-    ymin, ymax = Float64(minimum(y)), Float64(maximum(y))
+    xmin_f, xmax_f = Float64(minimum(x)), Float64(maximum(x))
+    ymin_f, ymax_f = Float64(minimum(y)), Float64(maximum(y))
+
+    # Round axis bounds to 4 significant figures so tick labels stay readable.
+    _sigfig(v) = isfinite(v) && v != 0.0 ? round(v; sigdigits = 4) : v
+    xmin, xmax = string(_sigfig(xmin_f)), string(_sigfig(xmax_f))
+    ymin, ymax = string(_sigfig(ymin_f)), string(_sigfig(ymax_f))
 
     # Marginal histograms
     h_x = StatsBase.fit(StatsBase.Histogram, collect(Float64, x); nbins = nbins)
