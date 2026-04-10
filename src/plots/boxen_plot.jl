@@ -40,17 +40,17 @@ function _lettervalue_stats(data::AbstractVector{<:Real})
     n = length(sorted)
     n >= 4 || throw(ArgumentError("need at least 4 observations for a letter-value plot"))
 
-    # Maximum depth: largest k s.t. 2^(k+1) ≤ n/2, stops before tails have < ~14 points
-    max_depth = max(1, floor(Int, log2(n)) - 1)
+    # Maximum depth: largest k where expected tail count n/2^(k+1) ≥ 14
+    # k ≤ log2(n/14) - 1 = log2(n/28), so max_depth = floor(log2(n/28))
+    max_depth = max(1, floor(Int, log2(n / 28)))
 
     median_val = quantile(sorted, 0.5)
 
     levels = Tuple{Int,Float64,Float64}[]
     for k in 1:max_depth
-        p      = 0.5^(k + 1)
-        q_low  = quantile(sorted, p)
-        q_high = quantile(sorted, 1.0 - p)
-        push!(levels, (k, q_low, q_high))
+        p  = 0.5^(k + 1)
+        qs = quantile(sorted, [p, 1.0 - p])
+        push!(levels, (k, qs[1], qs[2]))
     end
 
     outer_low, outer_high = levels[end][2], levels[end][3]
@@ -88,6 +88,34 @@ function(params, api) {
 }
 """)
 
+# Horizontal variants (used by flip!)
+const _BOXEN_RENDER_BOX_H = JSON.JSONText("""
+function(params, api) {
+    var catCoord = api.coord([0, api.value(0)]);
+    var x0 = api.coord([api.value(1), 0])[0];
+    var x1 = api.coord([api.value(2), 0])[0];
+    var halfH = api.value(3) * api.size([0, 1])[1];
+    return {
+        type: 'rect',
+        shape: { x: x0, y: catCoord[1] - halfH, width: x1 - x0, height: 2 * halfH },
+        style: api.style()
+    };
+}
+""")
+
+const _BOXEN_RENDER_MEDIAN_H = JSON.JSONText("""
+function(params, api) {
+    var catCoord = api.coord([0, api.value(0)]);
+    var xMed = api.coord([api.value(1), 0])[0];
+    var halfH = api.value(2) * api.size([0, 1])[1];
+    return {
+        type: 'rect',
+        shape: { x: xMed - 1.5, y: catCoord[1] - halfH, width: 3, height: 2 * halfH },
+        style: { fill: '#1f1f1f' }
+    };
+}
+""")
+
 # ── Core constructor ──────────────────────────────────────────────────────────
 
 function boxenplot(data::AbstractVector{<:AbstractVector{<:Real}};
@@ -95,7 +123,7 @@ function boxenplot(data::AbstractVector{<:AbstractVector{<:Real}};
                    legend::Bool = false,
                    kwargs...)
 
-    isnothing(names) && (names = [string(i) for i in 1:length(data)])
+    isnothing(names) && (names = string.(1:length(data)))
     length(names) == length(data) ||
         error("Number of names must equal number of data vectors")
 
@@ -136,13 +164,7 @@ function boxenplot(data::AbstractVector{<:AbstractVector{<:Real}};
         encode     = Dict("x" => 0, "y" => 1),
     ))
 
-    # Outliers
-    outlier_pts = Any[]
-    for (ci, stat) in enumerate(stats)
-        for o in stat[3]
-            push!(outlier_pts, [Float64(ci), o])
-        end
-    end
+    outlier_pts = [[Float64(ci), o] for (ci, stat) in enumerate(stats) for o in stat[3]]
     if !isempty(outlier_pts)
         push!(series_list, XYSeries(
             name       = "Outliers",

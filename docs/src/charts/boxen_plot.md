@@ -5,27 +5,49 @@ boxenplot
 ```
 
 ```@example
-using ECharts, Random
-Random.seed!(42)
-# Simulated salary distributions for three job levels
-junior = max.(30.0,  70 .+ 15 .* randn(200))
-mid    = max.(30.0, 110 .+ 22 .* randn(200))
-senior = max.(30.0, 160 .+ 30 .* randn(200))
-ec = boxenplot([junior, mid, senior]; names = ["Junior", "Mid-Level", "Senior"])
-title!(ec, text = "Salary Distribution by Level (USD thousands)",
-           subtext = "Letter-value plot — n = 200 per group")
+using ECharts, RDatasets
+diamonds = dataset("ggplot2", "diamonds")
+
+# Single distribution of diamond prices
+ec = boxenplot(diamonds, :Price)
+flip!(ec)
+title!(ec, text = "Distribution of Diamond Prices",
+           subtext = "diamonds dataset — n = 53,940")
 ec
 ```
 
 ```@example
-using ECharts, DataFrames, Random
-Random.seed!(7)
-n = 150
-df = DataFrame(
-    score = vcat(50 .+ 10 .* randn(n), 65 .+ 12 .* randn(n), 80 .+ 8 .* randn(n)),
-    group = vcat(fill("Control", n), fill("Treatment A", n), fill("Treatment B", n)),
-)
-ec = boxenplot(df, :score, :group)
-title!(ec, text = "Test Scores by Treatment Group")
+using ECharts, RDatasets
+diamonds = dataset("ggplot2", "diamonds")
+
+# Price distribution broken out by clarity grade
+ec = boxenplot(diamonds, :Price, :Clarity)
+flip!(ec)
+title!(ec, text = "Diamond Price by Clarity",
+           subtext = "I1 (worst) → IF (best)")
+ec
+```
+
+```@example
+using ECharts, RDatasets
+diamonds = dataset("ggplot2", "diamonds")
+
+# Split by carat size: ≤ 1 ct vs > 1 ct, within each clarity grade
+small = diamonds[diamonds.Carat .<= 1, :]
+large = diamonds[diamonds.Carat .>  1, :]
+
+clarity_levels = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF"]
+
+small_vecs = [small.Price[small.Clarity .== c] for c in clarity_levels]
+large_vecs = [large.Price[large.Clarity .== c] for c in clarity_levels]
+
+# Interleave small/large for each clarity so they sit side-by-side
+vecs  = vcat([[s, l] for (s, l) in zip(small_vecs, large_vecs)]...)
+labels = vcat([["$c ≤1ct", "$c >1ct"] for c in clarity_levels]...)
+
+ec = boxenplot(vecs; names = labels)
+flip!(ec)
+title!(ec, text = "Diamond Price by Clarity and Carat Size",
+           subtext = "Each clarity grade split by carat ≤ 1 vs > 1")
 ec
 ```
