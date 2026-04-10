@@ -25,7 +25,7 @@ ecdfplot(e)
 ```
 
 Weighted ECDFs (via `StatsBase.ecdf(data, weights = ...)`) are supported — the
-cumulative weights are normalised to [0, 1] automatically.
+cumulative weights are normalized to [0, 1] automatically.
 
 The y-axis is fixed to [0, 1] since it represents probability. The x-axis
 spans the observed data range with no category gap.

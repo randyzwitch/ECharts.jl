@@ -7,7 +7,7 @@ geoheatmap
 ```@example
 using ECharts
 
-# Earthquake epicentres with magnitude as intensity
+# Earthquake epicenters with magnitude as intensity
 lons = [139.7, -118.2, 37.6,  151.2, 103.8, -99.1, -43.2, 28.9,
         121.5, -58.4,  72.8,  -77.0,  2.3,  55.3, 144.8, -70.7,
         -46.6, 106.8,  23.7,   12.5]
@@ -19,6 +19,6 @@ magnitudes = [7.2, 6.1, 5.8, 6.5, 6.0, 7.4, 5.5, 6.8,
               5.7, 6.9, 5.3, 6.6]
 
 ec = geoheatmap(lons, lats, magnitudes; blur_size = 40)
-title!(ec, text = "Global Earthquake Epicentres", subtext = "Point size ~ magnitude")
+title!(ec, text = "Global Earthquake Epicenters", subtext = "Point size ~ magnitude")
 ec
 ```

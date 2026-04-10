@@ -31,7 +31,7 @@ tooltip!(ec::EChart; show, trigger, formatter, backgroundColor, borderColor, pad
 ## Notes
 
 The auto-selected trigger for Cartesian charts (`"axis"`) shows a single tooltip for all series
-at the same x position. Pass `trigger = "item"` to override this behaviour.
+at the same x position. Pass `trigger = "item"` to override this behavior.
 
 """
 function tooltip!(ec::EChart; show::Bool = true,

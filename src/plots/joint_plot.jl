@@ -19,7 +19,7 @@ jointplot(df, x::Symbol, y::Symbol)
 ## Notes
 
 Three ECharts grids are used:
-- **Scatter** (centre-bottom): the bivariate scatter plot
+- **Scatter** (center-bottom): the bivariate scatter plot
 - **Top marginal** (above scatter): histogram of `x`
 - **Right marginal** (right of scatter): histogram of `y`, rendered as a
   horizontal step-line with area fill so that it aligns with the scatter y-axis

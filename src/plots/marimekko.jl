@@ -16,7 +16,7 @@ marimekko(categories::AbstractVector,
 * `categories` : column labels (length `n_cols`)
 * `subcategories` : row/segment labels (length `n_rows`)
 * `values` : matrix of shape `(n_rows, n_cols)` — rows are sub-categories, columns are
-  categories. Values must be non-negative; they are normalised internally.
+  categories. Values must be non-negative; they are normalized internally.
 * `legend::Bool = true` : display legend?
 * `kwargs` : varargs to set any field of the resulting `EChart` struct
 
@@ -54,7 +54,7 @@ function marimekko(categories::AbstractVector,
     col_widths = col_totals ./ grand_total .* 100.0
     col_starts = [0.0; cumsum(col_widths)[1:end-1]]
 
-    # Within each column, normalise rows to percentages (0–100 scale)
+    # Within each column, normalize rows to percentages (0–100 scale)
     pct = zeros(Float64, n_rows, n_cols)
     for j in 1:n_cols
         ct = col_totals[j]

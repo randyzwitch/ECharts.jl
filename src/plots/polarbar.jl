@@ -2,7 +2,7 @@
     polarbar(categories, values)
 
 Creates an `EChart` polar bar chart (also called a radial column chart), where bars radiate
-outward from the centre of a circle. Categories are placed evenly around the angle axis and
+outward from the center of a circle. Categories are placed evenly around the angle axis and
 bar lengths represent the corresponding values on the radius axis.
 
 ## Methods
