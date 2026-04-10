@@ -69,6 +69,8 @@ module ECharts
 	export differencearea
 	export forestplot
 	export jointplot
+	export boxenplot
+	export horizonchart
 
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
 	export bollinger!, linreg!
@@ -171,6 +173,8 @@ module ECharts
 	include("plots/forestplot.jl")
 	include("plots/facet.jl")
 	include("plots/joint_plot.jl")
+	include("plots/boxen_plot.jl")
+	include("plots/horizon_chart.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.
 	# JSON.jl calls these automatically during serialization and recurses into
