@@ -64,6 +64,7 @@ makedocs(
             "charts/graph.md",
             "charts/heatmap.md",
             "charts/histogram.md",
+            "charts/horizon_chart.md",
             "charts/line.md",
             "charts/lollipop.md",
             "charts/marimekko.md",
