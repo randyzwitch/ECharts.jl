@@ -711,6 +711,38 @@ result_qq2eq = qqplot(randn(50), randn(50))
 @test_throws ArgumentError qqplot([1.0], randn(50))
 @test_throws ArgumentError qqplot(randn(50), [1.0])
 
+# boxenplot — single vector
+bp_data = randn(200)
+result_bp = boxenplot(bp_data)
+@test typeof(result_bp) == EChart
+@test result_bp.ec_charttype == "boxenplot"
+@test result_bp.xAxis[1]._type == "value"
+@test result_bp.yAxis[1]._type == "value"
+# must have at least one box series + median + (possibly outliers)
+@test length(result_bp.series) >= 2
+
+# boxenplot — multiple groups
+bp_groups = [randn(100), randn(100) .+ 2, randn(100) .+ 4]
+result_bp_multi = boxenplot(bp_groups; names = ["A", "B", "C"])
+@test typeof(result_bp_multi) == EChart
+@test result_bp_multi.xAxis[1].max == 4   # n_cats + 1
+
+# boxenplot — mixed series types (CustomSeries + XYSeries)
+@test any(s isa CustomSeries for s in result_bp_multi.series)
+
+# boxenplot — table methods
+using DataFrames
+bp_df = DataFrame(
+    val = vcat(randn(80), randn(80) .+ 2),
+    grp = vcat(fill("X", 80), fill("Y", 80)),
+)
+@test typeof(boxenplot(bp_df, :val)) == EChart
+@test typeof(boxenplot(bp_df, :val, :grp)) == EChart
+@test boxenplot(bp_df, :val, :grp).xAxis[1].name == "grp"
+
+# boxenplot — too few observations raises error
+@test_throws ArgumentError boxenplot([1.0, 2.0, 3.0])
+
 # horizonchart — basic numeric x-axis
 hc_x = collect(1:100)
 hc_y = sin.(range(0, 4π, length = 100)) .* 5 .+ 3.0
@@ -741,7 +773,6 @@ result_hc_col = horizonchart(hc_x, hc_y; nbands = 2, colors = ["#ffffcc", "#d9f0
 @test_throws ArgumentError horizonchart(hc_x, hc_y; nbands = 3, colors = ["#aaa", "#bbb"])
 
 # horizonchart — table method
-using DataFrames
 hc_df = DataFrame(t = hc_x, v = hc_y)
 result_hc_df = horizonchart(hc_df, :t, :v)
 @test typeof(result_hc_df) == EChart

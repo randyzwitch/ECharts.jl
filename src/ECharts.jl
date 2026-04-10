@@ -68,6 +68,7 @@ module ECharts
 	export qqplot
 	export differencearea
 	export forestplot
+	export boxenplot
 	export horizonchart
 
 	export title!, yaxis!, xaxis!, yaxis2!, toolbox!, colorscheme!, flip!, seriesnames!, legend!, datazoom!, smooth!
@@ -170,6 +171,7 @@ module ECharts
 	include("plots/differencearea.jl")
 	include("plots/forestplot.jl")
 	include("plots/facet.jl")
+	include("plots/boxen_plot.jl")
 	include("plots/horizon_chart.jl")
 
 	# JSON.lower hooks replace the old makevalidjson pipeline.

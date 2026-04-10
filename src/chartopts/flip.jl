@@ -35,6 +35,23 @@ function flip!(ec::EChart; rotatedims::Bool = false)
 	    end
 	end
 
+	if ec.ec_charttype == "boxenplot"
+	    for s in ec.series
+	        if s isa CustomSeries && !isnothing(s.encode)
+	            y_val = get(s.encode, "y", nothing)
+	            if y_val isa AbstractVector
+	                s.renderItem = _BOXEN_RENDER_BOX_H
+	                s.encode = Dict("y" => 0, "x" => [1, 2])
+	            elseif y_val isa Integer
+	                s.renderItem = _BOXEN_RENDER_MEDIAN_H
+	                s.encode = Dict("y" => 0, "x" => 1)
+	            end
+	        elseif hasproperty(s, :_type) && s._type == "scatter" && !isnothing(s.data) && length(s.data) > 0
+	            s.data = [[x[2], x[1]] for x in s.data]
+	        end
+	    end
+	end
+
     return ec
 
 end
