@@ -712,8 +712,6 @@ result_qq2eq = qqplot(randn(50), randn(50))
 @test_throws ArgumentError qqplot(randn(50), [1.0])
 
 # boxenplot — single vector
-using Random
-Random.seed!(1)
 bp_data = randn(200)
 result_bp = boxenplot(bp_data)
 @test typeof(result_bp) == EChart
