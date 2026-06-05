@@ -50,6 +50,10 @@ end
 print(x::EChart) = print(JSON.json(x))
 print(x::EChartRaw) = print(x.option)
 
+# Returns true when the current kernel is a Quarto notebook.
+# Quarto kernels expose quarto-prefixed names in Main's namespace.
+_in_quarto() = any(contains(lowercase(string(n)), "quarto") for n in names(Main))
+
 # Internal: shared HTML template used by both EChart and EChartRaw renderers.
 function _echarts_html(option::String, width, height, renderer::String, theme;
                        register_map_name::Union{String, Nothing} = nothing,
@@ -92,11 +96,56 @@ _echarts_html(ec::EChart)    = _echarts_html(JSON.json(ec), ec.ec_width, ec.ec_h
                                              register_map_data = ec.ec_mapdata)
 _echarts_html(ec::EChartRaw) = _echarts_html(ec.option,     ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
 
-#Jupyter notebook method
-Base.show(io::IO, ::MIME"text/html",        ec::EChart)    = write(io, _echarts_html(ec))
-Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart)    = write(io, _echarts_html(ec))
-Base.show(io::IO, ::MIME"text/html",        ec::EChartRaw) = write(io, _echarts_html(ec))
-Base.show(io::IO, ::MIME"juliavscode/html", ec::EChartRaw) = write(io, _echarts_html(ec))
+# CDN URL for echarts 6.0.0 — matches the version of the embedded echarts.min.js.
+const _ECHARTS_CDN = "https://cdnjs.cloudflare.com/ajax/libs/echarts/6.0.0/echarts.min"
+
+function _echarts_html_quarto(option::String, width, height, renderer::String, theme;
+                              register_map_name::Union{String,Nothing}=nothing,
+                              register_map_data::Union{String,Nothing}=nothing)
+    theme_json = JSON.json(theme)
+    chart_id   = "echarts_" * string(Threads.atomic_add!(_chart_id_counter, 1))
+
+    register_map_js = if !isnothing(register_map_name) && !isnothing(register_map_data)
+        "echarts.registerMap('$(register_map_name)', $(register_map_data));"
+    else
+        ""
+    end
+
+    return """
+    <div id="$(chart_id)" style="width:$(width)px;height:$(height)px;"></div>
+    <script>
+    require.config({
+        paths: { 'echarts': '$(_ECHARTS_CDN)' }
+    });
+    require(['echarts'], function(echarts) {
+        var dom = document.getElementById('$(chart_id)');
+        var myChart = echarts.init(dom, $(theme_json), {renderer: '$(renderer)'});
+        $(register_map_js)
+        myChart.setOption($(option));
+        window.addEventListener('resize', function() { myChart.resize(); });
+    });
+    </script>
+    """
+end
+
+_echarts_html_quarto(ec::EChart) = _echarts_html_quarto(
+    JSON.json(ec), ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme;
+    register_map_name=ec.ec_mapname, register_map_data=ec.ec_mapdata)
+_echarts_html_quarto(ec::EChartRaw) = _echarts_html_quarto(
+    ec.option, ec.ec_width, ec.ec_height, ec.ec_renderer, ec.theme)
+
+function Base.show(io::IO, ::MIME"text/html", ec::EChart)
+    write(io, _in_quarto() ? _echarts_html_quarto(ec) : _echarts_html(ec))
+end
+function Base.show(io::IO, ::MIME"juliavscode/html", ec::EChart)
+    write(io, _echarts_html(ec))
+end
+function Base.show(io::IO, ::MIME"text/html", ec::EChartRaw)
+    write(io, _in_quarto() ? _echarts_html_quarto(ec) : _echarts_html(ec))
+end
+function Base.show(io::IO, ::MIME"juliavscode/html", ec::EChartRaw)
+    write(io, _echarts_html(ec))
+end
 
 const _NODEJS_PKG_ID = Base.PkgId(Base.UUID("2bd173c7-0d6d-553b-b6af-13a54713934c"), "NodeJS")
 
